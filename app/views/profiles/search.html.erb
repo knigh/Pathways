@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>LifePathways</title>
+    <%= stylesheet_link_tag 'steppingStones.css' %>  
+  </head>
+<body>
+<center>
+   	 	<table border="0"><tr>
+	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
+		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+	<% if session[:user_id] %>
+			<% curUser = User.find(session[:user_id]) %>
+			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+		<% else %>			
+			<a href = "<%= url_for(:controller => "user", :action => "signin") %>">Log in</a>
+		<% end %></a> | <a href = "<%= url_for(:controller => "profiles", :action => "search") %>">Home</a></small></td>
+  </tr></table>
+  <table><tr>
+	<td><div class="profiles">
+	  <h3>&nbsp;Featured Alumni</h3>
+	  <table><tr>
+		<td><div class="profile">
+			<table><tr>
+			<td><img class="profilePic" src="/images/<%= @user1.image_file %>"/></td>
+			<td><h3><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></h3>
+			<%= @user1.summary %>
+			</td>
+			</tr></table>
+			<div align="right">
+			<% form_for :user, :url => {:action => :view, :id => @user1.id} do |form| %>
+			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
+			<% end %>
+			</div>
+		  </div></td></tr>
+		  <tr><td><div class="profile">
+			<table><tr>
+			<td><img class="profilePic" src="/images/<%= @user2.image_file %>"/></td>
+			<td><h3><%= @user2.name %><% if @user2.stanford_class != nil %> ('<%= (@user2.stanford_class/10)%10%><%= @user2.stanford_class % 10%>)<% end %></h3>
+			<%= @user2.summary %>
+			</td>
+			</tr></table>
+			<div align="right">
+			<% form_for :user, :url => {:action => :view, :id => @user2.id} do |form| %>
+			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
+			<% end %>
+			</div>
+		  </div></td></tr>
+		  <tr>
+		<td><div class="profile">
+			<table><tr>
+			<td><img class="profilePic" src="/images/<%= @user3.image_file %>"/></td>
+			<td><h3><%= @user3.name %><% if @user3.stanford_class != nil %> ('<%= (@user3.stanford_class/10)%10%><%= @user3.stanford_class % 10%>)<% end %></h3>
+			<%= @user3.summary %>
+			</td>
+			</tr></table>
+			<div align="right">
+			<% form_for :user, :url => {:action => :view, :id => @user3.id} do |form| %>
+			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
+			<% end %>
+			</div>
+		  </div></td></tr>
+	  </tr></table>
+	</div></td>
+    <td><div class="search">
+	<h3>Looking for something specific?</h3>
+	<table><tr>
+	<td valign="middle"><input size="35" style="font-size:14px;"/></td>
+	<td valign="middle"><% form_for :user, :url => {:action => "search"} do |form| %>
+		<%= submit_tag "Search", :class => "submit" %>
+		<% end %></td>
+	</tr></table>
+    </div><br/>
+	<div class="search">
+	<h3>Add a pathway!</h3>
+	Write about yourself or a professional that you've interviewed
+	<div>&nbsp;</div>
+	<div align="center">
+	<% if session[:user_id] %>
+		<% form_for :user, :url => {:action => :edit, :id => session[:user_id]} do |form| %>
+		<%= submit_tag "Get started", :class => "submit" %>
+		<% end %>
+	<% else %>
+		<% form_for :user, :url => {:controller => "user", :action => "signin"} do |form| %>
+		<%= submit_tag "Get started", :class => "submit" %>
+		<% end %>
+	<% end %>
+	</div>
+	</div>
+	<div class="topContributors">
+	<h3>Top Contributors</h3>
+	<center><table class="contribTable">
+	<tr><td><h5>Contributor</h5></td><td><h5>Profiles Added</h5></td><td><h5>Avg Views</h5></td></tr>
+	<% @contributors.each do |contributor| %>
+		<tr class="<%= cycle("odd", "even", :name => "row_class") %>Row"><td width="110px"><a href="<%= url_for(:action => "view", :id => contributor.id) %>" style="color:black;"><%= contributor.name %></a></td><td width="110px"><%= contributor.total_authored + 1 %></td><td width="110px"><%= contributor.total_views/(contributor.total_authored + 1)%></td></tr>
+	<% end %>
+	</table></center>	
+	<!---<tr class="evenRow"><td>ChuckChase</td><td>8.9</td></tr>
+	<tr class="oddRow"><td>nerdherder</td><td>8.7</td></tr>--->
+	</table></div></td>
+  </tr></table>
+</center>
+</body>
+</html>

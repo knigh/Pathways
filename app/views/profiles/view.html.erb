@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>LifePathways</title>
+    <%= stylesheet_link_tag 'steppingStones.css' %>  
+  </head>
+<body>
+<center>
+ 	<table border="0"><tr>
+	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
+		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+	<% if session[:user_id] %>
+			<% curUser = User.find(session[:user_id]) %>
+			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+		<% else %>			
+			<a href = "<%= url_for(:controller => "user", :action => "signin") %>">Log in</a>
+		<% end %></a> | <a href = "<%= url_for(:controller => "profiles", :action => "search") %>">Home</a></small></td>
+  </tr></table>
+
+  <table><tr>
+	<!-- Left Pane -->
+	<td>
+		<table>
+			<!-- Personal Information -->
+			<tr><td><div class="profile_info">
+				<table><tr>
+					<td><img class="profilePic" src="/images/<%= @user.image_file %>"/></td>
+					<td><table>
+						<tr><td>Name:</td><td><%= @user.name %></td></tr>
+						<tr><td>Email:</td><td><%=@user.email %></td></tr>
+					</table></td>
+				</tr></table>
+			</div></td></tr>
+
+			<tr><td/></tr>
+
+			<!-- Education / Job History -->
+			<tr><td><div class="profile_info">
+				<table>
+					<tr><td><h3>Stanford University</h3></td></tr>
+					<tr><td><table>
+						<tr><td>Class year:</td><td><%=@user.stanford_class %></td></tr>
+						<tr><td>Degree:</td><td><%=@user.degree %></td></tr>
+						<tr><td>Major/Focus:</td><td><%=@user.major %></td></tr>
+					</table></td></tr>
+				</tr></table>
+			</div></td></tr>
+
+			<tr><td/></tr>
+
+			<tr><td><div class="profile_info">
+				<table>
+					<tr><td><h3>Work Experience</h3></td></tr>
+					<tr><td><table>
+						<tr><td>Company:</td><td><%=@user.company %></td></tr>
+						<tr><td>Title:</td><td><%=@user.title %></td></tr>
+						<tr><td></td><td><%=@user.job_start %> - <%=@user.job_end %></td></tr>
+						<tr><td>Satisfaction:</td><td><%=@user.satisfaction%></td></tr>
+					</table></td></tr>
+				</tr></table>
+			</div></td></tr>
+		</table>
+	</td>
+
+	<!-- Right Pane -->
+	<td>
+		<table cellpadding="5">
+			<!-- Interview -->
+			<tr><td><div class="profile_interview">
+			<table border="0">
+				<tr>
+					<td colspan="2"><strong>My Pathway</strong>
+					<% if @user.id != @user.author %><small>&nbsp;&nbsp;interview by <%= @author.name %></small><% end %></td>
+				</tr>
+				<tr>
+					<% if @user.six_words != nil && @user.six_words.length > 0 %><td><h3>"<%=@user.six_words %>"</h3></td><% end %>
+				</tr>
+			</table>
+				<table><tr>
+<textarea disabled="true" style="font-size:10pt" cols="60" rows="17" wrap="soft" align="left">
+<%=@user.interview_text %></textarea>
+				</tr>
+<tr><td><small>
+<!--Views: <%= @user.views %><br/>
+Total Views: <%= @user.total_views %><br/> -->
+
+	<% form_for :user, :url => {:action => :post_like} do |form| %><%= @user.likes %>
+	<% if @user.likes == 1 %> person likes <% else %> people like <% end %> this</small>
+	<input type = "hidden" name="id" value="<%= params[:id] %>">
+	<%= submit_tag "Like", :class => "submit" %>
+	<% end %>
+	
+	<% form_for :user, :url => {:action => :post_question} do |form| %>
+	<%= form.text_field(:new_question, :size => "45x1") %>
+	<input type = "hidden" name="id" value="<%= params[:id] %>">
+	<%= submit_tag "Post a new question", :class => "submit" %>
+	<% end %>
+</table>
+			</div></td></tr>
+
+			<tr><td/></tr>
+			
+			<!-- Interview list -->
+			<% if @user.total_authored > 0 %>
+			<tr>
+				<td><div class="profile_interviews">
+					<h3>Interviews Performed</h3>
+					<center><table class="contribTable">
+						<tr><td><h5>Subject</h5></td><td><h5>Number of Views</h5></td></tr>
+						<% if @user.total_authored > 0 %>
+							<% @interviewees.each do |interviewee| %>
+								<tr class="<%= cycle("odd", "even", :name => "row_class") %>Row"><td width="245px"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>" style="color:black;"><%= interviewee.name %></a></td><td width="245px"><%= interviewee.views %></td></tr>
+							<% end %>
+						<% end %>
+					</table></center>
+				</div></td>
+			</tr>
+			<% end %>
+		</table>
+		
+	</td>
+  </tr></table>	
+  <div>
+  <% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %>
+			<%= submit_tag "Edit", :class => "submit" %>
+		<% end %></div>
+				
+</center>
+</body>
+</html>

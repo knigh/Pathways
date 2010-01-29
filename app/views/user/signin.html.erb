@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Life Pathways</title>
+    <%= stylesheet_link_tag 'steppingStones.css' %>  
+  </head>
+<body>
+<center>
+	
+	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
+			<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table>
+
+    <table>
+	<tr><td height="10"/></tr>
+
+	<tr>
+
+	<td width="100" />
+
+	<td valign="top">
+	<div class="sign_in">
+		<h3>Sign In</h3>
+		<% form_for :user, :url => {:action => :post_signin} do |form| %>
+		<table class="form">
+		<tr>
+		  <td class="label">Email address:<td>
+		  <td><%= form.text_field(:email) %><td>
+		</tr>
+		<tr>
+		  <td class="label">Password:<td>
+		  <td><input name="password" size="30" type="password" /><td>
+		</tr>
+	 </table>
+	 <%= submit_tag "Log in", :class => "submit" %>
+	<% end %>
+	</div>
+	</td>
+	
+	<td width="100" style="text-align:center;" valign="middle"><h3>or</h3></td>
+
+	<td valign="middle">
+	<div class="sign_in">
+		<h3>Sign Up</h3>
+		<% form_for :user, :url => {:action => :post_register} do |form| %>
+		 <table class="form">
+			<tr>
+			  <td class="label">Name:</td>
+			  <td><%= form.text_field(:name) %></td>
+			</tr>
+			<tr>
+			  <td class="label">Email address:</td>
+			  <td><%= form.text_field(:email) %></td>
+			</tr>
+			<tr>
+			  <td class="label">Password:</td>
+			  <td><input name="password" size="30" type="password" /></td>
+			</tr>
+			<tr>
+			  <td class="label">Confirm Password:</td>
+			  <td><input name="password_confirmation" size="30" type="password" /></td>
+			</tr>
+		 </table>
+		 <%= submit_tag "Register", :class => "submit" %>
+		<% end %>
+		</div>
+	</td>
+
+	<td width="100" />
+
+  </tr></table>
+</center>
+</body>
+</html>
