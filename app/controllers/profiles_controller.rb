@@ -83,7 +83,10 @@ class ProfilesController < ActionController::Base
 	def search
 		
 		numUsers = User.count
-		if (numUsers < 3) redirect_to(:controller => user, :action => signup)
+		if (numUsers < 3) 
+			redirect_to(:controller => :user, :action => signin)
+		end
+
 		user1 = 1 + rand(numUsers)
 		while true
 			user2 = 1 + rand(numUsers)
