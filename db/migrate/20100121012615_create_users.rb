@@ -28,7 +28,6 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :new_question, :string
 
 	t.column :hashed_password, :string
-	t.column :salt, :salt
 
       t.timestamps
     end

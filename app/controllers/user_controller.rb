@@ -12,7 +12,7 @@ class UserController < ApplicationController
 	flash[:notice] = "Invalid signin"
 	redirect_to :action => 'signin'
     else
-	@hashed_password = Digest::SHA1.hexdigest(params[:password] + @user.salt)
+	@hashed_password = Digest::SHA1.hexdigest(params[:password])
 	if (@hashed_password != @user.hashed_password)
 		logger.error("Invalid password")
 		flash[:notice] = "Invalid password"
@@ -95,8 +95,7 @@ A:
 		flash[:notice] = "This user already exists"
       	render (:action => :signin)
 	else
-		@user.salt = getNewSalt
-   	 	@user.hashed_password = Digest::SHA1.hexdigest(@password + @user.salt)
+   	 	@user.hashed_password = Digest::SHA1.hexdigest(@password)
 		if @user.save
 			@user.author = @user.id
 			@user.save
@@ -107,10 +106,6 @@ A:
 		end
 	end
     end
-  end
-
-  def getNewSalt
-	return round(@user.object_id.to_s + rand.to_s, 6)
   end
 
   def round(term, val)
