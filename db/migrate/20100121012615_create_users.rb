@@ -12,7 +12,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :job_end, :string
 	t.column :satisfaction, :integer
 	t.column :six_words, :string
-	t.column :interview_text, :string
+	t.column :interview_text, :text
 	t.column :summary, :string
 	
 	t.column :keywords, :string
@@ -27,7 +27,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :likes, :integer
 	t.column :new_question, :string
 
-	t.column :hashed_password, :string
+	t.column :hashed_password, :strin
 
       t.timestamps
     end

@@ -44,9 +44,39 @@ class UserController < ApplicationController
     @user.likes = 0
     @user.summary = ""
     @user.image_file = "blank_profile_pic.jpg"
-    @user.interview_text = "== Interview Form ==
+    @user.interview_text =  "== Interview Form ==
 
-Q: What is the best job you have had since graduation?
+Q: What's the best job you've had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you'd known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What's one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
 A:
 "
     flash[:notice] = nil
