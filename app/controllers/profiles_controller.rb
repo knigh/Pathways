@@ -18,7 +18,7 @@ class ProfilesController < ActionController::Base
 		if (prev != nil)
 			image_file = @curUser.id.to_s() + '_' + prev.original_filename
 			new = Dir.getwd + "/public/images/" + image_file
-			create(prev, new)
+			#create(prev, new)
 		else
 			image_file = @curUser.image_file
 		end
