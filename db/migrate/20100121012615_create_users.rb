@@ -27,7 +27,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :likes, :integer
 	t.column :new_question, :string
 
-	t.column :hashed_password, :strin
+	t.column :hashed_password, :string
 
       t.timestamps
     end
