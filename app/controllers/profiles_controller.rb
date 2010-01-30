@@ -17,7 +17,7 @@ class ProfilesController < ActionController::Base
  		prev = params[:user][:image_file]
 		if (prev != nil)
 			image_file = @curUser.id.to_s() + '_' + prev.original_filename
-			new = "/afs/ir.stanford.edu/users/k/n/knigh/WWW/images/" + image_file
+			new = Dir.getwd + "/public/images/" + image_file
 			create(prev, new)
 		else
 			image_file = @curUser.image_file
