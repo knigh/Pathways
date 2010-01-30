@@ -74,7 +74,7 @@
 			<table border="0">
 				<tr>
 					<td colspan="2"><strong>My Pathway</strong>
-					<% if @user.id != @user.author %><small>&nbsp;&nbsp;interview by <%= @author.name %></small><% end %></td>
+					<% if @user.id != @user.author %><small>&nbsp;&nbsp;interview by <a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %></a></small><% end %></td>
 				</tr>
 				<tr>
 					<% if @user.six_words != nil && @user.six_words.length > 0 %><td><h3>"<%=@user.six_words %>"</h3></td><% end %>
