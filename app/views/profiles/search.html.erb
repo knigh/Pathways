@@ -47,10 +47,10 @@
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/<%= @user1.image_file %>"/></a></td>
-						<td><table class="clean">
-							<tr><td class="title" valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
+						<td valign="top"><table class="clean">
+							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
 							<tr><td height="3"/></tr>
-							<tr><td class="text" valign="top"><%= @user1.summary %></td></tr>
+							<tr><td class="text"><%= @user1.summary %></td></tr>
 						</table></td>
 					</table></td></tr>
 					<% end %>
@@ -59,7 +59,7 @@
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user2[:id] %>"><img class="pic" src="/images/<%= @user2.image_file %>"/></a></td>
-						<td><table class="clean">
+						<td valign="top"><table class="clean">
 							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %><% if @user2.stanford_class != nil %> ('<%= (@user2.stanford_class/10)%10%><%= @user2.stanford_class % 10%>)<% end %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user2.summary %></td></tr>
@@ -71,7 +71,7 @@
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user3[:id] %>"><img class="pic" src="/images/<%= @user3.image_file %>"/></a></td>
-						<td><table class="clean">
+						<td valign="top"><table class="clean">
 							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %><% if @user3.stanford_class != nil %> ('<%= (@user3.stanford_class/10)%10%><%= @user3.stanford_class % 10%>)<% end %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user3.summary %></td></tr>
