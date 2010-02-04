@@ -12,7 +12,15 @@ class ProfilesController < ActionController::Base
 	def post_edit
 		@curUser = User.find(params[:id])
 		@curUser.degree = params[:degree]
-		@curUser.satisfaction = params[:satisfaction]
+		@curUser.satisfaction1 = params[:satisfaction1]
+		@curUser.satisfaction2 = params[:satisfaction2]
+		@curUser.satisfaction3 = params[:satisfaction3]
+		@curUser.satisfaction4 = params[:satisfaction4]
+		@curUser.satisfaction5 = params[:satisfaction5]
+		@curUser.satisfaction6 = params[:satisfaction6]
+		@curUser.satisfaction7 = params[:satisfaction7]
+		@curUser.satisfaction8 = params[:satisfaction8]
+
 		
  		prev = params[:user][:image_file]
 		if (prev != nil)
@@ -137,8 +145,9 @@ class ProfilesController < ActionController::Base
 		@user.likes = 0
 		@user.summary = ""
 		@user.image_file = "blank_profile_pic.jpg"
-		@user.date_added = Time.new
-		@user.date_modified = Time.new
+		@user.date_added = Time.now
+		@user.date_modified = Time.now
+		@user.interview_date = Time.now
 		@user.interview_text = "== Interview Form ==
 
 Q: What's the best job you've had since graduation?

@@ -82,39 +82,151 @@
 				<table>
 					<tr><td><h3>Work Experience</h3></td></tr>
 					<tr><td><table>
-						<tr><td>company</td><td><%= form.text_field(:company, :size => "20x1") %></td></tr>
-						<tr><td>title</td><td><%= form.text_field(:title, :size => "20x1") %></td></tr>
-						<tr><td>started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start, :size => "7x1") %></td></tr>
-						<tr><td>ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end, :size => "7x1") %></td></tr>
-						<tr><td>satisfaction:</td><td><select name="satisfaction"/>
+						<tr><td>Company</td><td><%= form.text_field(:company1, :size => "20x1") %></td></tr>
+						<tr><td>Title</td><td><%= form.text_field(:title1, :size => "20x1") %></td></tr>
+						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start1, :size => "7x1") %></td></tr>
+						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end1, :size => "7x1") %></td></tr>
+						<tr><td>Satisfaction:</td><td><select name="satisfaction1"/>
 								<option/>
 								<option 
-								<% if @user.satisfaction == 5 %>
+								<% if @user.satisfaction1 == 5 %>
 									selected
 								<% end %>
 								value="5">5 [very satisfied]</option>
 								<option 
-								<% if @user.satisfaction == 4 %>
+								<% if @user.satisfaction1 == 4 %>
 									selected
 								<% end %>
 								value="4">4</option>				
 								<option 
-								<% if @user.satisfaction == 3 %>
+								<% if @user.satisfaction1 == 3 %>
 									selected
 								<% end %>
 								value="3">3</option>				
 								<option 
-								<% if @user.satisfaction == 2 %>
+								<% if @user.satisfaction1 == 2 %>
 									selected
 								<% end %>
 								value="2">2</option>
 								<option 
-								<% if @user.satisfaction == 1 %>
+								<% if @user.satisfaction1 == 1 %>
 									selected
 								<% end %>
 								value="1">1 [very unsatisfied]</option>
 							</select></td></tr>
 					</table></td></tr>
+					
+					<% if @user.company1 != nil && @user.company1.length > 0%>
+					<tr><td><table>
+						<tr><td>Company</td><td><%= form.text_field(:company2, :size => "20x1") %></td></tr>
+						<tr><td>Title</td><td><%= form.text_field(:title2, :size => "20x1") %></td></tr>
+						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start2, :size => "7x1") %></td></tr>
+						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end2, :size => "7x1") %></td></tr>
+						<tr><td>Satisfaction:</td><td><select name="satisfaction2"/>
+								<option/>
+								<option 
+								<% if @user.satisfaction2 == 5 %>
+									selected
+								<% end %>
+								value="5">5 [very satisfied]</option>
+								<option 
+								<% if @user.satisfaction2 == 4 %>
+									selected
+								<% end %>
+								value="4">4</option>				
+								<option 
+								<% if @user.satisfaction2 == 3 %>
+									selected
+								<% end %>
+								value="3">3</option>				
+								<option 
+								<% if @user.satisfaction2 == 2 %>
+									selected
+								<% end %>
+								value="2">2</option>
+								<option 
+								<% if @user.satisfaction2 == 1 %>
+									selected
+								<% end %>
+								value="1">1 [very unsatisfied]</option>
+							</select></td></tr>
+					</table></td></tr>
+					<% end %>
+					
+					<% if @user.company2 != nil && @user.company2.length > 0%>
+					<tr><td><table>
+						<tr><td>Company</td><td><%= form.text_field(:company3, :size => "20x1") %></td></tr>
+						<tr><td>Title</td><td><%= form.text_field(:title3, :size => "20x1") %></td></tr>
+						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start3, :size => "7x1") %></td></tr>
+						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end3, :size => "7x1") %></td></tr>
+						<tr><td>Satisfaction:</td><td><select name="satisfaction3"/>
+								<option/>
+								<option 
+								<% if @user.satisfaction3 == 5 %>
+									selected
+								<% end %>
+								value="5">5 [very satisfied]</option>
+								<option 
+								<% if @user.satisfaction3 == 4 %>
+									selected
+								<% end %>
+								value="4">4</option>				
+								<option 
+								<% if @user.satisfaction3 == 3 %>
+									selected
+								<% end %>
+								value="3">3</option>				
+								<option 
+								<% if @user.satisfaction3 == 2 %>
+									selected
+								<% end %>
+								value="2">2</option>
+								<option 
+								<% if @user.satisfaction3 == 1 %>
+									selected
+								<% end %>
+								value="1">1 [very unsatisfied]</option>
+							</select></td></tr>
+					</table></td></tr>
+					<% end %>
+					
+					<% if @user.company3 != nil && @user.company3.length > 0%>
+					<tr><td><table>
+						<tr><td>Company</td><td><%= form.text_field(:company4, :size => "20x1") %></td></tr>
+						<tr><td>Title</td><td><%= form.text_field(:title4, :size => "20x1") %></td></tr>
+						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start4, :size => "7x1") %></td></tr>
+						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end4, :size => "7x1") %></td></tr>
+						<tr><td>Satisfaction:</td><td><select name="satisfaction4"/>
+								<option/>
+								<option 
+								<% if @user.satisfaction4 == 5 %>
+									selected
+								<% end %>
+								value="5">5 [very satisfied]</option>
+								<option 
+								<% if @user.satisfaction4 == 4 %>
+									selected
+								<% end %>
+								value="4">4</option>				
+								<option 
+								<% if @user.satisfaction4 == 3 %>
+									selected
+								<% end %>
+								value="3">3</option>				
+								<option 
+								<% if @user.satisfaction4 == 2 %>
+									selected
+								<% end %>
+								value="2">2</option>
+								<option 
+								<% if @user.satisfaction4 == 1 %>
+									selected
+								<% end %>
+								value="1">1 [very unsatisfied]</option>
+							</select></td></tr>
+					</table></td></tr>
+					<% end %>
+
 	
 					<tr><td height="11"/></tr>
 			
@@ -181,15 +293,11 @@
   		<input type = "hidden" name="id" value="<%= params[:id] %>">
 
   <%= submit_tag "Save Changes", :class =>"submit" %>
-  <table><tr><td>
   <% end %>
- <% form_for :user, :url => {:action => :post_newWorkExp} do |form| %>
-  <%= submit_tag "Add another work experience", :class => "submit" %>
-  <% end %></td><td>
   <% if @user.id == @user.author %>
   <% form_for :user, :url => {:action => :post_newUser} do |form| %>
 					<%= submit_tag "Add a new Interview", :class => "submit" %>
-					<% end %><% end %></td></tr></table>
+					<% end %><% end %>
 				
 </center>
 </body>

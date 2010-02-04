@@ -45,7 +45,7 @@ class UserController < ApplicationController
     @user.summary = ""
     @user.image_file = "blank_profile_pic.jpg"
     @user.date_added = Time.new
-    @user.date_modified = Time.new
+    @user.date_modified = Time.now
     @user.interview_text =  "== Interview Form ==
 
 Q: What's the best job you've had since graduation?

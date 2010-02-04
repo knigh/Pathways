@@ -8,7 +8,7 @@
 </head>
 <body>
 	<table class="main">
-<!-- Header -->
+	<!-- Header -->
 		<tr><td class="clean"><table class="header"><tr>
 			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
 			<td/>
@@ -20,10 +20,17 @@
 				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
 				onmouseout="rollOver('search', '/images/buttons/search.gif')"
 				onclick="window.location='/profiles/search'"/></td>
-			<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
-				onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
-				onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
-				onclick="window.location='/user/signin'"/></td>
+			<% if session[:user_id] %>
+				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signout.gif')"
+					onclick="window.location='/user/logout'"/></td>
+			<% else %>
+				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
+					onclick="window.location='/user/signin'"/></td>
+			<% end %>
 		</tr></table></td></tr>
 
 	
@@ -33,11 +40,11 @@
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
-					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
+					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.job_end1 != nil && @user.job_end1 == "present" %>, <%= @user.title1 %><% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.id != @user.author %>
-							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on March 4, 2010.<br/><br/>
+							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on <%= @user.interview_date.strftime("%B ") + @user.interview_date.day.to_s + @user.interview_date.strftime(", %Y") %><br/><br/>
 						<% end %>
 						
 						<%= @interview_text %>
@@ -45,17 +52,23 @@
 						</td></tr>
 					</table></div></td></tr>
 					
-					<tr><td class="text"><% form_for :user, :url => {:action => :post_like} do |form| %><%= @user.likes %>
-					<% if @user.likes == 1 %> person likes <% else %> people like <% end %> this</small>
-					<input type = "hidden" name="id" value="<%= params[:id] %>">
-					<%= submit_tag "Like", :class => "submit" %>
-					<% end %></td></tr>
+					<tr><td class="text">
+					<% if session[:user_id] == @user.id %>
+						<% if @user.likes > 0 %><%= @user.likes %><% if @user.likes == 1 %> person likes <% else %> people like <% end %> this<% end %>
+					<% else %>
+						<% form_for :user, :url => {:action => :post_like} do |form| %>
+						<% if @user.likes > 0 %><%= @user.likes %><% if @user.likes == 1 %> person likes <% else %> people like <% end %> this<% end %>
+						<input type = "hidden" name="id" value="<%= params[:id] %>">
+						<%= submit_tag "Like", :class => "submit" %>
+						<% end %></td></tr>
 					
-					<tr><td><% form_for :user, :url => {:action => :post_question} do |form| %>
-					<%= form.text_field(:new_question, :size => "60x1") %>
-					<input type = "hidden" name="id" value="<%= params[:id] %>">
-					<%= submit_tag "Post a new question", :class => "submit" %>
-					<% end %></td></tr>
+						<tr><td><% form_for :user, :url => {:action => :post_question} do |form| %>
+						<%= form.text_field(:new_question, :size => "60x1") %>
+						<input type = "hidden" name="id" value="<%= params[:id] %>">
+						<%= submit_tag "Post a new question", :class => "submit" %>
+						<% end %>
+					<% end %>
+					</td></tr>
 
 				</table>
 			</td>
@@ -76,11 +89,11 @@
 							BS,
 						<% elsif @user.degree == "Masters" %>
 							MS,
-						<% else %>
+						<% elsif @user.degree == "Doctoral" %>
 							PhD,
 						<% end %>
 						Symbolic Systems <% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><br/>
-							Concentration: <%= @user.major %><br/>
+							<% if @user.major != nil && @user.major.length > 0 %> Concentration: <%= @user.major %><br/><% end %>
 							<%= @user.email %></td></tr>
 					</table></td></tr>
 
@@ -96,11 +109,56 @@
 					<tr><td><table class="clean">
 						<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
 						<tr><td height="5"/></tr>
-						<tr><td class="text"><%=@user.title %><br/><%=@user.company %><br/>
-							<%=@user.job_start %> - <%=@user.job_end %><br/>
+						<tr><td class="text">
+						<% if @user.title1 != nil && @user.title1.length > 0%>
+							<%=@user.title1 %><br/><%=@user.company1%><br/>
+							<%=@user.job_start1 %> - <%=@user.job_end1 %><br/>
 							<!-- Responsibilities: Q.A.<br/> -->
-							Satisfaction: <%=@user.satisfaction%> / 5<br/><br/>
-							</span></td></tr>
+							Satisfaction: <%=@user.satisfaction1%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title2 != nil && @user.title2.length > 0%>
+							<%=@user.title2 %><br/><%=@user.company2%><br/>
+							<%=@user.job_start2 %> - <%=@user.job_end2 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction2%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title3 != nil && @user.title3.length > 0%>
+							<%=@user.title3 %><br/><%=@user.company3%><br/>
+							<%=@user.job_start3 %> - <%=@user.job_end3 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction3%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title4 != nil && @user.title4.length > 0%>
+							<%=@user.title4 %><br/><%=@user.company4%><br/>
+							<%=@user.job_start4 %> - <%=@user.job_end4 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction4%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title5 != nil && @user.title5.length > 0%>
+							<%=@user.title5 %><br/><%=@user.company5%><br/>
+							<%=@user.job_start5 %> - <%=@user.job_end5 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction5%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title6 != nil && @user.title6.length > 0%>
+							<%=@user.title6 %><br/><%=@user.company6%><br/>
+							<%=@user.job_start6 %> - <%=@user.job_end6 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction6%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title7 != nil && @user.title7.length > 0%>
+							<%=@user.title7 %><br/><%=@user.company7%><br/>
+							<%=@user.job_start7 %> - <%=@user.job_end7 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction7%> / 5<br/><br/>
+						<% end %>
+						<% if @user.title8 != nil && @user.title8.length > 0%>
+							<%=@user.title8 %><br/><%=@user.company8%><br/>
+							<%=@user.job_start8 %> - <%=@user.job_end8 %><br/>
+							<!-- Responsibilities: Q.A.<br/> -->
+							Satisfaction: <%=@user.satisfaction8%> / 5<br/><br/>
+						<% end %>
+						</span></td></tr>
 					</table></td></tr>
 				</table>
 			</td>
