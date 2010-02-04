@@ -22412,3 +22412,722 @@ Processing ProfilesController#view (for ::1 at 2010-02-03 19:49:07) [GET]
   [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:49:07', "total_views" = 69 WHERE "id" = 1[0m
 Rendering profiles/view
 Completed in 38ms (View: 10, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:56:27) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 26, "updated_at" = '2010-02-04 03:56:27' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:56:27', "total_views" = 70 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 44ms (View: 12, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:56:27) [GET]
+
+ActionController::RoutingError (No route matches "/profiles/view/styles/pathways.css" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:56:28) [GET]
+
+ActionController::RoutingError (No route matches "/profiles/view/images/profiles/2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:56:51) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 27, "updated_at" = '2010-02-04 03:56:51' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:56:51', "total_views" = 71 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 40ms (View: 13, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:56:51) [GET]
+
+ActionController::RoutingError (No route matches "/profiles/view/images/profiles/2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:57:22) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 28, "updated_at" = '2010-02-04 03:57:22' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:57:22', "total_views" = 72 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 43ms (View: 15, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-03 19:59:24) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+Rendering profiles/edit
+Completed in 68ms (View: 51, DB: 2) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:59:54) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 29, "updated_at" = '2010-02-04 03:59:54' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:59:54', "total_views" = 73 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 110ms (View: 13, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:01:03) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 30, "updated_at" = '2010-02-04 04:01:03' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:01:03', "total_views" = 74 WHERE "id" = 1[0m
+Rendering profiles/view
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.stanford_class) on line #96 of app/views/profiles/view.html.erb:
+93: 						<% else %>
+94: 							PhD
+95: 						<% end %>
+96: 						, Symbolic Systems <% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %><br/>
+97: 							Concentration: HCI<br/>
+98: 							slouis@beepbop.com</td></tr>
+99: 					</table></td></tr>
+
+    app/views/profiles/view.html.erb:96
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (45.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:01:17) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 31, "updated_at" = '2010-02-04 04:01:17' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:01:18', "total_views" = 75 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 165ms (View: 12, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:01:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 32, "updated_at" = '2010-02-04 04:01:34' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:01:34', "total_views" = 76 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 36ms (View: 14, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:01:50) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 33, "updated_at" = '2010-02-04 04:01:50' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:01:50', "total_views" = 77 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 36ms (View: 13, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:02:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 34, "updated_at" = '2010-02-04 04:02:00' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:02:00', "total_views" = 78 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 37ms (View: 14, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:04:53) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 35, "updated_at" = '2010-02-04 04:04:53' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:04:53', "total_views" = 79 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 37ms (View: 14, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:05:02) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 23, "updated_at" = '2010-02-04 04:05:02' WHERE "id" = 2[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:05:02', "total_views" = 80 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 26ms (View: 1, DB: 2) | 200 OK [http://localhost/profiles/view/2]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:05:07) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 36, "updated_at" = '2010-02-04 04:05:07' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:05:07', "total_views" = 81 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 24ms (View: 2, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:06:28) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 37, "updated_at" = '2010-02-04 04:06:28' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:06:28', "total_views" = 82 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 37ms (View: 15, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:06:42) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 38, "updated_at" = '2010-02-04 04:06:42' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:06:42', "total_views" = 83 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 47ms (View: 19, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:08:07) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 39, "updated_at" = '2010-02-04 04:08:07' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:08:07', "total_views" = 84 WHERE "id" = 1[0m
+Rendering profiles/view
+ERROR: compiling _run_erb_app47views47profiles47view46html46erb RAISED compile error
+/Users/kellynigh/Desktop/pathways/app/views/profiles/view.html.erb:137: syntax error, unexpected kENSURE, expecting kEND
+/Users/kellynigh/Desktop/pathways/app/views/profiles/view.html.erb:139: syntax error, unexpected $end, expecting kEND
+Function body:           def _run_erb_app47views47profiles47view46html46erb(local_assigns)
+            old_output_buffer = output_buffer;;@output_buffer = '';  __in_erb_template=true ; @output_buffer.concat "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+@output_buffer.concat "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\n"
+@output_buffer.concat "\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n"
+@output_buffer.concat "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n"
+@output_buffer.concat "<head>\n"
+@output_buffer.concat "\t<title>Pathways</title>\n"
+@output_buffer.concat "    "; @output_buffer.concat(( stylesheet_link_tag 'pathways.css' ).to_s); @output_buffer.concat "  \n"
+@output_buffer.concat "</head>\n"
+@output_buffer.concat "<body>\n"
+@output_buffer.concat "\t<table class=\"main\">\n"
+@output_buffer.concat "<!-- Header -->\n"
+@output_buffer.concat "\t\t<tr><td class=\"clean\"><table class=\"header\"><tr>\n"
+@output_buffer.concat "\t\t\t<td class=\"name\"><img class=\"name\" src=\"/images/pathways.gif\"/></td>\n"
+@output_buffer.concat "\t\t\t<td/>\n"
+@output_buffer.concat "\t\t\t<td class=\"tab\"><img id=\"about\" class=\"tab\" src=\"/images/buttons/about.gif\"\n"
+@output_buffer.concat "\t\t\t\tonmouseover=\"rollOver('about', '/images/buttons/about-on.gif')\"\n"
+@output_buffer.concat "\t\t\t\tonmouseout=\"rollOver('about', '/images/buttons/about.gif')\" />\n"
+@output_buffer.concat "\t\t\t\t<!-- onclick=\"window.location='about.html'\"/> --></td>\n"
+@output_buffer.concat "\t\t\t<td class=\"tab\"><img id=\"search\" class=\"tab\" src=\"/images/buttons/search.gif\"\n"
+@output_buffer.concat "\t\t\t\tonmouseover=\"rollOver('search', '/images/buttons/search-on.gif')\"\n"
+@output_buffer.concat "\t\t\t\tonmouseout=\"rollOver('search', '/images/buttons/search.gif')\"\n"
+@output_buffer.concat "\t\t\t\tonclick=\"window.location='search'\"/></td>\n"
+@output_buffer.concat "\t\t\t<td class=\"tab\"><img id=\"signin\" class=\"tab\" src=\"/images/buttons/signin.gif\"\n"
+@output_buffer.concat "\t\t\t\tonmouseover=\"rollOver('signin', '/images/buttons/signin-on.gif')\"\n"
+@output_buffer.concat "\t\t\t\tonmouseout=\"rollOver('signin', '/images/buttons/signin.gif')\"\n"
+@output_buffer.concat "\t\t\t\tonclick=\"window.location='/user/signin'\"/></td>\n"
+@output_buffer.concat "\t\t</tr></table></td></tr>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\n"
+@output_buffer.concat "\t\t<!-- Body Content -->\n"
+@output_buffer.concat "\t\t<tr><td class=\"content\"><table class=\"clean\" align=\"center\"><tr>\n"
+@output_buffer.concat "\t\n"
+@output_buffer.concat "\t\t\t<!-- Column 1 -->\n"
+@output_buffer.concat "\t\t\t<td class=\"contentColumn\">\n"
+@output_buffer.concat "\t\t\t\t<table class=\"interviewTable\">\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td colspan=\"2\" class=\"heading\">Sandra Louis ('01): Four Startups down, this one's golden.</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td colspan=\"2\" width=\"100%\"><div style=\"height:444px;overflow:auto;background-color:#EAF0F5;\"><table class=\"clean\">\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"text\" style=\"padding:10px;\">\n"
+@output_buffer.concat "\t\t\t\t\t\t";  if @user.id != @user.author ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t\tInterview conducted by <span class=\"title\"><a href=\""; @output_buffer.concat(( url_for(:action => "view", :id => @author.id) ).to_s); @output_buffer.concat "\">"; @output_buffer.concat(( @author.name ).to_s); @output_buffer.concat "</a></span> on March 4, 2010.<br/><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\n"
+@output_buffer.concat "\t\t\t\t\t\t<em>What's the best job you've had since graduation?</em><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\tWorking as a Product Developer at Zoodles.<br/><br/>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t<em>How did you find out about this job and why did you join?</em><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\tI discovered this job at a small career fair at the department of education.\n"
+@output_buffer.concat "\t\t\t\t\t\t\tI was drawn by the energy of the representatives and their palpable passion for education!\n"
+@output_buffer.concat "\t\t\t\t\t\t\tI didn't have the exact qualifications they were looking for, but my Sym Sys senior\n"
+@output_buffer.concat "\t\t\t\t\t\t\tproejct is what put me over the top and got me the job. <br/><br/>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t<em>What was the best part of the job?</em><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\tWorking with a small, dedicated team.  I was able to quickly learn from them, as well as\n"
+@output_buffer.concat "\t\t\t\t\t\tmake immediate contributions, and the environment allowed me to make mistakes, and ask\n"
+@output_buffer.concat "\t\t\t\t\t\twhen I needed help. I find that's really important; I had one summer job at a larger firm that\n"
+@output_buffer.concat "\t\t\t\t\t\tI won't mention (she coughs: Intel!), where it felt like everyone was just trying to show how\n"
+@output_buffer.concat "\t\t\t\t\t\tmuch they knew and not ever ask for assistance. I feel much more comfortable here.<br/><br/>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t<em>Did your Symbolic Systems degree help you in this work?</em><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\tYes and no. Without my senior project I wouldn't have gotten the job, so yes! Also, I learned\n"
+@output_buffer.concat "\t\t\t\t\t\t\thow to think about human-centered design in Sym Sys, which I think gives me an edge over\n"
+@output_buffer.concat "\t\t\t\t\t\t\tmore pure engineers when it comes time to decide what to focus on, which design decisions\n"
+@output_buffer.concat "\t\t\t\t\t\t\tto wait on, and which to decide early. I don't think Sym Sys properly prepared me for the\n"
+@output_buffer.concat "\t\t\t\t\t\t\trange of programming languages out there; that's probably my one regret. I wish I had\n"
+@output_buffer.concat "\t\t\t\t\t\t\ttaken a course in Rails, for example. That said, I loved the major. <br/><br/>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t<em>Any advice for current Sym Sys students?</em><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\tTake classes with Terry Winograd! As many as you can. And find out about what people are doing\n"
+@output_buffer.concat "\t\t\t\t\t\t\tfor their senior projects: several of the ones from my year ended up being startups after\n"
+@output_buffer.concat "\t\t\t\t\t\t\tgraduation, so it's good to be on the ground floor!<br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t</table></div></td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td class=\"text\"><button type=\"button\">like</button>&nbsp;&nbsp;(2 people like this)</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td><input style=\"width:450px;height:20px;\"/></td><td><button type=\"button\">Ask a Question</button></td></tr>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t</table>\n"
+@output_buffer.concat "\t\t\t</td>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t<!-- Column 2 -->\n"
+@output_buffer.concat "\t\t\t<td class=\"contentColumn\">\n"
+@output_buffer.concat "\t\t\t\t<table class=\"infoTable\">\n"
+@output_buffer.concat "\t\t\t\t\t\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td class=\"heading\">&nbsp;</td></tr>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td><table class=\"clean\">\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td><img class=\"pic\" src=\"/images/profiles/2.jpg\"/></td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td height=\"5\"/></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"title\">"; @output_buffer.concat(( @user.name ).to_s); @output_buffer.concat "</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td height=\"5\"/></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"text\">\n"
+@output_buffer.concat "\t\t\t\t\t\t";  if @user.degree == "Undergraduate" ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t\tBS,\n"
+@output_buffer.concat "\t\t\t\t\t\t";  elsif @user.degree == "Masters" ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t\tMS,\n"
+@output_buffer.concat "\t\t\t\t\t\t";  else ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t\tPhD,\n"
+@output_buffer.concat "\t\t\t\t\t\t";  end ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\tSymbolic Systems ";  if @user.stanford_class != nil ; @output_buffer.concat " ('"; @output_buffer.concat(( (@user.stanford_class/10)%10).to_s); @output_buffer.concat(( @user.stanford_class % 10).to_s); @output_buffer.concat ")";  end ; @output_buffer.concat "<br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\tConcentration: "; @output_buffer.concat(( @user.major ).to_s); @output_buffer.concat "<br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\t"; @output_buffer.concat(( @user.email ).to_s); @output_buffer.concat "</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t</table></td></tr>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t";  if @user.total_authored > 0 ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td class=\"box\"><table class=\"clean\">\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"title\" width=\"150\">Inteviews Conducted</td><td class=\"title\" width=\"50\" align=\"center\">Views</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t";  @interviewees.each do |interviewee| ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t\t\t<tr><td class=\"text\"><a href=\""; @output_buffer.concat(( url_for(:action => "view", :id => interviewee.id) ).to_s); @output_buffer.concat "\">"; @output_buffer.concat(( interviewee.name ).to_s);  if interviewee.stanford_class != nil ; @output_buffer.concat " ('"; @output_buffer.concat(( (interviewee.stanford_class/10)%10).to_s); @output_buffer.concat(( interviewee.stanford_class % 10).to_s); @output_buffer.concat ")";  end ; @output_buffer.concat "</td><td class=\"text\" style=\"text-align:center\">"; @output_buffer.concat(( interviewee.views ).to_s); @output_buffer.concat "</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t";  end ; @output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t</table></td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t";  end ; @output_buffer.concat "\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t\t\t\t<tr><td><table class=\"clean\">\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"title\" style=\"text-align:left;\">Work Experience</td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td height=\"5\"/></tr>\n"
+@output_buffer.concat "\t\t\t\t\t\t<tr><td class=\"text\">"; @output_buffer.concat((@user.title ).to_s); @output_buffer.concat "<br/>"; @output_buffer.concat((@user.company ).to_s); @output_buffer.concat "<br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\t"; @output_buffer.concat((@user.job_start ).to_s); @output_buffer.concat " - "; @output_buffer.concat((@user.job_end ).to_s); @output_buffer.concat "<br/>Responsibilities: Q.A.<br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\tSatisfaction: "; @output_buffer.concat((@user.satisfaction).to_s); @output_buffer.concat " / 5<br/><br/>\n"
+@output_buffer.concat "\t\t\t\t\t\t\t</span></td></tr>\n"
+@output_buffer.concat "\t\t\t\t\t</table></td></tr>\n"
+@output_buffer.concat "\t\t\t\t</table>\n"
+@output_buffer.concat "\t\t\t</td>\n"
+@output_buffer.concat "\t\t\n"
+@output_buffer.concat "\t\t</tr></table></td></tr>\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\t\t<!-- Footer -->\n"
+@output_buffer.concat "\t\t\n"
+@output_buffer.concat "\t</table>\t\n"
+@output_buffer.concat "</body>\n"
+@output_buffer.concat "</html>\n"
+@output_buffer.concat "<script type=\"text/javascript\">\n"
+@output_buffer.concat "\n"
+@output_buffer.concat "\tfunction rollOver(imgName, imgSrc)\n"
+@output_buffer.concat "   \t{\n"
+@output_buffer.concat "\t\tdocument.getElementById(imgName).src = imgSrc;\n"
+@output_buffer.concat "\t}\n"
+@output_buffer.concat "</script>\n"
+@output_buffer
+          ensure
+            self.output_buffer = old_output_buffer
+          end
+Backtrace: /Users/kellynigh/Desktop/pathways/app/views/profiles/view.html.erb:139:in `compile!'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_view/renderable.rb:61:in `compile'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_view/renderable.rb:28:in `render'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_view/template.rb:199:in `render_template'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_view/base.rb:260:in `render'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:1250:in `render_for_file'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:945:in `render_without_benchmark'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/benchmarking.rb:51:in `render'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:10:in `realtime'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/benchmarking.rb:51:in `render'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:1326:in `default_render'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/filters.rb:617:in `call_filters'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:10:in `realtime'
+/Users/kellynigh/.gem/ruby/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/flash.rb:146:in `perform_action'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:532:in `send'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:532:in `process_without_filters'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/filters.rb:606:in `process'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:391:in `process'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/base.rb:386:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/routing/route_set.rb:437:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/dispatcher.rb:121:in `_call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/query_cache.rb:29:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/query_cache.rb:29:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/query_cache.rb:9:in `cache'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/query_cache.rb:28:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/activerecord-2.3.4/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/head.rb:9:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/methodoverride.rb:24:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/params_parser.rb:15:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/session/cookie_store.rb:93:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/failsafe.rb:26:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `synchronize'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/lock.rb:11:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/dispatcher.rb:114:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/reloader.rb:34:in `run'
+/Users/kellynigh/.gem/ruby/1.8/gems/actionpack-2.3.4/lib/action_controller/dispatcher.rb:108:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rails-2.3.4/lib/rails/rack/static.rb:31:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:46:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:40:in `each'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/urlmap.rb:40:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rails-2.3.4/lib/rails/rack/log_tailer.rb:17:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/content_length.rb:13:in `call'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/handler/webrick.rb:46:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Users/kellynigh/.gem/ruby/1.8/gems/rack-1.0.0/lib/rack/handler/webrick.rb:13:in `run'
+/Users/kellynigh/.gem/ruby/1.8/gems/rails-2.3.4/lib/commands/server.rb:111
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+/Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+script/server:3
+
+ActionView::TemplateError (compile error
+/Users/kellynigh/Desktop/pathways/app/views/profiles/view.html.erb:137: syntax error, unexpected kENSURE, expecting kEND
+/Users/kellynigh/Desktop/pathways/app/views/profiles/view.html.erb:139: syntax error, unexpected $end, expecting kEND) on line #137 of app/views/profiles/view.html.erb:
+134: 	}
+135: </script>
+
+    app/views/profiles/view.html.erb:139:in `compile!'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (43.7ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:08:17) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 40, "updated_at" = '2010-02-04 04:08:17' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:08:17', "total_views" = 85 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 42ms (View: 17, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:08:22) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 24, "updated_at" = '2010-02-04 04:08:22' WHERE "id" = 2[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:08:22', "total_views" = 86 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 25ms (View: 1, DB: 2) | 200 OK [http://localhost/profiles/view/2]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:09:14) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 41, "updated_at" = '2010-02-04 04:09:14' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:09:14', "total_views" = 87 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 114ms (View: 90, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:09:19) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 25, "updated_at" = '2010-02-04 04:09:19' WHERE "id" = 2[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:09:19', "total_views" = 88 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 173ms (View: 2, DB: 2) | 200 OK [http://localhost/profiles/view/2]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:10:57) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 42, "updated_at" = '2010-02-04 04:10:57' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:10:57', "total_views" = 89 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 45ms (View: 17, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:11:19) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 43, "updated_at" = '2010-02-04 04:11:19' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:11:19', "total_views" = 90 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 42ms (View: 17, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:11:28) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 44, "updated_at" = '2010-02-04 04:11:28' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:11:28', "total_views" = 91 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 139ms (View: 19, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:11:30) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 26, "updated_at" = '2010-02-04 04:11:30' WHERE "id" = 2[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:11:31', "total_views" = 92 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 825ms (View: 2, DB: 2) | 200 OK [http://localhost/profiles/view/2]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:11:33) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 23, "updated_at" = '2010-02-04 04:11:33' WHERE "id" = 3[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:11:33', "total_views" = 93 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 92ms (View: 2, DB: 3) | 200 OK [http://localhost/profiles/view/3]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:11:35) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 14, "updated_at" = '2010-02-04 04:11:35' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:11:35', "total_views" = 25 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 29ms (View: 2, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:12:12) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 15, "updated_at" = '2010-02-04 04:12:12' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:12:12', "total_views" = 26 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 48ms (View: 19, DB: 3) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:13:26) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 16, "updated_at" = '2010-02-04 04:13:26' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:13:26', "total_views" = 27 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 44ms (View: 15, DB: 3) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:15:12) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 17, "updated_at" = '2010-02-04 04:15:12' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:12', "total_views" = 28 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 45ms (View: 20, DB: 3) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#post_like (for ::1 at 2010-02-03 20:15:16) [POST]
+  Parameters: {"commit"=>"Like", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"4"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 16, "likes" = 2, "updated_at" = '2010-02-04 04:15:16' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:16', "total_views" = 27 WHERE "id" = 4[0m
+Redirected to http://localhost:3000/profiles/view/4
+Completed in 26ms (DB: 2) | 302 Found [http://localhost/profiles/post_like]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:15:17) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 17, "updated_at" = '2010-02-04 04:15:17' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:17', "total_views" = 28 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 34ms (View: 9, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:15:39) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 18, "updated_at" = '2010-02-04 04:15:39' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:39', "total_views" = 29 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 43ms (View: 20, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:15:50) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 19, "updated_at" = '2010-02-04 04:15:50' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:50', "total_views" = 30 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 649ms (View: 26, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:15:56) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 20, "updated_at" = '2010-02-04 04:15:56' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.3ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:15:56', "total_views" = 31 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 43ms (View: 19, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:16:01) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 21, "updated_at" = '2010-02-04 04:16:01' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:16:01', "total_views" = 32 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 673ms (View: 26, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:16:06) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 22, "updated_at" = '2010-02-04 04:16:06' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:16:06', "total_views" = 33 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 206ms (View: 27, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#post_like (for ::1 at 2010-02-03 20:16:10) [POST]
+  Parameters: {"commit"=>"Like", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"4"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 21, "likes" = 3, "updated_at" = '2010-02-04 04:16:10' WHERE "id" = 4[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 04:16:10', "total_views" = 32 WHERE "id" = 4[0m
+Redirected to http://localhost:3000/profiles/view/4
+Completed in 216ms (DB: 2) | 302 Found [http://localhost/profiles/post_like]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 20:16:10) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '4' AND id != '4') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 22, "updated_at" = '2010-02-04 04:16:10' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 04:16:10', "total_views" = 33 WHERE "id" = 4[0m
+Rendering profiles/view
+Completed in 145ms (View: 8, DB: 2) | 200 OK [http://localhost/profiles/view/4]
