@@ -31810,3 +31810,27 @@ Rendering profiles/search
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
 Completed in 52ms (View: 29, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 11:45:12) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (2.2ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 11:45:12' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 58ms (View: 29, DB: 8) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 11:45:37) [GET]
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (1.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;35;1mUser Load (1.8ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 11:45:37' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 36ms (View: 13, DB: 7) | 200 OK [http://localhost/profiles/search]
