@@ -111,7 +111,7 @@
 						<table style="clean">
 							<tr><td class="heading" width="180">Top Contributors</td><td class="title" width="70" align="center">Interviews Contributed</td><td class="title" width="70" align="center">Total Views</td></tr>
 							<% @contributors.each do |contributor| %>
-								<tr><td class="title"><%= contributor.name %><% if contributor.stanford_class != nil %> ('<%= (contributor.stanford_class/10)%10%><%= contributor.stanford_class % 10%>)<% end %></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
+								<tr><td class="title"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %><% if contributor.stanford_class != nil %> ('<%= (contributor.stanford_class/10)%10%><%= contributor.stanford_class % 10%>)<% end %></a></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
 							<% end %>
 						</table>
 					</td></tr>

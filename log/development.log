@@ -22132,3 +22132,283 @@ Processing ProfilesController#search (for ::1 at 2010-02-03 16:44:07) [GET]
   [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) [0m
 Rendering profiles/search
 Completed in 54ms (View: 11, DB: 5) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-03 19:45:31) [GET]
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+Rendering profiles/search
+Completed in 141ms (View: 67, DB: 5) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:46:01) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.8ms)[0m   [0;1mUPDATE "users" SET "views" = 19, "updated_at" = '2010-02-04 03:46:01' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:46:01', "total_views" = 63 WHERE "id" = 1[0m
+Rendering profiles/view
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+
+ActionView::TemplateError (Couldn't find User with ID=7) on line #16 of app/views/profiles/view.html.erb:
+13: 		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+14: 	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+15: 	<% if session[:user_id] %>
+16: 			<% curUser = User.find(session[:user_id]) %>
+17: 			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+18: 			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+19: 		<% else %>			
+
+    app/views/profiles/view.html.erb:16
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (113.4ms)
+Rendered rescues/_request_and_response (1.8ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:46:32) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 20, "updated_at" = '2010-02-04 03:46:32' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:46:32', "total_views" = 64 WHERE "id" = 1[0m
+Rendering profiles/view
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+
+ActionView::TemplateError (Couldn't find User with ID=7) on line #16 of app/views/profiles/view.html.erb:
+13: 		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+14: 	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+15: 	<% if session[:user_id] %>
+16: 			<% curUser = User.find(session[:user_id]) %>
+17: 			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+18: 			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+19: 		<% else %>			
+
+    app/views/profiles/view.html.erb:16
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (48.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:46:51) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 7, "updated_at" = '2010-02-04 03:46:52' WHERE "id" = 6[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:46:52', "total_views" = 7 WHERE "id" = 6[0m
+Rendering profiles/view
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+
+ActionView::TemplateError (Couldn't find User with ID=7) on line #16 of app/views/profiles/view.html.erb:
+13: 		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+14: 	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+15: 	<% if session[:user_id] %>
+16: 			<% curUser = User.find(session[:user_id]) %>
+17: 			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+18: 			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+19: 		<% else %>			
+
+    app/views/profiles/view.html.erb:16
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (136.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:46:59) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 21, "updated_at" = '2010-02-04 03:46:59' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:46:59', "total_views" = 65 WHERE "id" = 1[0m
+Rendering profiles/view
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+
+ActionView::TemplateError (Couldn't find User with ID=7) on line #16 of app/views/profiles/view.html.erb:
+13: 		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
+14: 	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
+15: 	<% if session[:user_id] %>
+16: 			<% curUser = User.find(session[:user_id]) %>
+17: 			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
+18: 			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
+19: 		<% else %>			
+
+    app/views/profiles/view.html.erb:16
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UserController#post_logout (for ::1 at 2010-02-03 19:47:11) [GET]
+
+ActionController::UnknownAction (No action responded to post_logout. Actions: logout, post_register, post_signin, register, round, and signin):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing UserController#logout (for ::1 at 2010-02-03 19:47:29) [GET]
+Redirected to http://localhost:3000/profiles/search
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/user/logout]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-03 19:47:29) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+Rendering profiles/search
+Completed in 17ms (View: 5, DB: 3) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:47:31) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 22, "updated_at" = '2010-02-04 03:47:31' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:47:31', "total_views" = 66 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 112ms (View: 9, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:47:31) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/steppingStones.css" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:48:24) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 23, "updated_at" = '2010-02-04 03:48:24' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:48:24', "total_views" = 67 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 31ms (View: 8, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:48:24) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/steppingStones.css" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:48:27) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (204.8ms)[0m   [0;1mUPDATE "users" SET "views" = 24, "updated_at" = '2010-02-04 03:48:27' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 03:48:27', "total_views" = 68 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 239ms (View: 10, DB: 207) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-03 19:48:28) [GET]
+
+ActionController::RoutingError (No route matches "/stylesheets/steppingStones.css" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-03 19:49:07) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 25, "updated_at" = '2010-02-04 03:49:07' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 03:49:07', "total_views" = 69 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 38ms (View: 10, DB: 3) | 200 OK [http://localhost/profiles/view/1]
