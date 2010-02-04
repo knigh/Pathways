@@ -23948,3 +23948,2301 @@ Processing ProfilesController#view (for ::1 at 2010-02-04 00:47:27) [GET]
   [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 08:47:27', "total_views" = 82 WHERE "id" = 4[0m
 Rendering profiles/view
 Completed in 30ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (11.9ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (8.4ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20100121012615)
+  [4;36;1mSQL (1.0ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "stanford_class" integer, "major" varchar(255), "degree" varchar(255), "company" varchar(255), "title" varchar(255), "job_start" varchar(255), "job_end" varchar(255), "satisfaction" integer, "six_words" varchar(255), "interview_text" text, "interview_date" time, "summary" varchar(255), "keywords" varchar(255), "author" integer, "total_views" integer, "total_authored" integer, "image_file" varchar(255), "views" integer, "likes" integer, "new_question" varchar(255), "hashed_password" varchar(255), "date_added" time, "date_modified" time, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20100121012615')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("users")[0m
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 00:57:36) [GET]
+Rendering user/signin
+Completed in 500ms (View: 498, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 00:57:46) [POST]
+  Parameters: {"user"=>{"name"=>"James Carlton", "email"=>"j@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"j", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"j"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'j@stanford.edu') LIMIT 1[0m
+  [4;35;1mUser Create (0.6ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES('James Carlton', NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 08:57:46', NULL, '5c2dd944dde9e08881bef0894fe7b22a5c9c4b06', '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', NULL, '2010-02-04 00:57:46', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 00:57:46', 'j@stanford.edu', NULL, 0, '2010-02-04 08:57:46')[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "author" = 1, "updated_at" = '2010-02-04 08:57:46' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/edit/1
+Completed in 48ms (DB: 1) | 302 Found [http://localhost/user/post_register]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 00:57:46) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 57ms (View: 45, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 00:59:02) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "image_file"=>#<File:/var/folders/MZ/MZGEeEWLF7yi-FjKGXCjgk+++TI/-Tmp-/RackMultipart.14941.0>, "name"=>"James Carlton", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"2000", "job_end"=>"", "major"=>"", "email"=>"j@stanford.edu"}, "degree"=>"Undergraduate", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.7ms)[0m   [0;1mUPDATE "users" SET "major" = '', "company" = '', "image_file" = '--- !ruby/object:File 
+content_type: image/jpeg
+original_path: 1_guy2.jpg
+', "six_words" = '', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 2000, "updated_at" = '2010-02-04 08:59:02', "degree" = 'Undergraduate', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "image_file" = '1_1_guy2.jpg', "updated_at" = '2010-02-04 08:59:02' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 31ms (DB: 2) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 00:59:02) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 08:59:02' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 08:59:02', "total_views" = 1 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 46ms (View: 18, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 00:59:02) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:01:43) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:01:43' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:01:43', "total_views" = 2 WHERE "id" = 1[0m
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.-):
+  app/controllers/profiles_controller.rb:50:in `view'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.7ms)
+Rendered rescues/_request_and_response (1.9ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:02:34) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 3, "updated_at" = '2010-02-04 09:02:34' WHERE "id" = 1[0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:02:34', "total_views" = 3 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 29ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:02:34) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:02:50) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 4, "updated_at" = '2010-02-04 09:02:50' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:02:50', "total_views" = 4 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 36ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:02:50) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:03:36) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.7ms)[0m   [0;1mUPDATE "users" SET "views" = 5, "updated_at" = '2010-02-04 09:03:36' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:03:36', "total_views" = 5 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 37ms (View: 8, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:03:36) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:04:22) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 6, "updated_at" = '2010-02-04 09:04:22' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:04:22', "total_views" = 6 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 31ms (View: 6, DB: 1) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:04:23) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:04:44) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 28ms (View: 13, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:04:44) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:04:53) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"James Carlton", "six_words"=>"", "title"=>"", "interview_text"=>"", "summary"=>"", "stanford_class"=>"2000", "job_end"=>"", "major"=>"", "email"=>"j@stanford.edu"}, "degree"=>"Undergraduate", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"1"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:04:53', "interview_text" = '' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 23ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:04:53) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 7, "updated_at" = '2010-02-04 09:04:53' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:04:53', "total_views" = 7 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 78ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:04:53) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:05:05) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 24ms (View: 12, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:05:05) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:05:25) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (9.6ms)[0m   [0;1mUPDATE "users" SET "views" = 8, "updated_at" = '2010-02-04 09:05:26' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:05:26', "total_views" = 8 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 46ms (View: 7, DB: 11) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:05:26) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:05:39) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 26ms (View: 13, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:05:39) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:07:37) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "image_file"=>#<File:/var/folders/MZ/MZGEeEWLF7yi-FjKGXCjgk+++TI/-Tmp-/RackMultipart.14941.0>, "name"=>"James Carlton", "six_words"=>"", "title"=>"", "interview_text"=>"", "summary"=>"", "stanford_class"=>"2000", "job_end"=>"", "major"=>"", "email"=>"j@stanford.edu"}, "degree"=>"Undergraduate", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (98.1ms)[0m   [0mUPDATE "users" SET "image_file" = '--- !ruby/object:File 
+content_type: image/jpeg
+original_path: guy2.jpg
+', "updated_at" = '2010-02-04 09:07:37' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "image_file" = '1_guy2.jpg', "updated_at" = '2010-02-04 09:07:37' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 129ms (DB: 99) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:07:37) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 9, "updated_at" = '2010-02-04 09:07:37' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:07:37', "total_views" = 9 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 317ms (View: 8, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:07:39) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:07:45) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 32ms (View: 15, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:07:45) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:08:00) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"James Carlton", "six_words"=>"", "title"=>"", "interview_text"=>"", "summary"=>"I am currently working at IDEO as a toy designer. How fun!", "stanford_class"=>"2000", "job_end"=>"", "major"=>"", "email"=>"j@stanford.edu"}, "degree"=>"Undergraduate", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "summary" = 'I am currently working at IDEO as a toy designer. How fun!', "updated_at" = '2010-02-04 09:08:00' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 23ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:08:00) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (1.0ms)[0m   [0mUPDATE "users" SET "views" = 10, "updated_at" = '2010-02-04 09:08:00' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:08:00', "total_views" = 10 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 30ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ApplicationController#index (for ::1 at 2010-02-04 01:08:00) [GET]
+
+ActionController::RoutingError (No route matches "/images/1_guy2.jpg" with {:method=>:get}):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:08:15) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 11, "updated_at" = '2010-02-04 09:08:15' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:08:15', "total_views" = 11 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 81ms (View: 8, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 01:08:27) [GET]
+Rendering user/signin
+Completed in 9ms (View: 7, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 01:08:43) [POST]
+  Parameters: {"user"=>{"name"=>"Kaley Swiss", "email"=>"k@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"k", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"k"}
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."email" = 'k@stanford.edu') LIMIT 1[0m
+  [4;36;1mUser Create (0.5ms)[0m   [0;1mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES('Kaley Swiss', NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:08:43', NULL, '13fbd79c3d390e5d6585a21e11ff5ec1970cff0c', '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', NULL, '2010-02-04 01:08:43', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:08:43', 'k@stanford.edu', NULL, 0, '2010-02-04 09:08:43')[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "author" = 2, "updated_at" = '2010-02-04 09:08:43' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/profiles/edit/2
+Completed in 23ms (DB: 1) | 302 Found [http://localhost/user/post_register]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:08:43) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Completed in 24ms (View: 12, DB: 1) | 200 OK [http://localhost/profiles/edit/2]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:09:04) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Kaley Swiss", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"I am currently working as an English teacher in Korea.", "stanford_class"=>"", "job_end"=>"", "major"=>"", "email"=>"k@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"2"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "major" = '', "company" = '', "six_words" = '', "job_end" = '', "job_start" = '', "title" = '', "summary" = 'I am currently working as an English teacher in Korea.', "updated_at" = '2010-02-04 09:09:04', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/profiles/view/2
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:09:04) [GET]
+  Parameters: {"id"=>"2"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:09:04' WHERE "id" = 2[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:09:04', "total_views" = 1 WHERE "id" = 2[0m
+Rendering profiles/view
+Completed in 97ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/2]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 01:09:09) [GET]
+Rendering user/signin
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 01:09:17) [POST]
+  Parameters: {"user"=>{"name"=>"Jennifer Branch", "email"=>"j@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"j", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"j"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'j@stanford.edu') LIMIT 1[0m
+This user already exists
+Rendering user/signin
+Completed in 19ms (View: 5, DB: 1) | 200 OK [http://localhost/user/post_register]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 01:09:21) [POST]
+  Parameters: {"user"=>{"name"=>"Jennifer Branch", "email"=>"j@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"j", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"j"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."email" = 'j@stanford.edu') LIMIT 1[0m
+This user already exists
+Rendering user/signin
+Completed in 19ms (View: 5, DB: 1) | 200 OK [http://localhost/user/post_register]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 01:09:37) [POST]
+  Parameters: {"user"=>{"name"=>"Marcy Branch", "email"=>"m@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"m", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"m"}
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'm@stanford.edu') LIMIT 1[0m
+  [4;35;1mUser Create (0.5ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES('Marcy Branch', NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:09:37', NULL, '6b0d31c0d563223024da45691584643ac78c96e8', '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', NULL, '2010-02-04 01:09:37', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:09:37', 'm@stanford.edu', NULL, 0, '2010-02-04 09:09:37')[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "author" = 3, "updated_at" = '2010-02-04 09:09:37' WHERE "id" = 3[0m
+Redirected to http://localhost:3000/profiles/edit/3
+Completed in 23ms (DB: 1) | 302 Found [http://localhost/user/post_register]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:09:37) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Completed in 25ms (View: 12, DB: 1) | 200 OK [http://localhost/profiles/edit/3]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:09:43) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+Rendering profiles/search
+Completed in 41ms (View: 25, DB: 3) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:18:24) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSQLite3::SQLException: no such column: days_ago: SELECT * FROM "users" WHERE (date_modified < days_ago) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: days_ago: SELECT * FROM "users" WHERE (date_modified < days_ago) ):
+  app/controllers/profiles_controller.rb:129:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (123.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:18:47) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified < '2010-01-28 01:18:47') [0m
+Rendering profiles/search
+Completed in 19ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:19:02) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified < '2010-01-28 01:19:02') [0m
+Rendering profiles/search
+Completed in 18ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:19:14) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified < '2010-01-28 01:19:14') [0m
+Rendering profiles/search
+Completed in 18ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:20:37) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified < '2010-01-28 01:20:37') [0m
+Rendering profiles/search
+Completed in 19ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:20:58) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:20:58') [0m
+Rendering profiles/search
+Completed in 25ms (View: 7, DB: 4) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:23:01) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:23:01') ORDER BY date_modified[0m
+Rendering profiles/search
+Completed in 20ms (View: 1, DB: 4) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ApplicationController#search (for ::1 at 2010-02-04 01:24:51) [GET]
+
+SyntaxError (/Users/kellynigh/Desktop/pathways/app/controllers/profiles_controller.rb:126: syntax error, unexpected tCONSTANT, expecting kDO or '{' or '('
+...onditions => [author != id AND 'total_authored > ?', 0])
+                              ^
+/Users/kellynigh/Desktop/pathways/app/controllers/profiles_controller.rb:126: syntax error, unexpected ']', expecting kEND
+...d AND 'total_authored > ?', 0])
+                              ^):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (35.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:25:16) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND 'total_authored > ?', 0) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND 'total_authored > ?', 0) ):
+  app/controllers/profiles_controller.rb:126:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (60.9ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:26:15) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND total_authored > ?, 0) [0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND total_authored > ?, 0) ):
+  app/controllers/profiles_controller.rb:126:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (49.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#search (for ::1 at 2010-02-04 01:26:52) [GET]
+
+SyntaxError (/Users/kellynigh/Desktop/pathways/app/controllers/profiles_controller.rb:129: syntax error, unexpected ',', expecting tASSOC
+...date_modified > ?', days_ago], :order => 'date_modified')
+                              ^
+/Users/kellynigh/Desktop/pathways/app/controllers/profiles_controller.rb:129: syntax error, unexpected ')', expecting kEND
+/Users/kellynigh/Desktop/pathways/app/controllers/profiles_controller.rb:188: syntax error, unexpected $end, expecting kEND):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (35.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:27:13) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSQLite3::SQLException: no such column: days_ago: SELECT * FROM "users" WHERE (author != id AND date_modified > days_ago) ORDER BY date_modified[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: days_ago: SELECT * FROM "users" WHERE (author != id AND date_modified > days_ago)  ORDER BY date_modified):
+  app/controllers/profiles_controller.rb:129:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (45.2ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:27:27) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND date_modified > ?, days_ago) ORDER BY date_modified[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near ",": syntax error: SELECT * FROM "users" WHERE (author != id AND date_modified > ?, days_ago)  ORDER BY date_modified):
+  app/controllers/profiles_controller.rb:129:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (44.8ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:31:18) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:31:18' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+Completed in 23ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:35:05) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:35:05' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+Completed in 34ms (View: 20, DB: 3) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 01:35:41) [GET]
+Rendering user/signin
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_signin (for ::1 at 2010-02-04 01:35:48) [POST]
+  Parameters: {"user"=>{"email"=>"j@stanford.edu"}, "commit"=>"Log in", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"j"}
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'j@stanford.edu') LIMIT 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 73ms (DB: 1) | 302 Found [http://localhost/user/post_signin]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:35:48) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 12, "updated_at" = '2010-02-04 09:35:48' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:35:48', "total_views" = 12 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 34ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:36:02) [GET]
+  Parameters: {"id"=>"post_newUser"}
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 0) [0m
+
+ActiveRecord::RecordNotFound (Couldn't find User with ID=post_newUser):
+  app/controllers/profiles_controller.rb:37:in `view'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (38.5ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:36:13) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 32ms (View: 16, DB: 1) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:36:16) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;36;1mUser Create (0.6ms)[0m   [0;1mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:36:16', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 1, '2010-02-04 01:36:16', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:36:16', NULL, NULL, 0, '2010-02-04 09:36:16')[0m
+Redirected to http://localhost:3000/profiles/edit/4
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "total_authored" = 1, "updated_at" = '2010-02-04 09:36:16' WHERE "id" = 1[0m
+Completed in 24ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:36:16) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering profiles/edit
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 24ms (View: 11, DB: 1) | 200 OK [http://localhost/profiles/edit/4]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:36:43) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Marie Jensen", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"I've been working on the railroad!", "stanford_class"=>"", "job_end"=>"", "major"=>"", "email"=>"m@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"4"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "major" = '', "company" = '', "email" = 'm@stanford.edu', "six_words" = '', "name" = 'Marie Jensen', "job_end" = '', "job_start" = '', "title" = '', "summary" = 'I''ve been working on the railroad!', "updated_at" = '2010-02-04 09:36:43', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 4[0m
+Redirected to http://localhost:3000/profiles/view/4
+Completed in 25ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:36:43) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:36:43' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:36:43', "total_views" = 13 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 133ms (View: 9, DB: 3) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:36:45) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:36:45' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+
+ActionView::TemplateError (undefined local variable or method `author' for #<ActionView::Base:0x256d860>) on line #126 of app/views/profiles/search.html.erb:
+123: 							<tr><td class="heading" width="200">Recent Contributions</td><td class="title" width="120" align="center">Interviewed By</td></tr>
+124: 							<% @recent_interviews.each do |recent| %>
+125: 								author = User.find(recent.author)
+126: 								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %><% if recent.stanford_class != nil %> ('<%= (recent.stanford_class/10)%10%><%= recent.stanford_class % 10%>)<%end %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><%= author.name %><% if author.stanford_class != nil %> ('<%= (author.stanford_class/10)%10%><%= author.stanford_class % 10%>)<%end %></a></td></tr>
+127: 							<% end %>
+128: 						<table>
+129: 					</td></tr>
+
+    app/views/profiles/search.html.erb:126
+    app/views/profiles/search.html.erb:124:in `each'
+    app/views/profiles/search.html.erb:124
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (47.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:38:49) [GET]
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:38:49' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 110ms (View: 95, DB: 4) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:39:21) [GET]
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:39:21' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 37ms (View: 22, DB: 4) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:39:27) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:39:27' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:39:27', "total_views" = 14 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 35ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#vedit (for ::1 at 2010-02-04 01:39:30) [GET]
+  Parameters: {"id"=>"4"}
+
+ActionController::UnknownAction (No action responded to vedit. Actions: create, edit, post_edit, post_like, post_newUser, post_newWorkExp, post_question, search, and view):
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:39:34) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering profiles/edit
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 26ms (View: 11, DB: 1) | 200 OK [http://localhost/profiles/edit/4]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:39:41) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Marie Jensen", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"I've been working on the railroad!", "stanford_class"=>"1986", "job_end"=>"", "major"=>"", "email"=>"m@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"4"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "stanford_class" = 1986, "updated_at" = '2010-02-04 09:39:41' WHERE "id" = 4[0m
+Redirected to http://localhost:3000/profiles/view/4
+Completed in 25ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:39:41) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 3, "updated_at" = '2010-02-04 09:39:41' WHERE "id" = 4[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:39:41', "total_views" = 15 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 33ms (View: 5, DB: 3) | 200 OK [http://localhost/profiles/view/4]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:39:43) [GET]
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:39:43' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 22ms (View: 6, DB: 4) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:40:12) [GET]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored[0m
+  [4;35;1mUser Load (1.0ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:40:12' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 25ms (View: 6, DB: 5) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:40:15) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "views" = 13, "updated_at" = '2010-02-04 09:40:15' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:40:15', "total_views" = 16 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 108ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:40:19) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 33ms (View: 14, DB: 2) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:40:23) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;35;1mUser Create (0.7ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:40:23', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 1, '2010-02-04 01:40:23', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:40:23', NULL, NULL, 0, '2010-02-04 09:40:23')[0m
+Redirected to http://localhost:3000/profiles/edit/5
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "total_authored" = 2, "updated_at" = '2010-02-04 09:40:23' WHERE "id" = 1[0m
+Completed in 25ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:40:23) [GET]
+  Parameters: {"id"=>"5"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+Rendering profiles/edit
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 26ms (View: 12, DB: 2) | 200 OK [http://localhost/profiles/edit/5]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:40:48) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Ted Matthews", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"1999", "job_end"=>"", "major"=>"", "email"=>"t@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"5"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "major" = '', "company" = '', "email" = 't@stanford.edu', "six_words" = '', "name" = 'Ted Matthews', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 1999, "updated_at" = '2010-02-04 09:40:48', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 5[0m
+Redirected to http://localhost:3000/profiles/view/5
+Completed in 22ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:40:48) [GET]
+  Parameters: {"id"=>"5"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:40:48' WHERE "id" = 5[0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:40:48', "total_views" = 17 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 32ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/view/5]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 01:40:53) [GET]
+Rendering user/signin
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 01:41:14) [POST]
+  Parameters: {"user"=>{"name"=>"Irene Nam", "email"=>"i@stanford.edu"}, "commit"=>"Register", "password_confirmation"=>"i", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"i"}
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'i@stanford.edu') LIMIT 1[0m
+  [4;35;1mUser Create (0.6ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES('Irene Nam', NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:41:14', NULL, '042dc4512fa3d391c5170cf3aa61e6a638f84342', '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', NULL, '2010-02-04 01:41:14', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:41:14', 'i@stanford.edu', NULL, 0, '2010-02-04 09:41:14')[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "author" = 6, "updated_at" = '2010-02-04 09:41:14' WHERE "id" = 6[0m
+Redirected to http://localhost:3000/profiles/edit/6
+Completed in 24ms (DB: 1) | 302 Found [http://localhost/user/post_register]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:41:14) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 25ms (View: 13, DB: 1) | 200 OK [http://localhost/profiles/edit/6]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:41:22) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Irene Nam", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"2003", "job_end"=>"", "major"=>"", "email"=>"i@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"6"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "major" = '', "company" = '', "six_words" = '', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 2003, "updated_at" = '2010-02-04 09:41:22', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 6[0m
+Redirected to http://localhost:3000/profiles/view/6
+Completed in 104ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:41:23) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:41:23' WHERE "id" = 6[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:41:23', "total_views" = 1 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 33ms (View: 5, DB: 2) | 200 OK [http://localhost/profiles/view/6]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:41:27) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 27ms (View: 13, DB: 1) | 200 OK [http://localhost/profiles/edit/6]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:41:30) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;35;1mUser Create (1.1ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:41:30', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 6, '2010-02-04 01:41:30', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:41:30', NULL, NULL, 0, '2010-02-04 09:41:30')[0m
+Redirected to http://localhost:3000/profiles/edit/7
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "total_authored" = 1, "updated_at" = '2010-02-04 09:41:30' WHERE "id" = 6[0m
+Completed in 39ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:41:30) [GET]
+  Parameters: {"id"=>"7"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+Rendering profiles/edit
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 29ms (View: 16, DB: 1) | 200 OK [http://localhost/profiles/edit/7]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:41:53) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Wilson Peters", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"1990", "job_end"=>"", "major"=>"", "email"=>"w@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"7"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "major" = '', "company" = '', "email" = 'w@stanford.edu', "six_words" = '', "name" = 'Wilson Peters', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 1990, "updated_at" = '2010-02-04 09:41:53', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 7[0m
+Redirected to http://localhost:3000/profiles/view/7
+Completed in 20ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:41:53) [GET]
+  Parameters: {"id"=>"7"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Update (0.7ms)[0m   [0;1mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:41:53' WHERE "id" = 7[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:41:53', "total_views" = 2 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 33ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:41:54) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 5) [0m
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored[0m
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:41:54' AND author != id) ORDER BY date_modified[0m
+Rendering profiles/search
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 25ms (View: 7, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:43:51) [GET]
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC LIMIT 5[0m
+  [4;36;1mUser Load (1.5ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:43:51' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 25ms (View: 7, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:44:05) [GET]
+  Parameters: {"id"=>"6"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '6' AND id != '6') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:44:05' WHERE "id" = 6[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:44:05', "total_views" = 3 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 33ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/6]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:44:10) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '6' AND id != '6') [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 27ms (View: 12, DB: 1) | 200 OK [http://localhost/profiles/edit/6]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:44:13) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;36;1mUser Create (0.6ms)[0m   [0;1mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:44:13', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 6, '2010-02-04 01:44:13', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:44:13', NULL, NULL, 0, '2010-02-04 09:44:13')[0m
+Redirected to http://localhost:3000/profiles/edit/8
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "total_authored" = 2, "updated_at" = '2010-02-04 09:44:13' WHERE "id" = 6[0m
+Completed in 25ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:44:13) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 8) [0m
+Rendering profiles/edit
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 25ms (View: 12, DB: 1) | 200 OK [http://localhost/profiles/edit/8]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:44:35) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Denise Johnson", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"", "job_end"=>"", "major"=>"", "email"=>"d@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"8"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 8) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "major" = '', "company" = '', "email" = 'd@stanford.edu', "six_words" = '', "name" = 'Denise Johnson', "job_end" = '', "job_start" = '', "title" = '', "updated_at" = '2010-02-04 09:44:35', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 8[0m
+Redirected to http://localhost:3000/profiles/view/8
+Completed in 20ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:44:35) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 8) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:44:35' WHERE "id" = 8[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:44:35', "total_views" = 4 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 31ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/8]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:44:40) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC LIMIT 5[0m
+  [4;36;1mUser Load (2.0ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:44:40' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 25ms (View: 8, DB: 6) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:44:49) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (1.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '6' AND id != '6') [0m
+Rendering profiles/edit
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 32ms (View: 13, DB: 2) | 200 OK [http://localhost/profiles/edit/6]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:44:55) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;36;1mUser Create (0.6ms)[0m   [0;1mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:44:55', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 6, '2010-02-04 01:44:55', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:44:55', NULL, NULL, 0, '2010-02-04 09:44:55')[0m
+Redirected to http://localhost:3000/profiles/edit/9
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "total_authored" = 3, "updated_at" = '2010-02-04 09:44:55' WHERE "id" = 6[0m
+Completed in 25ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:44:55) [GET]
+  Parameters: {"id"=>"9"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 9) [0m
+Rendering profiles/edit
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+Completed in 25ms (View: 12, DB: 2) | 200 OK [http://localhost/profiles/edit/9]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:45:21) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Norman Fox", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"1987", "job_end"=>"", "major"=>"", "email"=>"n@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"9"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 9) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "major" = '', "company" = '', "email" = 'n@stanford.edu', "six_words" = '', "name" = 'Norman Fox', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 1987, "updated_at" = '2010-02-04 09:45:21', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 9[0m
+Redirected to http://localhost:3000/profiles/view/9
+Completed in 27ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:45:21) [GET]
+  Parameters: {"id"=>"9"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 9) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:45:21' WHERE "id" = 9[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:45:21', "total_views" = 5 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 65ms (View: 8, DB: 3) | 200 OK [http://localhost/profiles/view/9]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:45:23) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC LIMIT 5[0m
+  [4;36;1mUser Load (2.2ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:45:23' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 97ms (View: 79, DB: 6) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 01:45:29) [GET]
+Rendering user/signin
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_signin (for ::1 at 2010-02-04 01:45:36) [POST]
+  Parameters: {"user"=>{"email"=>"j@stanford.edu"}, "commit"=>"Log in", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "password"=>"j"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'j@stanford.edu') LIMIT 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 14ms (DB: 1) | 302 Found [http://localhost/user/post_signin]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:45:36) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 14, "updated_at" = '2010-02-04 09:45:36' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:45:36', "total_views" = 18 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 43ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:45:41) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.1ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 28ms (View: 13, DB: 2) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_newUser (for ::1 at 2010-02-04 01:45:44) [POST]
+  Parameters: {"commit"=>"Add a new Interview", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY="}
+  [4;35;1mUser Create (0.6ms)[0m   [0mINSERT INTO "users" ("name", "company", "job_start", "image_file", "degree", "satisfaction", "six_words", "total_views", "updated_at", "title", "hashed_password", "interview_text", "author", "date_modified", "interview_date", "total_authored", "new_question", "stanford_class", "summary", "major", "job_end", "views", "date_added", "email", "keywords", "likes", "created_at") VALUES(NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, 0, '2010-02-04 09:45:44', NULL, NULL, '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', 1, '2010-02-04 01:45:44', NULL, 0, NULL, NULL, '', NULL, NULL, 0, '2010-02-04 01:45:44', NULL, NULL, 0, '2010-02-04 09:45:44')[0m
+Redirected to http://localhost:3000/profiles/edit/10
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "total_authored" = 3, "updated_at" = '2010-02-04 09:45:44' WHERE "id" = 1[0m
+Completed in 24ms (DB: 2) | 302 Found [http://localhost/profiles/post_newUser]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 01:45:44) [GET]
+  Parameters: {"id"=>"10"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 10) [0m
+Rendering profiles/edit
+  [4;35;1mUser Load (0.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 24ms (View: 11, DB: 1) | 200 OK [http://localhost/profiles/edit/10]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-04 01:46:09) [POST]
+  Parameters: {"user"=>{"job_start"=>"", "company"=>"", "name"=>"Henry Red", "six_words"=>"", "title"=>"", "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "summary"=>"", "stanford_class"=>"1977", "job_end"=>"", "major"=>"", "email"=>"h@stanford.edu"}, "degree"=>"", "satisfaction"=>"", "commit"=>"Save Changes", "authenticity_token"=>"LO0ik1fqNWilsjFMBWXosEMgyeFd6xjb264wuwJEdIY=", "id"=>"10"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 10) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "major" = '', "company" = '', "email" = 'h@stanford.edu', "six_words" = '', "name" = 'Henry Red', "job_end" = '', "job_start" = '', "title" = '', "stanford_class" = 1977, "updated_at" = '2010-02-04 09:46:09', "degree" = '', "interview_text" = '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+' WHERE "id" = 10[0m
+Redirected to http://localhost:3000/profiles/view/10
+Completed in 21ms (DB: 1) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:46:09) [GET]
+  Parameters: {"id"=>"10"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 10) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Update (0.7ms)[0m   [0;1mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-04 09:46:09' WHERE "id" = 10[0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-04 09:46:09', "total_views" = 19 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 31ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/10]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:46:11) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC LIMIT 5[0m
+  [4;35;1mUser Load (2.2ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:46:11' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 26ms (View: 8, DB: 6) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:46:32) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 10) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC LIMIT 5[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSQLite3::SQLException: near "total_views": syntax error: SELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:46:32' AND author != id) ORDER BY date_modified DESC total_views DESC LIMIT 5[0m
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: near "total_views": syntax error: SELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:46:32' AND author != id)  ORDER BY date_modified DESC total_views DESC LIMIT 5):
+  app/controllers/profiles_controller.rb:129:in `search'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendered rescues/_trace (48.1ms)
+Rendered rescues/_request_and_response (0.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:47:27) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 10) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (0.5ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (2.1ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:47:27' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 25ms (View: 7, DB: 6) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:33) [GET]
+  Parameters: {"id"=>"6"}
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '6' AND id != '6') [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 3, "updated_at" = '2010-02-04 09:47:33' WHERE "id" = 6[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:33', "total_views" = 6 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 39ms (View: 7, DB: 3) | 200 OK [http://localhost/profiles/view/6]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:35) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:47:35' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:35', "total_views" = 7 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 32ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:38) [GET]
+  Parameters: {"id"=>"9"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 9) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:47:38' WHERE "id" = 9[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:38', "total_views" = 8 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 33ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/9]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:41) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 8) [0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 2, "updated_at" = '2010-02-04 09:47:41' WHERE "id" = 8[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:41', "total_views" = 9 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 31ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/8]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:43) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 3, "updated_at" = '2010-02-04 09:47:43' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:43', "total_views" = 10 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 36ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:45) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 4, "updated_at" = '2010-02-04 09:47:45' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:45', "total_views" = 11 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 32ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:45) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 5, "updated_at" = '2010-02-04 09:47:45' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:45', "total_views" = 12 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 32ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:46) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (3.1ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 6, "updated_at" = '2010-02-04 09:47:46' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.8ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:46', "total_views" = 13 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 45ms (View: 9, DB: 5) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:47) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.8ms)[0m   [0mUPDATE "users" SET "views" = 7, "updated_at" = '2010-02-04 09:47:47' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:47', "total_views" = 14 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 51ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:47) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.6ms)[0m   [0mUPDATE "users" SET "views" = 8, "updated_at" = '2010-02-04 09:47:47' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:47', "total_views" = 15 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 36ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:48) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 9, "updated_at" = '2010-02-04 09:47:48' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:48', "total_views" = 16 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 180ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:49) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 10, "updated_at" = '2010-02-04 09:47:49' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:49', "total_views" = 17 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 66ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:49) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 11, "updated_at" = '2010-02-04 09:47:49' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:49', "total_views" = 18 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 42ms (View: 7, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:50) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 12, "updated_at" = '2010-02-04 09:47:50' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:50', "total_views" = 19 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 34ms (View: 6, DB: 2) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:51) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 13, "updated_at" = '2010-02-04 09:47:51' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:51', "total_views" = 20 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 71ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:51) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (2.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 14, "updated_at" = '2010-02-04 09:47:51' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:51', "total_views" = 21 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 39ms (View: 8, DB: 4) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 01:47:52) [GET]
+  Parameters: {"id"=>"7"}
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 7) [0m
+  [4;36;1mUser Load (0.9ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mUser Update (0.7ms)[0m   [0mUPDATE "users" SET "views" = 15, "updated_at" = '2010-02-04 09:47:52' WHERE "id" = 7[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 09:47:52', "total_views" = 22 WHERE "id" = 6[0m
+Rendering profiles/view
+Completed in 133ms (View: 6, DB: 3) | 200 OK [http://localhost/profiles/view/7]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 01:47:53) [GET]
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.8ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (4.5ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 01:47:53' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mUser Load (0.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 6) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 43ms (View: 12, DB: 10) | 200 OK [http://localhost/profiles/search]

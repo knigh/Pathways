@@ -120,11 +120,12 @@
 
 					<tr><td>
 						<table style="clean">
-							<tr><td class="heading" width="200">Recent Contributions</td><td class="title" width="120" align="center">Interviewed By</td></tr>
-							<tr><td class="title">Caroline Sera ('98)</td><td class="text" style="text-align:center">Justin Fujita ('11)</td></tr>
-							<tr><td class="title">Alex Ferguson ('01)</td><td class="text" style="text-align:center">Michelle Hill ('12)</td></tr>
-							<tr><td class="title">Sean O'Harris ('99)</td><td class="text" style="text-align:center">Kushel Rao ('12)</td></tr>
-						</table>
+							<tr><td class="heading" width="180">Recent Contributions</td><td class="title" width="140" align="center">Interviewed By</td></tr>
+							<% @recent_interviews.each do |recent| %>
+								<% author = User.find(recent.author) %>
+								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %><% if recent.stanford_class != nil %> ('<%= (recent.stanford_class/10)%10%><%= recent.stanford_class % 10%>)<%end %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><%= author.name %><% if author.stanford_class != nil %> ('<%= (author.stanford_class/10)%10%><%= author.stanford_class % 10%>)<%end %></a></td></tr>
+							<% end %>
+						<table>
 					</td></tr>
 
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>

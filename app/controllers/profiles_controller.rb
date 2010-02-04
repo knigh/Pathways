@@ -46,8 +46,10 @@ class ProfilesController < ActionController::Base
 		
 		@interview_text = @user.interview_text
 		@interview_text.gsub!(/Q: .*\nA:/) {|match| "<br/><br/><em>" + match[3..-3] + "</em><br/>"}
-		@interview_text = @interview_text[10, @interview_text.length - 11]
-		print @interview_text
+		firstQ = @interview_text.index(/<em>/)
+		if (firstQ != nil)
+			@interview_text = @interview_text[firstQ, @interview_text.length - firstQ]
+		end
 	end
 	
 	def post_like
@@ -88,28 +90,43 @@ class ProfilesController < ActionController::Base
 	def search
 		
 		numUsers = User.count
-		if (numUsers < 3) 
-			redirect_to(:controller => :user, :action => signin)
-		end
 
-		user1 = 1 + rand(numUsers)
-		while true
-			user2 = 1 + rand(numUsers)
-			if user2 != user1
-				break
+		if numUsers > 0
+			while true
+				user1 = 1 + rand(numUsers)
+				@user1 = User.find(user1)
+				if @user1 != nil 
+					break
+				end
 			end
 		end
-		while true
-			user3 = 1 + rand(numUsers)
-			if user3 != user1 && user3 != user2
-				break
+		if numUsers > 1
+			while true
+				user2 = 1 + rand(numUsers)
+				if user2 != user1
+					@user2 = User.find(user2)
+					if @user2 != nil
+						break
+					end
+				end
 			end
 		end
-		@user1 = User.find(user1)
-		@user2 = User.find(user2)
-		@user3 = User.find(user3)
-
-		@contributors = User.find(:all, :conditions => ['total_authored > ?', 0])
+		if numUsers > 2
+			while true
+				user3 = 1 + rand(numUsers)
+				if user3 != user1 && user3 != user2
+					@user3 = User.find(user3)
+					if @user3 != nil
+						break
+					end
+				end
+			end
+		end
+		
+		@contributors = User.find(:all, :conditions => ['total_authored > ?', 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
+		 days = 7
+		 days_ago = Time.now - (days * (60*60*24)) 
+		@recent_interviews = User.find(:all, :conditions => ['date_modified > ? AND author != id', days_ago], :order => 'date_modified DESC', :limit => 5)
 	end
 	
 	def post_newUser
@@ -120,6 +137,8 @@ class ProfilesController < ActionController::Base
 		@user.likes = 0
 		@user.summary = ""
 		@user.image_file = "blank_profile_pic.jpg"
+		@user.date_added = Time.new
+		@user.date_modified = Time.new
 		@user.interview_text = "== Interview Form ==
 
 Q: What's the best job you've had since graduation?

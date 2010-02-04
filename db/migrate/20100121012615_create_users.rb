@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :satisfaction, :integer
 	t.column :six_words, :string
 	t.column :interview_text, :text
-	t.column :interview_date, :date
+	t.column :interview_date, :time
 	t.column :summary, :string
 	
 	t.column :keywords, :string
@@ -30,8 +30,8 @@ class CreateUsers < ActiveRecord::Migration
 
 	t.column :hashed_password, :string
 
-	t.column :date_added, :date
-	t.column :date_modified, :date
+	t.column :date_added, :time
+	t.column :date_modified, :time
       t.timestamps
     end
   end
