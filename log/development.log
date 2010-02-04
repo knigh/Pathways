@@ -31834,3 +31834,116 @@ Rendering profiles/search
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
 Completed in 36ms (View: 13, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#logout (for ::1 at 2010-02-04 12:27:44) [GET]
+Redirected to http://localhost:3000/profiles/search
+Completed in 2ms (DB: 0) | 302 Found [http://localhost/user/logout]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 12:27:44) [GET]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (2.5ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (2.5ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 12:27:44' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 41ms (View: 13, DB: 8) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 12:27:46) [GET]
+Rendering user/signin
+Completed in 16ms (View: 14, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_signin (for ::1 at 2010-02-04 12:27:54) [POST]
+  Parameters: {"user"=>{"email"=>"k@stanford.edu"}, "commit"=>"Sign in", "authenticity_token"=>"8qcFsQ2WH3apVfAVDQfFWrGxY6vVt/+CJ/TGEbWHzCY=", "password"=>"k"}
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."email" = 'k@stanford.edu') LIMIT 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 27ms (DB: 1) | 302 Found [http://localhost/user/post_signin]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 12:27:54) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (1.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 5, "updated_at" = '2010-02-04 20:27:54' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-04 20:27:54', "total_views" = 7 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 42ms (View: 3, DB: 4) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing UserController#logout (for ::1 at 2010-02-04 12:28:02) [GET]
+Redirected to http://localhost:3000/profiles/search
+Completed in 3ms (DB: 0) | 302 Found [http://localhost/user/logout]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 12:28:02) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 12:28:02' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 37ms (View: 13, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 12:28:09) [GET]
+Rendering user/signin
+Completed in 8ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#post_register (for ::1 at 2010-02-04 12:28:23) [POST]
+  Parameters: {"user"=>{"name"=>"Martin Hills", "email"=>"mh@stanford.edu"}, "commit"=>"Sign up", "password_confirmation"=>"m", "authenticity_token"=>"kHUDXiqQ/wxybUrXoV7Ljp36weGNp2vbB0ji9PDxwKk=", "password"=>"m"}
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."email" = 'mh@stanford.edu') LIMIT 1[0m
+  [4;35;1mUser Create (101.3ms)[0m   [0mINSERT INTO "users" ("satisfaction2", "job_start1", "job_start2", "new_question", "date_modified", "title1", "satisfaction3", "job_start3", "title2", "company1", "satisfaction4", "responsibilities1", "job_start4", "title3", "company2", "title", "satisfaction5", "responsibilities2", "job_start5", "date_added", "title4", "company3", "satisfaction6", "company", "email", "likes", "title5", "company4", "satisfaction7", "responsibilities3", "job_start6", "title6", "job_end", "job_end1", "company5", "satisfaction8", "hashed_password", "updated_at", "responsibilities4", "job_start7", "title7", "job_end2", "company6", "email_private", "job_start8", "responsibilities5", "image_file", "job_end3", "company7", "responsibilities6", "company8", "job_end4", "stanford_class", "responsibilities7", "author", "degree", "title8", "name", "job_end5", "responsibilities8", "satisfaction", "summary", "job_end6", "total_views", "job_end7", "job_end8", "interview_date", "job_start", "views", "total_authored", "major", "keywords", "created_at", "interview_text", "six_words", "satisfaction1") VALUES(NULL, NULL, NULL, NULL, '2010-02-04 20:28:23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2010-02-04 20:28:23', NULL, NULL, NULL, NULL, 'mh@stanford.edu', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '6b0d31c0d563223024da45691584643ac78c96e8', '2010-02-04 20:28:23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'blank_profile_pic.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Martin Hills', NULL, NULL, NULL, '', NULL, 0, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '2010-02-04 20:28:23', '== Interview Form ==
+
+Q: What''s the best job you''ve had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you''d known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What''s one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+', NULL, NULL)[0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "author" = 3, "updated_at" = '2010-02-04 20:28:23' WHERE "id" = 3[0m
+Redirected to http://localhost:3000/profiles/edit/3
+Completed in 143ms (DB: 102) | 302 Found [http://localhost/user/post_register]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 12:28:23) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Completed in 39ms (View: 11, DB: 2) | 200 OK [http://localhost/profiles/edit/3]

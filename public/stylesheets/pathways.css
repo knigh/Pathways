@@ -1,3 +1,9 @@
+html
+{
+	min-height: 100%;
+	margin-bottom: 1px;
+}
+
 body
 {
 	background: #6699CC url(../images/body.gif) no-repeat scroll top;
@@ -52,7 +58,6 @@ table.dot
 	width: 100%;
 }
 
-
 td.dot
 {
 	height: 2px;
@@ -97,6 +102,7 @@ table.searchTable,
 table.sideBar,
 table.interviewTable,
 table.infoTable
+table.signInTable
 {
 	background-color: white;
 	border-spacing: 10px;
@@ -121,6 +127,11 @@ table.interviewTable
 table.infoTable
 {
 	width: 250px;
+}
+
+table.signInTable
+{
+	width: 350px;
 }
 
 .heading, .title, .text

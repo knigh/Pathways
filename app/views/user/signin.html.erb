@@ -1,75 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>Life Pathways</title>
-    <%= stylesheet_link_tag 'steppingStones.css' %>  
-  </head>
+<head>
+	<title>Pathways</title>
+    <%= stylesheet_link_tag 'pathways.css' %>  
+</head>
 <body>
-<center>
+	<table class="main">
+	<!-- Header -->
+		<tr><td class="clean"><table class="header"><tr>
+			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
+			<td/>
+			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
+				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
+				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
+				<!-- onclick="window.location='about.html'"/> --></td>
+			<td class="tab"><img id="search" class="tab" src="/images/buttons/search.gif"
+				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
+				onmouseout="rollOver('search', '/images/buttons/search.gif')"
+				onclick="window.location='/profiles/search'"/></td>
+			<% if session[:user_id] %>
+				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signout.gif')"
+					onclick="window.location='/user/logout'"/></td>
+			<% else %>
+				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
+					onclick="window.location='/user/signin'"/></td>
+			<% end %>
+		</tr></table></td></tr>
 	
-	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
-			<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table>
-
-    <table>
-	<tr><td height="10"/></tr>
-
-	<tr>
-
-	<td width="100" />
-
-	<td valign="top">
-	<div class="sign_in">
-		<h3>Sign In</h3>
-		<% form_for :user, :url => {:action => :post_signin} do |form| %>
-		<table class="form">
-		<tr>
-		  <td class="label">Email address:<td>
-		  <td><%= form.text_field(:email) %><td>
-		</tr>
-		<tr>
-		  <td class="label">Password:<td>
-		  <td><input name="password" size="30" type="password" /><td>
-		</tr>
-	 </table>
-	 <%= submit_tag "Log in", :class => "submit" %>
-	<% end %>
-	</div>
-	</td>
+		<!-- Body Content -->
+		<tr><td class="content"><table class="clean" align="center" cellpadding="38"><tr>
 	
-	<td width="100" style="text-align:center;" valign="middle"><h3>or</h3></td>
+			<!-- Column 1 -->
+			<td class="contentColumn"><table class="signInTable">
+				<tr><td class="text" height="30" style="text-align:center">First time user? Sign up here:</td></tr>
+				<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">Sign Up</td></tr>
+					<% form_for :user, :url => {:action => :post_register} do |form| %>
+						<tr><td class="text">name</td><td><%= form.text_field(:name) %></td></tr>
+						<tr><td class="text">email address</td><td><%= form.text_field(:email) %></td></tr>
+						<tr><td class="text">password</td><td><input name="password" type="password" size="25" /></td></tr>
+						<tr><td class="text" width="100%">confirm password</td><td><input name="password_confirmation" type="password" size="25" /></td></tr>
+						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign up", :class => "submit" %></td></tr>
+					<% end %>
+				</table></td></tr>
+			</table></td>
 
-	<td valign="middle">
-	<div class="sign_in">
-		<h3>Sign Up</h3>
-		<% form_for :user, :url => {:action => :post_register} do |form| %>
-		 <table class="form">
-			<tr>
-			  <td class="label">Name:</td>
-			  <td><%= form.text_field(:name) %></td>
-			</tr>
-			<tr>
-			  <td class="label">Email address:</td>
-			  <td><%= form.text_field(:email) %></td>
-			</tr>
-			<tr>
-			  <td class="label">Password:</td>
-			  <td><input name="password" size="30" type="password" /></td>
-			</tr>
-			<tr>
-			  <td class="label">Confirm Password:</td>
-			  <td><input name="password_confirmation" size="30" type="password" /></td>
-			</tr>
-		 </table>
-		 <%= submit_tag "Register", :class => "submit" %>
-		<% end %>
-		</div>
-	</td>
+			<td class="contentColumn"><table class="signInTable">
+				<tr><td height="30"/></tr>
+				<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">Sign In</td></tr>
+					<% form_for :user, :url => {:action => :post_signin} do |form| %>
+						<tr><td class="text">email address</td><td><%= form.text_field(:email) %></td></tr>
+						<tr><td class="text" width="100%">password</td><td><input name="password" type="password" size="25" /></td></tr>
+						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign in", :class => "submit" %></td></tr>
+					<% end %>
+				</table></td></tr>
+			</table></td>
+		
+		</tr></table></td></tr>
 
-	<td width="100" />
-
-  </tr></table>
-</center>
+		<!-- Footer -->
+		
+	</table>	
 </body>
 </html>
+<script type="text/javascript">
+	
+	
+	function rollOver(imgName, imgSrc)
+   	{
+		document.getElementById(imgName).src = imgSrc;
+	}
+</script>
