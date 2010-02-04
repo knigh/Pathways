@@ -36,6 +36,7 @@
 						<td width="100%" align="right"><input type="text" id="searchBox" class="search" onclick="searchClick();" onKeyPress="checkEnter(event)" value=""/></td>
 					</tr></table></td></tr>
 
+					<% if @user1 != nil %>
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/<%= @user1.image_file %>"/></a></td>
@@ -45,7 +46,9 @@
 							<tr><td class="text"><%= @user1.summary %></td></tr>
 						</table></td>
 					</table></td></tr>
+					<% end %>
 
+					<% if @user2 != nil %>
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user2[:id] %>"><img class="pic" src="/images/<%= @user2.image_file %>"/></a></td>
@@ -55,7 +58,9 @@
 							<tr><td class="text"><%= @user2.summary %></td></tr>
 						</table></td>
 					</table></td></tr>
+					<% end %>
 
+					<% if @user3 != nil %>
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user3[:id] %>"><img class="pic" src="/images/<%= @user3.image_file %>"/></a></td>
@@ -65,6 +70,7 @@
 							<tr><td class="text"><%= @user3.summary %></td></tr>
 						</table></td>
 					</table></td></tr>
+					<% end %>
 
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>	
 					
