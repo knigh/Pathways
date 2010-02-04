@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :satisfaction, :integer
 	t.column :six_words, :string
 	t.column :interview_text, :text
+	t.column :interview_date, :date
 	t.column :summary, :string
 	
 	t.column :keywords, :string

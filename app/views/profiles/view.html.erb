@@ -40,7 +40,8 @@
 							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on March 4, 2010.<br/><br/>
 						<% end %>
 						
-						<%= @user.interview_text %>
+						<%= @interview_text %>
+						
 						</td></tr>
 					</table></div></td></tr>
 					

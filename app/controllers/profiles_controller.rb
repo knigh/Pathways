@@ -43,6 +43,11 @@ class ProfilesController < ActionController::Base
 		end
 		@user.save
 		@author.save
+		
+		@interview_text = @user.interview_text
+		@interview_text.gsub!(/Q: .*\nA:/) {|match| "<br/><br/><em>" + match[3..-3] + "</em><br/>"}
+		@interview_text = @interview_text[10, @interview_text.length - 11]
+		print @interview_text
 	end
 	
 	def post_like
