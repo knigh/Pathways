@@ -29,6 +29,8 @@ class CreateUsers < ActiveRecord::Migration
 
 	t.column :hashed_password, :string
 
+	t.column :date_added, :date
+	t.column :date_modified, :date
       t.timestamps
     end
   end

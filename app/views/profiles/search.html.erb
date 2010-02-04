@@ -1,108 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>LifePathways</title>
-    <%= stylesheet_link_tag 'steppingStones.css' %>  
-  </head>
+<head>
+	<title>Pathways</title>
+    <%= stylesheet_link_tag 'pathways.css' %>  
+</head>
 <body>
-<center>
-   	 	<table border="0"><tr>
-	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
-		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
-	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
-	<% if session[:user_id] %>
-			<% curUser = User.find(session[:user_id]) %>
-			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
-			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
-		<% else %>			
-			<a href = "<%= url_for(:controller => "user", :action => "signin") %>">Log in</a>
-		<% end %></a> | <a href = "<%= url_for(:controller => "profiles", :action => "search") %>">Home</a></small></td>
-  </tr></table>
-  <table><tr>
-	<td><div class="profiles">
-	  <h3>&nbsp;Featured Alumni</h3>
-	  <table><tr>
-		<td><div class="profile">
-			<table><tr>
-			<td><img class="profilePic" src="/images/<%= @user1.image_file %>"/></td>
-			<td><h3><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></h3>
-			<%= @user1.summary %>
+	<table class="main">
+		<!-- Header -->
+		<tr><td class="clean"><table class="header"><tr>
+			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
+			<td/>
+			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
+				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
+				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
+				<!-- onclick="window.location='about.html'"/> --></td>
+			<td class="tab"><img id="search" class="tab" src="/images/buttons/search.gif"
+				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
+				onmouseout="rollOver('search', '/images/buttons/search.gif')"
+				onclick="window.location='search'"/></td>
+			<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
+				onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
+				onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
+				onclick="window.location='/user/signin'"/></td>
+		</tr></table></td></tr>
+	
+		<!-- Body Content -->
+		<tr><td class="content"><table class="clean" align="center"><tr>
+	
+			<!-- Column 1 -->
+			<td class="contentColumn"><table class="searchTable">
+					<tr><td class="heading"><table class="clean"><tr>
+						<td width="100%">Featured alumni</td>
+						<td width="100%" align="right"><input type="text" id="searchBox" class="search" onclick="searchClick();" onKeyPress="checkEnter(event)" value=""/></td>
+					</tr></table></td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					<tr><td><table class="searchResult"><tr>
+						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/<%= @user1.image_file %>"/></a></td>
+						<td><table class="clean">
+							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td height="3"/></tr>
+							<tr><td class="text"><%= @user1.summary %></td></tr>
+						</table></td>
+					</table></td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					<tr><td><table class="searchResult"><tr>
+						<td valign="top"><a href="/profiles/view/<%= @user2[:id] %>"><img class="pic" src="/images/<%= @user2.image_file %>"/></a></td>
+						<td><table class="clean">
+							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %><% if @user2.stanford_class != nil %> ('<%= (@user2.stanford_class/10)%10%><%= @user2.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td height="3"/></tr>
+							<tr><td class="text"><%= @user2.summary %></td></tr>
+						</table></td>
+					</table></td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					<tr><td><table class="searchResult"><tr>
+						<td valign="top"><a href="/profiles/view/<%= @user3[:id] %>"><img class="pic" src="/images/<%= @user3.image_file %>"/></a></td>
+						<td><table class="clean">
+							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %><% if @user3.stanford_class != nil %> ('<%= (@user3.stanford_class/10)%10%><%= @user3.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td height="3"/></tr>
+							<tr><td class="text"><%= @user3.summary %></td></tr>
+						</table></td>
+					</table></td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>	
+					
+				</table>
 			</td>
-			</tr></table>
-			<div align="right">
-			<% form_for :user, :url => {:action => :view, :id => @user1.id} do |form| %>
-			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
-			<% end %>
-			</div>
-		  </div></td></tr>
-		  <tr><td><div class="profile">
-			<table><tr>
-			<td><img class="profilePic" src="/images/<%= @user2.image_file %>"/></td>
-			<td><h3><%= @user2.name %><% if @user2.stanford_class != nil %> ('<%= (@user2.stanford_class/10)%10%><%= @user2.stanford_class % 10%>)<% end %></h3>
-			<%= @user2.summary %>
+
+			<td width="10"/>
+
+			<td class="contentColumn"><table class="sideBar">
+					
+					<tr><td class="box"><table class="clean" width="310px;">
+						<tr><td class="heading" style="text-align:center">We're building the Sym Sys community,</td></tr>
+						<tr><td class="text" style="text-align:justify">one profile at a time.  You can browse for other alumni,
+							create your own Pathway profile, or interview a Sym Sys alum and share 
+							their wisdom - and Pathway - with all of us.</td></tr>
+						<tr><td height="9"/></tr>
+						<tr><td><table style="clean">
+							<tr>
+								<td width="28"/>
+								<td width="100" style="text-align:center;" class="heading">
+									<% if session[:user_id] %>
+										<a href="/profiles/edit/<%= session[:user_id] %>">Edit Your Profile</a>
+									<% else %>
+										<a href="/user/signin">Create Your Own Profile</a>
+									<% end %></td>
+								<td width="43" class="text" style="text-align:center">or</td>
+								<td width="100" style="text-align:center;" class="heading">
+									<% if session[:user_id] %>
+										<a href="/profiles/edit/<%= session[:user_id] %>">Interview A Fellow Alum</a>
+									<% else %>
+										<a href="signin">Interview A Fellow Alum</a>
+									<% end %></td>
+								<td width="28"/>
+							</tr>
+						</table></td></tr>
+						<tr><td height="9"/></tr>
+						<tr><td class="text" style="text-align:center"><i>We're at 234 pathways.  752 to go!</i></td></tr>
+					</table></td></tr>
+			
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					
+					<tr><td>
+						<table style="clean">
+							<tr><td class="heading" width="180">Top Contributors</td><td class="title" width="70" align="center">Interviews Contributed</td><td class="title" width="70" align="center">Total Views</td></tr>
+							<% @contributors.each do |contributor| %>
+								<tr><td class="title"><%= contributor.name %><% if contributor.stanford_class != nil %> ('<%= (contributor.stanford_class/10)%10%><%= contributor.stanford_class % 10%>)<% end %></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
+							<% end %>
+						</table>
+					</td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+
+					<tr><td>
+						<table style="clean">
+							<tr><td class="heading" width="200">Recent Contributions</td><td class="title" width="120" align="center">Interviewed By</td></tr>
+							<tr><td class="title">Caroline Sera ('98)</td><td class="text" style="text-align:center">Justin Fujita ('11)</td></tr>
+							<tr><td class="title">Alex Ferguson ('01)</td><td class="text" style="text-align:center">Michelle Hill ('12)</td></tr>
+							<tr><td class="title">Sean O'Harris ('99)</td><td class="text" style="text-align:center">Kushel Rao ('12)</td></tr>
+						</table>
+					</td></tr>
+
+					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+
+				</table>
 			</td>
-			</tr></table>
-			<div align="right">
-			<% form_for :user, :url => {:action => :view, :id => @user2.id} do |form| %>
-			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
-			<% end %>
-			</div>
-		  </div></td></tr>
-		  <tr>
-		<td><div class="profile">
-			<table><tr>
-			<td><img class="profilePic" src="/images/<%= @user3.image_file %>"/></td>
-			<td><h3><%= @user3.name %><% if @user3.stanford_class != nil %> ('<%= (@user3.stanford_class/10)%10%><%= @user3.stanford_class % 10%>)<% end %></h3>
-			<%= @user3.summary %>
-			</td>
-			</tr></table>
-			<div align="right">
-			<% form_for :user, :url => {:action => :view, :id => @user3.id} do |form| %>
-			<%= submit_tag "Learn more about my pathway", :class => "submit" %>
-			<% end %>
-			</div>
-		  </div></td></tr>
-	  </tr></table>
-	</div></td>
-    <td><div class="search">
-	<h3>Looking for something specific?</h3>
-	<table><tr>
-	<td valign="middle"><input size="35" style="font-size:14px;"/></td>
-	<td valign="middle"><% form_for :user, :url => {:action => "search"} do |form| %>
-		<%= submit_tag "Search", :class => "submit" %>
-		<% end %></td>
-	</tr></table>
-    </div><br/>
-	<div class="search">
-	<h3>Add a pathway!</h3>
-	Write about yourself or a professional that you've interviewed
-	<div>&nbsp;</div>
-	<div align="center">
-	<% if session[:user_id] %>
-		<% form_for :user, :url => {:action => :edit, :id => session[:user_id]} do |form| %>
-		<%= submit_tag "Get started", :class => "submit" %>
-		<% end %>
-	<% else %>
-		<% form_for :user, :url => {:controller => "user", :action => "signin"} do |form| %>
-		<%= submit_tag "Get started", :class => "submit" %>
-		<% end %>
-	<% end %>
-	</div>
-	</div>
-	<div class="topContributors">
-	<h3>Top Contributors</h3>
-	<center><table class="contribTable">
-	<tr><td><h5>Contributor</h5></td><td><h5>Profiles Added</h5></td><td><h5>Avg Views</h5></td></tr>
-	<% @contributors.each do |contributor| %>
-		<tr class="<%= cycle("odd", "even", :name => "row_class") %>Row"><td width="110px"><a href="<%= url_for(:action => "view", :id => contributor.id) %>" style="color:black;"><%= contributor.name %></a></td><td width="110px"><%= contributor.total_authored + 1 %></td><td width="110px"><%= contributor.total_views/(contributor.total_authored + 1)%></td></tr>
-	<% end %>
-	</table></center>	
-	<!---<tr class="evenRow"><td>ChuckChase</td><td>8.9</td></tr>
-	<tr class="oddRow"><td>nerdherder</td><td>8.7</td></tr>--->
-	</table></div></td>
-  </tr></table>
-</center>
+		
+		</tr></table></td></tr>
+
+		<!-- Footer -->
+		
+	</table>	
 </body>
 </html>
+<script type="text/javascript">
+	
+	var searchString = "Search for alumni or pathways";
+	var box = document.getElementById('searchBox');
+	box.value = searchString;
+	box.style.color = "gray";
+	
+	function searchClick()
+	{
+		var box = document.getElementById('searchBox');
+
+		if (box.value == searchString)
+		{
+			box.value = "";
+			box.style.color = "black";
+		}
+		else
+		{
+			// Detect clicking on icon?
+		}
+	}
+
+	function checkEnter(e)
+	{
+		var code = (e && e.which) ? e.which : event.keyCode;
+		if(code == 13)
+		{
+			// perform search
+			//alert("performing search: " + document.getElementById('searchBox').value);
+			window.location = "index.html";
+			return false;
+		}
+		
+		return true;
+	}
+
+	function rollOver(imgName, imgSrc)
+   	{
+		document.getElementById(imgName).src = imgSrc;
+	}
+</script>
