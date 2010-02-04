@@ -40,34 +40,7 @@
 							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on March 4, 2010.<br/><br/>
 						<% end %>
 						
-						<em>What's the best job you've had since graduation?</em><br/>
-						Working as a Product Developer at Zoodles.<br/><br/>
-
-						<em>How did you find out about this job and why did you join?</em><br/>
-						I discovered this job at a small career fair at the department of education.
-							I was drawn by the energy of the representatives and their palpable passion for education!
-							I didn't have the exact qualifications they were looking for, but my Sym Sys senior
-							proejct is what put me over the top and got me the job. <br/><br/>
-
-						<em>What was the best part of the job?</em><br/>
-						Working with a small, dedicated team.  I was able to quickly learn from them, as well as
-						make immediate contributions, and the environment allowed me to make mistakes, and ask
-						when I needed help. I find that's really important; I had one summer job at a larger firm that
-						I won't mention (she coughs: Intel!), where it felt like everyone was just trying to show how
-						much they knew and not ever ask for assistance. I feel much more comfortable here.<br/><br/>
-
-						<em>Did your Symbolic Systems degree help you in this work?</em><br/>
-						Yes and no. Without my senior project I wouldn't have gotten the job, so yes! Also, I learned
-							how to think about human-centered design in Sym Sys, which I think gives me an edge over
-							more pure engineers when it comes time to decide what to focus on, which design decisions
-							to wait on, and which to decide early. I don't think Sym Sys properly prepared me for the
-							range of programming languages out there; that's probably my one regret. I wish I had
-							taken a course in Rails, for example. That said, I loved the major. <br/><br/>
-
-						<em>Any advice for current Sym Sys students?</em><br/>
-						Take classes with Terry Winograd! As many as you can. And find out about what people are doing
-							for their senior projects: several of the ones from my year ended up being startups after
-							graduation, so it's good to be on the ground floor!<br/>
+						<%= @user.interview_text %>
 						</td></tr>
 					</table></div></td></tr>
 					
