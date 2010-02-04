@@ -31765,3 +31765,12 @@ Rendering profiles/search
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT count(*) AS count_all FROM "users" [0m
   [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
 Completed in 37ms (View: 14, DB: 7) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-04 11:41:15) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.4ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+Rendering profiles/edit
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 48ms (View: 16, DB: 3) | 200 OK [http://localhost/profiles/edit/1]

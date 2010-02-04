@@ -48,9 +48,9 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/<%= @user1.image_file %>"/></a></td>
 						<td><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td class="title" valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
 							<tr><td height="3"/></tr>
-							<tr><td class="text"><%= @user1.summary %></td></tr>
+							<tr><td class="text" valign="top"><%= @user1.summary %></td></tr>
 						</table></td>
 					</table></td></tr>
 					<% end %>
