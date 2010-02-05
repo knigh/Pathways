@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :six_words, :string
 	t.column :interview_text, :text
 	t.column :interview_date, :datetime
-	t.column :summary, :string
+	t.column :summary, :text
 	
 	t.column :keywords, :string
 	
@@ -36,59 +36,83 @@ class CreateUsers < ActiveRecord::Migration
 	
 	t.column :company1, :string
 	t.column :title1, :string
-	t.column :job_start1, :string
-	t.column :job_end1, :string
+	t.column :job_start_m1, :integer
+	t.column :job_start_y1, :integer
+	t.column :job_end_m1, :integer
+	t.column :job_end_y1, :integer
 	t.column :satisfaction1, :integer
-	t.column :responsibilities1, :integer
+	t.column :responsibilities1, :string
 	
 	t.column :company2, :string
 	t.column :title2, :string
-	t.column :job_start2, :string
-	t.column :job_end2, :string
+	t.column :job_start_m2, :integer
+	t.column :job_start_y2, :integer
+	t.column :job_end_m2, :integer
+	t.column :job_end_y2, :integer
 	t.column :satisfaction2, :integer
-	t.column :responsibilities2, :integer
+	t.column :responsibilities2, :string
 	
 	t.column :company3, :string
 	t.column :title3, :string
-	t.column :job_start3, :string
-	t.column :job_end3, :string
+	t.column :job_start_m3, :integer
+	t.column :job_start_y3, :integer
+	t.column :job_end_m3, :integer
+	t.column :job_end_y3, :integer
+
 	t.column :satisfaction3, :integer
-	t.column :responsibilities3, :integer
+	t.column :responsibilities3, :string
 	
 	t.column :company4, :string
 	t.column :title4, :string
-	t.column :job_start4, :string
-	t.column :job_end4, :string
+	t.column :job_start_m4, :integer
+	t.column :job_start_y4, :integer
+	t.column :job_end_m4, :integer
+	t.column :job_end_y4, :integer
+
 	t.column :satisfaction4, :integer
-	t.column :responsibilities4, :integer
+	t.column :responsibilities4, :string
 	
 	t.column :company5, :string
 	t.column :title5, :string
-	t.column :job_start5, :string
-	t.column :job_end5, :string
+	t.column :job_start_m5, :integer
+	t.column :job_start_y5, :integer
+	t.column :job_end_m5, :integer
+	t.column :job_end_y5, :integer
+
 	t.column :satisfaction5, :integer
-	t.column :responsibilities5, :integer
+	t.column :responsibilities5, :string
 	
 	t.column :company6, :string
 	t.column :title6, :string
-	t.column :job_start6, :string
-	t.column :job_end6, :string
+	t.column :job_start_m6, :integer
+	t.column :job_start_y6, :integer
+	t.column :job_end_m6, :integer
+	t.column :job_end_y6, :integer
+
 	t.column :satisfaction6, :integer
-	t.column :responsibilities6, :integer
+	t.column :responsibilities6, :string
 	
 	t.column :company7, :string
 	t.column :title7, :string
-	t.column :job_start7, :string
-	t.column :job_end7, :string
+	t.column :job_start_m7, :integer
+	t.column :job_start_y7, :integer
+	t.column :job_end_m7, :integer
+	t.column :job_end_y7, :integer
+
 	t.column :satisfaction7, :integer
-	t.column :responsibilities7, :integer
+	t.column :responsibilities7, :string
 	
 	t.column :company8, :string
 	t.column :title8, :string
-	t.column :job_start8, :string
-	t.column :job_end8, :string
+	t.column :job_start_m8, :integer
+	t.column :job_start_y8, :integer
+	t.column :job_end_m8, :integer
+	t.column :job_end_y8, :integer
+	
+	t.column :jobs_visible, :integer
+
 	t.column :satisfaction8, :integer
-	t.column :responsibilities8, :integer
+	t.column :responsibilities8, :string
       t.timestamps
     end
   end

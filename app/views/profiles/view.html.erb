@@ -40,7 +40,7 @@
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
-					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.job_end1 != nil && @user.job_end1 == "present" %>, <%= @user.title1 %><% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
+					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.id != @user.author %>
@@ -80,22 +80,25 @@
 					<tr><td class="heading">&nbsp;</td></tr>
 
 					<tr><td><table class="clean">
+						<% if session[:user_id] == @user.id || session[:user_id] == @user.author %><tr><td><% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %>
+						<%= submit_tag "Edit profile", :class => "submit" %>
+						<% end %></td></tr>
+						<% end %>
+
 						<tr><td><img class="pic" src="/images/<%= @user.image_file %>"/></td></tr>
 						<tr><td height="5"/></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td height="5"/></tr>
 						<tr><td class="text">
-						<% if @user.degree == "Undergraduate" %>
-							BS,
-						<% elsif @user.degree == "Masters" %>
-							MS,
-						<% elsif @user.degree == "Doctoral" %>
-							PhD,
+						<% if @user.degree != nil %>
+							<%= @user.degree %>, 
 						<% end %>
 						Symbolic Systems <% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><br/>
 							<% if @user.major != nil && @user.major.length > 0 %> Concentration: <%= @user.major %><br/><% end %>
 							<%= @user.email %></td></tr>
 					</table></td></tr>
+					<tr><td height="5"/></tr>
+
 
 					<% if @user.total_authored > 0 %>
 					<tr><td height="5"/></tr>
@@ -115,50 +118,50 @@
 						<tr><td class="text">
 						<% if @user.title1 != nil && @user.title1.length > 0%>
 							<%=@user.title1 %><br/><%=@user.company1%><br/>
-							<%=@user.job_start1 %> - <%=@user.job_end1 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m1.to_s + "/" + @user.job_start_y1.to_s%> - <%=@user.job_end_m1.to_s + "/" + @user.job_end_y1.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities1 %><br/>
 							Satisfaction: <%=@user.satisfaction1%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title2 != nil && @user.title2.length > 0%>
 							<%=@user.title2 %><br/><%=@user.company2%><br/>
-							<%=@user.job_start2 %> - <%=@user.job_end2 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m2.to_s + "/" + @user.job_start_y2.to_s%> - <%=@user.job_end_m2.to_s + "/" + @user.job_end_y2.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities2 %><br/>
 							Satisfaction: <%=@user.satisfaction2%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title3 != nil && @user.title3.length > 0%>
 							<%=@user.title3 %><br/><%=@user.company3%><br/>
-							<%=@user.job_start3 %> - <%=@user.job_end3 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m3.to_s + "/" + @user.job_start_y3.to_s%> - <%=@user.job_end_m3.to_s + "/" + @user.job_end_y3.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities3 %><br/>
 							Satisfaction: <%=@user.satisfaction3%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title4 != nil && @user.title4.length > 0%>
 							<%=@user.title4 %><br/><%=@user.company4%><br/>
-							<%=@user.job_start4 %> - <%=@user.job_end4 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m4.to_s + "/" + @user.job_start_y4.to_s%> - <%=@user.job_end_m4.to_s + "/" + @user.job_end_y4.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities4 %><br/>
 							Satisfaction: <%=@user.satisfaction4%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title5 != nil && @user.title5.length > 0%>
 							<%=@user.title5 %><br/><%=@user.company5%><br/>
-							<%=@user.job_start5 %> - <%=@user.job_end5 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m5.to_s + "/" + @user.job_start_y5.to_s%> - <%=@user.job_end_m5.to_s + "/" + @user.job_end_y5.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities5 %><br/>
 							Satisfaction: <%=@user.satisfaction5%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title6 != nil && @user.title6.length > 0%>
 							<%=@user.title6 %><br/><%=@user.company6%><br/>
-							<%=@user.job_start6 %> - <%=@user.job_end6 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m6.to_s + "/" + @user.job_start_y6.to_s%> - <%=@user.job_end_m6.to_s + "/" + @user.job_end_y6.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities6 %><br/>
 							Satisfaction: <%=@user.satisfaction6%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title7 != nil && @user.title7.length > 0%>
 							<%=@user.title7 %><br/><%=@user.company7%><br/>
-							<%=@user.job_start7 %> - <%=@user.job_end7 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m7.to_s + "/" + @user.job_start_y7.to_s%> - <%=@user.job_end_m7.to_s + "/" + @user.job_end_y7.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities7 %><br/>
 							Satisfaction: <%=@user.satisfaction7%> / 5<br/><br/>
 						<% end %>
 						<% if @user.title8 != nil && @user.title8.length > 0%>
 							<%=@user.title8 %><br/><%=@user.company8%><br/>
-							<%=@user.job_start8 %> - <%=@user.job_end8 %><br/>
-							<!-- Responsibilities: Q.A.<br/> -->
+							<%=@user.job_start_m8.to_s + "/" + @user.job_start_y8.to_s%> - <%=@user.job_end_m8.to_s + "/" + @user.job_end_y8.to_s%><br/>
+							Responsibilities: <%=@user.responsibilities8 %><br/>
 							Satisfaction: <%=@user.satisfaction8%> / 5<br/><br/>
 						<% end %>
 						</span></td></tr>

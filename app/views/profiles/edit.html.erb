@@ -4,301 +4,192 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>LifePathways</title>
-    <%= stylesheet_link_tag 'steppingStones.css' %>  
+    <%= stylesheet_link_tag 'pathways.css' %>  
   </head>
 <body>
-<center>
- 	<table border="0"><tr>
-	<td width="630" align="left"><table><tr><td><a href="<%= url_for(:controller => "profiles", :action => "search") %>" style="text-decoration:none; color:black;"><h1>LifePathways</h1></a></td>
-		<td valign="bottom"><b>profiles of Stanford alumni</b></td></tr></table></td>
-	<td width="300" style="text-align:right; vertical-align:bottom;"><small>
-	<% if session[:user_id] %>
-			<% curUser = User.find(session[:user_id]) %>
-			<a href = "<%= url_for(:controller => "user", :action => "logout") %>">Log out</a>
-			 | <a href = "<%= url_for(:controller => "profiles", :action => "view", :id => session[:user_id]) %>">My Profile</a>
-		<% else %>			
-			<a href = "<%= url_for(:controller => "user", :action => "signin") %>">Log in</a>
-		<% end %></a> | <a href = "<%= url_for(:controller => "profiles", :action => "search") %>">Home</a></small></td>
-  </tr></table>
-
-<% form_for :user, :url => {:action => :post_edit}, :html => {:multipart => true} do |form| %>
-  <table><tr>
-	<!-- Left Pane -->
-	<td>
-		<table>
-			<!-- Personal Information -->
-			<tr><td><div class="profile_info">
-				<table><tr>
-					<td><img class="profilePic" src="/images/<%= @user.image_file %>"/></td>
-					<td><table>
-						<tr><td>name:</td><td><%= form.text_field(:name, :size => "22x1") %></td></tr>
-						<tr><td>email address:</td><td><%= form.text_field(:email, :size => "22x1") %></td></tr>
-						
-						
-						
-						
-					</table></td>
-						<tr><td class="label">Choose an image file to upload:</td>
-						<td><%= form.file_field(:image_file) %>
-						<td></tr>
-				</tr></table>
-			</div></td></tr>
-
-			<tr><td/></tr>
-
-			<!-- Education / Job History -->
-			<tr><td><div class="profile_info">
-				<table>
-					<tr><td><h3>Stanford University</h3></td></tr>
-					<tr><td><table>
-						<tr><td>Class Year&nbsp;(yyyy):</td><td><%= form.text_field(:stanford_class, :size => "4x1") %></td></tr>
-						<tr><td>Degree:</td><td><select name="degree">
-							<option/>
-							<option 
-							<% if @user.degree == "Undergraduate" %>
-								selected
-							<% end %>
-							>Undergraduate</option>
-							<option 
-							<% if @user.degree== "Masters" %>
-								selected
-							<% end %>
-							>Masters</option>
-							<option 
-							<% if @user.degree == "Doctoral" %>
-								selected
-							<% end %>
-							>Doctoral</option>
-						</select></td></tr>
-						<tr><td>Major/focus:</td><td><%= form.text_field(:major, :size => "20x1") %></td></tr>
-
-					</table></td></tr>
-				</tr></table>
-			</div></td></tr>
-
-			<tr><td/></tr>
-
-			<tr><td><div class="profile_info">
-				<table>
-					<tr><td><h3>Work Experience</h3></td></tr>
-					<tr><td><table>
-						<tr><td>Company</td><td><%= form.text_field(:company1, :size => "20x1") %></td></tr>
-						<tr><td>Title</td><td><%= form.text_field(:title1, :size => "20x1") %></td></tr>
-						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start1, :size => "7x1") %></td></tr>
-						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end1, :size => "7x1") %></td></tr>
-						<tr><td>Satisfaction:</td><td><select name="satisfaction1"/>
-								<option/>
-								<option 
-								<% if @user.satisfaction1 == 5 %>
-									selected
-								<% end %>
-								value="5">5 [very satisfied]</option>
-								<option 
-								<% if @user.satisfaction1 == 4 %>
-									selected
-								<% end %>
-								value="4">4</option>				
-								<option 
-								<% if @user.satisfaction1 == 3 %>
-									selected
-								<% end %>
-								value="3">3</option>				
-								<option 
-								<% if @user.satisfaction1 == 2 %>
-									selected
-								<% end %>
-								value="2">2</option>
-								<option 
-								<% if @user.satisfaction1 == 1 %>
-									selected
-								<% end %>
-								value="1">1 [very unsatisfied]</option>
-							</select></td></tr>
-					</table></td></tr>
-					
-					<% if @user.company1 != nil && @user.company1.length > 0%>
-					<tr><td><table>
-						<tr><td>Company</td><td><%= form.text_field(:company2, :size => "20x1") %></td></tr>
-						<tr><td>Title</td><td><%= form.text_field(:title2, :size => "20x1") %></td></tr>
-						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start2, :size => "7x1") %></td></tr>
-						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end2, :size => "7x1") %></td></tr>
-						<tr><td>Satisfaction:</td><td><select name="satisfaction2"/>
-								<option/>
-								<option 
-								<% if @user.satisfaction2 == 5 %>
-									selected
-								<% end %>
-								value="5">5 [very satisfied]</option>
-								<option 
-								<% if @user.satisfaction2 == 4 %>
-									selected
-								<% end %>
-								value="4">4</option>				
-								<option 
-								<% if @user.satisfaction2 == 3 %>
-									selected
-								<% end %>
-								value="3">3</option>				
-								<option 
-								<% if @user.satisfaction2 == 2 %>
-									selected
-								<% end %>
-								value="2">2</option>
-								<option 
-								<% if @user.satisfaction2 == 1 %>
-									selected
-								<% end %>
-								value="1">1 [very unsatisfied]</option>
-							</select></td></tr>
-					</table></td></tr>
-					<% end %>
-					
-					<% if @user.company2 != nil && @user.company2.length > 0%>
-					<tr><td><table>
-						<tr><td>Company</td><td><%= form.text_field(:company3, :size => "20x1") %></td></tr>
-						<tr><td>Title</td><td><%= form.text_field(:title3, :size => "20x1") %></td></tr>
-						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start3, :size => "7x1") %></td></tr>
-						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end3, :size => "7x1") %></td></tr>
-						<tr><td>Satisfaction:</td><td><select name="satisfaction3"/>
-								<option/>
-								<option 
-								<% if @user.satisfaction3 == 5 %>
-									selected
-								<% end %>
-								value="5">5 [very satisfied]</option>
-								<option 
-								<% if @user.satisfaction3 == 4 %>
-									selected
-								<% end %>
-								value="4">4</option>				
-								<option 
-								<% if @user.satisfaction3 == 3 %>
-									selected
-								<% end %>
-								value="3">3</option>				
-								<option 
-								<% if @user.satisfaction3 == 2 %>
-									selected
-								<% end %>
-								value="2">2</option>
-								<option 
-								<% if @user.satisfaction3 == 1 %>
-									selected
-								<% end %>
-								value="1">1 [very unsatisfied]</option>
-							</select></td></tr>
-					</table></td></tr>
-					<% end %>
-					
-					<% if @user.company3 != nil && @user.company3.length > 0%>
-					<tr><td><table>
-						<tr><td>Company</td><td><%= form.text_field(:company4, :size => "20x1") %></td></tr>
-						<tr><td>Title</td><td><%= form.text_field(:title4, :size => "20x1") %></td></tr>
-						<tr><td>Started&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_start4, :size => "7x1") %></td></tr>
-						<tr><td>Ended&nbsp;&nbsp;(mm/yyyy):</td><td><%= form.text_field(:job_end4, :size => "7x1") %></td></tr>
-						<tr><td>Satisfaction:</td><td><select name="satisfaction4"/>
-								<option/>
-								<option 
-								<% if @user.satisfaction4 == 5 %>
-									selected
-								<% end %>
-								value="5">5 [very satisfied]</option>
-								<option 
-								<% if @user.satisfaction4 == 4 %>
-									selected
-								<% end %>
-								value="4">4</option>				
-								<option 
-								<% if @user.satisfaction4 == 3 %>
-									selected
-								<% end %>
-								value="3">3</option>				
-								<option 
-								<% if @user.satisfaction4 == 2 %>
-									selected
-								<% end %>
-								value="2">2</option>
-								<option 
-								<% if @user.satisfaction4 == 1 %>
-									selected
-								<% end %>
-								value="1">1 [very unsatisfied]</option>
-							</select></td></tr>
-					</table></td></tr>
-					<% end %>
-
-	
-					<tr><td height="11"/></tr>
-			
-	
-				</tr></table>
-			</div></td></tr>
-		</table>
-	</td>
-	
-	<!-- Right Pane -->
-	<td>
-		<table cellpadding="5">
-			<!-- Interview -->
-			<tr><td><div class="profile_interview">
-			<table border="0">
-				<tr>
-					<td colspan="2"><h3>My Pathway Interview</h3></td>
-				</tr>
-				<tr>
-					<td><h3>Six word title:</h3></td>
-				 	<td><%= form.text_field(:six_words, :size => "45x1") %></td>
-				</tr>
-			</table>
-				<table><tr><td>
-<%= form.text_area(:interview_text, :size => "75x17") %>
-
-				</td></tr>
-				<tr><td>Main Page Summary:</td></tr>
-				<tr><td><%= form.text_area(:summary, :size => "75x5signin") %></td></tr>
-
-
-</table>
-			</div></td></tr>
-
-			<tr><td/></tr>
-
-				
-			<!-- Interview list -->
-			  <% if @user.id == @user.author %>
-			<tr>
-				<td><div class="profile_interviews">
-					<h3>Interviews I Performed</h3>
-					<center>
-					<% if @user.total_authored > 0 %>
-						<table class="contribTable">
-						<tr><td><h5>Subject</h5></td><td><h5>Number of Views</h5></td></tr>
-						<% if @user.total_authored > 0 %>
-							<% @interviewees.each do |interviewee| %>
-								<tr class="<%= cycle("odd", "even", :name => "row_class") %>Row"><td width="245px"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>" style="color:black;"><%= interviewee.name %></a></td><td width="245px"><%= interviewee.views %></td></tr>
-							<% end %>
-						<% end %>
-					</table>
-					<% else %>
-						Help complete our alumni network by interviewing colleagues you graduated with<br/>or alumni you've always looked up to. You can create a new profile for these contacts<br/>by choosing "Add a new interview" below.
-					<% end %>
-					</center>
-					<div><table><tr><td height="1"/></tr></table></div>
-				</div></td>
-			</tr>
+	<table class="main">
+		<!-- Header -->
+		<tr><td class="clean"><table class="header"><tr>
+			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
+			<td/>
+			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
+				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
+				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
+				<!-- onclick="window.location='about.html'"/> --></td>
+			<td class="tab"><img id="search" class="tab" src="/images/buttons/search.gif"
+				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
+				onmouseout="rollOver('search', '/images/buttons/search.gif')"
+				onclick="window.location='/profiles/search'"/></td>
+			<% if session[:user_id] %>
+				<td class="tab"><img id="mypathway" class="tab" src="/images/buttons/mypathway.gif"
+				onmouseover="rollOver('mypathway', '/images/buttons/mypathway-on.gif')"
+				onmouseout="rollOver('mypathway', '/images/buttons/mypathway.gif')"
+				onclick="window.location='/profiles/view/<%= session[:user_id] %>'"/></td>
+				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
+					onmouseover="rollOver('signout', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signout', '/images/buttons/signout.gif')"
+					onclick="window.location='/user/logout'"/></td>
+			<% else %>
+				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
+					onclick="window.location='/user/signin'"/></td>
 			<% end %>
-		</table>
-	</td>
-  </tr></table>	
+		</tr></table></td></tr>
+	
+		<!-- Body Content -->
+		<tr><td class="content"><table class="clean" align="center"><tr>
+		<% form_for :user, :url => {:action => :post_edit}, :html => {:multipart => true} do |form| %>
+
+	
+			<!-- Column 1 -->
+			<td class="contentColumn">	
+				<table class="editprofiletable">
+					<tr><td class="heading" colspan="3" style="padding-top: 10px;">Edit Pathway</td></tr>
+					<tr><td class="heading" style="width:30px;">Name:</td><td colspan="2"><%= form.text_field(:name, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %></td></tr>
+					<tr><td class="heading" style="width:30px;">Email:</td><td colspan="2"><%= form.text_field(:email, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %></td></tr>
+					<tr><td style="width:80px"></td><td style="width:150px"></td><td class="text"><input type="checkbox" name="private-email" value="private">Keep this email private</td></tr>
+					<tr><td colspan="3"  class="heading">Interview</td></tr>
+					<tr><td colspan="3"  class="text">The following interview questions are just suggestions; feel free to add your own <br/>and if you’re interviewing someone else, to natually follow the conversation.</td></tr>
+					<tr><td colspan="3"  class="text">
+						<%= form.text_area(:interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %></td></tr>
+					<tr><td colspan="3" class="heading">Six-word title for this Pathway:</td></tr>
+					<tr><td colspan="3" class="heading"><%= form.text_field(:six_words, :size => "45x1", :class => "title", :style => "width:520px;height:18px;text-align:left;") %></td></tr>
+					<tr><td colspan="3" class="heading">Brief summary (for search results):</td></tr>
+					<tr><td colspan="3" class="heading"><%= form.text_area(:summary, :size => "65x6", :class => "title") %></td></tr>
+
+
+				</table>
+			</td>
+
+			<!-- How to make the 10px gutter here? -->
+
+			<!-- Column 2 -->
+			<td class="contentColumn">
+				<table class="infoTable">
+										
+					<tr><td class="heading" colspan="3">&nbsp;</td></tr>
+					
+					<tr><td class="title" colspan="3">Symbolic Systems Experience</td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Class year:</td>
+						<td colspan="2"><%= select( "user", "stanford_class", (1987..2013).to_a {|year| [ year.to_s, year]}, { :include_blank => true}) %></td></tr>							
+					<tr><td class="text" style="text-align:right;width:200px">Degree:</td>
+						<td colspan="2"><%= select( "user", "degree", ["BS", "MA", "BS & MA"].to_a {|degree| [degree, degree]}, { :include_blank => true}) %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Concentration:</td>
+						<td colspan="2"><%= form.text_field(:major, :size => "20x1", :class => "text", :style => "height:15px;text-align:left") %></td></tr>
+						
+					<tr><td class="text" colspan="3">&nbsp;</td></tr>
+					<tr><td colspan="3"><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					<tr><td class="text" colspan="3">&nbsp;</td></tr>
+
+					<tr><td class="title" colspan="3">Work Experience</td></tr>
+					<% @ratings_arr = [ "5 - completely satisfied", "4 - quite satisfied", "3 - somewhat satisfied", "2 - somewhat dissatisfied", "1 - hated it" ] %>
+
+					<tr><td class="text" style="text-align:right;width:200px">Company:</td>
+						<td colspan="2"><%= form.text_field(:company1, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Title:</td>
+						<td colspan="2"><%= form.text_field(:title1, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Started:</td>
+						<td><%= select("user", "job_start_m1", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_start_m1), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_start_y1", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Ended:</td>
+						<td><%= select("user", "job_end_m1", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_end_m1), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_end_y1", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>		
+					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+						<td colspan="2"><%= select( "user", "satisfaction1", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], @user.satisfaction1), { :include_blank => true}) %></td></tr>						
+					<tr><td class="text" style="text-align:right;width:200px;vertical-align: top;">Responsibilities:</td>
+						<td colspan="2">
+						<%= form.text_area(:responsibilities1, :size => "17x4", :class => "title", :wrap => "soft", :style =>"overflow:auto") %>
+					</td></tr>
+					
+					<% if @user.title1 != nil && @user.title1.length > 0%>
+					<br/><tr><td class="text" style="text-align:right;width:200px">Company:</td>
+						<td colspan="2"><%= form.text_field(:company2, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Title:</td>
+						<td colspan="2"><%= form.text_field(:title2, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Started:</td>
+						<td><%= select("user", "job_start_m2", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_start_m2), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_start_y2", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Ended:</td>
+						<td><%= select("user", "job_end_m2", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_end_m2), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_end_y2", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>		
+					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+						<td colspan="2"><%= select( "user", "satisfaction2", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], @user.satisfaction2), { :include_blank => true}) %></td></tr>						
+					<tr><td class="text" style="text-align:right;width:200px;vertical-align: top;">Responsibilities:</td>
+						<td colspan="2">
+						<%= form.text_area(:responsibilities2, :size => "17x4", :class => "title", :wrap => "soft", :style =>"overflow:auto") %>
+					</td></tr>
+					<% end %>
+					
+					<% if @user.title2 != nil && @user.title2.length > 0%>
+					<br/><tr><td class="text" style="text-align:right;width:200px">Company:</td>
+						<td colspan="2"><%= form.text_field(:company3, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Title:</td>
+						<td colspan="2"><%= form.text_field(:title3, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Started:</td>
+						<td><%= select("user", "job_start_m3", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_start_m3), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_start_y3", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Ended:</td>
+						<td><%= select("user", "job_end_m3", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_end_m3), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_end_y3", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>		
+					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+						<td colspan="2"><%= select( "user", "satisfaction3", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], @user.satisfaction3), { :include_blank => true}) %></td></tr>						
+					<tr><td class="text" style="text-align:right;width:200px;vertical-align: top;">Responsibilities:</td>
+						<td colspan="2">
+						<%= form.text_area(:responsibilities3, :size => "17x4", :class => "title", :wrap => "soft", :style =>"overflow:auto") %>
+					</td></tr>
+					<% end %>
+					
+					<% if @user.title3 != nil && @user.title3.length > 0%>
+					<br/><tr><td class="text" style="text-align:right;width:200px">Company:</td>
+						<td colspan="2"><%= form.text_field(:company4, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Title:</td>
+						<td colspan="2"><%= form.text_field(:title4, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Started:</td>
+						<td><%= select("user", "job_start_m4", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_start_m4), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_start_y4", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>
+					<tr><td class="text" style="text-align:right;width:200px">Ended:</td>
+						<td><%= select("user", "job_end_m4", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3], ["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 
+						7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], @user.job_end_m4), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
+						<td><%= select( "user", "job_end_y4", (1987..2010).to_a {|year| [year.to_s, year]}, { :include_blank => true}) %></td></tr>		
+					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+						<td colspan="2"><%= select( "user", "satisfaction4", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], @user.satisfaction4), { :include_blank => true}) %></td></tr>						
+					<tr><td class="text" style="text-align:right;width:200px;vertical-align: top;">Responsibilities:</td>
+						<td colspan="2">
+						<%= form.text_area(:responsibilities4, :size => "17x4", :class => "title", :wrap => "soft", :style =>"overflow:auto") %>
+					</td></tr>
+					<% end %>
+
+					<tr><td colspan="3"></td></tr>
+	
+					<tr><td class="text" colspan="3">&nbsp;</td></tr>
+					<tr><td colspan="3"><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+					<tr><td class="text" colspan="3">&nbsp;</td></tr>
+
+
+				</table> 
+			</td>
+		
+		</tr></table></td></tr>
   		<input type = "hidden" name="id" value="<%= params[:id] %>">
 
-  <%= submit_tag "Save Changes", :class =>"submit" %>
-  <% end %>
-  <% if @user.id == @user.author %>
-  <% form_for :user, :url => {:action => :post_newUser} do |form| %>
-					<%= submit_tag "Add a new Interview", :class => "submit" %>
-					<% end %><% end %>
-				
-</center>
+		<!-- Footer -->
+		  <tr><td><%= submit_tag "Save Changes", :class =>"submit" %>
+		<% end %></td></tr>
+	</table>	
 </body>
 </html>
+<script type="text/javascript">
+
+	function rollOver(imgName, imgSrc)
+   	{
+		document.getElementById(imgName).src = imgSrc;
+	}
+</script>
