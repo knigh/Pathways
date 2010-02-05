@@ -44,8 +44,8 @@
 					<% form_for :user, :url => {:action => :post_register} do |form| %>
 						<tr><td class="text">name</td><td><%= form.text_field(:name) %></td></tr>
 						<tr><td class="text">email address</td><td><%= form.text_field(:email) %></td></tr>
-						<tr><td class="text">password</td><td><input name="password" type="password" size="25" /></td></tr>
-						<tr><td class="text" width="100%">confirm password</td><td><input name="password_confirmation" type="password" size="25" /></td></tr>
+						<tr><td class="text">password</td><td><input name="password" type="password" size="30" /></td></tr>
+						<tr><td class="text" width="100%">confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
 						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign up", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>
@@ -57,7 +57,7 @@
 					<tr><td colspan="2" class="heading" style="text-align:center">Sign In</td></tr>
 					<% form_for :user, :url => {:action => :post_signin} do |form| %>
 						<tr><td class="text">email address</td><td><%= form.text_field(:email) %></td></tr>
-						<tr><td class="text" width="100%">password</td><td><input name="password" type="password" size="25" /></td></tr>
+						<tr><td class="text" width="100%">password</td><td><input name="password" type="password" size="30" /></td></tr>
 						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign in", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>

@@ -31947,3 +31947,102 @@ Processing ProfilesController#edit (for ::1 at 2010-02-04 12:28:23) [GET]
 Rendering profiles/edit
   [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
 Completed in 39ms (View: 11, DB: 2) | 200 OK [http://localhost/profiles/edit/3]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 15:59:40) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (1.9ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mUser Load (1.6ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (1.7ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 15:59:40' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 71ms (View: 13, DB: 9) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#logout (for ::1 at 2010-02-04 15:59:42) [GET]
+Redirected to http://localhost:3000/profiles/search
+Completed in 3ms (DB: 0) | 302 Found [http://localhost/user/logout]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 15:59:42) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.9ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 15:59:42' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 38ms (View: 13, DB: 8) | 200 OK [http://localhost/profiles/search]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 15:59:43) [GET]
+Rendering user/signin
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing UserController#signin (for ::1 at 2010-02-04 16:00:07) [GET]
+Rendering user/signin
+Completed in 15ms (View: 14, DB: 0) | 200 OK [http://localhost/user/signin]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 16:00:12) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 16:00:12' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 114ms (View: 88, DB: 8) | 200 OK [http://localhost/profiles/search]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 16:00:14) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 1, "updated_at" = '2010-02-05 00:00:14' WHERE "id" = 3[0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-05 00:00:14', "total_views" = 1 WHERE "id" = 3[0m
+Rendering profiles/view
+Completed in 431ms (View: 5, DB: 3) | 200 OK [http://localhost/profiles/view/3]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 16:00:18) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mUser Load (1.5ms)[0m   [0mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 6, "updated_at" = '2010-02-05 00:00:18' WHERE "id" = 1[0m
+  [4;35;1mUser Update (0.4ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-05 00:00:18', "total_views" = 8 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 45ms (View: 5, DB: 4) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-04 16:02:25) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.4ms)[0m   [0;1mSELECT * FROM "users" WHERE (author = '1' AND id != '1') [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 7, "updated_at" = '2010-02-05 00:02:25' WHERE "id" = 1[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-05 00:02:25', "total_views" = 9 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 60ms (View: 22, DB: 4) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#search (for ::1 at 2010-02-04 16:05:05) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mUser Load (1.3ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (1.3ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (1.2ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (2.0ms)[0m   [0mSELECT * FROM "users" WHERE (total_authored > 0) ORDER BY total_authored DESC, total_views DESC LIMIT 5[0m
+  [4;36;1mUser Load (1.9ms)[0m   [0;1mSELECT * FROM "users" WHERE (date_modified > '2010-01-28 16:05:05' AND author != id) ORDER BY date_modified DESC LIMIT 5[0m
+Rendering profiles/search
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "users" [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Completed in 38ms (View: 13, DB: 8) | 200 OK [http://localhost/profiles/search]

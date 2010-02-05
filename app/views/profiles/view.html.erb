@@ -98,12 +98,15 @@
 					</table></td></tr>
 
 					<% if @user.total_authored > 0 %>
+					<tr><td height="5"/></tr>
 					<tr><td class="box"><table class="clean">
 						<tr><td class="title" width="150">Inteviews Conducted</td><td class="title" width="50" align="center">Views</td></tr>
 						<% @interviewees.each do |interviewee| %>
 							<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %><% if interviewee.stanford_class != nil %> ('<%= (interviewee.stanford_class/10)%10%><%= interviewee.stanford_class % 10%>)<% end %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
 						<% end %>
 					</table></td></tr>
+					<tr><td height="5"/></tr>
+
 					<% end %>
 
 					<tr><td><table class="clean">
