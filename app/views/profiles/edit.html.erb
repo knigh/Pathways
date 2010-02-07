@@ -48,7 +48,7 @@
 					<tr><td class="heading" colspan="3" style="padding-top: 10px;">Edit Pathway</td></tr>
 					<tr><td class="heading" style="width:30px;">Name:</td><td colspan="2"><%= form.text_field(:name, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %></td></tr>
 					<tr><td class="heading" style="width:30px;">Email:</td><td colspan="2"><%= form.text_field(:email, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %></td></tr>
-					<tr><td style="width:80px"></td><td style="width:150px"></td><td class="text"><input type="checkbox" name="private-email" value="private">Keep this email private</td></tr>
+					<tr><td style="width:80px"></td><td style="width:150px"></td><td class="text"><%= form.check_box :email_private, :value => 0 %>Keep this email private</td></tr>
 					<tr><td colspan="3"  class="heading">Interview</td></tr>
 					<tr><td colspan="3"  class="text">The following interview questions are just suggestions; feel free to add your own <br/>and if you’re interviewing someone else, to natually follow the conversation.</td></tr>
 					<tr><td colspan="3"  class="text">

@@ -21,9 +21,13 @@
 				onmouseout="rollOver('search', '/images/buttons/search.gif')"
 				onclick="window.location='/profiles/search'"/></td>
 			<% if session[:user_id] %>
+				<td class="tab"><img id="mypathway" class="tab" src="/images/buttons/mypathway.gif"
+				onmouseover="rollOver('mypathway', '/images/buttons/mypathway-on.gif')"
+				onmouseout="rollOver('mypathway', '/images/buttons/mypathway.gif')"
+				onclick="window.location='/profiles/view/<%= session[:user_id] %>'"/></td>
 				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
-					onmouseover="rollOver('signin', '/images/buttons/signout-on.gif')"
-					onmouseout="rollOver('signin', '/images/buttons/signout.gif')"
+					onmouseover="rollOver('signout', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signout', '/images/buttons/signout.gif')"
 					onclick="window.location='/user/logout'"/></td>
 			<% else %>
 				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"

@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
 	t.column :name, :string
 	t.column :email, :string
-	t.column :email_private, :boolean
+	t.column :email_private, :integer
 	t.column :stanford_class, :integer
 	t.column :major, :string
 	t.column :degree, :string
@@ -109,8 +109,6 @@ class CreateUsers < ActiveRecord::Migration
 	t.column :job_end_m8, :integer
 	t.column :job_end_y8, :integer
 	
-	t.column :jobs_visible, :integer
-
 	t.column :satisfaction8, :integer
 	t.column :responsibilities8, :string
       t.timestamps

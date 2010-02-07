@@ -36,6 +36,7 @@ class UserController < ApplicationController
     @user = User.new
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
+    @user.email_private = false
     @password = params[:password]
     @password_confirmation = params[:password_confirmation]
     @user.views = 0
