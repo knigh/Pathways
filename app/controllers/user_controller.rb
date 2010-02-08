@@ -47,7 +47,6 @@ class UserController < ApplicationController
     @user.image_file = "blank_profile_pic.jpg"
     @user.date_added = Time.new
     @user.date_modified = Time.now
-    @user.jobs_visible = 1
     @user.interview_text =  "== Interview Form ==
 
 Q: What's the best job you've had since graduation?
@@ -103,6 +102,10 @@ A:
 		if @user.save
 			@user.author = @user.id
 			@user.save
+			@job = Job.new
+			@job.user_id = @user[:id]
+			@job.save
+
 			session[:user_id] = @user[:id];
 			redirect_to("/profiles/edit/#{@user[:id]}")	    	
 		else

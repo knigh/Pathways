@@ -9,12 +9,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100121012615) do
+ActiveRecord::Schema.define(:version => 20100207031433) do
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "company"
+    t.string   "title"
+    t.integer  "start_m"
+    t.integer  "start_y"
+    t.integer  "end_m"
+    t.integer  "end_y"
+    t.string   "job_current"
+    t.integer  "satisfaction"
+    t.string   "responsibilities"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.boolean  "email_private"
+    t.string   "email_private"
     t.integer  "stanford_class"
     t.string   "major"
     t.string   "degree"
@@ -44,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20100121012615) do
     t.integer  "job_start_y1"
     t.integer  "job_end_m1"
     t.integer  "job_end_y1"
+    t.string   "job_current"
     t.integer  "satisfaction1"
     t.string   "responsibilities1"
     t.string   "company2"
@@ -100,7 +116,6 @@ ActiveRecord::Schema.define(:version => 20100121012615) do
     t.integer  "job_start_y8"
     t.integer  "job_end_m8"
     t.integer  "job_end_y8"
-    t.integer  "jobs_visible"
     t.integer  "satisfaction8"
     t.string   "responsibilities8"
     t.datetime "created_at"

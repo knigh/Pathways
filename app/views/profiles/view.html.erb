@@ -94,12 +94,12 @@
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td height="5"/></tr>
 						<tr><td class="text">
-						<% if @user.degree != nil %>
+						<% if @user.degree != "" %>
 							<%= @user.degree %>, 
 						<% end %>
 						Symbolic Systems <% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><br/>
 							<% if @user.major != nil && @user.major.length > 0 %> Concentration: <%= @user.major %><br/><% end %>
-							<% if @user.email_private == 0 %><%= @user.email %><%end %></td></tr>
+							<% if @user.email_private == "0" %><%= @user.email %><%end %></td></tr>
 					</table></td></tr>
 					<tr><td height="5"/></tr>
 
@@ -119,56 +119,17 @@
 					<tr><td><table class="clean">
 						<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
 						<tr><td height="5"/></tr>
-						<tr><td class="text">
-						<% if @user.title1 != nil && @user.title1.length > 0%>
-							<%=@user.title1 %><br/><%=@user.company1%><br/>
-							<%=@user.job_start_m1.to_s + "/" + @user.job_start_y1.to_s%> - <%=@user.job_end_m1.to_s + "/" + @user.job_end_y1.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities1 %><br/>
-							Satisfaction: <%=@user.satisfaction1%> / 5<br/><br/>
+						<tr><td class="text", wrap="soft">
+						<% @jobs.each do |job| %>
+
+							<% if job.title.length > 0%>
+								<%= job.title %><br/><%= job.company%><br/>
+								<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
+								<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
+								<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %><br/>
+							<% end %>
 						<% end %>
-						<% if @user.title2 != nil && @user.title2.length > 0%>
-							<%=@user.title2 %><br/><%=@user.company2%><br/>
-							<%=@user.job_start_m2.to_s + "/" + @user.job_start_y2.to_s%> - <%=@user.job_end_m2.to_s + "/" + @user.job_end_y2.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities2 %><br/>
-							Satisfaction: <%=@user.satisfaction2%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title3 != nil && @user.title3.length > 0%>
-							<%=@user.title3 %><br/><%=@user.company3%><br/>
-							<%=@user.job_start_m3.to_s + "/" + @user.job_start_y3.to_s%> - <%=@user.job_end_m3.to_s + "/" + @user.job_end_y3.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities3 %><br/>
-							Satisfaction: <%=@user.satisfaction3%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title4 != nil && @user.title4.length > 0%>
-							<%=@user.title4 %><br/><%=@user.company4%><br/>
-							<%=@user.job_start_m4.to_s + "/" + @user.job_start_y4.to_s%> - <%=@user.job_end_m4.to_s + "/" + @user.job_end_y4.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities4 %><br/>
-							Satisfaction: <%=@user.satisfaction4%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title5 != nil && @user.title5.length > 0%>
-							<%=@user.title5 %><br/><%=@user.company5%><br/>
-							<%=@user.job_start_m5.to_s + "/" + @user.job_start_y5.to_s%> - <%=@user.job_end_m5.to_s + "/" + @user.job_end_y5.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities5 %><br/>
-							Satisfaction: <%=@user.satisfaction5%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title6 != nil && @user.title6.length > 0%>
-							<%=@user.title6 %><br/><%=@user.company6%><br/>
-							<%=@user.job_start_m6.to_s + "/" + @user.job_start_y6.to_s%> - <%=@user.job_end_m6.to_s + "/" + @user.job_end_y6.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities6 %><br/>
-							Satisfaction: <%=@user.satisfaction6%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title7 != nil && @user.title7.length > 0%>
-							<%=@user.title7 %><br/><%=@user.company7%><br/>
-							<%=@user.job_start_m7.to_s + "/" + @user.job_start_y7.to_s%> - <%=@user.job_end_m7.to_s + "/" + @user.job_end_y7.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities7 %><br/>
-							Satisfaction: <%=@user.satisfaction7%> / 5<br/><br/>
-						<% end %>
-						<% if @user.title8 != nil && @user.title8.length > 0%>
-							<%=@user.title8 %><br/><%=@user.company8%><br/>
-							<%=@user.job_start_m8.to_s + "/" + @user.job_start_y8.to_s%> - <%=@user.job_end_m8.to_s + "/" + @user.job_end_y8.to_s%><br/>
-							Responsibilities: <%=@user.responsibilities8 %><br/>
-							Satisfaction: <%=@user.satisfaction8%> / 5<br/><br/>
-						<% end %>
-						</span></td></tr>
+						</td></tr>
 					</table></td></tr>
 				</table>
 			</td>

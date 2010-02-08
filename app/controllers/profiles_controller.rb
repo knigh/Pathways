@@ -4,6 +4,8 @@ class ProfilesController < ActionController::Base
 	def edit
 		id = params[:id]
 		@user = User.find(id)
+		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
+
 		if @user.total_authored > 0
 			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
 		end
@@ -21,10 +23,24 @@ class ProfilesController < ActionController::Base
 			image_file = @curUser.image_file
 		end
 		
+		@jobs = Job.find(:all, :conditions => ["user_id = ?", @curUser.id])
+		@jobs.each do |job|
+			job.update_attributes(params[:user][:existing_job_attributes][job.id])
+			job.save
+		end
+		
 		if @curUser.update_attributes(params[:user]) then
 			@curUser.image_file = image_file
 			@curUser.save
-			redirect_to("/profiles/view/#{@curUser[:id]}")
+			if params[:commit] == "+"
+				@job = Job.new
+				@job.user_id = @curUser.id
+				@job.save
+				redirect_to("/profiles/edit/#{@curUser[:id]}")
+			else
+				print "commit: '" + params[:commit] + "'"
+				redirect_to("/profiles/view/#{@curUser[:id]}")
+			end
 		else
 			redirect_to("/profiles/edit/#{@curUser[:id]}")
 		end
@@ -33,6 +49,7 @@ class ProfilesController < ActionController::Base
 	def view
 		id = params[:id]
 		@user = User.find(id)
+		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		@user.views = @user.views + 1
 		@author = User.find(@user.author)
 		@author.total_views = @author.total_views + 1
@@ -138,7 +155,6 @@ class ProfilesController < ActionController::Base
 		@user.date_added = Time.now
 		@user.date_modified = Time.now
 		@user.interview_date = Time.now
-		@user.jobs_visible = 1
 		@user.interview_text = "== Interview Form ==
 
 Q: What's the best job you've had since graduation?
@@ -176,10 +192,13 @@ A:
 "
 		@user.author = session[:user_id]
 		if @user.save
-			redirect_to("/profiles/edit/#{@user[:id]}")
+			@job = Job.new
+			@job.user_id = @user[:id]
+			@job.save
 			author = User.find(session[:user_id])
 			author.total_authored = author.total_authored + 1
 			author.save
+			redirect_to("/profiles/edit/#{@user[:id]}")
 		end
 	end
 	
