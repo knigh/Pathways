@@ -53895,3 +53895,64 @@ Processing ProfilesController#view (for ::1 at 2010-02-08 01:44:27) [GET]
   [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-08 09:44:27', "total_views" = 9 WHERE "id" = 1[0m
 Rendering profiles/view
 Completed in 89ms (View: 3, DB: 9) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-08 01:58:13) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (2.6ms)[0m   [0;1mSELECT * FROM "jobs" WHERE (user_id = '1') [0m
+Rendering profiles/edit
+Completed in 310ms (View: 231, DB: 4) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-08 01:58:15) [POST]
+  Parameters: {"user"=>{"name"=>"j", "degree"=>"MA", "six_words"=>"", "existing_job_attributes"=>{"11"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "7"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "12"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "8"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "13"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "9"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "14"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "15"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "16"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "1"=>{"company"=>"Intuit", "satisfaction"=>"", "end_m"=>"", "title"=>"Intern", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"1", "start_y"=>""}, "17"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "18"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "10"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}}, "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "email_private"=>"0", "stanford_class"=>"1987", "summary"=>"", "major"=>"fjkew", "email"=>"j"}, "commit"=>"Save Changes", "authenticity_token"=>"KRyaAGZTCyGHBpzfygcVZqOwOrbtLju8gPeDtA1TFvo=", "id"=>"1"}
+  [4;35;1mUser Load (1.6ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (2.1ms)[0m   [0;1mSELECT * FROM "jobs" WHERE (user_id = 1) [0m
+  [4;35;1mJob Load (2.0ms)[0m   [0mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 107ms (DB: 6) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-08 01:58:15) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mUser Load (1.8ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mJob Load (2.1ms)[0m   [0mSELECT * FROM "jobs" WHERE (user_id = '1') [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;35;1mJob Load (1.9ms)[0m   [0mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+  [4;36;1mUser Update (0.5ms)[0m   [0;1mUPDATE "users" SET "views" = 10, "updated_at" = '2010-02-08 09:58:15' WHERE "id" = 1[0m
+  [4;35;1mJob Load (1.9ms)[0m   [0mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+  [4;36;1mUser Update (0.6ms)[0m   [0;1mUPDATE "users" SET "updated_at" = '2010-02-08 09:58:16', "total_views" = 10 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 198ms (View: 22, DB: 9) | 200 OK [http://localhost/profiles/view/1]
+
+
+Processing ProfilesController#edit (for ::1 at 2010-02-08 01:58:20) [POST]
+  Parameters: {"commit"=>"Edit profile", "authenticity_token"=>"KRyaAGZTCyGHBpzfygcVZqOwOrbtLju8gPeDtA1TFvo=", "id"=>"1"}
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (1.9ms)[0m   [0;1mSELECT * FROM "jobs" WHERE (user_id = '1') [0m
+Rendering profiles/edit
+Completed in 170ms (View: 134, DB: 4) | 200 OK [http://localhost/profiles/edit/1]
+
+
+Processing ProfilesController#post_edit (for ::1 at 2010-02-08 01:58:30) [POST]
+  Parameters: {"user"=>{"name"=>"j", "degree"=>"MA", "six_words"=>"", "existing_job_attributes"=>{"11"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "7"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "12"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "8"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "13"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "9"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "14"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "15"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "16"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "1"=>{"company"=>"Intuit", "satisfaction"=>"", "end_m"=>"", "title"=>"Intern", "end_y"=>"", "responsibilities"=>"doing things like this and that and this", "job_current"=>"0", "start_m"=>"1", "start_y"=>""}, "17"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "18"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}, "10"=>{"company"=>"", "satisfaction"=>"", "end_m"=>"", "title"=>"", "end_y"=>"", "responsibilities"=>"", "job_current"=>"0", "start_m"=>"", "start_y"=>""}}, "interview_text"=>"== Interview Form ==\r\n\r\nQ: What's the best job you've had since graduation?\r\nA:\r\n\r\nQ: How did you find out about this job and why did you join?\r\nA:\r\n\r\nQ: What was the best part of the job?\r\nA:\r\n\r\nQ: What was the worst part of the job?\r\nA:\r\n\r\nQ: What do you wish you'd known before starting there?\r\nA:\r\n\r\nQ: What did you learn while there?\r\nA:\r\n\r\nQ: What are you most proud of during your time there?\r\nA:\r\n\r\nQ: Did you have any failures while there? How did you persevere?\r\nA:\r\n\r\nQ: What skills were most important for this job?\r\nA:\r\n\r\nQ: What's one story you tell about your time there?\r\nA:\r\n\r\nQ: If you are no longer working at this job, why did you leave?\r\nA:\r\n", "email_private"=>"0", "stanford_class"=>"1987", "summary"=>"", "major"=>"fjkew", "email"=>"j"}, "commit"=>"Save Changes", "authenticity_token"=>"KRyaAGZTCyGHBpzfygcVZqOwOrbtLju8gPeDtA1TFvo=", "id"=>"1"}
+  [4;35;1mUser Load (1.7ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (2.1ms)[0m   [0;1mSELECT * FROM "jobs" WHERE (user_id = 1) [0m
+  [4;35;1mJob Load (2.2ms)[0m   [0mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+  [4;36;1mJob Update (0.6ms)[0m   [0;1mUPDATE "jobs" SET "responsibilities" = 'doing things like this and that and this', "updated_at" = '2010-02-08 09:58:30' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/profiles/view/1
+Completed in 113ms (DB: 7) | 302 Found [http://localhost/profiles/post_edit]
+
+
+Processing ProfilesController#view (for ::1 at 2010-02-08 01:58:30) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mUser Load (2.1ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (2.1ms)[0m   [0;1mSELECT * FROM "jobs" WHERE (user_id = '1') [0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mJob Load (1.9ms)[0m   [0;1mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "views" = 11, "updated_at" = '2010-02-08 09:58:30' WHERE "id" = 1[0m
+  [4;36;1mJob Load (1.9ms)[0m   [0;1mSELECT * FROM "jobs" WHERE ("jobs".user_id = 1) [0m
+  [4;35;1mUser Update (0.5ms)[0m   [0mUPDATE "users" SET "updated_at" = '2010-02-08 09:58:30', "total_views" = 11 WHERE "id" = 1[0m
+Rendering profiles/view
+Completed in 89ms (View: 3, DB: 9) | 200 OK [http://localhost/profiles/view/1]
