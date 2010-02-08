@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Pathways</title>
+    <%= stylesheet_link_tag 'pathways.css' %>  
+</head>
+<body>
+	<table class="main">
+	<!-- Header -->
+		<tr><td class="clean"><table class="header"><tr>
+			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
+			<td/>
+			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
+				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
+				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
+				<!-- onclick="window.location='about.html'"/> --></td>
+			<td class="tab"><img id="search" class="tab" src="/images/buttons/search.gif"
+				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
+				onmouseout="rollOver('search', '/images/buttons/search.gif')"
+				onclick="window.location='/profiles/search'"/></td>
+			<% if session[:user_id] %>
+				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signout.gif')"
+					onclick="window.location='/user/logout'"/></td>
+			<% else %>
+				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
+					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
+					onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
+					onclick="window.location='/user/signin'"/></td>
+			<% end %>
+		</tr></table></td></tr>
+	
+		<!-- Body Content -->
+		<tr><td class="content"><table class="clean" align="center" cellpadding="38"><tr>
+	
+			<!-- Column 1 -->
+			<td class="contentColumn"><table class="signInTable">
+				<tr><td class="text" height="30" style="text-align:center">First time interviewing? Read this info</td></tr>
+				<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">How to conduct an interview</td></tr>
+					<tr><td class="text"><strong>Preparation for Interview</strong><br/>
+					<br/>1. Choose a setting with little distraction. Avoid loud lights or noises, ensure the interviewee is comfortable (you might ask them if they are), etc. Often, they may feel more comfortable at their own places of work or homes.
+					<br/>2. Explain the purpose of the interview.
+					<br/>3. Address terms of confidentiality. Note any terms of confidentiality. (Be careful here. Rarely can you absolutely promise anything. Courts may get access to information, in certain circumstances.) Explain who will get access to their answers and how their answers will be analyzed. If their comments are to be used as quotes, get their written permission to do so. See getting informed consent.
+					<br/>4. Explain the format of the interview. Explain the type of interview you are conducting and its nature. If you want them to ask questions, specify if they're to do so as they have them or wait until the end of the interview.
+					<br/>5. Indicate how long the interview usually takes.
+					<br/>6. Tell them how to get in touch with you later if they want to.
+					<br/>7. Ask them if they have any questions before you both get started with the interview.
+					<br/>8. Don't count on your memory to recall their answers. Ask for permission to record the interview or bring along someone to take notes.
+				</table></td></tr>
+			</table></td>
+
+			<td class="contentColumn"><table class="signInTable">
+				<tr><td height="30"/></tr>
+				<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">Add a new interview</td></tr>
+					<tr><td><% form_for :user, :url => {:action => :post_newUser} do |form| %>
+					<%= submit_tag "Create profile for interviewee", :class => "submit" %>
+					<% end %>
+					</td></tr>
+				</table></td></tr>
+			</table></td>
+		
+		</tr></table></td></tr>
+
+		<!-- Footer -->
+		
+	</table>	
+</body>
+</html>
+<script type="text/javascript">
+	
+	
+	function rollOver(imgName, imgSrc)
+   	{
+		document.getElementById(imgName).src = imgSrc;
+	}
+</script>
