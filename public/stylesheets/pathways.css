@@ -2,6 +2,7 @@ html
 {
 	min-height: 100%;
 	margin-bottom: 1px;
+	overflow: -moz-scrollbars-vertical;
 }
 
 body
@@ -82,7 +83,8 @@ td.tab
 
 
 img.name,
-img.tab
+img.tab,
+img.searchImg
 {
 	vertical-align: bottom;
 }
@@ -158,7 +160,7 @@ table.signInTable
 	font-size: 11pt;
 	color: gray;
 	font-weight: lighter;
-	text-align: left;
+	text-align: justify;
 }
 
 .pic
@@ -170,13 +172,19 @@ table.signInTable
 
 .search
 {
-	background-image:url(../images/search.jpg);
+	/*background-image:url(../images/search.jpg);
 	background-repeat: no-repeat;
-	background-position: center right;
-	padding-right: 25px;
+	background-position: center right;*/
+	padding-right: 26px;
 	padding-top: 6px;
-	height: 20px;
-	width: 300px;
+	height: 19px;
+	width: 295px;
+}
+
+.searchImg
+{
+	position:relative;
+	left:324px;
 }
 
 .box

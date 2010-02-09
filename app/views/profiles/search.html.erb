@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>Pathways</title>
-    <%= stylesheet_link_tag 'pathways.css' %>  
+    	<%= stylesheet_link_tag 'pathways.css' %>  
 </head>
 <body>
 	<table class="main">
@@ -43,9 +43,13 @@
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="searchTable">
 					<tr><td class="heading"><table class="clean"><tr>
-						<td width="100%">Featured alumni</td>
-						<td width="100%" align="right"><input type="text" id="searchBox" class="search" onclick="searchClick();" onKeyPress="checkEnter(event)" value=""/></td>
+						<td>Featured alumni</td>
+						<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
+							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
+							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
+						<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td>
 					</tr></table></td></tr>
+
 
 					<% if @user1 != nil %>
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
@@ -164,37 +168,54 @@
 	box.value = searchString;
 	box.style.color = "gray";
 	
-	function searchClick()
+	function searchBoxClick(e)
 	{
 		var box = document.getElementById('searchBox');
-
+		
 		if (box.value == searchString)
 		{
 			box.value = "";
 			box.style.color = "black";
 		}
-		else
-		{
-			// Detect clicking on icon?
-		}
 	}
 
-	function checkEnter(e)
+	function searchImgClick()
+	{	
+		var box = document.getElementById('searchBox');
+		
+		if ((box.value == searchString) || (box.value == ""))
+		{
+			var box = document.getElementById('searchBox');
+			box.click();
+			box.focus();
+			return false;
+		}
+
+		doSearch();
+	}
+
+	function searchBoxKey(e)
 	{
 		var code = (e && e.which) ? e.which : event.keyCode;
 		if(code == 13)
 		{
-			// perform search
-			//alert("performing search: " + document.getElementById('searchBox').value);
-			window.location = "/profiles/search";
-			return false;
+			return doSearch();
 		}
 		
 		return true;
+	}
+
+	function doSearch()
+	{
+		// perform search
+		alert("performing search: " + document.getElementById('searchBox').value);
+		//window.location = "index.html";
+		return false;
 	}
 
 	function rollOver(imgName, imgSrc)
    	{
 		document.getElementById(imgName).src = imgSrc;
 	}
+
 </script>
