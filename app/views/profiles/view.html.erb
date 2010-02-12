@@ -40,17 +40,20 @@
 	
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
-	
+		
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
 					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
+					<% if @user.video_url != "" %><tr><td colspan="2" align="center"><object width="600" height="370"><param name="movie" value="<%= @user.video_url %>showinfo=0"></param><embed src="<%= @user.video_url %>showinfo=0" type="application/x-shockwave-flash" width="600" height="370"></embed></object></td></tr><% end %>
+
+					
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.id != @user.author %>
 							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on <%= @user.interview_date.strftime("%B ") + @user.interview_date.day.to_s + @user.interview_date.strftime(", %Y") %><br/><br/>
 						<% end %>
-						
+											
 						<%= @interview_text %>
 						
 						</td></tr>
@@ -89,7 +92,7 @@
 						<% end %></td></tr>
 						<% end %>
 
-						<tr><td><img class="pic" src="/images/<%= @user.image_file %>"/></td></tr>
+						<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
 						<tr><td height="5"/></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td height="5"/></tr>
@@ -98,7 +101,7 @@
 							<%= @user.degree %>, 
 						<% end %>
 						Symbolic Systems <% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><br/>
-							<% if @user.major != nil && @user.major.length > 0 %> Concentration: <%= @user.major %><br/><% end %>
+							<% if @user.focus != nil && @user.focus.length > 0 %> Concentration: <%= @user.focus %><br/><% end %>
 							<% if @user.email_private == "0" %><%= @user.email %><%end %></td></tr>
 					</table></td></tr>
 					<tr><td height="5"/></tr>
