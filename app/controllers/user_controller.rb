@@ -36,53 +36,10 @@ class UserController < ApplicationController
     @user = User.new
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
-    @user.email_private = false
     @password = params[:password]
     @password_confirmation = params[:password_confirmation]
-    @user.views = 0
-    @user.total_views = 0
-    @user.total_authored = 0;
-    @user.likes = 0
-    @user.summary = ""
-    @user.image_file = "blank_profile_pic.jpg"
-    @user.date_added = Time.new
-    @user.date_modified = Time.now
-    @user.interview_text =  "== Interview Form ==
-
-Q: What's the best job you've had since graduation?
-A:
-
-Q: How did you find out about this job and why did you join?
-A:
-
-Q: What was the best part of the job?
-A:
-
-Q: What was the worst part of the job?
-A:
-
-Q: What do you wish you'd known before starting there?
-A:
-
-Q: What did you learn while there?
-A:
-
-Q: What are you most proud of during your time there?
-A:
-
-Q: Did you have any failures while there? How did you persevere?
-A:
-
-Q: What skills were most important for this job?
-A:
-
-Q: What's one story you tell about your time there?
-A:
-
-Q: If you are no longer working at this job, why did you leave?
-A:
-"
-    flash[:notice] = nil
+   
+	flash[:notice] = nil
     if (@password != @password_confirmation)
 	logger.error("Password confirmation must match password")
 	flash[:notice] = "Password confirmation must match password"

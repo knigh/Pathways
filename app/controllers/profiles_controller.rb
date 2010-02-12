@@ -17,8 +17,8 @@ class ProfilesController < ActionController::Base
  		prev = params[:user][:image_file]
 		if (prev != nil)
 			image_file = @curUser.id.to_s() + '_' + prev.original_filename
-			new = Dir.getwd + "/public/images/" + image_file
-			#create(prev, new)
+			new = Dir.getwd + "/public/images/pics" + image_file
+			create(prev, new)
 		else
 			image_file = @curUser.image_file
 		end
@@ -59,7 +59,11 @@ class ProfilesController < ActionController::Base
 		@user.save
 		@author.save
 		
-		@interview_text = @user.interview_text
+		if @user.is_alum
+			@interview_text = @user.alum_interview_text
+		else 
+			@interview_text = @user.student_interview_text
+		end
 		@interview_text.gsub!(/Q: .*\nA:/) {|match| "<br/><br/><em>" + match[3..-3] + "</em><br/>"}
 		firstQ = @interview_text.index(/<em>/)
 		if (firstQ != nil)
@@ -146,50 +150,6 @@ class ProfilesController < ActionController::Base
 	
 	def post_newUser
 		@user = User.new
-		@user.views = 0
-		@user.total_views = 0
-		@user.total_authored = 0
-		@user.likes = 0
-		@user.summary = ""
-		@user.image_file = "blank_profile_pic.jpg"
-		@user.date_added = Time.now
-		@user.date_modified = Time.now
-		@user.interview_date = Time.now
-		@user.interview_text = "== Interview Form ==
-
-Q: What's the best job you've had since graduation?
-A:
-
-Q: How did you find out about this job and why did you join?
-A:
-
-Q: What was the best part of the job?
-A:
-
-Q: What was the worst part of the job?
-A:
-
-Q: What do you wish you'd known before starting there?
-A:
-
-Q: What did you learn while there?
-A:
-
-Q: What are you most proud of during your time there?
-A:
-
-Q: Did you have any failures while there? How did you persevere?
-A:
-
-Q: What skills were most important for this job?
-A:
-
-Q: What's one story you tell about your time there?
-A:
-
-Q: If you are no longer working at this job, why did you leave?
-A:
-"
 		@user.author = session[:user_id]
 		if @user.save
 			@job = Job.new
