@@ -3,116 +3,77 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
 	t.column :name, :string
 	t.column :email, :string
-	t.column :email_private, :string
+	t.column :email_private, :string, :default => "0"
 	t.column :stanford_class, :integer
-	t.column :major, :string
-	t.column :degree, :string
-	t.column :company, :string
-	t.column :title, :string
-	t.column :job_start, :string
-	t.column :job_end, :string
-	t.column :satisfaction, :integer
-	t.column :six_words, :string
-	t.column :interview_text, :text
-	t.column :interview_date, :datetime
-	t.column :summary, :text
+	t.column :focus, :string, :default => ""
+	t.column :degree, :string, :default => ""
+	t.column :six_words, :string, :default => ""
+	t.column :is_alum, :string, :default => "0"
+	t.column :student_interview_text, :text, :default => "== Student Interview Form ==
+
+Q: What is your favorite thing you've done so far at Stanford?
+A:
+
+Q: Why did you choose your major?
+A:
+
+Q: What are your future plans?
+A:
+"
+	t.column :alum_interview_text, :text, :default => "== Alum Interview Form ==
+
+Q: What is the best job you've had since graduation?
+A:
+
+Q: How did you find out about this job and why did you join?
+A:
+
+Q: What was the best part of the job?
+A:
+
+Q: What was the worst part of the job?
+A:
+
+Q: What do you wish you had known before starting there?
+A:
+
+Q: What did you learn while there?
+A:
+
+Q: What are you most proud of during your time there?
+A:
+
+Q: Did you have any failures while there? How did you persevere?
+A:
+
+Q: What skills were most important for this job?
+A:
+
+Q: What's one story you tell about your time there?
+A:
+
+Q: If you are no longer working at this job, why did you leave?
+A:
+"
+	t.column :video_url, :string, :default => ""
+	t.column :interview_date, :datetime, :default => Time.now
+	t.column :summary, :text, :default => ""
 	
-	t.column :keywords, :string
-	
-	t.column :author, :integer
-	t.column :total_views, :integer
-	t.column :total_authored, :integer
-	
-	t.column :image_file, :string
-	
-	t.column :views, :integer
-	t.column :likes, :integer
-	t.column :new_question, :string
+	t.column :image_file, :string, :default => "blank_profile_pic.jpg"
+		
+	t.column :author, :integer, :default => 0
+	t.column :total_views, :integer, :default => 0
+	t.column :total_authored, :integer, :default => 0
+	t.column :views, :integer, :default => 0
+	t.column :likes, :integer, :default => 0
+	t.column :new_question, :string, :default => ""
 
 	t.column :hashed_password, :string
 
-	t.column :date_added, :datetime
-	t.column :date_modified, :datetime
+	t.column :date_added, :datetime, :default => Time.now
+	t.column :date_modified, :datetime, :default => Time.now
 	
-	t.column :company1, :string
-	t.column :title1, :string
-	t.column :job_start_m1, :integer
-	t.column :job_start_y1, :integer
-	t.column :job_end_m1, :integer
-	t.column :job_end_y1, :integer
-	t.column :job_current, :string
-	t.column :satisfaction1, :integer
-	t.column :responsibilities1, :string
-	
-	t.column :company2, :string
-	t.column :title2, :string
-	t.column :job_start_m2, :integer
-	t.column :job_start_y2, :integer
-	t.column :job_end_m2, :integer
-	t.column :job_end_y2, :integer
-	t.column :satisfaction2, :integer
-	t.column :responsibilities2, :string
-	
-	t.column :company3, :string
-	t.column :title3, :string
-	t.column :job_start_m3, :integer
-	t.column :job_start_y3, :integer
-	t.column :job_end_m3, :integer
-	t.column :job_end_y3, :integer
-
-	t.column :satisfaction3, :integer
-	t.column :responsibilities3, :string
-	
-	t.column :company4, :string
-	t.column :title4, :string
-	t.column :job_start_m4, :integer
-	t.column :job_start_y4, :integer
-	t.column :job_end_m4, :integer
-	t.column :job_end_y4, :integer
-
-	t.column :satisfaction4, :integer
-	t.column :responsibilities4, :string
-	
-	t.column :company5, :string
-	t.column :title5, :string
-	t.column :job_start_m5, :integer
-	t.column :job_start_y5, :integer
-	t.column :job_end_m5, :integer
-	t.column :job_end_y5, :integer
-
-	t.column :satisfaction5, :integer
-	t.column :responsibilities5, :string
-	
-	t.column :company6, :string
-	t.column :title6, :string
-	t.column :job_start_m6, :integer
-	t.column :job_start_y6, :integer
-	t.column :job_end_m6, :integer
-	t.column :job_end_y6, :integer
-
-	t.column :satisfaction6, :integer
-	t.column :responsibilities6, :string
-	
-	t.column :company7, :string
-	t.column :title7, :string
-	t.column :job_start_m7, :integer
-	t.column :job_start_y7, :integer
-	t.column :job_end_m7, :integer
-	t.column :job_end_y7, :integer
-
-	t.column :satisfaction7, :integer
-	t.column :responsibilities7, :string
-	
-	t.column :company8, :string
-	t.column :title8, :string
-	t.column :job_start_m8, :integer
-	t.column :job_start_y8, :integer
-	t.column :job_end_m8, :integer
-	t.column :job_end_y8, :integer
-	
-	t.column :satisfaction8, :integer
-	t.column :responsibilities8, :string
-      t.timestamps
+	t.timestamps
     end
   end
 
