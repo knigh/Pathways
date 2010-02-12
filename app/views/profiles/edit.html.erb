@@ -55,7 +55,7 @@
 					<tr><td class="text" colspan="3">YouTube URL:&nbsp;<%= form.text_field(:video_url, :size => "30x1", :class => "text", :style => "width:400px;height:15px;text-align:left") %></td></tr>
 
 					<tr><td colspan="3"  class="text">
-						<% if @user.is_alum %><%= form.text_area(:alum_interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %>
+						<% if @user.is_alum == "1" %><%= form.text_area(:alum_interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %>
 						<% else %><%= form.text_area(:student_interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %><% end %></td></tr>
 					<tr><td colspan="3" class="heading">Six-word title for this Pathway:</td></tr>
 					<tr><td colspan="3" class="heading"><%= form.text_field(:six_words, :size => "67x1", :class => "title", :style => "width:604px;height:18px;text-align:left;") %></td></tr>

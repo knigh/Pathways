@@ -5,6 +5,12 @@ class ProfilesController < ActionController::Base
 		id = params[:id]
 		@user = User.find(id)
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
+		
+		if @user.is_alum == "1"
+			@interview_text = @user.alum_interview_text
+		else 
+			@interview_text = @user.student_interview_text
+		end
 
 		if @user.total_authored > 0
 			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
@@ -59,11 +65,12 @@ class ProfilesController < ActionController::Base
 		@user.save
 		@author.save
 		
-		if @user.is_alum
+		if @user.is_alum == "1"
 			@interview_text = @user.alum_interview_text
 		else 
 			@interview_text = @user.student_interview_text
 		end
+		
 		@interview_text.gsub!(/Q: .*\nA:/) {|match| "<br/><br/><em>" + match[3..-3] + "</em><br/>"}
 		firstQ = @interview_text.index(/<em>/)
 		if (firstQ != nil)
@@ -151,6 +158,9 @@ class ProfilesController < ActionController::Base
 	def post_newUser
 		@user = User.new
 		@user.author = session[:user_id]
+		@user.alum_interview_text = $alum_interview
+		@user.student_interview_text = $student_interview
+		@user.is_alum = "1"
 		if @user.save
 			@job = Job.new
 			@job.user_id = @user[:id]
