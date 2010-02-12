@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20100207031433) do
     t.string   "degree",                 :default => ""
     t.string   "six_words",              :default => ""
     t.string   "is_alum",                :default => "0"
-    t.text     "student_interview_text", :default => "== Student Interview Form ==\n\nQ: What is your favorite thing you've done so far at Stanford?\nA:\n\nQ: Why did you choose your major?\nA:\n\nQ: What are your future plans?\nA:\n"
-    t.text     "alum_interview_text",    :default => "== Alum Interview Form ==\n\nQ: What's the best job you've had since graduation?\nA:\n\nQ: How did you find out about this job and why did you join?\nA:\n\nQ: What was the best part of the job?\nA:\n\nQ: What was the worst part of the job?\nA:\n\nQ: What do you wish you''d known before starting there?\nA:\n\nQ: What did you learn while there?\nA:\n\nQ: What are you most proud of during your time there?\nA:\n\nQ: Did you have any failures while there? How did you persevere?\nA:\n\nQ: What skills were most important for this job?\nA:\n\nQ: What's one story you tell about your time there?\nA:\n\nQ: If you are no longer working at this job, why did you leave?\nA:\n"
+    t.text     "student_interview_text", :default => "'== Student Interview Form ==\n\nQ: What is your favorite thing you''ve done so far at Stanford?\nA:\n\nQ: Why did you choose your major?\nA:\n\nQ: What are your future plans?\nA:\n'"
+    t.text     "alum_interview_text",    :default => "'== Alum Interview Form ==\n\nQ: What is the best job you''ve had since graduation?\nA:\n\nQ: How did you find out about this job and why did you join?\nA:\n\nQ: What was the best part of the job?\nA:\n\nQ: What was the worst part of the job?\nA:\n\nQ: What do you wish you had known before starting there?\nA:\n\nQ: What did you learn while there?\nA:\n\nQ: What are you most proud of during your time there?\nA:\n\nQ: Did you have any failures while there? How did you persevere?\nA:\n\nQ: What skills were most important for this job?\nA:\n\nQ: What''s one story you tell about your time there?\nA:\n\nQ: If you are no longer working at this job, why did you leave?\nA:\n'"
     t.string   "video_url",              :default => ""
-    t.datetime "interview_date",         :default => '2010-02-11 15:55:51'
+    t.datetime "interview_date",         :default => '2010-02-12 00:50:37'
     t.text     "summary",                :default => ""
     t.string   "image_file",             :default => "blank_profile_pic.jpg"
     t.integer  "author",                 :default => 0
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20100207031433) do
     t.integer  "likes",                  :default => 0
     t.string   "new_question",           :default => ""
     t.string   "hashed_password"
-    t.datetime "date_added",             :default => '2010-02-11 15:55:51'
-    t.datetime "date_modified",          :default => '2010-02-11 15:55:51'
+    t.datetime "date_added",             :default => '2010-02-12 00:50:37'
+    t.datetime "date_modified",          :default => '2010-02-12 00:50:37'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
