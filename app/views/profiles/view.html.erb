@@ -10,7 +10,7 @@
 	<table class="main">
 		<!-- Header -->
 		<tr><td class="clean"><table class="header"><tr>
-			<td class="name"><img class="name" src="/images/pathways.gif"/></td>
+			<td class="name"><img class="name" src="/images/pathways_symsys.gif"/></td>
 			<td/>
 			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
 				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
@@ -45,7 +45,11 @@
 			<td class="contentColumn">
 				<table class="interviewTable">
 					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
-					<% if @user.video_url != "" %><tr><td colspan="2" align="center"><object width="600" height="370"><param name="movie" value="<%= @user.video_url %>showinfo=0"></param><embed src="<%= @user.video_url %>showinfo=0" type="application/x-shockwave-flash" width="600" height="370"></embed></object></td></tr><% end %>
+					<% if @user.video_url != "" %>
+						<% @url = @user.video_url.sub(/watch\?v=/, "v/") %>
+						<% print @url + "\n" %>
+						<tr><td colspan="2" align="center"><object width="600" height="370"><param name="movie" value="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="370"></embed></object></td></tr>
+					<% end %>
 
 					
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
