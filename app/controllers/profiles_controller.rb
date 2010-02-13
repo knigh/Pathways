@@ -99,7 +99,8 @@ class ProfilesController < ActionController::Base
 			user = User.find(session[:user_id])
 			asker = " (posted by " + user.name + ")"
 		end
-		@user.interview_text = @user.interview_text + "\nQ: " + @user.new_question + asker + "\nA:\n"
+		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + @user.new_question + asker + "\nA:\n"
+		@user.student_interview_text = @user.student_interview_text + "\nQ: " + @user.new_question + asker + "\nA:\n"
 		@user.views = @user.views - 1
 		author = User.find(@user.author)
 		author.total_views = author.total_views - 1
