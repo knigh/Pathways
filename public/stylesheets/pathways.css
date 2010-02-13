@@ -87,6 +87,7 @@ img.tab,
 img.searchImg
 {
 	vertical-align: bottom;
+	border: 0;
 }
 
 td.content
