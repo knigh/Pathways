@@ -88,18 +88,17 @@
 			<td class="contentColumn">
 				<table class="infoTable">
 					
-					<tr><td class="heading">&nbsp;</td></tr>
+					<tr><td class="heading" align="right">
+						<% if session[:user_id] == @user.id || session[:user_id] == @user.author %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit profile", :class => "submit" %><% end %>
+						<% end %>
+					</td></tr>
 
 					<tr><td><table class="clean">
-						<% if session[:user_id] == @user.id || session[:user_id] == @user.author %><tr><td><% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %>
-						<%= submit_tag "Edit profile", :class => "submit" %>
-						<% end %></td></tr>
-						<% end %>
+						
 
 						<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
-						<tr><td height="5"/></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>
-						<tr><td height="5"/></tr>
 						<tr><td class="text">
 						<% if @user.degree != "" %>
 							<%= @user.degree %>, 
@@ -108,11 +107,9 @@
 							<% if @user.focus != nil && @user.focus.length > 0 %> Concentration: <%= @user.focus %><br/><% end %>
 							<% if @user.email_private == "0" %><%= @user.email %><%end %></td></tr>
 					</table></td></tr>
-					<tr><td height="5"/></tr>
-
 
 					<% if @user.total_authored > 0 %>
-					<tr><td height="5"/></tr>
+					
 					<tr><td class="box"><table class="clean">
 						<tr><td class="title" width="150">Inteviews Conducted</td><td class="title" width="70" align="center">Views</td></tr>
 						<% @interviewees.each do |interviewee| %>
@@ -121,7 +118,6 @@
 						<% if session[:user_id] == @user.id %><tr><td height="3"/></tr>
 						<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
 					</table></td></tr>
-					<tr><td height="5"/></tr>
 
 					<% end %>
 

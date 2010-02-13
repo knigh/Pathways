@@ -104,7 +104,7 @@ td.content
 table.searchTable,
 table.sideBar,
 table.interviewTable,
-table.infoTable
+table.infoTable,
 table.signInTable
 {
 	background-color: white;
@@ -166,7 +166,8 @@ table.signInTable
 
 .pic
 {
-	border: 1px gray solid;
+	/*border: 1px gray solid;*/
+	border: 0;
 	width: 100px;
 }
 
