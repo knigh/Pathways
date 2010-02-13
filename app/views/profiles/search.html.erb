@@ -43,7 +43,7 @@
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="searchTable">
 					<tr><td class="heading"><table class="clean"><tr>
-						<td>Featured alumni</td>
+						<td>Featured Pathways</td>
 						<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
 							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
@@ -97,27 +97,23 @@
 			<td class="contentColumn"><table class="sideBar">
 					
 					<tr><td class="box"><table class="clean" width="310px;">
-						<tr><td class="heading" style="text-align:center">We're building the Sym Sys community,</td></tr>
+						<tr><td class="heading" style="text-align:center">We're building the SymSys community,</td></tr>
 						<tr><td class="text" style="text-align:justify">one profile at a time.  You can browse for other alumni,
-							create your own Pathway profile, or interview a Sym Sys alum and share 
+							create your own Pathway profile, or interview a SymSys alum and share 
 							their wisdom - and Pathway - with all of us.</td></tr>
 						<tr><td height="9"/></tr>
 						<tr><td><table style="clean">
 							<tr>
 								<td width="28"/>
-								<td width="100" style="text-align:center;" class="heading">
+								<td width="140" style="text-align:center;" class="heading">
 									<% if session[:user_id] %>
 										<a href="/profiles/edit/<%= session[:user_id] %>">Edit Your Profile</a>
 									<% else %>
 										<a href="/user/signin">Create Your Own Profile</a>
 									<% end %></td>
-								<td width="43" class="text" style="text-align:center">or</td>
-								<td width="100" style="text-align:center;" class="heading">
-									<% if session[:user_id] %>
-										<a href="/profiles/interview">Interview A Fellow Alum</a>
-									<% else %>
-										<a href="/user/signin">Interview A Fellow Alum</a>
-									<% end %></td>
+								<td width="40" class="text" style="text-align:center">or</td>
+								<td width="140" style="text-align:center;" class="heading">
+									<a href="<% if session[:user_id] %>/profiles/interview<% else %>/user/signin<% end %>">Interview A SymSys Alum</a></td>
 								<td width="28"/>
 							</tr>
 						</table></td></tr>

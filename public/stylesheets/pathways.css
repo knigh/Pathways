@@ -176,15 +176,15 @@ table.signInTable
 	background-repeat: no-repeat;
 	background-position: center right;*/
 	padding-right: 26px;
-	padding-top: 6px;
-	height: 19px;
-	width: 295px;
+	padding-top: 3px;
+	height: 16px;
+	width: 269px;
 }
 
 .searchImg
 {
 	position:relative;
-	left:324px;
+	left:301px;
 }
 
 .box
