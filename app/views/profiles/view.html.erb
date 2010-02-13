@@ -48,7 +48,7 @@
 					<% if @user.video_url != "" %>
 						<% @url = @user.video_url.sub(/watch\?v=/, "v/") %>
 						<% print @url + "\n" %>
-						<tr><td colspan="2" align="center"><object width="600" height="370"><param name="movie" value="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="600" height="370"></embed></object></td></tr>
+						<tr><td colspan="2" align="center"><object width="580" height="358"><param name="movie" value="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="580" height="358"></embed></object></td></tr>
 					<% end %>
 
 					
