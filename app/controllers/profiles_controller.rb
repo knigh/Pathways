@@ -6,6 +6,7 @@ class ProfilesController < ActionController::Base
  
 		if params[:commit] == "Author Profile"
 			@user.author = session[:user_id]
+			@user.save
 		end
  
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
