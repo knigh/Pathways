@@ -140,7 +140,7 @@
 							<tr><td class="heading" width="180">Recent Pathways</td><td class="title" width="140" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
 								<% author = User.find(recent.author) %>
-								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %><% if recent.stanford_class != nil %> ('<%= (recent.stanford_class/10)%10%><%= recent.stanford_class % 10%>)<%end %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><%= author.name %><% if author.stanford_class != nil %> ('<%= (author.stanford_class/10)%10%><%= author.stanford_class % 10%>)<%end %></a></td></tr>
+								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %><% if recent.stanford_class != nil %> ('<%= (recent.stanford_class/10)%10%><%= recent.stanford_class % 10%>)<%end %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><% if recent.author == recent.id %><%= "-" %><% else %><%= author.name %><% if author.stanford_class != nil %> ('<%= (author.stanford_class/10)%10%><%= author.stanford_class % 10%>)<%end %><% end %></a></td></tr>
 							<% end %>
 						<table>
 					</td></tr>
