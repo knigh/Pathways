@@ -61,14 +61,17 @@ class ProfilesController < ActionController::Base
 		@user = User.find(id)
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		@user.views = @user.views + 1
-		@author = User.find(@user.author)
-		@author.total_views = @author.total_views + 1
-		if @user.total_authored > 0
-			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
-		end
-		@user.save
-		@author.save
- 
+
+		if @author != 0
+			@author = User.find(@user.author)
+			@author.total_views = @author.total_views + 1
+			if @user.total_authored > 0
+				@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
+			end
+			@user.save
+			@author.save
+ 		end
+
 		if @user.is_alum == "1"
 			@interview_text = @user.alum_interview_text
 		else 
