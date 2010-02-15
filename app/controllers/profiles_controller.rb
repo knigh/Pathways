@@ -62,7 +62,7 @@ class ProfilesController < ActionController::Base
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		@user.views = @user.views + 1
 
-		if @author != 0
+		if @user.author != 0
 			@author = User.find(@user.author)
 			@author.total_views = @author.total_views + 1
 			if @user.total_authored > 0
