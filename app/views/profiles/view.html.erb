@@ -90,7 +90,9 @@
 					
 					<tr><td class="heading" align="right">
 						<% if session[:user_id] == @user.id || session[:user_id] == @user.author %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit profile", :class => "submit" %><% end %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Profile", :class => "submit" %><% end %>
+						<% elsif session[:user_id] != nil && @user.author == 0 %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit" %><% end %>
 						<% end %>
 					</td></tr>
 

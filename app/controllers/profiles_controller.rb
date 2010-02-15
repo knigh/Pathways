@@ -4,6 +4,11 @@ class ProfilesController < ActionController::Base
 	def edit
 		id = params[:id]
 		@user = User.find(id)
+
+		if params[:commit] == "Author Profile"
+			@user.author = session[:user_id]
+		end
+		
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		
 		if @user.is_alum == "1"
