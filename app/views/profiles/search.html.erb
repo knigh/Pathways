@@ -43,7 +43,7 @@
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="searchTable">
 					<tr><td class="heading"><table class="clean"><tr>
-						<td>Featured Pathways</td>
+						<td id="searchTitle" width="100%">Featured Pathways</td>
 						<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
 							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
@@ -158,6 +158,9 @@
 </body>
 </html>
 <script type="text/javascript">
+
+	var featuredTitle = "Featured Pathways";
+	var searchTitle = "Search Results";
 	
 	var searchString = "Search for alumni or pathways";
 	var box = document.getElementById('searchBox');
@@ -179,15 +182,14 @@
 	{	
 		var box = document.getElementById('searchBox');
 		
-		if ((box.value == searchString) || (box.value == ""))
+		if (box.value == searchString)
 		{
-			var box = document.getElementById('searchBox');
 			box.click();
 			box.focus();
 			return false;
 		}
 
-		doSearch();
+		doSearch(box.value);
 	}
 
 	function searchBoxKey(e)
@@ -201,11 +203,13 @@
 		return true;
 	}
 
-	function doSearch()
+	function doSearch(value)
 	{
+		document.getElementById('searchTitle').innerHTML = (value == "") ? featuredTitle : searchTitle;
+		
 		// perform search
 		alert("performing search: " + document.getElementById('searchBox').value);
-		//window.location = "index.html";
+		//window.location = "/profiles/search";
 		return false;
 	}
 
