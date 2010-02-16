@@ -30,4 +30,7 @@ class User < ActiveRecord::Base
 
   validates_associated :jobs
   
+  validates_presence_of :name, :email
+  validates_uniqueness_of :email, :message => "is already in use"
+  
 end
