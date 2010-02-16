@@ -191,12 +191,12 @@ class ProfilesController < ActionController::Base
 		if @user.name.length < 1
 			logger.error("Name can't be blank")
 			flash[:notice] = "r: Name can't be blank"
-			render (:action => :interview)
+			render(:action => :interview)
 			return
 		elsif @user.email.length < 1
 			logger.error("Email can't be blank")
 			flash[:notice] = "r: Email can't be blank"
-			render (:action => :interview)
+			render(:action => :interview)
 			return
 		end
 
@@ -209,7 +209,7 @@ class ProfilesController < ActionController::Base
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")
 		else
-			render (:action => :interview)
+			render(:action => :interview)
 		end
 	end
 
