@@ -1,4 +1,6 @@
 class ProfilesController < ActionController::Base
+
+	   layout 'standard'
  
 	def edit
 		id = params[:id]

@@ -1,42 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <title>Pathways</title>
-    <%= stylesheet_link_tag 'pathways.css' %>  
-  </head>
-<body>
-	<table class="main">
-		<!-- Header -->
-		<tr><td class="clean"><table class="header"><tr>
-			<td class="name"><a href='/profiles/search'><img class="name" src="/images/logos/pathways_symsys.gif"/></a></td>
-			<td/>
-			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
-				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
-				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
-				<!-- onclick="window.location='about.html'"/> --></td>
-			<td class="tab"><img id="search" class="tab" src="/images/buttons/search.gif"
-				onmouseover="rollOver('search', '/images/buttons/search-on.gif')"
-				onmouseout="rollOver('search', '/images/buttons/search.gif')"
-				onclick="window.location='/profiles/search'"/></td>
-			<% if session[:user_id] %>
-				<td class="tab"><img id="mypathway" class="tab" src="/images/buttons/mypathway.gif"
-				onmouseover="rollOver('mypathway', '/images/buttons/mypathway-on.gif')"
-				onmouseout="rollOver('mypathway', '/images/buttons/mypathway.gif')"
-				onclick="window.location='/profiles/view/<%= session[:user_id] %>'"/></td>
-				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
-					onmouseover="rollOver('signout', '/images/buttons/signout-on.gif')"
-					onmouseout="rollOver('signout', '/images/buttons/signout.gif')"
-					onclick="window.location='/user/logout'"/></td>
-			<% else %>
-				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
-					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
-					onmouseout="rollOver('signin', '/images/buttons/signin.gif')"
-					onclick="window.location='/user/signin'"/></td>
-			<% end %>
-		</tr></table></td></tr>
-	
+
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		<% form_for :user, :url => {:action => :post_edit}, :html => {:multipart => true} do |form| %>
@@ -139,12 +101,8 @@
 		</tr></table></td></tr>
   		<input type = "hidden" name="id" value="<%= params[:id] %>">
 
-		<!-- Footer -->
-		  
-		<% end %>
-	</table>	
-</body>
-</html>
+	
+<% content_for :javascript do %>
 <script type="text/javascript">
 
 	function rollOver(imgName, imgSrc)
@@ -152,3 +110,4 @@
 		document.getElementById(imgName).src = imgSrc;
 	}
 </script>
+<% end %>
