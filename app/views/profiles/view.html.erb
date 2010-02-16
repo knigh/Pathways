@@ -61,13 +61,14 @@
 						<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td class="text" style="text-align:left;">
-						<% if @user.degree != "" %>
-							<%= @user.degree %>, 
+						
+						<% @degrees.each do |degree| %>
+							<% if degree.degree != "" %>
+								<%= degree.degree %>, 
+							<% end %>
+							<%= degree.major %><% if degree.class_year != nil %> ('<%= (degree.class_year/10)%10%><%= degree.class_year % 10%>)<% end %><br/>
 						<% end %>
-						Symbolic Systems <% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><br/>
-							<% if @user.focus != nil && @user.focus.length > 0 %> Concentration: <%= @user.focus %><br/><% end %>
-							<% if @user.email_private == "0" %><%= @user.email %><%end %></td></tr>
-					</table></td></tr>
+						</td></tr>
 
 					<% if @user.total_authored > 0 %>
 					

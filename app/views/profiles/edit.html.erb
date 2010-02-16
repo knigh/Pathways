@@ -42,13 +42,30 @@
 					<tr><td>
 						<img rowspan="2" class="pic" src="/images/pics/<%= @user.image_file %>"/></td><td class="text" colspan="2">New image file:<br/><%= form.file_field(:image_file) %></td></tr>					</td></tr>
 					<tr><td class="title" colspan="3">Stanford Experience</td></tr>
-					<tr><td class="text" style="text-align:right;width:200px">Class year:</td>
-						<td colspan="2"><%= select( "user", "stanford_class", (1987..2013).to_a {|year| [ year.to_s, year]}, { :include_blank => true}) %></td></tr>							
-					<tr><td class="text" style="text-align:right;width:200px">Degree:</td>
-						<td colspan="2"><%= select( "user", "degree", ["BS", "MA", "BS & MA"].to_a {|degree| [degree, degree]}, { :include_blank => true}) %></td></tr>
-					<tr><td class="text" style="text-align:right;width:200px">Concentration:</td>
-						<td colspan="2"><%= form.text_field(:focus, :size => "20x1", :class => "text", :style => "height:15px;text-align:left") %></td></tr>
+					
+				
+
+
+					<% @degrees.each do |degree| %>
+						<tr><td height="7"/></tr>
+
+						<% prefix = "user[existing_degree_attributes][]" %> 
+						<% fields_for prefix, degree do |degree_form| %>
 						
+					<tr><td class="text" style="text-align:right;width:200px">Class year:</td>
+						<td width="65"><%= select("[user][existing_degree_attributes][#{degree.id}]", "class_year", options_for_select((1987..2013).to_a {|year| [year.to_s, year]}, degree.class_year), { :include_blank => true}) %></td></tr>
+						
+					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+						<td colspan="2"><%= select("[user][existing_degree_attributes][#{degree.id}]", "degree", options_for_select([["B.S.", "B.S."], ["B.A.", "B.A."], ["M.S.", "M.S."], ["M.A.", "M.A."], ["Ph.D.", "Ph.D."], ["M.B.A.", "M.B.A."], ["M.D.", "M.D."], ["J.D.", "J.D."]], degree.degree), { :include_blank => true}) %></td></tr>						
+					
+					<tr><td class="text" style="text-align:right;width:200px">Major:</td>
+						<td colspan="2"><%= degree_form.text_field(:major, :size => "20x1", :class =>"text", :style => "height:15px;text-align:left") %></td></tr>
+						
+						<% end %>
+					  <% end %>
+					<tr><td/><td/><td style="text-align:left;"><%= submit_tag "+ degree", :class =>"submit" %></td></tr>
+
+
 					<tr><td class="text" colspan="3">&nbsp;</td></tr>
 					<tr><td colspan="3"><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 					<tr><td class="text" colspan="3">&nbsp;</td></tr>
@@ -78,15 +95,10 @@
 					<tr><td/><td colspan="2" class="text"><%= job_form.check_box :job_current, :value => 0 %>I currently work here</td></tr>
 					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
 						<td colspan="2"><%= select("[user][existing_job_attributes][#{job.id}]", "satisfaction", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], job.satisfaction), { :include_blank => true}) %></td></tr>						
-					
-					<tr><td class="text" style="text-align:right;width:200px;vertical-align: top;">Responsibilities:</td>
-						<td colspan="2">
-						<%= job_form.text_area(:responsibilities, :size => "17x4", :class => "text", :wrap => "soft", :style =>"overflow:auto") %>
-					</td></tr>
 						
 						<% end %>
 					  <% end %>
-					  <tr><td/><td/><td style="text-align:center;"><%= submit_tag "+", :class =>"submit" %></td></tr>
+					  <tr><td/><td/><td style="text-align:left;"><%= submit_tag "+ job", :class =>"submit" %></td></tr>
 
 					<tr><td colspan="3"></td></tr>
 	
