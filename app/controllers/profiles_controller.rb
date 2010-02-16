@@ -64,7 +64,9 @@ class ProfilesController < ActionController::Base
 
 		if @user.author != 0
 			@author = User.find(@user.author)
-			@author.total_views = @author.total_views + 1
+			if @user.author != @user.id
+				@author.total_views = @author.total_views + 1
+			end
 			if @user.total_authored > 0
 				@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
 			end
