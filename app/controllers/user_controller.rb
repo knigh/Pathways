@@ -4,56 +4,7 @@ class UserController < ApplicationController
 
    layout 'standard'
    
-     $master = Master.find(1)
-
-  $student_interview = "== Student Interview Form ==
-
-Q: What is your favorite thing you've done so far at Stanford?
-A:
-
-Q: Why did you choose your major?
-A:
-
-Q: What are your future plans?
-A:
-"
-  $alum_interview = "== Alum Interview Form ==
-
-Q: What is the best job you've had since graduation?
-A:
-
-Q: How did you find out about this job and why did you join?
-A:
-
-Q: What was the best part of the job?
-A:
-
-Q: What was the worst part of the job?
-A:
-
-Q: What do you wish you had known before starting there?
-A:
-
-Q: What did you learn while there?
-A:
-
-Q: What are you most proud of during your time there?
-A:
-
-Q: Did you have any failures while there? How did you persevere?
-A:
-
-Q: What skills were most important for this job?
-A:
-
-Q: What's one story you tell about your time there?
-A:
-
-Q: If you are no longer working at this job, why did you leave?
-A:
-"
-
-def signin
+     $master = Master.find(1)def signin
 	flash[:notice] = nil
 end 
 
@@ -90,8 +41,8 @@ end
     @user.email = params[:user][:email]
     @password = params[:password]
     @password_confirmation = params[:password_confirmation]
-    @user.alum_interview_text = $alum_interview
-    @user.student_interview_text = $student_interview
+    @user.alum_interview_text = $master.alum_default_qs
+    @user.student_interview_text = $master.student_defailt_qs
    
 	flash[:notice] = nil
 	
