@@ -219,6 +219,9 @@ def search
 			@job = Job.new
 			@job.user_id = @user[:id]
 			@job.save
+			@degree = Degree.new
+			@degree.user_id = @user[:id]
+			@degree.save
 			author = User.find(session[:user_id])
 			author.total_authored = author.total_authored + 1
 			author.save
