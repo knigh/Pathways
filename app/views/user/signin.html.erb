@@ -34,7 +34,9 @@
 		</tr></table></td></tr>
 	
 		<!-- Body Content -->
-		<tr><td class="content"><table class="clean" align="center" cellpadding="38"><tr>
+		<tr><td class="content">
+	
+		<table class="clean" align="center" cellpadding="38"><tr>
 	
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="signInTable">
@@ -42,11 +44,15 @@
 				<tr><td class="box"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">Sign Up</td></tr>
 					<% form_for :user, :url => {:action => :post_register} do |form| %>
-						<tr><td class="text">name</td><td><%= form.text_field(:name) %></td></tr>
-						<tr><td class="text">email</td><td><%= form.text_field(:email) %></td></tr>
-						<tr><td class="text">password</td><td><input name="password" type="password" size="30" /></td></tr>
-						<tr><td class="text" width="100%">confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign up", :class => "submit" %></td></tr>
+						<tr><td class="text">Name</td><td><%= form.text_field(:name) %></td></tr>
+						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
+						<tr><td class="text">Password</td><td><input name="password" type="password" size="30" /></td></tr>
+						<tr><td class="text" width="100%">Confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
+							<% if (flash[:notice].index('r') == 0) %>
+								* <%= flash[:notice].sub(/r: /, '') %>
+							<% end %>
+						<% end %><%= submit_tag "Sign up", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>
 			</table></td>
@@ -56,9 +62,13 @@
 				<tr><td class="box"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">Sign In</td></tr>
 					<% form_for :user, :url => {:action => :post_signin} do |form| %>
-						<tr><td class="text">email</td><td><%= form.text_field(:email) %></td></tr>
-						<tr><td class="text" width="100%">password</td><td><input name="password" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Sign in", :class => "submit" %></td></tr>
+						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
+						<tr><td class="text" width="100%">Password</td><td><input name="password" type="password" size="30" /></td></tr>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
+							<% if (flash[:notice].index('s') == 0) %>
+								* <%= flash[:notice].sub(/s: /, '')%>
+							<% end %>
+						<% end %><%= submit_tag "Sign in", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>
 			</table></td>

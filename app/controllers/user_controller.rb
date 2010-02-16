@@ -49,21 +49,23 @@ Q: If you are no longer working at this job, why did you leave?
 A:
 "
 
-  def signin
-  end
+def signin
+	flash[:notice] = nil
+end 
 
   def post_signin
+  	flash[:notice] = nil
     @user = User.find_by_email(params[:user][:email])
     if (@user.nil?)
 	reset_session
-	logger.error("Invalid signin")
-	flash[:notice] = "Invalid signin"
-	redirect_to :action => 'signin'
+	logger.error("Invalid email")
+	flash[:notice] = "s: Invalid email"
+	render :action => 'signin'
     else
 	@hashed_password = Digest::SHA1.hexdigest(params[:password])
 	if (@hashed_password != @user.hashed_password)
 		logger.error("Invalid password")
-		flash[:notice] = "Invalid password"
+		flash[:notice] = "s: Invalid password"
       	render (:action => :signin)
 	else
 		session[:user_id] = @user[:id];
@@ -77,8 +79,6 @@ A:
 	redirect_to (:controller => :profiles, :action => :search)
   end
 
-  def register
-  end
 
   def post_register
     @user = User.new
@@ -90,21 +90,32 @@ A:
     @user.student_interview_text = $student_interview
    
 	flash[:notice] = nil
-    if (@password != @password_confirmation)
-	logger.error("Password confirmation must match password")
-	flash[:notice] = "Password confirmation must match password"
-      render (:action => :signin)
-    elsif (@password.length < 1)
-	logger.error("You must enter a password")
-	flash[:notice] = "You must enter a password"
-      render (:action => :signin)
-    else
+	
+	if @user.name.length < 1
+		logger.error("Name can't be blank")
+		flash[:notice] = "r: Name can't be blank"
+		render (:action => :signin)
+		return
+	elsif @user.email.length < 1
+		logger.error("Email can't be blank")
+		flash[:notice] = "r: Email can't be blank"
+		render (:action => :signin)
+		return
+	end
 	match = User.find_by_email(@user.email)
 	if not match.nil?
-		logger.error("This user already exists")
-		flash[:notice] = "This user already exists"
-      	render (:action => :signin)
-	else
+		logger.error("Email is already in use")
+		flash[:notice] = "r: Email is already in use"
+		render (:action => :signin)
+    elsif (@password != @password_confirmation)
+		logger.error("Password confirmation must match password")
+		flash[:notice] = "r: Password confirmation must match password"
+		  render (:action => :signin)
+    elsif (@password.length < 6)
+		logger.error("Password must contain at least six characters")
+		flash[:notice] = "r: Password must contain six or more characters"
+		  render (:action => :signin)
+    else
    	 	@user.hashed_password = Digest::SHA1.hexdigest(@password)
 		if @user.save
 			@user.author = @user.id
@@ -119,7 +130,7 @@ A:
 			render (:action => :signin)
 		end
 	end
-    end
+
   end
 
   def round(term, val)
