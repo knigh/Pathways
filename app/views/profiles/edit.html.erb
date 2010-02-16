@@ -41,7 +41,7 @@
 					
 					<tr><td>
 						<img rowspan="2" class="pic" src="/images/pics/<%= @user.image_file %>"/></td><td class="text" colspan="2">New image file:<br/><%= form.file_field(:image_file) %></td></tr>					</td></tr>
-					<tr><td class="title" colspan="3">Symbolic Systems Experience</td></tr>
+					<tr><td class="title" colspan="3">Stanford Experience</td></tr>
 					<tr><td class="text" style="text-align:right;width:200px">Class year:</td>
 						<td colspan="2"><%= select( "user", "stanford_class", (1987..2013).to_a {|year| [ year.to_s, year]}, { :include_blank => true}) %></td></tr>							
 					<tr><td class="text" style="text-align:right;width:200px">Degree:</td>

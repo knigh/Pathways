@@ -59,9 +59,9 @@
 			<td class="contentColumn"><table class="sideBar">
 					
 					<tr><td class="box"><table class="clean" width="310px;">
-						<tr><td class="heading" style="text-align:center">We're building the SymSys community,</td></tr>
+						<tr><td class="heading" style="text-align:center">We're building the <%= $master.informal_name %> community,</td></tr>
 						<tr><td class="text" style="text-align:justify">one profile at a time.  You can browse for alumni,
-							create your own Pathway, or interview a SymSys alum and share their wisdom - and
+							create your own Pathway, or interview a <%= $master.informal_name %> alum and share their wisdom - and
 							Pathway - with all of us.</td></tr>
 						<tr><td height="9"/></tr>
 						<tr><td><table style="clean">
@@ -75,7 +75,7 @@
 									<% end %></td>
 								<td width="40" class="text" style="text-align:center">or</td>
 								<td width="140" style="text-align:center;" class="heading">
-									<a href="<% if session[:user_id] %>/profiles/interview<% else %>/user/signin<% end %>">Interview A SymSys Alum</a></td>
+									<a href="<% if session[:user_id] %>/profiles/interview<% else %>/user/signin<% end %>">Interview A <%= $master.informal_name %> Alum</a></td>
 								<td width="28"/>
 							</tr>
 						</table></td></tr>
