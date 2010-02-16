@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100207031433) do
+ActiveRecord::Schema.define(:version => 20100216051424) do
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(:version => 20100207031433) do
     t.string   "job_current",      :default => "0"
     t.integer  "satisfaction",     :default => 0
     t.string   "responsibilities", :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "masters", :force => true do |t|
+    t.string   "logo_file"
+    t.string   "pathways_logo"
+    t.string   "informal_name"
+    t.string   "formal_name"
+    t.string   "self_description"
+    t.string   "url"
+    t.text     "alum_default_qs"
+    t.text     "student_defailt_qs"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -35,7 +35,7 @@
 						<% end %></td></tr>
 					
 						<tr><td><% form_for :user, :url => {:action => :post_question} do |form| %>
-						<%= form.text_field(:new_question, :size => "60x1") %>
+						<%= form.text_field(:new_question, :size => "63x1") %>
 						<input type = "hidden" name="id" value="<%= params[:id] %>">
 						<%= submit_tag "Post a new question", :class => "submit" %>
 						<% end %>
