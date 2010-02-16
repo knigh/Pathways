@@ -7,8 +7,8 @@ class CreateMasters < ActiveRecord::Migration
 	t.column :formal_name, :string
 	t.column :self_description, :string
 	t.column :url, :string
-	t.column :alum_default_qs, :string
-	t.column :student_defailt_qs, :string
+	t.column :alum_default_qs, :text
+	t.column :student_defailt_qs, :text
       t.timestamps
     end
   end
