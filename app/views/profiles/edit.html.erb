@@ -86,10 +86,6 @@
 						
 						<% end %>
 					  <% end %>
-					
-					<input type = "hidden" name="id" value="<%= params[:id] %>"/>
-					  
-					  
 					  <tr><td/><td/><td style="text-align:center;"><%= submit_tag "+", :class =>"submit" %></td></tr>
 
 					<tr><td colspan="3"></td></tr>
@@ -103,6 +99,8 @@
 			</td>
 		
 		</tr></table></td></tr>
+  		<input type = "hidden" name="id" value="<%= params[:id] %>">
+		<% end %>
 
 	
 <% content_for :javascript do %>
