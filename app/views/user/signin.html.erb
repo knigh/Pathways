@@ -3,14 +3,14 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<title>Pathways</title>
+	<title>Stanford Pathways</title>
     <%= stylesheet_link_tag 'pathways.css' %>  
 </head>
 <body>
 	<table class="main">
 	<!-- Header -->
 		<tr><td class="clean"><table class="header"><tr>
-			<td class="name"><a href='/profiles/search'><img class="name" src="/images/logos/pathways_symsys.gif"/></a></td>
+			<td class="name"><a href='/profiles/search'><img class="name" src="/images/logos/<%= $master.pathways_logo %>"/></a></td>
 			<td/>
 			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
 				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
