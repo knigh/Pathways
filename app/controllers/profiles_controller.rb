@@ -2,7 +2,7 @@ class ProfilesController < ActionController::Base
 
 	   layout 'standard'
 	   
-	   $master = Master.find(1)
+	     $master = Master.find(1)
 
  
 	def edit
@@ -15,6 +15,9 @@ class ProfilesController < ActionController::Base
 		end
  
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
+		
+		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
+
  
 		if @user.is_alum == "1"
 			@interview_text = @user.alum_interview_text
@@ -39,6 +42,12 @@ class ProfilesController < ActionController::Base
 			image_file = @user.image_file
 		end
  
+ 		@degrees = Degree.find(:all, :conditions => ["user_id = ?", @user.id])
+		@degrees.each do |degree|
+			degree.update_attributes(params[:user][:existing_degree_attributes][degree.id])
+			degree.save
+		end
+ 
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", @user.id])
 		@jobs.each do |job|
 			job.update_attributes(params[:user][:existing_job_attributes][job.id])
@@ -48,10 +57,15 @@ class ProfilesController < ActionController::Base
 		if @user.update_attributes(params[:user]) then
 			@user.image_file = image_file
 			@user.save
-			if params[:commit] == "+"
+			if params[:commit] == "+ job"
 				@job = Job.new
 				@job.user_id = @user.id
 				@job.save
+				redirect_to("/profiles/edit/#{@user[:id]}")
+			elsif params[:commit] == "+ degree"
+				@degree = Degree.new
+				@degree.user_id = @user.id
+				@degree.save
 				redirect_to("/profiles/edit/#{@user[:id]}")
 			else
 				redirect_to("/profiles/view/#{@user[:id]}")
@@ -65,6 +79,8 @@ class ProfilesController < ActionController::Base
 		id = params[:id]
 		@user = User.find(id)
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
+		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
+
 		@user.views = @user.views + 1
 
 		if @user.author != 0
@@ -128,7 +144,7 @@ class ProfilesController < ActionController::Base
 		File.open(new, "wb") { |file| file << prev.read}
 	end
  
-	def search
+def search
 		
 		@topViewed = User.find(:all, :conditions => ['author != ? AND views > ?', 0, 10], :order => 'views DESC', :limit => 10)
 	
@@ -171,7 +187,6 @@ class ProfilesController < ActionController::Base
 		 days_ago = Time.now - (days * (60*60*24)) 
 		@recent_interviews = User.find(:all, :conditions => ['date_modified > ? AND author != ?', days_ago, 0], :order => 'date_modified DESC', :limit => 5)
 	end
-
  
 	def post_newUser
 	
