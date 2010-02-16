@@ -2,6 +2,8 @@ require 'digest/sha1'
 
 class UserController < ApplicationController
 
+   layout 'standard'
+
   $student_interview = "== Student Interview Form ==
 
 Q: What is your favorite thing you've done so far at Stanford?
