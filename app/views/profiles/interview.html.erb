@@ -1,3 +1,17 @@
+create_table "masters", :force => true do |t|
+    t.string   "logo_file"
+    t.string   "pathways_logo"
+    t.string   "informal_name"
+    t.string   "formal_name"
+    t.string   "self_description"
+    t.string   "url"
+    t.text     "alum_default_qs"
+    t.text     "student_defailt_qs"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+
 
 		<!-- Body Content -->
 		
@@ -24,9 +38,9 @@
 				<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 
 				<tr><td class="title">Sample Email</td></tr>
-				<tr><td class="text">Dear Ms. Talley,<br/><br/>I&apos;m a Symbolic Systems student at Stanford, and I&apos;m contributing to a
+				<tr><td class="text">Dear Ms. Talley,<br/><br/>I&apos;m <%= $master.self_description %> at Stanford, and I&apos;m contributing to a
 					new alumni community tool called Pathways, which combines LinkedIn with informational interview. You can
-					see the current site at http://symsys.stanfordpathways.edu.<br/><br/>I&apos;m writing  because I&apos;m very interested
+					see the current site at http://<%= $master.url %>.<br/><br/>I&apos;m writing  because I&apos;m very interested
 					in speaking with you, especially because of your time working on the Adobe Design team. Is there a convenient
 					time when we I could speak with you about your experience in the major and your subsequent career
 					path?<br/><br/>Sincerely,<br/>Millard Fillmore</td></tr>
