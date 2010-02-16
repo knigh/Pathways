@@ -43,7 +43,7 @@ table.main
 table.header
 {
 	width: 100%;
-	background-image: url(../images/logos/logo.gif);
+	/*background-image: url(../images/logos/logo.gif);*/
 	background-repeat: no-repeat;
 }
 
@@ -80,8 +80,6 @@ td.tab
 	vertical-align: bottom;
 }
 
-
-
 img.name,
 img.tab,
 img.searchImg
@@ -105,7 +103,9 @@ table.searchTable,
 table.sideBar,
 table.interviewTable,
 table.infoTable,
-table.signInTable
+table.signInTable,
+table.instructionsTable,
+table.authorAlumTable
 {
 	background-color: white;
 	border-spacing: 10px;
@@ -135,6 +135,16 @@ table.infoTable
 table.signInTable
 {
 	width: 350px;
+}
+
+table.instructionsTable
+{
+	width: 450px;
+}
+
+table.authorAlumTable
+{
+	width: 400px;
 }
 
 .heading, .title, .text

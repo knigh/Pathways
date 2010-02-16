@@ -3,10 +3,11 @@ require 'digest/sha1'
 class UserController < ApplicationController
 
    layout 'standard'
-   
-     $master = Master.find(1)def signin
+   $master = Master.find(1)
+
+  def signin
 	flash[:notice] = nil
-end 
+  end 
 
   def post_signin
   	flash[:notice] = nil

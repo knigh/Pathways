@@ -2,7 +2,7 @@ class ProfilesController < ActionController::Base
 
 	   layout 'standard'
 	   
-	     $master = Master.find(1)
+	   $master = Master.find(1)
 
  
 	def edit
@@ -128,7 +128,7 @@ class ProfilesController < ActionController::Base
 		File.open(new, "wb") { |file| file << prev.read}
 	end
  
-def search
+	def search
 		
 		@topViewed = User.find(:all, :conditions => ['author != ? AND views > ?', 0, 10], :order => 'views DESC', :limit => 10)
 	
@@ -174,11 +174,32 @@ def search
 
  
 	def post_newUser
-		@user = User.new
+	
+		@user = User.find_by_email(params[:user][:email])
+		if (@user.nil?)
+			@user = User.new
+			@user.name = params[:user][:name]
+			@user.email = params[:user][:email]
+		end
 		@user.author = session[:user_id]
-		@user.alum_interview_text = $alum_interview
-		@user.student_interview_text = $student_interview
+		@user.alum_interview_text = $master.alum_default_qs
+		@user.student_interview_text = $master.student_defailt_qs
 		@user.is_alum = "1"
+		
+		flash[:notice] = nil
+	
+		if @user.name.length < 1
+			logger.error("Name can't be blank")
+			flash[:notice] = "r: Name can't be blank"
+			render (:action => :interview)
+			return
+		elsif @user.email.length < 1
+			logger.error("Email can't be blank")
+			flash[:notice] = "r: Email can't be blank"
+			render (:action => :interview)
+			return
+		end
+
 		if @user.save
 			@job = Job.new
 			@job.user_id = @user[:id]
@@ -187,7 +208,10 @@ def search
 			author.total_authored = author.total_authored + 1
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")
+		else
+			render (:action => :interview)
 		end
 	end
+
  
 end

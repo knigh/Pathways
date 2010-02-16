@@ -10,9 +10,15 @@
 	<table class="main">
 	<!-- Header -->
 		<tr><td class="clean"><table class="header"><tr>
-			<td class="name"><a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.logo_file %>"/></a>
-			<a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.pathways_logo %>"/></a></td>
+			<td class="name"><a href='/profiles/search'><table class="header" style="background-image:url(/images/logos/<%= $master.logo_file %>);"/>
+				<tr><td class="name"><img class="name" src="/images/logos/<%= $master.pathways_logo %>"/></td></tr></table></a><td/>
+			<!--
+     			<td class="name"><a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.logo_file %>"/></a>
+      			<a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.pathways_logo %>"/></a></td>
+			-->
+			
 			<td/>
+
 			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
 				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
 				onmouseout="rollOver('about', '/images/buttons/about.gif')" />
@@ -22,9 +28,13 @@
 				onmouseout="rollOver('search', '/images/buttons/search.gif')"
 				onclick="window.location='/profiles/search'"/></td>
 			<% if session[:user_id] %>
+				<td class="tab"><img id="mypathway" class="tab" src="/images/buttons/mypathway.gif"
+					onmouseover="rollOver('mypathway', '/images/buttons/mypathway-on.gif')"
+					onmouseout="rollOver('mypathway', '/images/buttons/mypathway.gif')"
+					onclick="window.location='/profiles/view/<%= session[:user_id] %>'"/></td> 
 				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
-					onmouseover="rollOver('signin', '/images/buttons/signout-on.gif')"
-					onmouseout="rollOver('signin', '/images/buttons/signout.gif')"
+					onmouseover="rollOver('signout', '/images/buttons/signout-on.gif')"
+					onmouseout="rollOver('signout', '/images/buttons/signout.gif')"
 					onclick="window.location='/user/logout'"/></td>
 			<% else %>
 				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"

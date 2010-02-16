@@ -1,33 +1,70 @@
 
 		<!-- Body Content -->
-		<tr><td class="content"><table class="clean" align="center" cellpadding="38"><tr>
-	
-			<!-- Column 1 -->
-			<td class="contentColumn"><table class="signInTable">
-				<tr><td class="text" height="30" style="text-align:center">First time interviewing? Read this info</td></tr>
-				<tr><td class="box"><table class="clean" cellpadding="5">
-					<tr><td colspan="2" class="heading" style="text-align:center">How to conduct an interview</td></tr>
-					<tr><td class="text"><strong>Preparation for Interview</strong><br/>
-					<br/>1. Choose a setting with little distraction. Avoid loud lights or noises, ensure the interviewee is comfortable (you might ask them if they are), etc. Often, they may feel more comfortable at their own places of work or homes.
-					<br/>2. Explain the purpose of the interview.
-					<br/>3. Address terms of confidentiality. Note any terms of confidentiality. (Be careful here. Rarely can you absolutely promise anything. Courts may get access to information, in certain circumstances.) Explain who will get access to their answers and how their answers will be analyzed. If their comments are to be used as quotes, get their written permission to do so. See getting informed consent.
-					<br/>4. Explain the format of the interview. Explain the type of interview you are conducting and its nature. If you want them to ask questions, specify if they're to do so as they have them or wait until the end of the interview.
-					<br/>5. Indicate how long the interview usually takes.
-					<br/>6. Tell them how to get in touch with you later if they want to.
-					<br/>7. Ask them if they have any questions before you both get started with the interview.
-					<br/>8. Don't count on your memory to recall their answers. Ask for permission to record the interview or bring along someone to take notes.
-				</table></td></tr>
-			</table></td>
+		
+		<tr><td class="content"><table class="clean" align="center"><tr>
+			
+			<td class="contentColumn"><table class="instructionsTable">
+				<tr><td class="heading">How to Interview an Alum for Pathways</td></tr>
+				
+				<tr><td style="text-align:justify"><span class="title">1. Find an alum</span><br/><span class="text">You can search or browse for
+					alumni in the boxes on the right. Feel free to Google alumni to find if they match your interests.
+					Then click &quot;Author this profile&quot; or &quot;Create a new Pathway&quot; for a name not
+					already in our database.</span></td></tr>
+				<tr><td style="text-align:justify"><span class="title">2. Set up an interview</span><br/><span class="text">Once you find an alum
+					you&apos;d like to interview, email them. Feel free to use our sample email below, and make sure to
+					include some indication you&apos;ve already researched a bit about them.</span></td></tr>
+				<tr><td style="text-align:justify"><span class="title">3. Record a great conversation</span><br/><span class="text">Our Sample
+					Question page has some suggestions, but make sure to listen carefully to your interviewee and go
+					where the conversation takes you. There are many options for recording the converstaion: using a
+					digital recorder, software programs such as Audacity, or typing as you talk.</span></td></tr>
+				<tr><td style="text-align:justify"><span class="title">4. Submit your interview</span><br/><span class="text">Once you&apos;ve typed up
+					your interview, click &quot;Submit.&quot; Your interview will be sent to the alum for them to check
+					and publish.</span></td></tr>
 
-			<td class="contentColumn"><table class="signInTable">
-				<tr><td height="30"/></tr>
-				<tr><td class="box"><table class="clean" cellpadding="5">
-					<tr><td colspan="2" class="heading" style="text-align:center">Add a new interview</td></tr>
-					<tr><td><% form_for :user, :url => {:action => :post_newUser} do |form| %>
-					<%= submit_tag "Create profile for interviewee", :class => "submit" %>
+				<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+
+				<tr><td class="title">Sample Email</td></tr>
+				<tr><td class="text">Dear Ms. Talley,<br/><br/>I&apos;m a Symbolic Systems student at Stanford, and I&apos;m contributing to a
+					new alumni community tool called Pathways, which combines LinkedIn with informational interview. You can
+					see the current site at http://symsys.stanfordpathways.edu.<br/><br/>I&apos;m writing  because I&apos;m very interested
+					in speaking with you, especially because of your time working on the Adobe Design team. Is there a convenient
+					time when we I could speak with you about your experience in the major and your subsequent career
+					path?<br/><br/>Sincerely,<br/>Millard Fillmore</td></tr>
+
+				<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+
+			</table></td>
+			
+			<td class="contentColumn"><table class="authorAlumTable">
+				<tr><td class="heading" /></tr>
+
+				<tr><td class="contentColumn" align="center"><table class="clean">
+					<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
+					<% form_for :user, :url => {:action => :post_newUser} do |form| %>
+						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
+						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
+							<% if (flash[:notice].index('r') == 0) %>
+								* <%= flash[:notice].sub(/r: /, '') %>
+							<% end %>
+						<% end %><%= submit_tag "Create", :class => "submit" %></td></tr>
 					<% end %>
-					</td></tr>
 				</table></td></tr>
+
+				<tr><td class="text" height="50" style="text-align:center">or</td></tr>
+			
+				<!--<tr><td class="contentColumn" align="center"><table class="clean">
+					<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
+					<% form_for :user, :url => {:action => :post_signin} do |form| %>
+						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
+						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
+						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Create", :class => "submit" %></td></tr>
+					<% end %>
+				</table></td></tr>-->
+
+
 			</table></td>
 		
 		</tr></table></td></tr>
