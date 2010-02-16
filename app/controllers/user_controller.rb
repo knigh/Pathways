@@ -79,6 +79,9 @@ class UserController < ApplicationController
 			@job = Job.new
 			@job.user_id = @user[:id]
 			@job.save
+			@degree = Degree.new
+			@degree.user_id = @user[:id]
+			@degree.save
 
 			session[:user_id] = @user[:id];
 			redirect_to("/profiles/edit/#{@user[:id]}")	    	
