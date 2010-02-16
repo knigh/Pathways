@@ -23,40 +23,39 @@ class ProfilesController < ActionController::Base
 	end
  
 	def post_edit
-		@curUser = User.find(params[:id])
+		@user = User.find(params[:id])
  
  		prev = params[:user][:image_file]
 		if (prev != nil)
-			image_file = @curUser.id.to_s() + '_' + prev.original_filename
+			image_file = @user.id.to_s() + '_' + prev.original_filename
 			new = Dir.getwd + "/images/pics/" + image_file
 			create(prev, new)
 		else
-			image_file = @curUser.image_file
+			image_file = @user.image_file
 		end
  
-		@jobs = Job.find(:all, :conditions => ["user_id = ?", @curUser.id])
+		@jobs = Job.find(:all, :conditions => ["user_id = ?", @user.id])
 		@jobs.each do |job|
 			job.update_attributes(params[:user][:existing_job_attributes][job.id])
 			job.save
 		end
  
-		if @curUser.update_attributes(params[:user]) then
-			@curUser.image_file = image_file
-			@curUser.save
+		if @user.update_attributes(params[:user]) then
+			@user.image_file = image_file
+			@user.save
 			if params[:commit] == "+"
 				@job = Job.new
-				@job.user_id = @curUser.id
+				@job.user_id = @user.id
 				@job.save
-				redirect_to("/profiles/edit/#{@curUser[:id]}")
+				redirect_to("/profiles/edit/#{@user[:id]}")
 			else
-				print "commit: '" + params[:commit] + "'"
-				redirect_to("/profiles/view/#{@curUser[:id]}")
+				redirect_to("/profiles/view/#{@user[:id]}")
 			end
 		else
-			redirect_to("/profiles/edit/#{@curUser[:id]}")
+			render(:action => :edit)
 		end
 	end
- 
+	 
 	def view
 		id = params[:id]
 		@user = User.find(id)
