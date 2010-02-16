@@ -3,6 +3,8 @@ require 'digest/sha1'
 class UserController < ApplicationController
 
    layout 'standard'
+   
+     $master = Master.find(1)
 
   $student_interview = "== Student Interview Form ==
 

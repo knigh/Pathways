@@ -1,6 +1,9 @@
 class ProfilesController < ActionController::Base
 
 	   layout 'standard'
+	   
+	     $master = Master.find(1)
+
  
 	def edit
 		id = params[:id]
