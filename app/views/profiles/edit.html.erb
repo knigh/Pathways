@@ -55,7 +55,7 @@
 					<tr><td class="text" style="text-align:right;width:200px">Class year:</td>
 						<td width="65"><%= select("[user][existing_degree_attributes][#{degree.id}]", "class_year", options_for_select((1987..2013).to_a {|year| [year.to_s, year]}, degree.class_year), { :include_blank => true}) %></td></tr>
 						
-					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
+					<tr><td class="text" style="text-align:right;width:200px">Degree:</td>
 						<td colspan="2"><%= select("[user][existing_degree_attributes][#{degree.id}]", "degree", options_for_select([["B.S.", "B.S."], ["B.A.", "B.A."], ["M.S.", "M.S."], ["M.A.", "M.A."], ["Ph.D.", "Ph.D."], ["M.B.A.", "M.B.A."], ["M.D.", "M.D."], ["J.D.", "J.D."]], degree.degree), { :include_blank => true}) %></td></tr>						
 					
 					<tr><td class="text" style="text-align:right;width:200px">Major:</td>
