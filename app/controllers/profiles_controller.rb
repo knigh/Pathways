@@ -146,7 +146,7 @@ class ProfilesController < ActionController::Base
  
 def search
 		
-		@topViewed = User.find(:all, :conditions => ['author != ? AND views > ?', 0, 10], :order => 'views DESC', :limit => 10)
+		@topViewed = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
 	
 		numUsers = @topViewed.length
 
