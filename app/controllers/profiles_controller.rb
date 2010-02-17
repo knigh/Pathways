@@ -57,12 +57,12 @@ class ProfilesController < ActionController::Base
 		if @user.update_attributes(params[:user]) then
 			@user.image_file = image_file
 			@user.save
-			if params[:commit] == " + "
+			if params[:add_job]
 				@job = Job.new
 				@job.user_id = @user.id
 				@job.save
 				redirect_to("/profiles/edit/#{@user[:id]}")
-			elsif params[:commit] == "+"
+			elsif params[:add_degree]
 				@degree = Degree.new
 				@degree.user_id = @user.id
 				@degree.save
