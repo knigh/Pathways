@@ -95,7 +95,8 @@
 					<tr><td/><td colspan="2" class="text"><%= job_form.check_box :job_current, :value => 0 %>I currently work here</td></tr>
 					<tr><td class="text" style="text-align:right;width:200px">Satisfaction:</td>
 						<td colspan="2"><%= select("[user][existing_job_attributes][#{job.id}]", "satisfaction", options_for_select([["5 - completely satisfied", 5], ["4 - quite satisfied", 4], ["3 - somewhat satisfied", 3], ["2 - somewhat dissatisfied", 2], ["1 - hated it", 1]], job.satisfaction), { :include_blank => true}) %></td></tr>						
-						
+					<tr><td class="text" style="text-align:right;width:200px">Responsibilities:</td><td colspan="2"><%= job_form.text_area(:responsibilities, :size => "20x3", :class => "text") %></td></tr>
+
 						<% end %>
 					  <% end %>
 					  <tr><td/><td/><td style="text-align:center;"><input name="add_job" type="submit" value="+" /></td></tr>
