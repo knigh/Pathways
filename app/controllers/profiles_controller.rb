@@ -149,7 +149,7 @@ class ProfilesController < ActionController::Base
 	def search
 		
 		# The search parameters are set in the commit variable
-		if params[:commit]
+		if (params[:commit] && (params[:commit] != ""))
 			@searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
 			
 		else
@@ -200,7 +200,7 @@ class ProfilesController < ActionController::Base
 	def interview
 
 		# The search parameters are set in the commit variable
-		if params[:commit]
+		if (params[:commit] && (params[:commit] != ""))
 			@seeded = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
 		else
 			@seeded = User.find(:all, :conditions => ['author = ?', 0], :order => 'name')
