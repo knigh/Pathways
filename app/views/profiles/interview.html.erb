@@ -53,8 +53,6 @@
 					<% end %>
 				</table></td></tr>
 
-				<% if @seeded.length > 0 %>
-
 				<tr><td class="text" height="50" style="text-align:center">or</td></tr>
 			
 				<tr><td class="contentColumn" align="center"><table class="clean">
@@ -63,6 +61,7 @@
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
 							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
 						<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td></table></td></tr>
+					<% if @seeded.length > 0 %>
 						<tr><td height="5"/></tr>
 						<tr><td><table class="clean" cellpadding="5">
 							<% @seeded.each do |seed| %>
@@ -80,10 +79,9 @@
 								</td></tr>
 							<% end %>
 						</table></td></tr>
+					< % end %>
 					</table></td></tr>
 				</table></td></tr>
-
-				<% end %>
 
 				<tr style="display:none;">
 					<td><% form_for :user, :url => {:action => :interview} do |form| %><%= submit_tag "search", :class => "submit", :id => "search_input" %><% end %></td>
