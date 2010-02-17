@@ -68,7 +68,7 @@
 							<% if degree.degree != "" %>
 								<%= degree.degree %>, 
 							<% end %>
-							<%= degree.major %> <%= degree.class_year %><br/>
+							<%= degree.major %> <%= degree.class_year.to_s[2..3] %><br/>
 						<% end %>
 						</td></tr>
 						<tr><td height="5"/></tr>
