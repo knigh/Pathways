@@ -61,7 +61,8 @@
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
 							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
 						<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td></table></td></tr>
-					<% if @seeded.length > 0 %>
+						
+						<% if @seeded.length > 0 %>
 						<tr><td height="5"/></tr>
 						<tr><td><table class="clean" cellpadding="5">
 							<% @seeded.each do |seed| %>
@@ -79,7 +80,7 @@
 								</td></tr>
 							<% end %>
 						</table></td></tr>
-					< % end %>
+						<% end %>
 					</table></td></tr>
 				</table></td></tr>
 
