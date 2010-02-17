@@ -16,7 +16,7 @@
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.author != 0 && @user.id != @user.author %>
-							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %><% if @author.stanford_class != nil %> ('<%= (@author.stanford_class/10)%10%><%= @author.stanford_class % 10%>)<% end %></a></span> on <%= @user.interview_date.strftime("%B ") + @user.interview_date.day.to_s + @user.interview_date.strftime(", %Y") %><br/><br/>
+							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %> <%= @controller.getClassYears(@author) %></a></span> on <%= @user.interview_date.strftime("%B ") + @user.interview_date.day.to_s + @user.interview_date.strftime(", %Y") %><br/><br/>
 						<% end %>
 											
 						<%= @interview_text %>
