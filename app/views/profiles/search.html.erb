@@ -80,7 +80,9 @@
 							</tr>
 						</table></td></tr>
 						<tr><td height="9"/></tr>
-						<tr><td class="text" style="text-align:center"><i>We're at <%= User.count %> pathways and counting!</i></td></tr>
+						<% if (User.count > 0) %>
+							<tr><td class="text" style="text-align:center"><i>We're at <%= User.count %> pathways and counting!</i></td></tr>
+						<% end %>
 					</table></td></tr>
 			
 
@@ -108,6 +110,12 @@
 					</td></tr>
 
 					<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
+
+
+					<!-- Hidden search form -->
+					<tr style="display:none;">
+						<td><% form_for :user, :url => {:action => :search} do |form| %><%= submit_tag "search", :class => "submit", :id => "search_input" %><% end %></td>
+					</tr>
 
 				</table>
 			</td>
@@ -155,19 +163,17 @@
 		var code = (e && e.which) ? e.which : event.keyCode;
 		if(code == 13)
 		{
-			return doSearch();
+			return doSearch(document.getElementById('searchBox').value);
 		}
 		
 		return true;
 	}
 
 	function doSearch(value)
-	{
-		document.getElementById('searchTitle').innerHTML = (value == "") ? featuredTitle : searchTitle;
-		
-		// perform search
-		//alert("performing search: " + document.getElementById('searchBox').value);
-		window.location = "/profiles/search";
+	{	
+		var input = document.getElementById('search_input');
+		input.value = value;
+		input.click();
 		return false;
 	}
 

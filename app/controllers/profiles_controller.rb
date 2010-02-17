@@ -146,16 +146,23 @@ class ProfilesController < ActionController::Base
 		File.open(new, "wb") { |file| file << prev.read}
 	end
  
-def search
+	def search
 		
-		@topViewed = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
-	
-		numUsers = @topViewed.length
+		# The search parameters are set in the commit variable
+		if params[:commit]
+			@searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
+			
+		else
+			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
+		end	
+		
+		numUsers = @searchResults.length
 
+		# There has to be a better way to do this :)
 		if numUsers > 0
 			while true
 				user1 = rand(numUsers)
-				@user1 = @topViewed[user1]
+				@user1 = @searchResults[user1]
 				if @user1 != nil 
 					break
 				end
@@ -165,7 +172,7 @@ def search
 			while true
 				user2 = rand(numUsers)
 				if user2 != user1
-					@user2 = @topViewed[user2]
+					@user2 = @searchResults[user2]
 					if @user2 != nil
 						break
 					end
@@ -176,18 +183,50 @@ def search
 			while true
 				user3 = rand(numUsers)
 				if user3 != user1 && user3 != user2
-					@user3 = @topViewed[user3]
+					@user3 = @searchResults[user3]
 					if @user3 != nil
 						break
 					end
 				end
 			end
 		end
-		
+
 		@contributors = User.find(:all, :conditions => ['total_authored > ?', 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
 		 days = 7
 		 days_ago = Time.now - (days * (60*60*24)) 
 		@recent_interviews = User.find(:all, :conditions => ['date_modified > ? AND author != ?', days_ago, 0], :order => 'date_modified DESC', :limit => 5)
+	end
+
+	def interview
+
+		# The search parameters are set in the commit variable
+		if params[:commit]
+			@seeded = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
+		else
+			@seeded = User.find(:all, :conditions => ['author = ?', 0], :order => 'name')
+		end
+	end
+
+	def post_authorProfile
+		@user = User.find(params[:id])
+		@user.author = session[:user_id]
+		@user.alum_interview_text = $master.alum_default_qs
+		@user.student_interview_text = $master.student_default_qs
+
+		if @user.save
+			@job = Job.new
+			@job.user_id = @user[:id]
+			@job.save
+			@degree = Degree.new
+			@degree.user_id = @user[:id]
+			@degree.save
+			author = User.find(session[:user_id])
+			author.total_authored = author.total_authored + 1
+			author.save
+			redirect_to("/profiles/edit/#{@user[:id]}")
+		else
+			render(:action => :interview)
+		end
 	end
  
 	def post_newUser

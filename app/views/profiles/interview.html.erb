@@ -6,15 +6,15 @@
 			<td class="contentColumn"><table class="instructionsTable">
 				<tr><td class="heading">How to Interview an Alum for Pathways</td></tr>
 				
-				<tr><td style="text-align:justify"><span class="title">1. Find an alum</span><br/><span class="text">You can search or browse for
-					alumni in the boxes on the right. Feel free to Google alumni to find if they match your interests.
-					Then click &quot;Author this profile&quot; or &quot;Create a new Pathway&quot; for a name not
-					already in our database.</span></td></tr>
+				<tr><td style="text-align:justify"><span class="title">1. Find an alum</span><br/><span class="text">If you
+					have already identified an alum to interview, you can create a new pathway on the right.  Otherwise, you
+					can search or browse for alumni in the box below. Feel free to Google alumni to find if they match your
+					interests.  Then click &quot;Author profile&quot; to get started.</span></td></tr>
 				<tr><td style="text-align:justify"><span class="title">2. Set up an interview</span><br/><span class="text">Once you find an alum
 					you&apos;d like to interview, email them. Feel free to use our sample email below, and make sure to
 					include some indication you&apos;ve already researched a bit about them.</span></td></tr>
-				<tr><td style="text-align:justify"><span class="title">3. Record a great conversation</span><br/><span class="text">Our Sample
-					Question page has some suggestions, but make sure to listen carefully to your interviewee and go
+				<tr><td style="text-align:justify"><span class="title">3. Record a great conversation</span><br/><span class="text">Your alum's
+					profile page has been seeded with suggested questions, but make sure to listen carefully to your interviewee and go
 					where the conversation takes you. There are many options for recording the converstaion: using a
 					digital recorder, software programs such as Audacity, or typing as you talk.</span></td></tr>
 				<tr><td style="text-align:justify"><span class="title">4. Submit your interview</span><br/><span class="text">Once you&apos;ve typed up
@@ -29,7 +29,7 @@
 					see the current site at http://<%= $master.url %>.<br/><br/>I&apos;m writing  because I&apos;m very interested
 					in speaking with you, especially because of your time working on the Adobe Design team. Is there a convenient
 					time when we I could speak with you about your experience in the major and your subsequent career
-					path?<br/><br/>Sincerely,<br/>Millard Fillmore</td></tr>
+					path?<br/><br/>Sincerely,<br/>Marian Fillmore</td></tr>
 
 				<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>
 
@@ -39,8 +39,9 @@
 				<tr><td class="heading" /></tr>
 
 				<tr><td class="contentColumn" align="center"><table class="clean">
-					<tr><td class="box"><table class="clean" cellpadding="5">
+					<tr><td class="box" align="center"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
+					<tr><td colspan="2"/></tr>
 					<% form_for :user, :url => {:action => :post_newUser} do |form| %>
 						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
 						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
@@ -52,17 +53,41 @@
 					<% end %>
 				</table></td></tr>
 
+				<% if @seeded.length > 0 %>
+
 				<tr><td class="text" height="50" style="text-align:center">or</td></tr>
 			
-				<!--<tr><td class="contentColumn" align="center"><table class="clean">
-					<tr><td class="box"><table class="clean" cellpadding="5">
-					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
-					<% form_for :user, :url => {:action => :post_signin} do |form| %>
-						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
-						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
-						<tr><td colspan="2" style="text-align:right;"><%= submit_tag "Create", :class => "submit" %></td></tr>
-					<% end %>
-				</table></td></tr>-->
+				<tr><td class="contentColumn" align="center"><table class="clean">
+					<tr><td class="box"><table class="clean">
+						<tr><td><table class="clean"><td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
+							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
+							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
+						<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td></table></td></tr>
+						<tr><td height="5"/></tr>
+						<tr><td><table class="clean" cellpadding="5">
+							<% @seeded.each do |seed| %>
+								<tr><td style="text-align:left;"><span
+									class="text"><a href="/profiles/view/<%= seed.id %>"><%= seed.name %> <%= @controller.getClassYears(seed) %></a>
+									<% if (seed.summary != "") %><br/><%= seed.summary %><% end %></span>
+								
+								<!--
+								<tr><td style="text-align:left;"
+									onmouseover="showSeed(<%= seed.id %>)"><span class="title"><%= seed.name %> <%= @controller.getClassYears(seed) %></span><span
+										class="text"><small><a href="/profiles/view/<%= seed.id %>">view</a></small></span><span
+											class="text" style="display:none;" id="seed<%= seed.id %>"> 
+								<% if (seed.summary != "") %><br/><%= seed.summary %><% end %><% form_for :user, :url => {:action => :post_authorProfile, :id => seed.id} do |form| %><%= submit_tag "Author this Profile", :class => "submit" %><% end %></span>
+								-->
+								</td></tr>
+							<% end %>
+						</table></td></tr>
+					</table></td></tr>
+				</table></td></tr>
+
+				<% end %>
+
+				<tr style="display:none;">
+					<td><% form_for :user, :url => {:action => :interview} do |form| %><%= submit_tag "search", :class => "submit", :id => "search_input" %><% end %></td>
+				</tr>
 
 
 			</table></td>
@@ -72,10 +97,71 @@
 <% content_for :javascript do %>
 <script type="text/javascript">
 	
-	
 	function rollOver(imgName, imgSrc)
    	{
 		document.getElementById(imgName).src = imgSrc;
+	}
+
+	var currentSeed = null;
+
+	function showSeed(id)
+	{
+		if (currentSeed != null)
+		{
+			currentSeed.style.display = 'none';
+		}
+
+		currentSeed = document.getElementById('seed' + id);
+		currentSeed.style.display = 'inline';
+	}
+
+	var searchString = "Search for alumni to interview";
+	var box = document.getElementById('searchBox');
+	box.value = searchString;
+	box.style.color = "gray";
+	
+	function searchBoxClick(e)
+	{
+		var box = document.getElementById('searchBox');
+		
+		if (box.value == searchString)
+		{
+			box.value = "";
+			box.style.color = "black";
+		}
+	}
+
+	function searchImgClick()
+	{	
+		var box = document.getElementById('searchBox');
+
+		if (box.value == searchString)
+		{
+			box.click();
+			box.focus();
+			return false;
+		}
+
+		doSearch(box.value);
+	}
+
+	function searchBoxKey(e)
+	{
+		var code = (e && e.which) ? e.which : event.keyCode;
+		if(code == 13)
+		{
+			return doSearch(document.getElementById('searchBox').value);
+		}
+		
+		return true;
+	}
+
+	function doSearch(value)
+	{	
+		var input = document.getElementById('search_input');
+		input.value = value;
+		input.click();
+		return false;
 	}
 </script>
 <% end %>
