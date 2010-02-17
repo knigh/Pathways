@@ -78,8 +78,8 @@ class ProfilesController < ActionController::Base
 	def view
 		id = params[:id]
 		@user = User.find(id)
-		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
-		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
+		@jobs = Job.find(:all, :conditions => ["user_id = ? AND (title != ? OR company != ?)", id, "", ""])
+		@degrees = Degree.find(:all, :conditions => ["user_id = ? AND (degree != ? OR major != ?)", id, "", ""])
 		
 		@user.views = @user.views + 1
 

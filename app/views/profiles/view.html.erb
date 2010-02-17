@@ -61,17 +61,19 @@
 						<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td class="text"><% if @user.email_private == "0" %><%= @user.email %><% end %></td></tr>
-						<tr><td height="5"/></tr>
-						<tr><td class="title" style="text-align:left;">Stanford Experience</td></tr>
-						<tr><td class="text" style="text-align:left;">
 						
-						<% @degrees.each do |degree| %>
-							<% if degree.degree != "" %>
-								<%= degree.degree %>, 
-							<% end %>
-							<%= degree.major %><% if degree.class_year != nil && degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
+						
+						<% if @degrees.length > 0 %>
+							<tr><td height="5"/></tr>
+							<tr><td class="title" style="text-align:left;">Stanford Experience</td></tr>
+							<tr><td class="text" style="text-align:left;">
+							
+							<% @degrees.each do |degree| %>
+								<%= degree.degree %><% if degree.degree != "" && degree.major != ""%>, <% end %>
+								<%= degree.major %><% if degree.class_year != nil && degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
+							<% end %></td></tr>
 						<% end %>
-						</td></tr>
+						
 						<tr><td height="5"/></tr>
 
 
@@ -87,20 +89,18 @@
 					</table></td></tr>
 
 					<% end %>
+					<tr><td height="5"/></tr>
 
 					<% if @jobs.length > 0 %>
 					<tr><td><table class="clean">
 						<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
-						<tr><td height="5"/></tr>
-						<tr><td class="text" style="text-align:left;">
 						<% @jobs.each do |job| %>
-
-							<% if job.title.length > 0%>
-								<%= job.title %><br/><%= job.company%><br/>
-								<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
-								<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
-								<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %><br/>
-							<% end %>
+							<tr><td class="text" style="text-align:left;">
+							<%= job.title %><% if job.title.length > 0 && job.company.length > 0 %> at <% end %><%= job.company %><br/>
+							<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
+							<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
+							<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %></td></tr>
+							<tr><td height="5"/></tr>
 						<% end %>
 						</td></tr>
 					</table></td></tr>
