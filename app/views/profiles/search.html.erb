@@ -18,7 +18,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/pics/<%= @user1.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %> <%= @class_years1 %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %> <%= @controller.getClassYears(@user1) %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user1.summary %></td></tr>
 						</table></td>
@@ -30,7 +30,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user2[:id] %>"><img class="pic" src="/images/pics/<%= @user2.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %> <%= @class_years2 %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %> <%= @controller.getClassYears(@user2) %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user2.summary %></td></tr>
 						</table></td>
@@ -42,7 +42,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user3[:id] %>"><img class="pic" src="/images/pics/<%= @user3.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %> <%= @class_years3 %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %> <%= @controller.getClassYears(@user3) %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user3.summary %></td></tr>
 						</table></td>

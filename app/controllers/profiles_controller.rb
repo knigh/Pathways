@@ -80,9 +80,7 @@ class ProfilesController < ActionController::Base
 		@user = User.find(id)
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
-
-		@class_years = getClassYears(@user)
-
+		
 		@user.views = @user.views + 1
 
 		if @user.author != 0
@@ -159,7 +157,6 @@ def search
 				user1 = rand(numUsers)
 				@user1 = @topViewed[user1]
 				if @user1 != nil 
-					@class_years1 = getClassYears(@user1)
 					break
 				end
 			end
@@ -170,7 +167,6 @@ def search
 				if user2 != user1
 					@user2 = @topViewed[user2]
 					if @user2 != nil
-						@class_years2 = getClassYears(@user2)
 						break
 					end
 				end
@@ -182,7 +178,6 @@ def search
 				if user3 != user1 && user3 != user2
 					@user3 = @topViewed[user3]
 					if @user3 != nil
-						@class_years3 = getClassYears(@user3)
 						break
 					end
 				end

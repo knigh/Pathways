@@ -5,7 +5,7 @@
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
-					<tr><td colspan="2" class="heading"><%= @user.name %> <%= @class_years %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
+					<tr><td colspan="2" class="heading"><%= @user.name %> <%= @controller.getClassYears(@user) %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
 					<% if @user.video_url != "" %>
 						<% @url = @user.video_url.sub(/watch\?v=/, "v/") %>
 						<% print @url + "\n" %>
@@ -68,7 +68,7 @@
 							<% if degree.degree != "" %>
 								<%= degree.degree %>, 
 							<% end %>
-							<%= degree.major %> <%= degree.class_year.to_s[2..3] %><br/>
+							<%= degree.major %><% if degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
 						<% end %>
 						</td></tr>
 						<tr><td height="5"/></tr>
