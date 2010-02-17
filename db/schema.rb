@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100216051424) do
+ActiveRecord::Schema.define(:version => 20100216084528) do
+
+  create_table "degrees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "class_year", :default => 0
+    t.string   "degree",     :default => ""
+    t.string   "major",      :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "jobs", :force => true do |t|
     t.integer  "user_id"
@@ -51,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20100216051424) do
     t.text     "student_interview_text"
     t.text     "alum_interview_text"
     t.string   "video_url",              :default => ""
-    t.datetime "interview_date",         :default => '2010-02-12 02:47:36'
+    t.datetime "interview_date",         :default => '2010-02-16 14:41:22'
     t.text     "summary",                :default => ""
     t.string   "image_file",             :default => "blank_profile_pic.jpg"
     t.integer  "author",                 :default => 0
@@ -61,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20100216051424) do
     t.integer  "likes",                  :default => 0
     t.string   "new_question",           :default => ""
     t.string   "hashed_password"
-    t.datetime "date_added",             :default => '2010-02-12 02:47:36'
-    t.datetime "date_modified",          :default => '2010-02-12 02:47:36'
+    t.datetime "date_added",             :default => '2010-02-16 14:41:22'
+    t.datetime "date_modified",          :default => '2010-02-16 14:41:22'
     t.datetime "created_at"
     t.datetime "updated_at"
   end

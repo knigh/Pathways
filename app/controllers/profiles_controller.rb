@@ -57,12 +57,12 @@ class ProfilesController < ActionController::Base
 		if @user.update_attributes(params[:user]) then
 			@user.image_file = image_file
 			@user.save
-			if params[:commit] == "+ job"
+			if params[:commit] == " + "
 				@job = Job.new
 				@job.user_id = @user.id
 				@job.save
 				redirect_to("/profiles/edit/#{@user[:id]}")
-			elsif params[:commit] == "+ degree"
+			elsif params[:commit] == "+"
 				@degree = Degree.new
 				@degree.user_id = @user.id
 				@degree.save
@@ -106,6 +106,9 @@ class ProfilesController < ActionController::Base
 		if (firstQ != nil)
 			@interview_text = @interview_text[firstQ, @interview_text.length - firstQ]
 		end
+		
+		print "Class years: " + getClassYears(@user) + "\n"
+
 	end
  
 	def post_like
@@ -198,7 +201,7 @@ def search
 		end
 		@user.author = session[:user_id]
 		@user.alum_interview_text = $master.alum_default_qs
-		@user.student_interview_text = $master.student_defailt_qs
+		@user.student_interview_text = $master.student_default_qs
 		@user.is_alum = "1"
 		
 		flash[:notice] = nil
@@ -231,5 +234,30 @@ def search
 		end
 	end
 
+	def getClassYears(user)
+		years = Array.new
+		degrees = Degree.find(:all, :conditions => ["user_id = ?", user.id])
+		degrees.each do |degree|
+			if degree.class_year > 0
+				years << degree.class_year
+			end
+		end
+		
+		if years.length == 0
+			return ""
+		end
+		
+		print "years contains " + years.length.to_s + "\n"
+		
+		years.sort!
+		str = "("
+		years.each do |year|
+			str = str + "'" + year.to_s[2..3] + ", "
+		end
+		str = str[0, str.length - 2]
+		str = str + ")"
+				
+		return str
+	end
  
 end

@@ -43,7 +43,7 @@ class UserController < ApplicationController
     @password = params[:password]
     @password_confirmation = params[:password_confirmation]
     @user.alum_interview_text = $master.alum_default_qs
-    @user.student_interview_text = $master.student_defailt_qs
+    @user.student_interview_text = $master.student_default_qs
    
 	flash[:notice] = nil
 	
