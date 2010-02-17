@@ -96,7 +96,7 @@
 						<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
 						<% @jobs.each do |job| %>
 							<tr><td class="text" style="text-align:left;">
-							<%= job.title %><% if job.title.length > 0 && job.company.length > 0 %> at <% end %><%= job.company %><br/>
+							<%= job.title %><% if job.title.length > 0 && job.company.length > 0 %>, <% end %><%= job.company %><br/>
 							<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
 							<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
 							<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %></td></tr>
