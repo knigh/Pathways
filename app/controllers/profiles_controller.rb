@@ -18,6 +18,9 @@ class ProfilesController < ActionController::Base
 		
 		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
 
+		if @user.author != 0
+			@author = User.find(@user.author)
+		end
  
 		if @user.is_alum == "1"
 			@interview_text = @user.alum_interview_text
@@ -52,6 +55,24 @@ class ProfilesController < ActionController::Base
 		@jobs.each do |job|
 			job.update_attributes(params[:user][:existing_job_attributes][job.id])
 			job.save
+		end
+		
+		@password = params[:password]
+		@password_confirmation = params[:password_confirmation]
+		if @password != nil && @password != ""
+			if (@password != @password_confirmation)
+				logger.error("Password confirmation must match password")
+				flash[:notice] = "Password confirmation must match password"
+				  render (:action => :edit)
+				  return
+			elsif (@password.length < 6)
+				logger.error("Password must contain at least six characters")
+				flash[:notice] = "Password must contain six or more characters"
+				  render (:action => :edit)
+				  return
+			else
+				@user.hashed_password = Digest::SHA1.hexdigest(@password)
+			end
 		end
  
 		if @user.update_attributes(params[:user]) then
@@ -242,6 +263,11 @@ class ProfilesController < ActionController::Base
 		@user.student_interview_text = $master.student_default_qs
 		@user.is_alum = "1"
 		
+		password = getPassword(@user.name)
+		print password + "\n"
+		@user.hashed_password = Digest::SHA1.hexdigest(password)
+
+		
 		flash[:notice] = nil
 	
 		if @user.name.length < 1
@@ -291,6 +317,11 @@ class ProfilesController < ActionController::Base
 		years.sort!
 		return "('" + years[0].to_s[2..3] + ")"
 
+	end
+	
+	def getPassword(name)
+		name = name.downcase.delete(" ")
+		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
  
 end

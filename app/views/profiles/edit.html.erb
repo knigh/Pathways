@@ -12,14 +12,24 @@
 					<tr><td class="heading" colspan="3" style="padding-top: 10px;">Edit Pathway</td></tr>
 					<tr><td class="heading" style="width:30px;">Name:</td><td colspan="2" class="text" style="color:red;"><%= form.text_field(:name, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %><%= error_message_on :user, :name, "* Name " %></td></tr>
 					<tr><td class="heading" style="width:30px;">Email:</td><td colspan="2" class="text" style="color:red;"><%= form.text_field(:email, :size => "22x1", :class => "title", :style => "width:320px;height:18px;") %><%= error_message_on :user, :email, "* Email " %></td></tr>
-					<tr><td style="width:80px"></td><td style="width:150px"></td><td class="text"><%= form.check_box :email_private, :value => 0 %>Keep this email private</td></tr>
+					<tr><td style="width:80px"></td><td style="width:150px"></td><td class="text"><%= form.check_box :email_private, :value => "0" %>Keep this email private</td></tr>
+					<% if session[:user_id] == @user.id %>
+						<tr><td colspan="3"  class="heading">Change password</td></tr>
+
+						<tr><td class="text">Password</td><td><input name="password" type="password" size="30" /></td></tr>
+						<tr><td class="text" width="100%">Confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
+						<% if flash[:notice] %>
+							<tr><td colspan="2" class="text" style="text-align:left;color:red;">* <%= flash[:notice] %></td></tr>
+						<% end %>
+					<% end %>
+					
 					<tr><td colspan="3"  class="heading">Interview</td></tr>
 					<tr><td colspan="3"  class="text">The following interview questions are just suggestions; feel free to add your own <br/>and if you’re interviewing someone else, to natually follow the conversation.<br/>Also feel free to add a video to this page by entering a YouTube URL below.</td></tr>
 					
 					<tr><td class="text" colspan="3">YouTube URL:&nbsp;<%= form.text_field(:video_url, :size => "30x1", :class => "text", :style => "width:400px;height:15px;text-align:left") %></td></tr>
 
 					<tr><td height="7"/></tr>
-					<tr><td colspan="3"  class="text">I am a: <%= radio_button("user", "is_alum", "0") %>student <%= radio_button("user", "is_alum", "1") %>alum</td></tr>
+					<tr><td colspan="3"  class="text">I am &nbsp;<%= radio_button("user", "is_alum", "0") %>a student&nbsp;&nbsp; <%= radio_button("user", "is_alum", "1") %>an alum</td></tr>
 					<tr><td colspan="3"  class="text">
 						<% if @user.is_alum == "1" %><%= form.text_area(:alum_interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %>
 						<% else %><%= form.text_area(:student_interview_text, :size => "65x25", :style=> "overflow:auto;background-color:#EAF0F5", :class => "title", :wrap => "soft") %><% end %></td></tr>
@@ -27,6 +37,11 @@
 					<tr><td colspan="3" class="heading"><%= form.text_field(:six_words, :size => "67x1", :class => "title", :style => "width:604px;height:18px;text-align:left;") %></td></tr>
 					<tr><td colspan="3" class="heading">Brief summary (for search results):</td></tr>
 					<tr><td colspan="3" class="heading"><%= form.text_area(:summary, :size => "65x6", :class => "title") %></td></tr>
+					
+					<% if @user.author != 0 && @user.author != @user.id && @user.id == session[:user_id] %>
+						<tr><td colspan="3" class="text" style="text-align:left;"><%= form.check_box :editing_restricted, {}, "0", "1" %>Allow my interviewer, <%= @author.name %>, to continue editing my profile</td></tr>
+					<% end %>
+					
 					<tr><td colspan="3" style="text-align:right;"><%= submit_tag "Save Changes", :class =>"submit" %></td></tr>
 
 
