@@ -81,6 +81,8 @@ class ProfilesController < ActionController::Base
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
 
+		@class_years = getClassYears(@user)
+
 		@user.views = @user.views + 1
 
 		if @user.author != 0
@@ -107,8 +109,6 @@ class ProfilesController < ActionController::Base
 			@interview_text = @interview_text[firstQ, @interview_text.length - firstQ]
 		end
 		
-		print "Class years: " + getClassYears(@user) + "\n"
-
 	end
  
 	def post_like
@@ -126,15 +126,16 @@ class ProfilesController < ActionController::Base
  
 	def post_question
 		@user = User.find(params[:id])
-		@user.new_question = params[:user][:new_question]
+		new_question = params[:new_question]
 		asker = ""
 		if session[:user_id]
 			user = User.find(session[:user_id])
 			asker = " (posted by " + user.name + ")"
 		end
-		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + @user.new_question + asker + "\nA:\n"
-		@user.student_interview_text = @user.student_interview_text + "\nQ: " + @user.new_question + asker + "\nA:\n"
+		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
+		@user.student_interview_text = @user.student_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
 		@user.views = @user.views - 1
+		@user.question_asked = Time.now
 		author = User.find(@user.author)
 		author.total_views = author.total_views - 1
  
@@ -158,6 +159,7 @@ def search
 				user1 = rand(numUsers)
 				@user1 = @topViewed[user1]
 				if @user1 != nil 
+					@class_years1 = getClassYears(@user1)
 					break
 				end
 			end
@@ -168,6 +170,7 @@ def search
 				if user2 != user1
 					@user2 = @topViewed[user2]
 					if @user2 != nil
+						@class_years2 = getClassYears(@user2)
 						break
 					end
 				end
@@ -179,6 +182,7 @@ def search
 				if user3 != user1 && user3 != user2
 					@user3 = @topViewed[user3]
 					if @user3 != nil
+						@class_years3 = getClassYears(@user3)
 						break
 					end
 				end
@@ -237,8 +241,9 @@ def search
 	def getClassYears(user)
 		years = Array.new
 		degrees = Degree.find(:all, :conditions => ["user_id = ?", user.id])
+		
 		degrees.each do |degree|
-			if degree.class_year > 0
+			if degree.class_year != nil && degree.class_year > 0
 				years << degree.class_year
 			end
 		end
@@ -250,14 +255,8 @@ def search
 		print "years contains " + years.length.to_s + "\n"
 		
 		years.sort!
-		str = "("
-		years.each do |year|
-			str = str + "'" + year.to_s[2..3] + ", "
-		end
-		str = str[0, str.length - 2]
-		str = str + ")"
-				
-		return str
+		return "('" + years[0].to_s[2..3] + ")"
+
 	end
  
 end

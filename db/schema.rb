@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20100216084528) do
     t.string   "self_description"
     t.string   "url"
     t.text     "alum_default_qs"
-    t.text     "student_defailt_qs"
+    t.text     "student_default_qs"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,26 +52,24 @@ ActiveRecord::Schema.define(:version => 20100216084528) do
     t.string   "name"
     t.string   "email"
     t.string   "email_private",          :default => "0"
-    t.integer  "stanford_class"
-    t.string   "focus",                  :default => ""
-    t.string   "degree",                 :default => ""
     t.string   "six_words",              :default => ""
     t.string   "is_alum",                :default => "0"
     t.text     "student_interview_text"
     t.text     "alum_interview_text"
     t.string   "video_url",              :default => ""
-    t.datetime "interview_date",         :default => '2010-02-16 14:41:22'
+    t.datetime "interview_date",         :default => '2010-02-16 21:07:52'
     t.text     "summary",                :default => ""
     t.string   "image_file",             :default => "blank_profile_pic.jpg"
     t.integer  "author",                 :default => 0
+    t.integer  "editing_restricted",     :default => 0
     t.integer  "total_views",            :default => 0
     t.integer  "total_authored",         :default => 0
     t.integer  "views",                  :default => 0
     t.integer  "likes",                  :default => 0
-    t.string   "new_question",           :default => ""
     t.string   "hashed_password"
-    t.datetime "date_added",             :default => '2010-02-16 14:41:22'
-    t.datetime "date_modified",          :default => '2010-02-16 14:41:22'
+    t.datetime "date_added",             :default => '2010-02-16 21:07:52'
+    t.datetime "date_modified",          :default => '2010-02-16 21:07:52'
+    t.datetime "question_asked"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

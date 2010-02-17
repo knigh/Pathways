@@ -18,7 +18,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user1[:id] %>"><img class="pic" src="/images/pics/<%= @user1.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %><% if @user1.stanford_class != nil %> ('<%= (@user1.stanford_class/10)%10%><%= @user1.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user1[:id] %>"><%= @user1.name %> <%= @class_years1 %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user1.summary %></td></tr>
 						</table></td>
@@ -30,7 +30,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user2[:id] %>"><img class="pic" src="/images/pics/<%= @user2.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %><% if @user2.stanford_class != nil %> ('<%= (@user2.stanford_class/10)%10%><%= @user2.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user2[:id] %>"><%= @user2.name %> <%= @class_years2 %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user2.summary %></td></tr>
 						</table></td>
@@ -42,7 +42,7 @@
 					<tr><td><table class="searchResult"><tr>
 						<td valign="top"><a href="/profiles/view/<%= @user3[:id] %>"><img class="pic" src="/images/pics/<%= @user3.image_file %>"/></a></td>
 						<td valign="top"><table class="clean">
-							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %><% if @user3.stanford_class != nil %> ('<%= (@user3.stanford_class/10)%10%><%= @user3.stanford_class % 10%>)<% end %></a></td></tr>
+							<tr><td class="title"><a href="/profiles/view/<%= @user3[:id] %>"><%= @user3.name %> <%= @class_years3 %></a></td></tr>
 							<tr><td height="3"/></tr>
 							<tr><td class="text"><%= @user3.summary %></td></tr>
 						</table></td>
@@ -90,7 +90,7 @@
 						<table style="clean">
 							<tr><td class="heading" width="180">Top Contributors</td><td class="title" width="70" align="center">Interviews Contributed</td><td class="title" width="70" align="center">Total Views</td></tr>
 							<% @contributors.each do |contributor| %>
-								<tr><td class="title"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %><% if contributor.stanford_class != nil %> ('<%= (contributor.stanford_class/10)%10%><%= contributor.stanford_class % 10%>)<% end %></a></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
+								<tr><td class="title"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %> <%= @controller.getClassYears(contributor) %></a></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
 							<% end %>
 						</table>
 					</td></tr>
@@ -102,7 +102,7 @@
 							<tr><td class="heading" width="180">Recent Pathways</td><td class="title" width="140" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
 								<% author = User.find(recent.author) %>
-								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %><% if recent.stanford_class != nil %> ('<%= (recent.stanford_class/10)%10%><%= recent.stanford_class % 10%>)<%end %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><% if recent.author == recent.id %><%= "-" %><% else %><%= author.name %><% if author.stanford_class != nil %> ('<%= (author.stanford_class/10)%10%><%= author.stanford_class % 10%>)<%end %><% end %></a></td></tr>
+								<tr><td class="title"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><a href="/profiles/view/<%= author.id %>"><% if recent.author == recent.id %><%= "-" %><% else %><%= author.name %> <%= @controller.getClassYears(author) %><% end %></a></td></tr>
 							<% end %>
 						<table>
 					</td></tr>

@@ -5,7 +5,7 @@
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
-					<tr><td colspan="2" class="heading"><%= @user.name %><% if @user.stanford_class != nil %> ('<%= (@user.stanford_class/10)%10%><%= @user.stanford_class % 10%>)<% end %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
+					<tr><td colspan="2" class="heading"><%= @user.name %> <%= @class_years %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
 					<% if @user.video_url != "" %>
 						<% @url = @user.video_url.sub(/watch\?v=/, "v/") %>
 						<% print @url + "\n" %>
@@ -35,7 +35,7 @@
 						<% end %></td></tr>
 					
 						<tr><td><% form_for :user, :url => {:action => :post_question} do |form| %>
-						<%= form.text_field(:new_question, :size => "63x1") %>
+						<input type="text" name="new_question" size="63" />
 						<input type = "hidden" name="id" value="<%= params[:id] %>">
 						<%= submit_tag "Post a new question", :class => "submit" %>
 						<% end %>
@@ -68,7 +68,7 @@
 							<% if degree.degree != "" %>
 								<%= degree.degree %>, 
 							<% end %>
-							<%= degree.major %><% if degree.class_year != nil %> ('<%= (degree.class_year/10)%10%><%= degree.class_year % 10%>)<% end %><br/>
+							<%= degree.major %><%= @class_years%><br/>
 						<% end %>
 						</td></tr>
 						<tr><td height="5"/></tr>
