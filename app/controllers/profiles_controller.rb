@@ -232,7 +232,8 @@ class ProfilesController < ActionController::Base
 		end
 
 		@contributors = User.find(:all, :conditions => ['total_authored > ?', 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
-		 days = 7
+		 
+		   days = 7
 		 days_ago = Time.now - (days * (60*60*24)) 
 		@recent_interviews = User.find(:all, :conditions => ['date_modified > ? AND author != ?', days_ago, 0], :order => 'date_modified DESC', :limit => 5)
 		
