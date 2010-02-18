@@ -180,7 +180,7 @@ class ProfilesController < ActionController::Base
 			jobResults.each do |job|
 				user = User.find(job.user_id)
 				if (user.author != 0) 
-					searchResults.insert(user)
+					searchResults << user
 				end
 			end
 			
@@ -188,10 +188,10 @@ class ProfilesController < ActionController::Base
 			degreeResults.each do |degree|
 				user = User.find(degree.user_id)
 				if (user.author != 0) 
-					searchResults.insert(user)
+					searchResults << user
 				end
 			end
-			@searchResults = searchResults
+			@searchResults = searchResults.uniq.sort { |a, b| a.name <=> b.name}
 		else
 			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
 		end	
