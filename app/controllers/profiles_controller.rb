@@ -184,7 +184,7 @@ class ProfilesController < ActionController::Base
 			end
 			@searchResults = @searchResults.uniq.sort
 		else
-			@searchResults = User.find(:all, :conditions => ['author != ?'], :order => 'views DESC', :limit => 10)
+			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
 		end	
 		
 		numUsers = @searchResults.length
