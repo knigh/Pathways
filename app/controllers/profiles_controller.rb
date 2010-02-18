@@ -172,7 +172,26 @@ class ProfilesController < ActionController::Base
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
-			@searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ?', params[:commit], 0], :order => 'name')
+			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ?', params[:commit], 0], :order => 'name')
+			if searchResults == nil
+				searchResults = Array.new
+			end
+			jobResults = Job.find(:all, :conditions => ['match(company,title,responsibilities) against (?)', params[:commit]])
+			jobResults.each do |job|
+				user = User.find(job.user_id)
+				if (user.author != 0) 
+					searchResults << user
+				end
+			end
+			
+			degreeResults = Degree.find(:all, :conditions => ['match(major,degree) against (?)', params[:commit]])
+			degreeResults.each do |degree|
+				user = User.find(degree.user_id)
+				if (user.author != 0) 
+					searchResults << user
+				end
+			end
+			@searchResults = searchResults.uniq.sort { |a, b| a.name <=> b.name}
 		else
 			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
 		end	
