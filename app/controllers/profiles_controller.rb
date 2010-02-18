@@ -191,7 +191,7 @@ class ProfilesController < ActionController::Base
 					searchResults.insert(user)
 				end
 			end
-			@searchResults = searchResults.uniq.sort { |a, b| a.name <=> b.name}
+			@searchResults = searchResults
 		else
 			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
 		end	
