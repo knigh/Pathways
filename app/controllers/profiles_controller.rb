@@ -177,14 +177,14 @@ class ProfilesController < ActionController::Base
 				user = User.find(job.user_id)
 				@searchResults.insert(user)
 			end
-			@degrees = Degree.find(:all, :conditions => ['match(major,degree) against (? with query expansion)', params[:commit], 0])
+			@degrees = Degree.find(:all, :conditions => ['match(major,degree) against (? with query expansion)', params[:commit]])
 			@degrees.each do |degree|
 				user = User.find(degree.user_id)
 				@searchResults.insert(user)
 			end
 			@searchResults = @searchResults.uniq.sort
 		else
-			@searchResults = User.find(:all, :conditions => ['author != ?', 0], :order => 'views DESC', :limit => 10)
+			@searchResults = User.find(:all, :conditions => ['author != ?'], :order => 'views DESC', :limit => 10)
 		end	
 		
 		numUsers = @searchResults.length
