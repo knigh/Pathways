@@ -172,7 +172,7 @@ class ProfilesController < ActionController::Base
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))			
 			@searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
-			@jobs = Job.find(:all, :conditions => ['match(title,company,responsibilities) against (? with query expansion)', params[:commit], 0])
+			@jobs = Job.find(:all, :conditions => ['match(title,company,responsibilities) against (? with query expansion)', params[:commit]])
 			@jobs.each do |job|
 				user = User.find(job.user_id)
 				@searchResults.insert(user)
