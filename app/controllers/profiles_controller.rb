@@ -173,7 +173,7 @@ class ProfilesController < ActionController::Base
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
 			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ?', params[:commit], 0], :order => 'name')
-			jobResults = Job.find(:all, :conditions => ['match(company,title,responsibilities) against (?)', params[:commit], 0])
+			jobResults = Job.find(:all, :conditions => ['match(company,title,responsibilities) against (?)', params[:commit]])
 			jobResults.each do |job|
 				user = User.find(job.user_id)
 				if (user.author != 0) 
@@ -181,7 +181,7 @@ class ProfilesController < ActionController::Base
 				end
 			end
 			
-			degreeResults = Degree.find(:all, :conditions => ['match(major,degree) against (?)', params[:commit], 0])
+			degreeResults = Degree.find(:all, :conditions => ['match(major,degree) against (?)', params[:commit]])
 			degreeResults.each do |degree|
 				user = User.find(degree.user_id)
 				if (user.author != 0) 
