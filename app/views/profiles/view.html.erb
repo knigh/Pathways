@@ -2,6 +2,7 @@
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		
+			<% print "author: " + @user.author.to_s + "\n" %>
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
@@ -53,7 +54,7 @@
 						<% if session[:user_id] == @user.id || (session[:user_id] == @user.author && @user.editing_restricted != 1) %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Profile", :class => "submit" %><% end %>
 						<% elsif session[:user_id] != nil && @user.author == 0 %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit" %><% end %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s profile. Are you sure you want to continue?" %><% end %>
 						<% end %>
 					</td></tr>
 
