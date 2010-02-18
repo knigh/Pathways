@@ -173,6 +173,9 @@ class ProfilesController < ActionController::Base
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
 			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ?', params[:commit], 0], :order => 'name')
+			if searchResults == nil
+				searchResults = Array.new
+			end
 			jobResults = Job.find(:all, :conditions => ['match(company,title,responsibilities) against (?)', params[:commit]])
 			jobResults.each do |job|
 				user = User.find(job.user_id)
