@@ -1,11 +1,160 @@
-Collaborators:
+:::::::Collaborators:
 	Kelly Nigh
 	Jacob Klein
 	Coram Bryant
 
-SubDomains:
+:::::::SubDomains:
 	SymSys
 	Daily
 
+:::::::Search Support:
+
+	The following must be performed manually on any table that
+	supports search:
+
+	ALTER TABLE users ENGINE = MYISAM;
+
+	Indices are created as follows:
+
+	CREATE fulltext INDEX x_f_search ON users
+		(name,summary,alum_interview_text,student_interview_text,six_words);
+
+	Searches are performed as follows (I'm not sure if the match fields have to all match the fields in the CREATE statement)
+
+	SELECT * FROM users 
+		WHERE match(name,summary,alum_interview_text,student_interview_text,six_words)
+			against ("Jacob" WITH query expansion)
+
+	Note: "WITH query expansion" is probably sub-optimal (leads to unexpected results and requires two passes)
 
 
+:::::::update_all.sh:
+
+#!/bin/bash
+# update_all.sh
+# Updates all subdomains and main site
+
+cd SandBox
+rm log/development.log
+rm config/database.yml
+git pull
+cd config
+cp database.yml.sandbox database.yml
+
+cd ../..
+cd Daily
+rm log/development.log
+rm config/database.yml
+git pull
+cd config
+cp database.yml.daily database.yml
+
+# copy this block for each subdomain, updating appropriately
+cd ../..
+cd SymSys
+rm log/development.log
+rm config/database.yml
+git pull
+cd config
+cp database.yml.symsys database.yml
+
+# do this last (it can be done from any subdomain)
+cd ../public
+cp main.html ~/public_html/index.html
+rm -r ~/public_html/stylesheets
+cp -r stylesheets ~/public_html
+rm -r ~/public_html/images
+cp -r images ~/public_html
+
+
+:::::::Installing git on bluehost (from a blog that has since come down):
+
+Background
+
+It seems that Bluehost by default does not support nor tell you how to install Git. I also tried posting a query on Bluehost’s forums to see if anybody has done it before but with no luck.  So I decided to just go ahead and try this out myself.  Also note that you will need to enable the SSH access on your bluehost account to do this. You can easily enable SSH on your account by sending a request to Bluehost Tech support.
+
+Here are my specs from the bluehost account:
+
+myuser@koolwal.net [~]# cat /proc/version
+
+Output:
+Linux version 2.6.28-9.16.intel.BHsmp (kernel@bluehost.com) (gcc version 3.4.6 20060404 (Red Hat 3.4.6-10)) #1 SMP Sat Apr 18 11:41:59 MDT 2009
+myuser@koolwal.net [~]#
+
+Basically it is a Red Hat Linux system with 2.6.28 Linux kernel running. So now we have all the information that we need let’s get started…
+
+Step 1: Download git tarball
+
+Log into your Bluehost account and give the following command:
+
+# wget http://kernel.org/pub/software/scm/git/git-1.6.3.3.tar.bz2
+
+Note: The latest stable release version might have changed since this posting, so you need to substitute in the above command the latest git version that you would like to install or else you can continue with the git version that I ended up installing. You can checkout the latest stable release version of git here.
+
+Step 2: Extract the tarball
+
+Now just extract the tarball installation file in your home directory
+
+# tar -xjvf git-1.6.3.3.tar.bz2
+
+Step 3: Compile the git program
+
+# cd git-1.6.3.3
+# make
+
+Now mostly after a while you will get the following error message and your make command will fail:
+
+make[2]: true: Command not found
+make[2]: *** [blibdirs] Error 127
+make[1]: *** [all] Error 2
+make: *** [all] Error 2
+
+It seems that the true command is not installed on the bluehost servers but you type in the command true it seems that it exits:
+
+myuser@koolwal.net [~]# true
+myuser@koolwal.net [~]#
+
+This probably means that the git make command is not able to locate the directory in which the true command sits.
+
+Step 4: Fix “true”: Command not found error
+
+The simplest way to fix this error is to create an empty script file called true with just the following line:
+
+#!/bin/sh
+
+Save and exit the file and copy it in your local bin directory after making it executable:
+
+# cd;
+# chmod 755 true
+# mkdir bin (if the directory does not exits)
+# cp true bin/true
+
+and now you can re-issue the make command:
+
+# cd git-1.6.3.3
+# make clean
+# make
+
+and now after a while you should see the the “make” command finishes without any error.
+
+Step 5: Install the git program
+
+Finally you can install the git software by issuing the following command:
+
+# make install
+
+and you should be able to execute the “git” command on your Bluehost account.
+
+Step 6: Test git
+
+Now it is time to test if the “git” program installed successfully or not.
+
+# mkdir test_project
+# cd test_project
+# git
+
+Output:
+
+Initialized empty Git repository in /home1/myuser/test_project/.git/
+
+Congratulations the above output means that your “git” is working just fine and now you can use it for your project that you have been planning.
