@@ -39,7 +39,7 @@
 					<tr><td colspan="3" class="heading"><%= form.text_area(:summary, :size => "65x6", :class => "title") %></td></tr>
 					
 					<% if @user.author != 0 && @user.author != @user.id && @user.id == session[:user_id] %>
-						<tr><td colspan="3" class="text" style="text-align:left;"><%= form.check_box :editing_restricted, {}, "0", "1" %>Allow my interviewer, <%= @author.name %>, to continue editing my profile</td></tr>
+						<tr><td colspan="3" class="text" style="text-align:left;"><%= form.check_box :editing_restricted, :value => "0" %>Allow my interviewer, <%= @author.name %>, to continue editing my profile</td></tr>
 					<% end %>
 					
 					<tr><td colspan="3" style="text-align:right;"><%= submit_tag "Save Changes", :class =>"submit" %></td></tr>
