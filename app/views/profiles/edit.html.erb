@@ -27,7 +27,7 @@
 						<% if session[:user_id] == @user.id %>
 							<tr><td colspan="4"/></tr>
 							<tr>
-								<td colspan="3"><table class="clean" cellpadding="5">
+								<td colspan="2"><table class="clean" cellpadding="5">
 									<tr><td class="text" width="70px">Password</td><td><input name="password" type="password" style="height:16px;width:192px;" /></td></tr>
 									<tr><td class="text">Confirm password</td><td class="text" style="color:red;"><input name="password_confirmation" type="password" style="height:16px;width:192px;" /><% if flash[:notice] %><br/><small>* <%= flash[:notice] %></small><% end %></td></tr>
 								</table></td>
@@ -84,7 +84,7 @@
 	
 					<tr>
 						<td class="text" width="100">Class year</td>
-						<td><%= select("[user][existing_degree_attributes][#{degree.id}]", "class_year", options_for_select((1935..2020).to_a.reverse {|year| [year.to_s, year]}, degree.class_year), { :include_blank => true}) %></td>
+						<td><%= select("[user][existing_degree_attributes][#{degree.id}]", "class_year", options_for_select((1935..2020).to_a {|year| [year.to_s, year]}, degree.class_year), { :include_blank => true}) %></td>
 					</tr>
 					<tr>
 						<td class="text">Degree</td>
@@ -122,7 +122,7 @@
 						<td><%= select("[user][existing_job_attributes][#{job.id}]", "start_m", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3],
 							["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]], 
 							job.start_m), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
-						<td><%= select("[user][existing_job_attributes][#{job.id}]", "start_y", options_for_select((1930..2010).to_a.reverse {|year| [year.to_s, year]}, job.start_y), { :include_blank => true}) %></td>
+						<td><%= select("[user][existing_job_attributes][#{job.id}]", "start_y", options_for_select((1930..2010).to_a {|year| [year.to_s, year]}, job.start_y), { :include_blank => true}) %></td>
 					</tr>
 						
 					<tr>
@@ -130,7 +130,7 @@
 						<td><%=select("[user][existing_job_attributes][#{job.id}]", "end_m", options_for_select([["Jan", 1], ["Feb", 2], ["Mar", 3],
 							["Apr", 4], ["May", 5], ["Jun", 6], ["Jul", 7], ["Aug", 8], ["Sep", 9], ["Oct", 10], ["Nov", 11], ["Dec", 12]],
 							job.end_m), { :include_blank => true}) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/</td>
-						<td><%=select("[user][existing_job_attributes][#{job.id}]", "end_y", options_for_select((1930..2010).to_a.reverse {|year| [year.to_s, year]}, job.end_y), { :include_blank => true}) %></td>
+						<td><%=select("[user][existing_job_attributes][#{job.id}]", "end_y", options_for_select((1930..2010).to_a {|year| [year.to_s, year]}, job.end_y), { :include_blank => true}) %></td>
 					</tr>
 					
 					<tr>
