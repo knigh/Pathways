@@ -56,7 +56,7 @@
 						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s profile. Are you sure you want to continue?" %><% end %>
 						<% elsif @user.author == 0 %>
-							<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Sign In to Author Profile", :class => "submit" %><% end %>
+							<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit" %><% end %>
 						<% end %>
 					</td></tr>
 
