@@ -99,6 +99,12 @@ class ProfilesController < ActionController::Base
 			render(:action => :edit)
 		end
 	end
+	
+	def signin_to_interview
+		flash[:alert] = "You must sign up or sign in to author another person's pathway"
+		flash[:id] = params[:id]
+		redirect_to(:controller => :user, :action => :signin)
+	end	
 	 
 	def view
 		id = params[:id]

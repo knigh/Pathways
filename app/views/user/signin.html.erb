@@ -3,7 +3,11 @@
 		<tr><td class="content">
 	
 		<table class="clean" align="center" cellpadding="38"><tr>
-	
+		
+			<% if flash[:alert] %>
+				<td colspan="2" class="text" style="text-align:center;height: 10px;"><%= flash[:alert] %></td></tr><tr>
+			<% end %>
+			
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="signInTable">
 				<tr><td class="text" height="30" style="text-align:center">First time user? Sign up here:</td></tr>
@@ -14,10 +18,8 @@
 						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
 						<tr><td class="text">Password</td><td><input name="password" type="password" size="30" /></td></tr>
 						<tr><td class="text" width="100%">Confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
-							<% if (flash[:notice].index('r') == 0) %>
-								* <%= flash[:notice].sub(/r: /, '') %>
-							<% end %>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:signup_notice] %>
+								* <%= flash[:signup_notice] %>
 						<% end %><%= submit_tag "Sign up", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>
@@ -30,10 +32,8 @@
 					<% form_for :user, :url => {:action => :post_signin} do |form| %>
 						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
 						<tr><td class="text" width="100%">Password</td><td><input name="password" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
-							<% if (flash[:notice].index('s') == 0) %>
-								* <%= flash[:notice].sub(/s: /, '')%>
-							<% end %>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:signin_notice] %>
+								* <%= flash[:signin_notice] %>
 						<% end %><%= submit_tag "Sign in", :class => "submit" %></td></tr>
 					<% end %>
 				</table></td></tr>

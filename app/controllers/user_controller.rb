@@ -6,26 +6,35 @@ class UserController < ApplicationController
    $master = Master.find(1)
 
   def signin
-	flash[:notice] = nil
+  	flash[:signup_notice] = nil
+	flash[:signin_notice] = nil
+	flash.keep(:id)
   end 
 
   def post_signin
-  	flash[:notice] = nil
+  	flash[:signup_notice] = nil
+	flash[:signin_notice] = nil
+	flash.keep(:id)
+
     @user = User.find_by_email(params[:user][:email])
     if (@user.nil?)
 	reset_session
 	logger.error("Invalid email")
-	flash[:notice] = "s: Invalid email"
+	flash[:signin_notice] = "Invalid email"
 	render :action => 'signin'
     else
 	@hashed_password = Digest::SHA1.hexdigest(params[:password])
 	if (@hashed_password != @user.hashed_password)
 		logger.error("Invalid password")
-		flash[:notice] = "s: Invalid password"
+		flash[:signin_notice] = "Invalid password"
       	render (:action => :signin)
 	else
-		session["#{$master.url}_id"] = @user[:id]
-		redirect_to("/profiles/view/#{@user[:id]}")
+		session["#{$master.url}_id"] = @user[:id];
+		if flash[:id]
+			redirect_to("/profiles/view/#{flash[:id]}")	    	
+		else
+			redirect_to("/profiles/view/#{@user[:id]}")	    	
+		end
 	end
     end
   end
@@ -45,31 +54,33 @@ class UserController < ApplicationController
     @user.alum_interview_text = $master.alum_default_qs
     @user.student_interview_text = $master.student_default_qs
    
-	flash[:notice] = nil
+	flash[:signup_notice] = nil
+	flash[:signin_notice] = nil
+	flash.keep(:id)
 	
 	if @user.name.length < 1
 		logger.error("Name can't be blank")
-		flash[:notice] = "r: Name can't be blank"
+		flash[:signup_notice] = "Name can't be blank"
 		render (:action => :signin)
 		return
 	elsif @user.email.length < 1
 		logger.error("Email can't be blank")
-		flash[:notice] = "r: Email can't be blank"
+		flash[:signup_notice] = "Email can't be blank"
 		render (:action => :signin)
 		return
 	end
 	match = User.find_by_email(@user.email)
 	if not match.nil?
 		logger.error("Email is already in use")
-		flash[:notice] = "r: Email is already in use"
+		flash[:signup_notice] = "Email is already in use"
 		render (:action => :signin)
     elsif (@password != @password_confirmation)
 		logger.error("Password confirmation must match password")
-		flash[:notice] = "r: Password confirmation must match password"
+		flash[:signup_notice] = "Password confirmation must match password"
 		  render (:action => :signin)
     elsif (@password.length < 6)
 		logger.error("Password must contain at least six characters")
-		flash[:notice] = "r: Password must contain six or more characters"
+		flash[:signup_notice] = "Password must contain six or more characters"
 		  render (:action => :signin)
     else
    	 	@user.hashed_password = Digest::SHA1.hexdigest(@password)
@@ -84,7 +95,11 @@ class UserController < ApplicationController
 			@degree.save
 
 			session["#{$master.url}_id"] = @user[:id];
-			redirect_to("/profiles/edit/#{@user[:id]}")	    	
+			if flash[:id]
+				redirect_to("/profiles/view/#{flash[:id]}")	    	
+			else
+				redirect_to("/profiles/edit/#{@user[:id]}")	    	
+			end
 		else
 			render (:action => :signin)
 		end
