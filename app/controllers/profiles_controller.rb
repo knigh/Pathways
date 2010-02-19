@@ -14,6 +14,10 @@ class ProfilesController < ActionController::Base
 			@user.save
 		end
  
+		if !(session[:user_id] == @user.id || (session[:user_id] == @user.author && @user.editing_restricted != 1))
+			redirect_to(:action => :view, :id => id)
+		end
+ 
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		
 		@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])

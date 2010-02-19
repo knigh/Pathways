@@ -24,7 +24,7 @@ class UserController < ApplicationController
 		flash[:notice] = "s: Invalid password"
       	render (:action => :signin)
 	else
-		session[:user_id] = @user[:id];
+		session[:user_id] = @user[:id]
 		redirect_to("/profiles/view/#{@user[:id]}")
 	end
     end
