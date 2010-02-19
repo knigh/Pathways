@@ -15,27 +15,27 @@
 					
 						<tr>
 							<td class="text" width="75px">&nbsp;&nbsp;Name</td>
-							<td class="text" style="color:red;"><%= form.text_field(:name, :class => "text", :style => "height:16px;width:192px;") %><small><%= error_message_on :user, :name, "* Name " %></small></td>
+							<td class="text" style="color:red;"><%= form.text_field(:name, :class => "text", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :name, "* Name " %></small></td>
 							<td class="text" valign="top"><small>&nbsp;&nbsp;I am&nbsp;&nbsp;<%= radio_button("user", "is_alum", "0") %>a student&nbsp;<%= radio_button("user", "is_alum", "1") %>an alum</small></td>
 						</tr>
 						<tr>
 							<td class="text">&nbsp;&nbsp;Email</td>
-							<td class="text" style="color:red;"><%= form.text_field(:email, :class => "text", :style => "height:16px;width:192px;") %><small><%= error_message_on :user, :email, "* Email " %></small></td>
+							<td class="text" style="color:red;"><%= form.text_field(:email, :class => "text", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :email, "* Email " %></small></td>
 							<td class="text" valign="top"><%= form.check_box :email_private, :value => "0" %>&nbsp;<small>keep this email private</small></td>
 						</tr>
 						
 						<% if session[:user_id] == @user.id %>
-							<tr><td colspan="4"/></tr>
+							<tr><td colspan="3"/></tr>
 							<tr>
 								<td colspan="2"><table class="clean" cellpadding="5">
-									<tr><td class="text" width="70px">Password</td><td><input name="password" type="password" style="height:16px;width:192px;" /></td></tr>
-									<tr><td class="text">Confirm password</td><td class="text" style="color:red;"><input name="password_confirmation" type="password" style="height:16px;width:192px;" /><% if flash[:notice] %><br/><small>* <%= flash[:notice] %></small><% end %></td></tr>
+									<tr><td class="text" width="70px">Change Password</td><td><input name="password" type="password" style="height:16px;width:190px;" /></td></tr>
+									<tr><td class="text">Confirm password</td><td class="text" style="color:red;"><input name="password_confirmation" type="password" style="height:16px;width:190px;" /><% if flash[:notice] %><br/><small>* <%= flash[:notice] %></small><% end %></td></tr>
 								</table></td>
 								<td valign="top">
 									<% if @user.author != 0 && @user.author != @user.id && @user.id == session[:user_id] %>
 										<table class="clean"><tr>
-											<td><%= form.check_box :editing_restricted, {}, "0", "1" %></td>
-											<td class="text" style="text-align:left;"><small>Allow my interviewer, <%= @author.name %>, to continue editing my Pathway</td>
+											<td valign="top"><%= form.check_box :editing_restricted, {}, "0", "1" %></td>
+											<td class="text" style="text-align:left;" width="165px"><small>Allow my interviewer, <%= @author.name %>, to continue editing my Pathway</td>
 										</tr></table>
 									<% end %>
 								</td>
