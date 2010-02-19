@@ -38,7 +38,7 @@
 			<td class="contentColumn"><table class="authorAlumTable">
 				<tr><td class="heading" /></tr>
 
-				<tr><td class="contentColumn" align="center"><table class="clean">
+				<tr><td class="contentColumn" align="center"><table class="clean" width="100%">
 					<tr><td class="box" align="center"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
 					<tr><td colspan="2"/></tr>
@@ -55,12 +55,15 @@
 
 				<tr><td class="text" height="50" style="text-align:center">or</td></tr>
 			
-				<tr><td class="contentColumn" align="center"><table class="clean">
+				<tr><td class="contentColumn" align="center"><table class="clean" width="100%">
 					<tr><td class="box"><table class="clean">
-						<tr><td><table class="clean"><td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
+						<tr><td><table class="clean"><tr>
+							<td width="4" />
+							<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
 							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
-						<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td></table></td></tr>
+							<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td>
+						</tr></table></td></tr>
 						
 						<% if @seeded.length > 0 %>
 						<tr><td height="5"/></tr>
