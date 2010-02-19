@@ -24,7 +24,7 @@ class UserController < ApplicationController
 		flash[:notice] = "s: Invalid password"
       	render (:action => :signin)
 	else
-		session[:user_id] = @user[:id]
+		session["#{$master.url}_id"] = @user[:id]
 		redirect_to("/profiles/view/#{@user[:id]}")
 	end
     end
@@ -83,7 +83,7 @@ class UserController < ApplicationController
 			@degree.user_id = @user[:id]
 			@degree.save
 
-			session[:user_id] = @user[:id];
+			session["#{$master.url}_id"] = @user[:id];
 			redirect_to("/profiles/edit/#{@user[:id]}")	    	
 		else
 			render (:action => :signin)

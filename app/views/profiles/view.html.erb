@@ -26,7 +26,7 @@
 					</table></div></td></tr>
 					
 					<tr><td class="text">
-					<% if session[:user_id] == @user.id %>
+					<% if session["#{$master.url}_id"] == @user.id %>
 						<% if @user.likes > 0 %><%= @user.likes %><% if @user.likes == 1 %> person likes <% else %> people like <% end %> this<% end %>
 					<% else %>
 						<% form_for :user, :url => {:action => :post_like} do |form| %>
@@ -51,9 +51,9 @@
 				<table class="infoTable">
 					
 					<tr><td class="heading" align="right">
-						<% if session[:user_id] == @user.id || (session[:user_id] == @user.author && @user.editing_restricted != 1) %>
+						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1) %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Profile", :class => "submit" %><% end %>
-						<% elsif session[:user_id] != nil && @user.author == 0 %>
+						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s profile. Are you sure you want to continue?" %><% end %>
 						<% end %>
 					</td></tr>
@@ -85,7 +85,7 @@
 						<% @interviewees.each do |interviewee| %>
 							<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
 						<% end %>
-						<% if session[:user_id] == @user.id %><tr><td height="3"/></tr>
+						<% if session["#{$master.url}_id"] == @user.id %><tr><td height="3"/></tr>
 						<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
 					</table></td></tr>
 

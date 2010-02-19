@@ -10,11 +10,11 @@ class ProfilesController < ActionController::Base
 		@user = User.find(id)
  
 		if params[:commit] == "Author Profile"
-			@user.author = session[:user_id]
+			@user.author = session["#{$master.url}_id"]
 			@user.save
 		end
  
-		if !(session[:user_id] == @user.id || (session[:user_id] == @user.author && @user.editing_restricted != 1))
+		if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1))
 			redirect_to(:action => :view, :id => id)
 		end
  
@@ -151,8 +151,8 @@ class ProfilesController < ActionController::Base
 		@user = User.find(params[:id])
 		new_question = params[:new_question]
 		asker = ""
-		if session[:user_id]
-			user = User.find(session[:user_id])
+		if session["#{$master.url}_id"]
+			user = User.find(session["#{$master.url}_id"])
 			asker = " (posted by " + user.name + ")"
 		end
 		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
@@ -258,7 +258,7 @@ class ProfilesController < ActionController::Base
 
 	def post_authorProfile
 		@user = User.find(params[:id])
-		@user.author = session[:user_id]
+		@user.author = session["#{$master.url}_id"]
 		@user.alum_interview_text = $master.alum_default_qs
 		@user.student_interview_text = $master.student_default_qs
 
@@ -269,7 +269,7 @@ class ProfilesController < ActionController::Base
 			@degree = Degree.new
 			@degree.user_id = @user[:id]
 			@degree.save
-			author = User.find(session[:user_id])
+			author = User.find(session["#{$master.url}_id"])
 			author.total_authored = author.total_authored + 1
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")
@@ -286,7 +286,7 @@ class ProfilesController < ActionController::Base
 			@user.name = params[:user][:name]
 			@user.email = params[:user][:email]
 		end
-		@user.author = session[:user_id]
+		@user.author = session["#{$master.url}_id"]
 		@user.alum_interview_text = $master.alum_default_qs
 		@user.student_interview_text = $master.student_default_qs
 		@user.is_alum = "1"
@@ -317,7 +317,7 @@ class ProfilesController < ActionController::Base
 			@degree = Degree.new
 			@degree.user_id = @user[:id]
 			@degree.save
-			author = User.find(session[:user_id])
+			author = User.find(session["#{$master.url}_id"])
 			author.total_authored = author.total_authored + 1
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")

@@ -68,14 +68,14 @@
 							<tr>
 								<td width="28"/>
 								<td width="140" style="text-align:center;" class="heading">
-									<% if session[:user_id] %>
-										<a href="/profiles/edit/<%= session[:user_id] %>">Edit Your Profile</a>
+									<% if session["#{$master.url}_id"] %>
+										<a href="/profiles/edit/<%= session["#{$master.url}_id"] %>">Edit Your Profile</a>
 									<% else %>
 										<a href="/user/signin">Create Your Own Profile</a>
 									<% end %></td>
 								<td width="40" class="text" style="text-align:center">or</td>
 								<td width="140" style="text-align:center;" class="heading">
-									<a href="<% if session[:user_id] %>/profiles/interview<% else %>/user/signin<% end %>">Interview A <%= $master.informal_name %> Alum</a></td>
+									<a href="<% if session["#{$master.url}_id"] %>/profiles/interview<% else %>/user/signin<% end %>">Interview A <%= $master.informal_name %> Alum</a></td>
 								<td width="28"/>
 							</tr>
 						</table></td></tr>

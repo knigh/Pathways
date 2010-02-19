@@ -24,7 +24,7 @@
 							<td class="text" valign="top"><%= form.check_box :email_private, :value => "0" %>&nbsp;<small>keep this email private</small></td>
 						</tr>
 						
-						<% if session[:user_id] == @user.id %>
+						<% if session["#{$master.url}_id"] == @user.id %>
 							<tr><td colspan="3"/></tr>
 							<tr>
 								<td colspan="2"><table class="clean" cellpadding="5">
@@ -32,7 +32,7 @@
 									<tr><td class="text">Confirm password</td><td class="text" style="color:red;"><input name="password_confirmation" type="password" style="height:16px;width:190px;" /><% if flash[:notice] %><br/><small>* <%= flash[:notice] %></small><% end %></td></tr>
 								</table></td>
 								<td valign="top">
-									<% if @user.author != 0 && @user.author != @user.id && @user.id == session[:user_id] %>
+									<% if @user.author != 0 && @user.author != @user.id && @user.id == session["#{$master.url}_id"] %>
 										<table class="clean"><tr>
 											<td valign="top"><%= form.check_box :editing_restricted, {}, "0", "1" %></td>
 											<td class="text" style="text-align:left;" width="165px"><small>Allow my interviewer, <%= @author.name %>, to continue editing my Pathway</td>
