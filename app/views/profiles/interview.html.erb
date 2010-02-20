@@ -9,12 +9,12 @@
 				<tr><td style="text-align:justify"><span class="title">1. Find an alum</span><br/><span class="text">If you
 					have already identified an alum to interview, you can create a new pathway on the right.  Otherwise, you
 					can search or browse for alumni in the box below. Feel free to Google alumni to find if they match your
-					interests.  Then click &quot;Author profile&quot; to get started.</span></td></tr>
+					interests.  Then click &quot;Author Pathway&quot; to get started.</span></td></tr>
 				<tr><td style="text-align:justify"><span class="title">2. Set up an interview</span><br/><span class="text">Once you find an alum
 					you&apos;d like to interview, email them. Feel free to use our sample email below, and make sure to
 					include some indication you&apos;ve already researched a bit about them.</span></td></tr>
 				<tr><td style="text-align:justify"><span class="title">3. Record a great conversation</span><br/><span class="text">Your alum's
-					profile page has been seeded with suggested questions, but make sure to listen carefully to your interviewee and go
+					Pathway page has been seeded with suggested questions, but make sure to listen carefully to your interviewee and go
 					where the conversation takes you. There are many options for recording the converstaion: using a
 					digital recorder, software programs such as Audacity, or typing as you talk.</span></td></tr>
 				<tr><td style="text-align:justify"><span class="title">4. Submit your interview</span><br/><span class="text">Once you&apos;ve typed up
@@ -78,7 +78,7 @@
 									onmouseover="showSeed(<%= seed.id %>)"><span class="title"><%= seed.name %> <%= @controller.getClassYears(seed) %></span><span
 										class="text"><small><a href="/profiles/view/<%= seed.id %>">view</a></small></span><span
 											class="text" style="display:none;" id="seed<%= seed.id %>"> 
-								<% if (seed.summary != "") %><br/><%= seed.summary %><% end %><% form_for :user, :url => {:action => :post_authorProfile, :id => seed.id} do |form| %><%= submit_tag "Author this Profile", :class => "submit" %><% end %></span>
+								<% if (seed.summary != "") %><br/><%= seed.summary %><% end %><% form_for :user, :url => {:action => :post_authorProfile, :id => seed.id} do |form| %><%= submit_tag "Author this Pathway", :class => "submit" %><% end %></span>
 								-->
 								</td></tr>
 							<% end %>

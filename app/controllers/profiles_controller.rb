@@ -9,7 +9,7 @@ class ProfilesController < ActionController::Base
 		id = params[:id]
 		@user = User.find(id)
  
-		if params[:commit] == "Author Profile"
+		if params[:commit] == "Author Pathway"
 			@user.author = session["#{$master.url}_id"]
 			@user.save
 		end

@@ -52,11 +52,11 @@
 					
 					<tr><td class="heading" align="right">
 						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1) %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Profile", :class => "submit" %><% end %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
 						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s profile. Are you sure you want to continue?" %><% end %>
+							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s Pathway. Are you sure you want to continue?" %><% end %>
 						<% elsif @user.author == 0 %>
-							<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Author Profile", :class => "submit" %><% end %>
+							<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit" %><% end %>
 						<% end %>
 					</td></tr>
 
