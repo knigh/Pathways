@@ -65,7 +65,6 @@
 						<tr><td class="title"><%= @user.name %></td></tr>
 						<tr><td class="text"><% if @user.email_private == "0" %><%= @user.email %><% end %></td></tr>
 						
-						
 						<% if @degrees.length > 0 %>
 							<tr><td height="5"/></tr>
 							<tr><td class="title" style="text-align:left;">Stanford Experience</td></tr>
@@ -76,42 +75,38 @@
 								<%= degree.major %><% if degree.class_year != nil && degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
 							<% end %></td></tr>
 						<% end %>
-						
-						<tr><td height="5"/></tr>
-
-
-					<% if @user.total_authored > 0 %>
-					
-					<tr><td class="box"><table class="clean">
-						<tr><td class="title" width="150">Inteviews Conducted</td><td class="title" width="70" align="center">Views</td></tr>
-						<% @interviewees.each do |interviewee| %>
-							<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
-						<% end %>
-						<% if session["#{$master.url}_id"] == @user.id %><tr><td height="3"/></tr>
-						<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
-					</table></td></tr>
-
-					<% end %>
-					<tr><td height="5"/></tr>
-
-					<% if @jobs.length > 0 %>
-					<tr><td><table class="clean">
-						<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
-						<% @jobs.each do |job| %>
-							<tr><td class="text" style="text-align:left;">
-							<%= job.title %><% if job.title.length > 0 && job.company.length > 0 %>, <% end %><%= job.company %><br/>
-							<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
-							<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
-							<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %></td></tr>
+	
+						<% if @user.total_authored > 0 %>
 							<tr><td height="5"/></tr>
+							<tr><td class="box"><table class="clean">
+								<tr><td class="title" width="150">Alumni Interviews</td><td class="title" width="70" align="center">Views</td></tr>
+								<% @interviewees.each do |interviewee| %>
+									<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
+								<% end %>
+								<% if session["#{$master.url}_id"] == @user.id %><tr><td height="3"/></tr>
+									<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
+							</table></td></tr>
 						<% end %>
-						</td></tr>
+					
+						<% if @jobs.length > 0 %>
+							<tr><td height="5"/></tr>
+							<tr><td><table class="clean">
+								<tr><td class="title" style="text-align:left;">Work Experience</td></tr>
+								<% @jobs.each do |job| %>
+									<tr><td class="text" style="text-align:left;">
+										<%= job.title %><% if job.title.length > 0 && job.company.length > 0 %>, <% end %><%= job.company %><br/>
+										<%= job.start_m.to_s + "/" + job.start_y.to_s%> - <% if job.job_current == "1" %>present<% else %><%=job.end_m.to_s + "/" + job.end_y.to_s%><% end %><br/>
+										<% if job.responsibilities.length > 0 %>Responsibilities: <%=job.responsibilities %><br/><% end %>
+										<% if job.satisfaction != nil%> Satisfaction: <%=job.satisfaction%> / 5<br/><% end %></td></tr>
+									<tr><td height="5"/></tr>
+								<% end %>
+								</td></tr>
+							</table></td></tr>
+						<% end %>
 					</table></td></tr>
-					<% end %>
-				</table>
-			</td>
-		
-		</tr></table></td></tr>
+				</table></td>
+
+			</tr></table></td></tr>
 
 <% content_for :javascript do %>
 <script type="text/javascript">

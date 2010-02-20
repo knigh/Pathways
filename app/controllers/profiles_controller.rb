@@ -65,8 +65,8 @@ class ProfilesController < ActionController::Base
 		@password_confirmation = params[:password_confirmation]
 		if @password != nil && @password != ""
 			if (@password != @password_confirmation)
-				logger.error("Password confirmation must match password")
-				flash[:notice] = "Password confirmation must match password"
+				logger.error("Confirmation must match password")
+				flash[:notice] = "Confirmation must match password"
 				  render (:action => :edit)
 				  return
 			elsif (@password.length < 6)

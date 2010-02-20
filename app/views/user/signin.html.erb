@@ -18,9 +18,10 @@
 						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
 						<tr><td class="text">Password</td><td><input name="password" type="password" size="30" /></td></tr>
 						<tr><td class="text" width="100%">Confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:signup_notice] %>
-								* <%= flash[:signup_notice] %>
-						<% end %><%= submit_tag "Sign up", :class => "submit" %></td></tr>
+						<tr><td colspan="2"><table class="clean"><tr>
+							<td class="text" style="text-align:left;color:red;" width="100%"><% if flash[:signup_notice] %><small>* <%= flash[:signup_notice] %></small><% end %></td>
+							<td style="text-align:right;"><%= submit_tag "Sign up", :class => "submit" %></td>
+						</tr></table></td></tr>
 					<% end %>
 				</table></td></tr>
 			</table></td>
@@ -32,9 +33,10 @@
 					<% form_for :user, :url => {:action => :post_signin} do |form| %>
 						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
 						<tr><td class="text" width="100%">Password</td><td><input name="password" type="password" size="30" /></td></tr>
-						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:signin_notice] %>
-								* <%= flash[:signin_notice] %>
-						<% end %><%= submit_tag "Sign in", :class => "submit" %></td></tr>
+						<tr><td colspan="2"><table class="clean"><tr>
+							<td class="text" style="text-align:left;color:red;" width="100%"><% if flash[:signin_notice] %><small>* <%= flash[:signin_notice] %></small><% end %></td>
+							<td style="text-align:right;"><%= submit_tag "Sign in", :class => "submit" %></td>
+						</tr></table></td></tr>
 					<% end %>
 				</table></td></tr>
 			</table></td>

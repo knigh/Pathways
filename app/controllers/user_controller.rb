@@ -75,8 +75,8 @@ class UserController < ApplicationController
 		flash[:signup_notice] = "Email is already in use"
 		render (:action => :signin)
     elsif (@password != @password_confirmation)
-		logger.error("Password confirmation must match password")
-		flash[:signup_notice] = "Password confirmation must match password"
+		logger.error("Confirmation must match password")
+		flash[:signup_notice] = "Confirmation must match password"
 		  render (:action => :signin)
     elsif (@password.length < 6)
 		logger.error("Password must contain at least six characters")
