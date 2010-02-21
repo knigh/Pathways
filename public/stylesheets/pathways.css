@@ -211,6 +211,15 @@ table.authorAlumTable
    	-webkit-border-radius:12px;
 }
 
+.alert
+{
+	padding: 15px;
+	border-width: 1px;
+	border-color: white;
+	border-style: outset;
+	background-color: #EEEEEE;
+}
+
 a
 {
 	color: #375074;

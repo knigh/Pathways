@@ -27,7 +27,7 @@ class UserController < ApplicationController
 	if (@hashed_password != @user.hashed_password)
 		logger.error("Invalid password")
 		flash[:signin_notice] = "Invalid password"
-      	render (:action => :signin)
+      	render(:action => :signin)
 	else
 		session["#{$master.url}_id"] = @user[:id];
 		if flash[:id]
@@ -41,7 +41,7 @@ class UserController < ApplicationController
 
   def logout
 	reset_session
-	redirect_to (:controller => :profiles, :action => :search)
+	redirect_to(:controller => :profiles, :action => :search)
   end
 
 
@@ -61,27 +61,27 @@ class UserController < ApplicationController
 	if @user.name.length < 1
 		logger.error("Name can't be blank")
 		flash[:signup_notice] = "Name can't be blank"
-		render (:action => :signin)
+		render(:action => :signin)
 		return
 	elsif @user.email.length < 1
 		logger.error("Email can't be blank")
 		flash[:signup_notice] = "Email can't be blank"
-		render (:action => :signin)
+		render(:action => :signin)
 		return
 	end
 	match = User.find_by_email(@user.email)
 	if not match.nil?
 		logger.error("Email is already in use")
 		flash[:signup_notice] = "Email is already in use"
-		render (:action => :signin)
+		render(:action => :signin)
     elsif (@password != @password_confirmation)
 		logger.error("Confirmation must match password")
 		flash[:signup_notice] = "Confirmation must match password"
-		  render (:action => :signin)
+		  render(:action => :signin)
     elsif (@password.length < 6)
 		logger.error("Password must contain at least six characters")
 		flash[:signup_notice] = "Password must contain six or more characters"
-		  render (:action => :signin)
+		  render(:action => :signin)
     else
    	 	@user.hashed_password = Digest::SHA1.hexdigest(@password)
 		if @user.save
@@ -101,7 +101,7 @@ class UserController < ApplicationController
 				redirect_to("/profiles/edit/#{@user[:id]}")	    	
 			end
 		else
-			render (:action => :signin)
+			render(:action => :signin)
 		end
 	end
 

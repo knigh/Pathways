@@ -1,16 +1,29 @@
 
-		<!-- Body Content -->
-		<tr><td class="content">
+	<!-- Body Content -->
+	<tr><td class="content"><table class="clean" align="center" border="0">
+
+		<% if flash[:alert] %>
+			<tr>
+				<td colspan="3" height="30px"/>
+			</tr>
+			<tr>
+				<td colspan="3" align="center"><table class="alert">
+					<tr><td class="text" style="text-align:center;"><%= flash[:alert] %></td></tr>
+				</table></td>
+			</tr>
+			<tr>
+				<td colspan="3" height="15px"/>
+			</tr>
+		<% else %>
+			<tr>
+				<td colspan="3" height="35px"/>
+			</tr>
+		<% end %>
 	
-		<table class="clean" align="center" cellpadding="38"><tr>
-		
-			<% if flash[:alert] %>
-				<td colspan="2" class="text" style="text-align:center;height: 10px;"><%= flash[:alert] %></td></tr><tr>
-			<% end %>
-			
+		<tr>
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="signInTable">
-				<tr><td class="text" height="30" style="text-align:center">First time user? Sign up here:</td></tr>
+				<tr><td class="text" height="15" style="text-align:center">First time user? Sign up here:</td></tr>
 				<tr><td class="box"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">Sign Up</td></tr>
 					<% form_for :user, :url => {:action => :post_register} do |form| %>
@@ -26,8 +39,10 @@
 				</table></td></tr>
 			</table></td>
 
+			<td width="40px"/>
+
 			<td class="contentColumn"><table class="signInTable">
-				<tr><td height="30"/></tr>
+				<tr><td height="15"/></tr>
 				<tr><td class="box"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">Sign In</td></tr>
 					<% form_for :user, :url => {:action => :post_signin} do |form| %>
@@ -41,9 +56,14 @@
 				</table></td></tr>
 			</table></td>
 		
-		</tr></table></td></tr>
+		</tr>
 
-		<!-- Footer -->
+		<tr>
+			<td colspan="3" height="40px"/>
+		</tr>
+	</table></td></tr>
+
+	<!-- Footer -->
 		
 <% content_for :javascript do %>
 <script type="text/javascript">
