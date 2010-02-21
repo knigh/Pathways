@@ -42,6 +42,14 @@ cd config
 cp database.yml.sandbox database.yml
 
 cd ../..
+cd Friends
+rm log/development.log
+rm config/database.yml
+git pull
+cd config
+cp database.yml.friends database.yml
+
+cd ../..
 cd Daily
 rm log/development.log
 rm config/database.yml
