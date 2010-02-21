@@ -9,28 +9,28 @@
 
 :::::::Search Support:
 
-	The following must be performed manually on any table that
-	supports search:
+	The following must be performed manually on any table that supports search:
 
-	ALTER TABLE users ENGINE = MYISAM;
+		ALTER TABLE users ENGINE = MYISAM;
+		ALTER TABLE degrees ENGINE = MYISAM;
+		ALTER TABLE jobs ENGINE = MYISAM;
 
 	Indices are created as follows:
 
-	CREATE fulltext INDEX x_f_search ON users
-		(name,summary,alum_interview_text,student_interview_text,six_words);
-	CREATE fulltext INDEX x_f_search ON degrees
-		(major, degree);
-	CREATE fulltext INDEX x_f_search ON jobs
-		(company, title, responsibilities);
+		CREATE fulltext INDEX x_f_search ON users
+			(name,summary,alum_interview_text,student_interview_text,six_words);
+		CREATE fulltext INDEX x_f_search ON degrees
+			(major, degree);
+		CREATE fulltext INDEX x_f_search ON jobs
+			(company, title, responsibilities);
 	
 	Searches are performed as follows (I'm not sure if the match fields have to all match the fields in the CREATE statement)
 
-	SELECT * FROM users 
-		WHERE match(name,summary,alum_interview_text,student_interview_text,six_words)
-			against ("Jacob" WITH query expansion)
+		SELECT * FROM users 
+			WHERE match(name,summary,alum_interview_text,student_interview_text,six_words)
+				against ("Jacob" WITH query expansion)
 
 	Note: "WITH query expansion" is probably sub-optimal (leads to unexpected results and requires two passes)
-
 
 :::::::update_all.sh:
 
