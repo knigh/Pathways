@@ -18,7 +18,11 @@
 
 	CREATE fulltext INDEX x_f_search ON users
 		(name,summary,alum_interview_text,student_interview_text,six_words);
-
+	CREATE fulltext INDEX x_f_search ON degrees
+		(major, degree);
+	CREATE fulltext INDEX x_f_search ON jobs
+		(company, title, responsibilities);
+	
 	Searches are performed as follows (I'm not sure if the match fields have to all match the fields in the CREATE statement)
 
 	SELECT * FROM users 
