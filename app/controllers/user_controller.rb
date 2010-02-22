@@ -53,6 +53,9 @@ class UserController < ApplicationController
     @password_confirmation = params[:password_confirmation]
     @user.alum_interview_text = $master.alum_default_qs
     @user.student_interview_text = $master.student_default_qs
+    @user.date_added = Time.now
+    @user.date_modified = Time.now
+    @user.interview_date = Time.now
    
 	flash[:signup_notice] = nil
 	flash[:signin_notice] = nil
