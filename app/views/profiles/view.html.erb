@@ -55,7 +55,7 @@
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
 							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
 								<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit" %><% end %>
-							<% elsif @user.approved == -1 && session["#{$master.url}_id"] == @user.id %>
+							<% elsif @user.approved < 1 && session["#{$master.url}_id"] == @user.id %>
 								<% form_for :user, :url => {:action => :post_approve, :id => @user.id} do |form| %><%= submit_tag "Approve", :class => "submit" %><% end %>
 							<% end %>
 						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
