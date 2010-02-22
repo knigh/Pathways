@@ -344,7 +344,7 @@ class ProfilesController < ActionController::Base
 		render(:action => :view, :id => @user.id)
 	end
 	
-	def post_submit
+	def post_approve
 		@user = User.find(params[:id])
 		@user.approve = 1
 		@user.save
