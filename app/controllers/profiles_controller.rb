@@ -81,6 +81,7 @@ class ProfilesController < ActionController::Base
  
 		if @user.update_attributes(params[:user]) then
 			@user.image_file = image_file
+			@user.date_modified = Time.now
 			@user.save
 			if params[:add_job]
 				@job = Job.new
