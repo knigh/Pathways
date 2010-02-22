@@ -1,6 +1,6 @@
 class Users < ActiveRecord::Migration
   def self.up
-	add_column :users, :like_list, :string, :default => ""
+	change_column :users, :approved, :string, :default => "1"
   end
 
   def self.down
