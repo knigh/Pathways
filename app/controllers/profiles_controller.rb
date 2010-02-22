@@ -297,6 +297,10 @@ class ProfilesController < ActionController::Base
 		@user.alum_interview_text = $master.alum_default_qs
 		@user.student_interview_text = $master.student_default_qs
 		@user.is_alum = "1"
+		@user.date_added = Time.now
+		@user.date_modified = Time.now
+		@user.interview_date = Time.now
+
 		
 		password = getPassword(@user.name)
 		print password + "\n"
