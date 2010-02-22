@@ -183,14 +183,14 @@ class ProfilesController < ActionController::Base
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
-			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved != ?', params[:commit], 0, 0], :order => 'name')
+			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved > ?', params[:commit], 0, 0], :order => 'name')
 			if searchResults == nil
 				searchResults = Array.new
 			end
 			jobResults = Job.find(:all, :conditions => ['match(company,title,responsibilities) against (?)', params[:commit]])
 			jobResults.each do |job|
 				user = User.find(job.user_id)
-				if (user.author != 0 && user.approved != 0) 
+				if (user.author != 0 && user.approved > 0) 
 					searchResults << user
 				end
 			end
@@ -198,13 +198,13 @@ class ProfilesController < ActionController::Base
 			degreeResults = Degree.find(:all, :conditions => ['match(major,degree) against (?)', params[:commit]])
 			degreeResults.each do |degree|
 				user = User.find(degree.user_id)
-				if (user.author != 0 && user.approved != 0) 
+				if (user.author != 0 && user.approved > 0) 
 					searchResults << user
 				end
 			end
 			@searchResults = searchResults.uniq.sort { |a, b| a.name <=> b.name}
 		else
-			@searchResults = User.find(:all, :conditions => ['author != ? and approved != ?', 0, 0], :order => 'views DESC', :limit => 10)
+			@searchResults = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'views DESC', :limit => 10)
 		end	
 		
 		numUsers = @searchResults.length
@@ -242,13 +242,13 @@ class ProfilesController < ActionController::Base
 			end
 		end
 
-		@contributors = User.find(:all, :conditions => ['total_authored > ? and approved != ?', 0, 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
+		@contributors = User.find(:all, :conditions => ['total_authored > ? and approved > ?', 0, 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
 		 
 		   days = 7
 		 days_ago = Time.now - (days * (60*60*24)) 
-		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved != ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
 		
-		@authoredPathways = User.find(:all, :conditions => ['author != ? and approved != ?', 0, 0])
+		@authoredPathways = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0])
 		
 	end
 
@@ -335,6 +335,20 @@ class ProfilesController < ActionController::Base
 		else
 			render(:action => :interview)
 		end
+	end
+	
+	def post_submit
+		@user = User.find(params[:id])
+		@user.approve = -1
+		@user.save
+		render(:action => :view, :id => @user.id)
+	end
+	
+	def post_submit
+		@user = User.find(params[:id])
+		@user.approve = 1
+		@user.save
+		render(:action => :view, :id => @user.id)
 	end
 
 	def getClassYears(user)
