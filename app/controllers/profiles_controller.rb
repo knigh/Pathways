@@ -242,7 +242,7 @@ class ProfilesController < ActionController::Base
 			end
 		end
 
-		@contributors = User.find(:all, :conditions => ['total_authored > ?', 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
+		@contributors = User.find(:all, :conditions => ['total_authored > ? and approved != ?', 0, 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
 		 
 		   days = 7
 		 days_ago = Time.now - (days * (60*60*24)) 
