@@ -339,14 +339,14 @@ class ProfilesController < ActionController::Base
 	
 	def post_submit
 		@user = User.find(params[:id])
-		@user.approve = -1
+		@user.approved = -1
 		@user.save
 		render(:action => :view, :id => @user.id)
 	end
 	
 	def post_approve
 		@user = User.find(params[:id])
-		@user.approve = 1
+		@user.approved = 1
 		@user.save
 		render(:action => :view, :id => @user.id)
 	end
