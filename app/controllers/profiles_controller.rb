@@ -245,7 +245,7 @@ class ProfilesController < ActionController::Base
 		 
 		   days = 7
 		 days_ago = Time.now - (days * (60*60*24)) 
-		@recent_interviews = User.find(:all, :conditions => ['date_modified > ? AND author != ?', days_ago, 0], :order => 'date_modified DESC', :limit => 5)
+		@recent_interviews = User.find(:all, :conditions => ['author != ?', 0], :order => 'date_modified DESC', :limit => 5)
 		
 		@authoredPathways = User.find(:all, :conditions => [ "author != ?", 0])
 		
