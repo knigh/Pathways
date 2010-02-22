@@ -53,7 +53,7 @@
 					<tr><td class="heading" align="right">
 						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1) %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
-							<% if approved == 0 %>
+							<% if @user.approved == 0 %>
 								<% if session["#{$master.url}_id"] == @user.author %>
 									<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit" %><% end %>
 								<% else %>
