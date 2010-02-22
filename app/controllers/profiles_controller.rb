@@ -341,14 +341,14 @@ class ProfilesController < ActionController::Base
 		@user = User.find(params[:id])
 		@user.approved = -1
 		@user.save
-		render(:action => :view, :id => @user.id)
+		redirect_to(:action => :view, :id => @user.id)
 	end
 	
 	def post_approve
 		@user = User.find(params[:id])
 		@user.approved = 1
 		@user.save
-		render(:action => :view, :id => @user.id)
+		redirect_to(:action => :view, :id => @user.id)
 	end
 
 	def getClassYears(user)
