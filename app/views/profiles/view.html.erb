@@ -4,7 +4,7 @@
 		
 			<% if (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && session["#{$master.url}_id"] != @user.author || session["#{$master.url}_id"] != @user.id) %>
 				<td colspan="2" class="heading">This pathway is not yet available to view</td>
-			< % else %>
+			<% else %>
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
