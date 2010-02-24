@@ -19,7 +19,7 @@ class ProfilesController < ActionController::Base
  
 		if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1))
 			redirect_to(:action => :view, :id => id)
-		elsif (@author.id != 0 && @user.id != @author.id && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
+		elsif (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
 			redirect_to(:action => :view, :id => id)
 		end
 
