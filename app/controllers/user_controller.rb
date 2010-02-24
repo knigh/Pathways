@@ -85,6 +85,7 @@ class UserController < ApplicationController
     @user.date_added = Time.now
     @user.date_modified = Time.now
     @user.interview_date = Time.now
+    @user.approved = 1;
    
 	flash[:signup_notice] = nil
 	flash[:signin_notice] = nil

@@ -2,7 +2,10 @@
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		
-			<% print "author: " + @user.author.to_s + "\n" %>
+			<% if (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && 
+				session["#{$master.url}_id"] != @user.author || session["#{$master.url}_id"] != @user.id) %>
+				<td colspan="2" class="heading">This pathway is not yet available to view</td>
+			< % else %>
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
@@ -110,7 +113,7 @@
 						<% end %>
 					</table></td></tr>
 				</table></td>
-
+			<% end %>
 			</tr></table></td></tr>
 
 <% content_for :javascript do %>

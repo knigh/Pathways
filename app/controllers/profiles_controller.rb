@@ -6,9 +6,12 @@ class ProfilesController < ActionController::Base
 
  
 	def edit
+	begin
 		id = params[:id]
 		@user = User.find(id)
- 
+	rescue
+		redirect_to "/404.html"
+	else
 		if params[:commit] == "Author Pathway"
 			@user.author = session["#{$master.url}_id"]
 			@user.save
@@ -16,7 +19,10 @@ class ProfilesController < ActionController::Base
  
 		if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1))
 			redirect_to(:action => :view, :id => id)
+		elsif (@author.id != 0 && @user.id != @author.id && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
+			redirect_to(:action => :view, :id => id)
 		end
+
  
 		@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
 		
@@ -35,6 +41,7 @@ class ProfilesController < ActionController::Base
 		if @user.total_authored > 0
 			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
 		end
+	end
 	end
  
 	def post_edit
@@ -108,8 +115,12 @@ class ProfilesController < ActionController::Base
 	end	
 	 
 	def view
+	begin
 		id = params[:id]
 		@user = User.find(id)
+	rescue
+		redirect_to "/404.html"
+	else
 		@jobs = Job.find(:all, :conditions => ["user_id = ? AND (title != ? OR company != ?)", id, "", ""])
 		@degrees = Degree.find(:all, :conditions => ["user_id = ? AND (degree != ? OR major != ?)", id, "", ""])
 		
@@ -138,7 +149,7 @@ class ProfilesController < ActionController::Base
 		if (firstQ != nil)
 			@interview_text = @interview_text[firstQ, @interview_text.length - firstQ]
 		end
-		
+	end
 	end
  
 	def post_like
