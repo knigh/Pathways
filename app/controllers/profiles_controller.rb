@@ -67,12 +67,12 @@ class ProfilesController < ActionController::Base
 			if (@password != @password_confirmation)
 				logger.error("Confirmation must match password")
 				flash[:notice] = "Confirmation must match password"
-				  render (:action => :edit)
+				  render(:action => :edit)
 				  return
 			elsif (@password.length < 6)
 				logger.error("Password must contain at least six characters")
 				flash[:notice] = "Password must contain six or more characters"
-				  render (:action => :edit)
+				  render(:action => :edit)
 				  return
 			else
 				@user.hashed_password = Digest::SHA1.hexdigest(@password)
@@ -341,6 +341,12 @@ class ProfilesController < ActionController::Base
 		@user = User.find(params[:id])
 		@user.approved = -1
 		@user.save
+        	@author = User.find(@user.author)
+        	subject = "Your Pathway has been created"
+        	encoded_url = $master.url + "/user/post_publish?user[email]=#{@user[:email]}&temp=#{@user[:hashed_password]}"
+
+        	Emailer.deliver_submit(@user.email, @user.name, @author.name, subject, subject, $master.formal_name, $master.informal_name, encoded_url)
+        	return if request.xhr?
 		redirect_to(:action => :view, :id => @user.id)
 	end
 	

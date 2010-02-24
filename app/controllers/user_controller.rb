@@ -39,6 +39,35 @@ class UserController < ApplicationController
     end
   end
 
+ def post_publish
+        flash[:signup_notice] = nil
+        flash[:signin_notice] = nil
+        flash.keep(:id)
+
+    @user = User.find_by_email(params[:user][:email])
+    if (@user.nil?)
+        reset_session
+        logger.error("Invalid email")
+        flash[:signin_notice] = "Invalid email"
+        render :action => 'signin'
+    else
+        @hashed_password = params[:temp]
+        if (@hashed_password != @user.hashed_password)
+                logger.error("Invalid password")
+                flash[:signin_notice] = "Invalid password"
+        render(:action => :signin)
+        else
+                session["#{$master.url}_id"] = @user[:id];
+                if flash[:id]
+                        redirect_to("/profiles/view/#{flash[:id]}")
+                else
+                        redirect_to("/profiles/view/#{@user[:id]}")
+                end
+        end
+    end
+  end
+
+
   def logout
 	reset_session
 	redirect_to(:controller => :profiles, :action => :search)
