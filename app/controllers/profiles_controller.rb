@@ -1,8 +1,8 @@
 class ProfilesController < ActionController::Base
 
-	   layout 'standard'
-	   
-	     $master = Master.find(1)
+	layout 'standard', :except => :rss
+
+	$master = Master.find(1)
 
  
 	def edit
@@ -399,4 +399,8 @@ class ProfilesController < ActionController::Base
 		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
  
+	def rss
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+	end
+
 end

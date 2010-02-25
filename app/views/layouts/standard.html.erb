@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>Stanford Pathways</title>
-    <%= stylesheet_link_tag 'pathways.css' %>  
+	<%= stylesheet_link_tag 'pathways.css' %>
+	<%= auto_discovery_link_tag(:rss, :controller => "profiles_controller", :action => 'feed') %>
 </head>
 <body>
 	<table class="main">

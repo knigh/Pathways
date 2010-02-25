@@ -1,0 +1,21 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("#{$master.informal_name} Pathways")
+    xml.link("http://www.stanfordpathways.com")
+    xml.description("Recent Pathways")
+    xml.language('en-us')
+      for interview in @recent_interviews
+        xml.item do
+          xml.title(interview.name)
+          xml.description(interview.summary)      
+          xml.author(User.find(interview.author).name)               
+          xml.pubDate(interview.date_modified.strftime("%a, %d %b %Y %H:%M:%S %z"))
+	    link = "http://#{$master.url}/profiles/view/#{interview[:id]}"
+	    xml.link(link)
+          xml.guid(link)
+        end
+      end
+  }
+}
+
