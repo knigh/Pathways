@@ -317,6 +317,8 @@ class ProfilesController < ActionController::Base
 		@user.date_added = Time.now
 		@user.date_modified = Time.now
 		@user.interview_date = Time.now
+		@user.question_asked = DateTime.new(Time.now.year - 1, 1, 1)
+
 		
 		password = getPassword(@user.name)
 		print password + "\n"

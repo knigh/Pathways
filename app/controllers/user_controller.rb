@@ -85,11 +85,13 @@ class UserController < ApplicationController
     @user.date_added = Time.now
     @user.date_modified = Time.now
     @user.interview_date = Time.now
+    @user.question_asked = DateTime.new(Time.now.year - 1, 1, 1)
+
     @user.approved = 1;
    
 	flash[:signup_notice] = nil
 	flash[:signin_notice] = nil
-	flash.keep(:id)
+	flash.keep(:url)
 	
 	if @user.name.length < 1
 		logger.error("Name can't be blank")
