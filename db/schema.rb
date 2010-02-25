@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225091502) do
+ActiveRecord::Schema.define(:version => 20100225151954) do
 
   create_table "degrees", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,11 @@ ActiveRecord::Schema.define(:version => 20100225091502) do
     t.string   "responsibilities", :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer "liked_id"
+    t.integer "liked_by_id"
   end
 
   create_table "masters", :force => true do |t|

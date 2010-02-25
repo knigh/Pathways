@@ -15,7 +15,6 @@
 						<tr><td colspan="2" align="center"><object width="580" height="358"><param name="movie" value="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="580" height="358"></embed></object></td></tr>
 					<% end %>
 
-					
 					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.author != 0 && @user.id != @user.author %>
@@ -27,23 +26,45 @@
 						</td></tr>
 					</table></div></td></tr>
 					
-					<tr><td class="text">
-					<% if session["#{$master.url}_id"] == @user.id %>
-						<% if @user.likes > 0 %><%= @user.likes %><% if @user.likes == 1 %> person likes <% else %> people like <% end %> this<% end %>
-					<% else %>
-						<% form_for :user, :url => {:action => :post_like} do |form| %>
-						<% if @user.likes > 0 %><%= @user.likes %><% if @user.likes == 1 %> person likes <% else %> people like <% end %> this<% end %>
-						<input type = "hidden" name="id" value="<%= params[:id] %>">
-						<%= submit_tag "Like", :class => "submit" %>
-						<% end %></td></tr>
-					
-						<tr><td><% form_for :user, :url => {:action => :post_question} do |form| %>
-						<input type="text" name="new_question" size="63" />
-						<input type = "hidden" name="id" value="<%= params[:id] %>">
-						<%= submit_tag "Post a new question", :class => "submit" %>
+					<!-- Like button -->
+					<% if ((session["#{$master.url}_id"] != nil) && (session["#{$master.url}_id"] != @user.id) && (@likerUser == nil))  || (@numLikers > 0) %>
+					<tr><td class="text"><% form_for :user, :url => {:action => :post_like} do |form| %>
+						<% if (session["#{$master.url}_id"] != nil) && (session["#{$master.url}_id"] != @user.id) && (@likerUser == nil) %>
+							<input type = "hidden" name="id" value="<%= params[:id] %>">
+							<%= submit_tag "Like", :class => "submit" %>
 						<% end %>
+					
+						<!-- Like text -->
+						<% if @numLikers > 0 %>
+							<% if @likerUser != nil %>
+								<a href="/profiles/view/<%= @liker1[:id] %>">you</a><% if @numLikers > 1 %>,<% end %>
+							<% elsif @liker1 != nil %>
+								<a href="/profiles/view/<%= @liker1[:id] %>"><%= @liker1.name %></a><% if @numLikers > 1 %>,<% end %>
+							<% end %>
+							<% if @liker2 != nil %>
+								<% if @liker2 == nil %>and&nbsp;<% end %><a href="/profiles/view/<%= @liker2[:id] %>"><%= @liker2.name %></a><% if @numLikers > 2 %>,<% end %>
+							<% end %>
+							<% if @liker3 != nil %>
+								<% if @numRemainingLikers == 0 %>and&nbsp;<% end %><a href="/profiles/view/<%= @liker3[:id] %>"><%= @liker3.name %></a><% if @numLikers > 3 %>,<% end %>
+							<% end %>
+							<% if @numRemainingLikers > 0 %>
+								and <%= @numRemainingLikers %> other <% if @numRemainingLikers == 1 %>person<% else %>people<% end %>
+							<% end %>
+							like<% if @numLikers == 1 && @likerUser == nil %>s<% end %> this
+						<% end %>
+					<% end %></td></tr>
 					<% end %>
-					</td></tr>
+	
+					<!-- Ask a question -->
+					<% if (session["#{$master.url}_id"] != nil) && (session["#{$master.url}_id"] != @user.id) %>
+						<tr><td>
+							<% form_for :user, :url => {:action => :post_question} do |form| %>
+								<input type="text" name="new_question" size="63" />
+								<input type = "hidden" name="id" value="<%= params[:id] %>">
+								<%= submit_tag "Post a new question", :class => "submit" %>
+							<% end %>
+						</td></tr>
+					<% end %>
 
 				</table>
 			</td>

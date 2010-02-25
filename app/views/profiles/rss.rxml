@@ -1,9 +1,9 @@
 xml.instruct! :xml, :version=>"1.0" 
 xml.rss(:version=>"2.0"){
   xml.channel{
-    xml.title("#{$master.informal_name} Pathways")
+    xml.title("Recent #{$master.informal_name} Pathways")
     xml.link("http://www.stanfordpathways.com")
-    xml.description("Recent Pathways")
+    xml.description("Pathways")
     xml.language('en-us')
       for interview in @recent_interviews
         xml.item do

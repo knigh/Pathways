@@ -144,6 +144,67 @@ class ProfilesController < ActionController::Base
 			@author.save
  		end
 
+		# get all likers
+		likeResults = Like.find(:all, :conditions => ["liked_id = ?", id])
+		if (likeResults == nil)
+			likeResults = Array.new
+		end
+		likeResults = likeResults.uniq.sort {|a, b| a.liked_by_id <=> b.liked_by_id}
+		@numLikers = likeResults.length
+		@numRemainingLikers = @numLikers;
+
+		# set @likerUser if the user is one of the likers
+		userLikerResults = Like.find(:all, :conditions => ["liked_id = ? and liked_by_id = ?", id, session["#{$master.url}_id"]])
+		if (userLikerResults != nil && userLikerResults.length > 0)
+			userLikerResults = User.find(:all, :conditions => ["id = ?", session["#{$master.url}_id"]])
+			if (userLikerResults != nil && userLikerResults.length > 0)
+				@likerUser = userLikerResults[0]
+			end
+		end
+
+		if @numLikers > 0
+			if @likerUser != nil
+				@liker1 = @likerUser
+				@numRemainingLikers = @numRemainingLikers - 1
+			else
+				while true
+					like1 = likeResults[rand(@numLikers)]
+					liker1Results = User.find(:all, :conditions => ["id = ?", like1.liked_by_id])
+					if (liker1Results != nil && liker1Results.length > 0)
+						@liker1 = liker1Results[0]
+						@numRemainingLikers = @numRemainingLikers - 1
+						break
+					end
+				end
+			end
+		end
+		if @numLikers > 1
+			while true
+				like2 = likeResults[rand(@numLikers)]
+				liker2Results = User.find(:all, :conditions => ["id = ?", like2.liked_by_id])
+				if (liker2Results != nil && liker2Results.length > 0)
+					@liker2 = liker2Results[0]
+					if (@liker2 != nil && (@liker2.id != @liker1.id))
+						@numRemainingLikers = @numRemainingLikers - 1
+						break
+					end
+				end
+			end
+		end
+		if @numLikers > 2
+			while true
+				like3 = likeResults[rand(@numLikers)]
+				liker3Results = User.find(:all, :conditions => ["id = ?", like3.liked_by_id])
+				if (liker3Results != nil && liker3Results.length > 0)
+					@liker3 = liker3Results[0]
+ 					if (@liker3 != nil && (@liker3.id != @liker2.id) && (@liker3.id != @liker1.id))
+						@numRemainingLikers = @numRemainingLikers - 1
+						break
+					end
+				end
+			end
+		end
+
 		if @user.is_alum == "1"
 			@interview_text = @user.alum_interview_text
 		else 
@@ -159,12 +220,18 @@ class ProfilesController < ActionController::Base
 	end
  
 	def post_like
+		
 		@user = User.find(params[:id])
-		@user.likes = @user.likes + 1
+		#@user.likes = @user.likes + 1
 		@user.views = @user.views - 1
 		author = User.find(@user.author)
 		author.total_views = author.total_views - 1
  
+		@like = Like.new
+		@like.liked_id = @user.id
+		@like.liked_by_id = session["#{$master.url}_id"]
+
+		@like.save
 		@user.save
 		author.save
  
