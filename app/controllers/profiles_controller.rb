@@ -402,5 +402,8 @@ class ProfilesController < ActionController::Base
 	def rss
 		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
 	end
+	
+	def about
+	end
 
 end
