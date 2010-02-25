@@ -38,6 +38,8 @@ table.main
 	/* this centers the table */
 	margin-left: auto;
 	margin-right: auto;
+	border: 1;
+
 }
 
 table.header
@@ -147,7 +149,7 @@ table.authorAlumTable
 	width: 400px;
 }
 
-.heading, .title, .text
+.heading, .title, .text, .footer
 {
 	font-family: Helvetica Neue;
 }
@@ -172,6 +174,16 @@ table.authorAlumTable
 	color: gray;
 	font-weight: lighter;
 	text-align: justify;
+}
+
+.footer
+{
+	font-size: 8pt;
+	color: #375074;
+	font-weight:lighter;
+	text-align: right;
+	padding-right: 35px;
+	padding-top: 30px;
 }
 
 .pic
