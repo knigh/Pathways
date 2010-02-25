@@ -2,7 +2,7 @@
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		
-			<% if (author != 0 && (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && (session["#{$master.url}_id"] != @user.author && session["#{$master.url}_id"] != @user.id))) %>
+			<% if (@user.author != 0 && (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && (session["#{$master.url}_id"] != @user.author && session["#{$master.url}_id"] != @user.id))) %>
 				<td colspan="2" class="heading">This pathway is not yet available to view</td>
 			<% else %>
 			<!-- Column 1 -->
