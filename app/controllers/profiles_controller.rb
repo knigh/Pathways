@@ -177,7 +177,7 @@ class ProfilesController < ActionController::Base
 		asker = ""
 		if session["#{$master.url}_id"]
 			user = User.find(session["#{$master.url}_id"])
-			asker = " (posted by " + user.name + ")"
+			asker = ' (posted by <a href="/profiles/view/' + user.id.to_s + '">' + user.name + '</a>)'
 		end
 		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
 		@user.student_interview_text = @user.student_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
