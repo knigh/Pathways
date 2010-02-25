@@ -1,8 +1,8 @@
 class ProfilesController < ActionController::Base
 
-	   layout 'standard'
-	   
-	     $master = Master.find(1)
+	layout 'standard', :except => :rss
+
+	$master = Master.find(1)
 
  
 	def edit
@@ -177,7 +177,7 @@ class ProfilesController < ActionController::Base
 		asker = ""
 		if session["#{$master.url}_id"]
 			user = User.find(session["#{$master.url}_id"])
-			asker = " (posted by " + user.name + ")"
+			asker = ' (posted by <a href="/profiles/view/' + user.id.to_s + '">' + user.name + '</a>)'
 		end
 		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
 		@user.student_interview_text = @user.student_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
@@ -221,7 +221,7 @@ class ProfilesController < ActionController::Base
 			end
 			@searchResults = searchResults.uniq.sort { |a, b| a.name <=> b.name}
 		else
-			@searchResults = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'views DESC', :limit => 10)
+			@searchResults = User.find(:all, :conditions => ['author != ? and approved > ? and summary != ?', 0, 0, ""], :order => 'views DESC', :limit => 10)
 		end	
 		
 		numUsers = @searchResults.length
@@ -399,4 +399,11 @@ class ProfilesController < ActionController::Base
 		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
  
+	def rss
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+	end
+	
+	def about
+	end
+
 end
