@@ -76,13 +76,15 @@
 						
 						<% if @degrees.length > 0 %>
 							<tr><td height="5"/></tr>
-							<tr><td class="title" style="text-align:left;">Stanford Experience</td></tr>
-							<tr><td class="text" style="text-align:left;">
+							<tr><td class="title" style="text-align:left;">Academic Experience</td></tr>
 							
 							<% @degrees.each do |degree| %>
+								<tr><td class="text" style="text-align:left;">
+								<%=degree.school%><% if degree.class_year != nil && degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
 								<%= degree.degree %><% if degree.degree != "" && degree.major != ""%>, <% end %>
-								<%= degree.major %><% if degree.class_year != nil && degree.class_year > 0 %> ('<%= degree.class_year.to_s[2..3] %>)<% end %><br/>
-							<% end %></td></tr>
+								<%= degree.major %></td></tr>
+								<tr><td height="5"/></tr>
+							<% end %>
 						<% end %>
 	
 						<% if @user.total_authored > 0 %>

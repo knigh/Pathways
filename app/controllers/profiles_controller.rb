@@ -375,7 +375,7 @@ class ProfilesController < ActionController::Base
 
 	def getClassYears(user)
 		years = Array.new
-		degrees = Degree.find(:all, :conditions => ["user_id = ?", user.id])
+		degrees = Degree.find(:all, :conditions => ["user_id = ? and school = ?", user.id, "Stanford University"])
 		
 		degrees.each do |degree|
 			if degree.class_year != nil && degree.class_year > 0

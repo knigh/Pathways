@@ -85,6 +85,11 @@
 					<% fields_for prefix, degree do |degree_form| %>
 	
 					<tr>
+						<td class="text">College</td>
+						<td class="text"><%= degree_form.text_field(:school, :class =>"text", :style => "height:15px;width:170px") %></td>
+					</tr>
+	
+					<tr>
 						<td class="text" width="100">Class year</td>
 						<td><%= select("[user][existing_degree_attributes][#{degree.id}]", "class_year", options_for_select((1935..2020).to_a.reverse {|year| [year.to_s, year]}, degree.class_year), { :include_blank => true}) %></td>
 					</tr>
