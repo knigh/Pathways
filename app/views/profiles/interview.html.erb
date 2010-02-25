@@ -42,15 +42,27 @@
 					<tr><td class="box" align="center"><table class="clean" cellpadding="5">
 					<tr><td colspan="2" class="heading" style="text-align:center">I&apos;m Ready to Create a New Pathway</td></tr>
 					<tr><td colspan="2"/></tr>
-					<% form_for :user, :url => {:action => :post_newUser} do |form| %>
+					<% if session["#{$master.url}_id"] != nil %>
+							<% form_for :user, :url => {:action => :post_newUser} do |form| %>
 						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
 						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
 						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
 							<% if (flash[:notice].index('r') == 0) %>
 								* <%= flash[:notice].sub(/r: /, '') %>
 							<% end %>
-						<% end %><%= submit_tag "Create", :class => "submit" %></td></tr>
-					<% end %>
+						<% end %>
+						<%= submit_tag "Create", :class => "submit", :confirm => "This will create a new Pathway and make you the sole author. Are you sure you want to continue?" %><% end %>
+					<% else %>
+						<% form_for :user, :url => {:action => :signin_to_interview} do |form| %>
+						<tr><td class="text">name</td><td style="text-align:right"><%= form.text_field(:name) %></td></tr>
+						<tr><td class="text">email</td><td style="text-align:right"><%= form.text_field(:email) %></td></tr>
+						<tr><td colspan="2" class="text" style="text-align:right;color:red;"><% if flash[:notice] %>
+							<% if (flash[:notice].index('r') == 0) %>
+								* <%= flash[:notice].sub(/r: /, '') %>
+							<% end %>
+						<% end %>
+						<%= submit_tag "Create", :class => "submit" %><% end %>
+					<% end %></td></tr>
 				</table></td></tr>
 
 				<tr><td class="text" height="50" style="text-align:center">or</td></tr>

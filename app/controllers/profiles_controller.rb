@@ -110,7 +110,13 @@ class ProfilesController < ActionController::Base
 	
 	def signin_to_interview
 		flash[:alert] = "You must sign up or sign in to author another person's pathway"
-		flash[:id] = params[:id]
+		if (params[:id])
+			print "url goes to view\n"
+			flash[:url] = "/profiles/view/#{params[:id]}"
+		else 
+			print "url goes to interview\n"
+			flash[:url] = "/profiles/interview"
+		end
 		redirect_to(:controller => :user, :action => :signin)
 	end	
 	 

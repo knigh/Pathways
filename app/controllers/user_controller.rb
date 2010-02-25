@@ -8,13 +8,13 @@ class UserController < ApplicationController
   def signin
   	flash[:signup_notice] = nil
 	flash[:signin_notice] = nil
-	flash.keep(:id)
+	flash.keep(:url)
   end 
 
   def post_signin
   	flash[:signup_notice] = nil
 	flash[:signin_notice] = nil
-	flash.keep(:id)
+	flash.keep(:url)
 
     @user = User.find_by_email(params[:user][:email])
     if (@user.nil?)
@@ -30,8 +30,8 @@ class UserController < ApplicationController
       	render(:action => :signin)
 	else
 		session["#{$master.url}_id"] = @user[:id];
-		if flash[:id]
-			redirect_to("/profiles/view/#{flash[:id]}")	    	
+		if flash[:url]
+			redirect_to(flash[:url])	    	
 		else
 			redirect_to("/profiles/view/#{@user[:id]}")	    	
 		end
@@ -42,7 +42,7 @@ class UserController < ApplicationController
  def post_publish
         flash[:signup_notice] = nil
         flash[:signin_notice] = nil
-        flash.keep(:id)
+        flash.keep(:url)
 
     @user = User.find_by_email(params[:user][:email])
     if (@user.nil?)
@@ -58,8 +58,8 @@ class UserController < ApplicationController
         render(:action => :signin)
         else
                 session["#{$master.url}_id"] = @user[:id];
-                if flash[:id]
-                        redirect_to("/profiles/view/#{flash[:id]}")
+                if flash[:url]
+                        redirect_to(flash[:url])
                 else
                         redirect_to("/profiles/view/#{@user[:id]}")
                 end
@@ -128,8 +128,8 @@ class UserController < ApplicationController
 			@degree.save
 
 			session["#{$master.url}_id"] = @user[:id];
-			if flash[:id]
-				redirect_to("/profiles/view/#{flash[:id]}")	    	
+			if flash[:url]
+				redirect_to(flash[:url])	    	
 			else
 				redirect_to("/profiles/edit/#{@user[:id]}")	    	
 			end
