@@ -150,6 +150,11 @@ table.authorAlumTable
 	width: 400px;
 }
 
+table.aboutTable
+{
+	width: 350px;
+}
+
 .heading, .title, .text, .footer
 {
 	font-family: Helvetica Neue;

@@ -144,6 +144,16 @@ class ProfilesController < ActionController::Base
 			@author.save
  		end
 
+		# get all interviews I like
+		@interviewsILike = Array.new
+		interviewIdsILike = Like.find(:all, :conditions => ["liked_by_id = ?", id])
+		interviewIdsILike.each do |interviewId|
+			interview = User.find(:all, :conditions => ["id = ?", interviewId.liked_id])
+			if (interview != nil && (interview.length > 0))
+				@interviewsILike << interview[0]
+			end
+		end
+		
 		# get all likers
 		likeResults = Like.find(:all, :conditions => ["liked_id = ?", id])
 		if (likeResults == nil)
