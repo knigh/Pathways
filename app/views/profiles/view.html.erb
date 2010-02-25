@@ -53,7 +53,9 @@
 				<table class="infoTable">
 					
 					<tr><td class="heading" align="right">
-						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1) %>
+						<% print "session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
+
+						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
 							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
 								<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit" %><% end %>

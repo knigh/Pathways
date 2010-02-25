@@ -17,7 +17,7 @@ class ProfilesController < ActionController::Base
 			@user.save
 		end
  
-		if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_restricted != 1))
+		if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1"))
 			redirect_to(:action => :view, :id => id)
 		elsif (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
 			redirect_to(:action => :view, :id => id)
@@ -311,7 +311,6 @@ class ProfilesController < ActionController::Base
 		@user.date_added = Time.now
 		@user.date_modified = Time.now
 		@user.interview_date = Time.now
-
 		
 		password = getPassword(@user.name)
 		print password + "\n"

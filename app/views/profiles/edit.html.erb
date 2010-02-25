@@ -34,7 +34,7 @@
 								<td valign="top">
 									<% if @user.author != 0 && @user.author != @user.id && @user.id == session["#{$master.url}_id"] %>
 										<table class="clean"><tr>
-											<td valign="top"><%= form.check_box :editing_restricted, {}, "0", "1" %></td>
+											<td valign="top"><%= form.check_box :editing_allowed, :value => "0" %></td>
 											<td class="text" style="text-align:left;" width="165px"><small>Allow my interviewer, <%= @author.name %>, to continue editing my Pathway</td>
 										</tr></table>
 									<% end %>

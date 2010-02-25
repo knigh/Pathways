@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100216084528) do
+ActiveRecord::Schema.define(:version => 20100225005911) do
 
   create_table "degrees", :force => true do |t|
     t.integer  "user_id"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(:version => 20100216084528) do
     t.text     "summary",                :default => ""
     t.string   "image_file",             :default => "blank_profile_pic.jpg"
     t.integer  "author",                 :default => 0
-    t.integer  "editing_restricted",     :default => 0
     t.integer  "total_views",            :default => 0
     t.integer  "total_authored",         :default => 0
     t.integer  "views",                  :default => 0
@@ -72,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20100216084528) do
     t.datetime "question_asked"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "approved",               :default => 0
+    t.string   "editing_allowed",        :default => "1"
   end
 
 end
