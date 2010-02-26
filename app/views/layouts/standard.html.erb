@@ -5,7 +5,7 @@
 <head>
 	<title>Stanford Pathways</title>
 	<%= stylesheet_link_tag 'pathways.css' %>
-	<%= auto_discovery_link_tag(:rss, :controller => "profiles_controller", :action => 'feed') %>
+	<%= auto_discovery_link_tag(:rss, :controller => "profiles", :action => 'rss') %>
 </head>
 <body>
 	<table class="main">
