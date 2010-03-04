@@ -72,7 +72,7 @@
 			<!-- Column 2 -->
 			<td class="contentColumn"><table class="sideBar">
 		
-				<tr><td class="heading" style="text-align:right;"><%= submit_tag "Save Changes", :class =>"submit" %></td></tr>
+				<tr><td class="heading" style="text-align:right;"><%= submit_tag "Save Changes", :class =>"submit", :id => "commit" %></td></tr>
 				<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
 				<tr><td class="text" style="text-align:left;">My Pathway pic:<%= form.file_field(:image_file) %></td></tr>
 				
@@ -160,10 +160,18 @@
 				<% end %>
 					<tr><td colspan="3" style="text-align:right;"><input name="add_job" type="submit" value="+" /></td></tr>
 				</table></td></tr>
-			
+
+			</table></td>
+
+			</tr>
+
+		
+			<tr><td/><td/><td align="right"><table class="sideBar">
+				<tr><td width="100%" style="text-align:right;"><input type="button" id="dummy_save" value="Save Changes" onclick="save();" /></td></tr>
 			</table></td></tr>
 
-		</tr></table></td></tr>
+		</table></td></tr>
+
   		<input type = "hidden" name="id" value="<%= params[:id] %>">
 		<% end %>
 	
@@ -185,6 +193,12 @@
 	{
 		document.getElementById('user_student_interview_text').style.display='none';
 		document.getElementById('user_alum_interview_text').style.display='inline';
+	}
+
+	function save()
+	{
+		document.getElementById('commit').click();
+		return false;
 	}
 
 	function checkCharLimit()
