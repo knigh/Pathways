@@ -111,10 +111,12 @@
 						<% if @user.total_authored > 0 %>
 							<tr><td height="5"/></tr>
 							<tr><td class="box"><table class="clean">
-								<tr><td class="title" width="200">Alumni Interviews</td><td class="title" width="70" align="center">Views</td></tr>
+								<tr><td class="title" width="230">Alumni Interviews</td><td class="title" width="40" align="center">Views</td></tr>
+								<tr><td height="5"/></tr>
 								<% @interviewees.each do |interviewee| %>
-									<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
+									<tr><td class="text" style="text-align:left;"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
 								<% end %>
+								<tr><td/></tr>
 								<% if session["#{$master.url}_id"] == @user.id %><tr><td height="3"/></tr>
 									<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
 							</table></td></tr>
@@ -124,6 +126,7 @@
 							<tr><td height="5"/></tr>
 							<tr><td class="box"><table class="clean">
 								<tr><td class="title" width="200">Pathways I Like</td></tr>
+								<tr><td height="5" /></tr>
 								<% @interviewsILike.each do |interview| %>
 									<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interview.id) %>"><%= interview.name %> <%= @controller.getClassYears(interview) %></td></tr>
 								<% end %>
