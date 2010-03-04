@@ -44,10 +44,10 @@
 					</table></td></tr>
 
 					<tr><td/></tr>
-					<tr><td class="title">Six word title for this Pathway:</td></tr>
-					<tr><td><%= form.text_field(:six_words, :class => "text", :style => "height:20px;width:508px;") %></td></tr>
-					<tr><td class="title">160 Character Summary (for search results):</td></tr>
-					<tr><td><%= form.text_area(:summary, :class => "text", :style => "height:60px;width:512px;") %></td></tr>
+					<tr><td class="title"><span id="sixWordReminder"><%= @max_title_word_count %> word title</span> for this Pathway:</td></tr>
+					<tr><td><%= form.text_field(:six_words, :class => "text", :style => "height:20px;width:508px;", :onKeyUp => "checkSixWords();", :onBlur => "checkSixWords();") %></td></tr>
+					<tr><td class="title"><span id="summaryReminder"><%= @max_summary_length %> Character Summary</span> (for search results):</td></tr>
+					<tr><td><%= form.text_area(:summary, :class => "text", :style => "height:60px;width:512px;", :onKeyUp => "checkCharLimit();", :onBlur => "checkCharLimit();") %></td></tr>
 					
 					<tr><td/></tr>
 					<tr><td class="title">Interview:</td></tr>
@@ -64,8 +64,6 @@
 						<% end %>
 					</td></tr>
 					<tr><td class="text" style="text-align:left;">This interview conducted on&nbsp;&nbsp;  <%= datetime_select(:user, :interview_date, :discard_hour => true, :discard_minute => true, :order => [:month, :day, :year], :class => "text", :style => "height:16px;width:410px;") %></td></tr>
-
-
 				</table>
 			</td>
 
@@ -181,13 +179,53 @@
 	{
 		document.getElementById('user_alum_interview_text').style.display='none';
 		document.getElementById('user_student_interview_text').style.display='inline';
-		
 	}
 
 	function switchTextToAlum()
 	{
 		document.getElementById('user_student_interview_text').style.display='none';
 		document.getElementById('user_alum_interview_text').style.display='inline';
+	}
+
+	function checkCharLimit()
+	{
+		var maxLength = <%= @max_summary_length %>; 
+		var userSummary = document.getElementById('user_summary')
+		if (userSummary.value.length > maxLength)
+		{
+			userSummary.value = userSummary.value.substr(0, maxLength);
+			document.getElementById('summaryReminder').style.color = "red";
+		}
+		else
+		{
+			document.getElementById('summaryReminder').style.color = "black";
+		}
+
+		return false;
+	}
+
+	var g_last_legal_six_words = document.getElementById('user_six_words').value;
+
+	function checkSixWords()
+	{
+		var maxCount = <%= @max_title_word_count %>;
+		var sixWords = document.getElementById('user_six_words');
+
+		var pattern = /^(?:\W*([\w\-\']+)\W*){0,6}$/
+		var matches = pattern.test(sixWords.value);
+
+		if (matches)
+		{
+			g_last_legal_six_words = sixWords.value;
+			document.getElementById('sixWordReminder').style.color = "black";
+		}
+		else
+		{
+			sixWords.value = g_last_legal_six_words;
+			document.getElementById('sixWordReminder').style.color = "red";
+		}
+
+		return false;
 	}
 
 </script>

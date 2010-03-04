@@ -41,6 +41,9 @@ class ProfilesController < ActionController::Base
 		if @user.total_authored > 0
 			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
 		end
+		
+		@max_title_word_count = 6
+		@max_summary_length = 250
 	end
 	end
  

@@ -82,6 +82,12 @@ td.tab
 	vertical-align: bottom;
 }
 
+td.summary
+{
+	max-width: 350px;
+	overflow:hidden;
+}
+
 img.clean,
 img.name,
 img.tab,
