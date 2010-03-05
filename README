@@ -80,6 +80,73 @@ cp -r stylesheets ~/public_html
 rm -r ~/public_html/images
 cp -r images ~/public_html
 
+:::::::backup.sh
+#!/bin/bash
+# Shell script to backup MySql database and profile pics
+
+MyUSER="stanfos3_admin" # USERNAME
+MyPASS="ssw294"         # PASSWORD
+ 
+# Linux bin paths
+MYSQL="$(which mysql)"
+MYSQLDUMP="$(which mysqldump)"
+GZIP="$(which gzip)"
+ 
+# Backup Dest director
+DEST="_backup"
+
+# Get date in dd-mm-yyyy format
+NOW="$(date +"%m-%d-%Y_%s")"
+
+# Create Backup sub-directories
+MBD="$DEST/$NOW/mysql"
+install -d $MBD
+PBD="$DEST/$NOW/pics"
+install -d $PBD
+
+# DB skip list
+SKIP="information_schema
+stanfos3_sandboxdv"
+
+# Get all databases
+DBS="$($MYSQL -u $MyUSER -p$MyPASS -Bse 'show databases')"
+
+# Archive database dumps
+for db in $DBS
+do
+    skipdb=-1
+    if [ "$SKIP" != "" ];
+    then
+	for i in $SKIP
+	do
+	    [ "$db" == "$i" ] && skipdb=1 || :
+	done
+    fi
+ 
+    if [ "$skipdb" == "-1" ] ; then
+    	FILE="$MBD/$db"
+	$MYSQLDUMP -u $MyUSER -p$MyPASS $db > $FILE
+    fi
+done
+
+# Archive profile pictures
+DOMAINS="Daily
+Friends
+SymSys"
+
+for domain in $DOMAINS
+do
+	mkdir $PBD/$domain
+	cp $domain/public/images/pics/* $PBD/$domain
+done
+
+# Archive the directory and cleanup
+cd $DEST
+tar -cf $NOW.tar $NOW
+$GZIP -9 $NOW.tar
+rm -rf $NOW
+
+
 
 :::::::Installing git on bluehost (from a blog that has since come down):
 
