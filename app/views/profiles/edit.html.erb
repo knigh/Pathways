@@ -63,7 +63,7 @@
 						<%= form.text_area(:student_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
 						<% end %>
 					</td></tr>
-					<tr><td class="text" style="text-align:left;">This was interview conducted on&nbsp;&nbsp;  <%= datetime_select(:user, :interview_date, :discard_hour => true, :discard_minute => true, :order => [:month, :day, :year], :class => "text", :style => "height:16px;width:410px;") %></td></tr>
+					<tr><td class="text" style="text-align:left;">This interview was conducted on&nbsp;&nbsp;  <%= datetime_select(:user, :interview_date, :discard_hour => true, :discard_minute => true, :order => [:month, :day, :year], :class => "text", :style => "height:16px;width:410px;") %></td></tr>
 				</table>
 			</td>
 
