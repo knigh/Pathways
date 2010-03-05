@@ -114,7 +114,8 @@ table.interviewTable,
 table.infoTable,
 table.signInTable,
 table.instructionsTable,
-table.authorAlumTable
+table.authorAlumTable,
+table.mainTable
 {
 	background-color: white;
 	border-spacing: 10px;
@@ -161,6 +162,11 @@ table.aboutTable
 	width: 350px;
 }
 
+table.mainTable
+{
+	width: 450px;
+}
+
 .heading, .title, .text, .footer
 {
 	font-family: Helvetica Neue, Helvetica;
@@ -194,8 +200,8 @@ table.aboutTable
 	color: #375074;
 	font-weight:lighter;
 	text-align: right;
-	padding-right: 35px;
-	padding-top: 30px;
+	/*padding-right: 35px;
+	padding-top: 30px;*/
 }
 
 .pic
@@ -223,7 +229,8 @@ table.aboutTable
 	left:301px;
 }
 
-.box
+.box,
+.box-orange
 {
 	padding: 10px;
 	border-width: 0px;
@@ -233,6 +240,11 @@ table.aboutTable
 
 	-moz-border-radius:12px;
    	-webkit-border-radius:12px;
+}
+
+.box-orange
+{
+	background-color: #F47A00;
 }
 
 .alert
