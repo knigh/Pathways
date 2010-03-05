@@ -41,7 +41,6 @@
 # Updates all subdomains and main site
 
 cd SandBox
-rm log/development.log
 rm config/database.yml
 git pull
 cd config
@@ -49,7 +48,6 @@ cp database.yml.sandbox database.yml
 
 cd ../..
 cd Friends
-rm log/development.log
 rm config/database.yml
 git pull
 cd config
@@ -57,7 +55,6 @@ cp database.yml.friends database.yml
 
 cd ../..
 cd Daily
-rm log/development.log
 rm config/database.yml
 git pull
 cd config
@@ -66,7 +63,6 @@ cp database.yml.daily database.yml
 # copy this block for each subdomain, updating appropriately
 cd ../..
 cd SymSys
-rm log/development.log
 rm config/database.yml
 git pull
 cd config
@@ -145,7 +141,6 @@ cd $DEST
 tar -cf $NOW.tar $NOW
 $GZIP -9 $NOW.tar
 rm -rf $NOW
-
 
 
 :::::::Installing git on bluehost (from a blog that has since come down):
