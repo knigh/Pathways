@@ -39,8 +39,8 @@ class ProfilesController < ActionController::Base
 		end
  
 		if @user.total_authored > 0
-			@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = 1", id, id])
-			@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != 1", id, id])
+			@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", id, id])
+			@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != '1'", id, id])
 		end
 		
 		@max_title_word_count = 6
