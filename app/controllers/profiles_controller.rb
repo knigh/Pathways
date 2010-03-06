@@ -262,10 +262,22 @@ class ProfilesController < ActionController::Base
 		asker = ""
 		if session["#{$master.url}_id"]
 			user = User.find(session["#{$master.url}_id"])
-			asker = ' (posted by <a href="/profiles/view/' + user.id.to_s + '">' + user.name + '</a>)'
+			asker = ' (posted by <' + user.name + '|/profiles/view/' + user.id.to_s + '>)'
 		end
-		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
-		@user.student_interview_text = @user.student_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
+		
+		#Adds an extra line break if needed
+		text = @user.alum_interview_text
+		if (text[(text.length-1)..(text.length-1)] != "\n")
+			@user.alum_interview_text = text + "\n"
+		end
+		
+		text = @user.student_interview_text
+		if (text[(text.length-1)..(text.length-1)] != "\n")
+			@user.student_interview_text = text + "\n"
+		end
+		
+		@user.alum_interview_text = @user.alum_interview_text + "\n[" + new_question + asker + "]\n"
+		@user.student_interview_text = @user.student_interview_text + "\n[" + new_question + asker + "]\n"
 		
 		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
 			@user.views = @user.views - 1
