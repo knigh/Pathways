@@ -117,6 +117,9 @@
 										<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></a></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
 									<% end %>
 								<% end %>
+								<% if @interviewees_approved != nil && @interviewees_approved.length > 0 && @interviewees_pending != nil && @interviewees_pending.length > 0 %>
+									<tr><td height="5"/></tr>
+								<% end %>
 								<% if @interviewees_pending != nil && @interviewees_pending.length > 0 %>
 									<tr><td colspan="2" class="title" width="200">Interviews in Progress</td></tr>
 									<% @interviewees_pending.each do |interviewee| %>
