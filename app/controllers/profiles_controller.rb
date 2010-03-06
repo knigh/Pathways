@@ -37,12 +37,7 @@ class ProfilesController < ActionController::Base
 		else 
 			@interview_text = @user.student_interview_text
 		end
- 
-		if @user.total_authored > 0
-			@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", id, id])
-			@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != '1'", id, id])
-		end
-		
+				
 		@max_title_word_count = 6
 		@max_summary_length = 250
 	end
@@ -144,7 +139,8 @@ class ProfilesController < ActionController::Base
 				@author.total_views = @author.total_views + 1
 			end
 			if @user.total_authored > 0
-				@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
+				@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", id, id])
+				@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != '1'", id, id])
 			end
 			@user.save
 			@author.save
