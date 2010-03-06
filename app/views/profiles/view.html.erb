@@ -111,12 +111,16 @@
 						<% if @user.total_authored > 0 %>
 							<tr><td height="5"/></tr>
 							<tr><td class="box"><table class="clean">
-								<tr><td class="title" width="230">Alumni Interviews</td><td class="title" width="40" align="center">Views</td></tr>
-								<tr><td height="5"/></tr>
-								<% @interviewees.each do |interviewee| %>
-									<tr><td class="text" style="text-align:left;"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
+								<tr><td class="title" width="200">Alumni Interviews</td><td class="title" width="70" align="center">Views</td></tr>
+								<% @interviewees_approved.each do |interviewee| %>
+									<tr><td class="text"><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></a></td><td class="text" style="text-align:center"><%= interviewee.views %></td></tr>
 								<% end %>
-								<tr><td/></tr>
+								<% if @interviewees_pending != nil && @interviewees_pending.length > 0 %>
+									<tr><td colspan="2" class="title" width="200">Interviews in Progress</td></tr>
+								<% @interviewees_pending.each do |interviewee| %>
+									<tr><td class="text" colspan="2"><% if session["#{$master.url}_id"] == @user.id %><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></a><% else %><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %><% end %></td></tr>
+								<% end %>
+								<% end %>
 								<% if session["#{$master.url}_id"] == @user.id %><tr><td height="3"/></tr>
 									<tr><td colspan="2" class="text" style="text-align:center;"><a href="<%= url_for(:action => "interview") %>">Interview another alum</a></td></tr><% end %>
 							</table></td></tr>

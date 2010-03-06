@@ -39,7 +39,8 @@ class ProfilesController < ActionController::Base
 		end
  
 		if @user.total_authored > 0
-			@interviewees = User.find(:all, :conditions => [ "author = ? AND id != ?", id, id])
+			@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = 1", id, id])
+			@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != 1", id, id])
 		end
 		
 		@max_title_word_count = 6
@@ -133,11 +134,13 @@ class ProfilesController < ActionController::Base
 		@jobs = Job.find(:all, :conditions => ["user_id = ? AND (title != ? OR company != ?)", id, "", ""])
 		@degrees = Degree.find(:all, :conditions => ["user_id = ? AND (degree != ? OR major != ?)", id, "", ""])
 		
-		@user.views = @user.views + 1
+		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
+			@user.views = @user.views + 1
+		end
 
 		if @user.author != 0
 			@author = User.find(@user.author)
-			if @user.author != @user.id
+			if @user.author != @user.id && session[:user_id] != @user.id && session[:user_id] != @user.author
 				@author.total_views = @author.total_views + 1
 			end
 			if @user.total_authored > 0
@@ -224,10 +227,12 @@ class ProfilesController < ActionController::Base
 			@interview_text = @user.student_interview_text
 		end
  
-		@interview_text.gsub!(/Q: .*\nA:/) {|match| "<br/><br/><em>" + match[3..-3] + "</em><br/>"}
-		firstQ = @interview_text.index(/<em>/)
-		if (firstQ != nil)
-			@interview_text = @interview_text[firstQ, @interview_text.length - firstQ]
+		@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '">' + match[1..match.index('|') - 1] + '</a>'}
+		@interview_text.gsub!(/\[.*\]/) {|match| '<br/><br/><span class="question">' + match[1..(match.length - 2)] + '</span><br/>'}
+		@interview_text.gsub!(/\|\|/) {|match| '<br/>'}
+
+		if (@interview_text.index("<br/><br/>") == 0) 
+			@interview_text = @interview_text[10..@interview_text.length - 1]
 		end
 	end
 	end
@@ -235,10 +240,13 @@ class ProfilesController < ActionController::Base
 	def post_like
 		
 		@user = User.find(params[:id])
-		#@user.likes = @user.likes + 1
-		@user.views = @user.views - 1
-		author = User.find(@user.author)
-		author.total_views = author.total_views - 1
+
+		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
+			@user.views = @user.views - 1
+			author = User.find(@user.author)
+			author.total_views = author.total_views - 1
+			author.save
+		end
  
 		@like = Like.new
 		@like.liked_id = @user.id
@@ -246,9 +254,8 @@ class ProfilesController < ActionController::Base
 
 		@like.save
 		@user.save
-		author.save
  
-		redirect_to("/profiles/view/#{@user[:id]}")
+		redirect_to("/profiles/view/#{@user[:id]}")	
 	end
  
 	def post_question
@@ -261,13 +268,17 @@ class ProfilesController < ActionController::Base
 		end
 		@user.alum_interview_text = @user.alum_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
 		@user.student_interview_text = @user.student_interview_text + "\nQ: " + new_question + asker + "\nA:\n"
-		@user.views = @user.views - 1
+		
+		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
+			@user.views = @user.views - 1
+			author = User.find(@user.author)
+			author.total_views = author.total_views - 1
+			author.save
+		end
+		
 		@user.question_asked = Time.now
-		author = User.find(@user.author)
-		author.total_views = author.total_views - 1
  
 		@user.save
-		author.save
 		redirect_to("/profiles/view/#{@user[:id]}")
 	end
  
