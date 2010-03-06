@@ -226,6 +226,8 @@ class ProfilesController < ActionController::Base
 		@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '">' + match[1..match.index('|') - 1] + '</a>'}
 		@interview_text.gsub!(/\[.*\]/) {|match| '<br/><br/><span class="question">' + match[1..(match.length - 2)] + '</span><br/>'}
 		@interview_text.gsub!(/\|\|/) {|match| '<br/>'}
+		
+		@interview_text.gsub!(/Q: .*\nA:/) {|match| '<br/><br/><span class="question">' + match[3..-3] + '</span><br/>'}
 
 		if (@interview_text.index("<br/><br/>") == 0) 
 			@interview_text = @interview_text[10..@interview_text.length - 1]
