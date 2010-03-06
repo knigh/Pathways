@@ -256,6 +256,11 @@ table.mainTable
 	background-color: #EEEEEE;
 }
 
+.question
+{
+	color: #000;
+}
+
 a
 {
 	color: #375074;
