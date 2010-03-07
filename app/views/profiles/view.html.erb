@@ -123,6 +123,7 @@
 								<% end %>
 								<% if @interviewees_pending != nil && @interviewees_pending.length > 0 %>
 									<tr><td colspan="2" class="title" width="230">Interviews in Progress</td></tr>
+									<tr><td height="5"/></tr>
 									<% @interviewees_pending.each do |interviewee| %>
 										<tr><td class="text" colspan="2" style="text-align:left;"><% if session["#{$master.url}_id"] == @user.id %><a href="<%= url_for(:action => "view", :id => interviewee.id) %>"><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %></a><% else %><%= interviewee.name %> <%= @controller.getClassYears(interviewee) %><% end %></td></tr>
 									<% end %>
