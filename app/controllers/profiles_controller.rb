@@ -298,6 +298,20 @@ class ProfilesController < ActionController::Base
  
 	def search
 		
+		# for A/B testing [kelly, insert your logic here :)]
+		@ATest = false
+
+		# Get a random potential interview for B-Testing
+		if (@ATest == false)
+			potential_interviewees = User.find(:all, :conditions => ["author = ?", 0])
+			if (potential_interviewees != nil && potential_interviewees.length > 0)
+				@random_interviewee = potential_interviewees[rand(potential_interviewees.length)]
+			else
+				# Go back to ATest if we have no unauthored pathways
+				@ATest = true
+			end
+		end
+
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
@@ -362,8 +376,8 @@ class ProfilesController < ActionController::Base
 
 		@contributors = User.find(:all, :conditions => ['total_authored > ? and approved > ?', 0, 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
 		 
-		   days = 7
-		 days_ago = Time.now - (days * (60*60*24)) 
+		days = 7
+		days_ago = Time.now - (days * (60*60*24)) 
 		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
 		
 		@authoredPathways = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0])

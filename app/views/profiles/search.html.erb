@@ -58,6 +58,7 @@
 
 			<td class="contentColumn"><table class="sideBar">
 					
+				<% if @ATest %>
 					<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="heading" style="text-align:center">We're building the <%= $master.informal_name %> community,</td></tr>
 						<tr><td class="text" style="text-align:justify">one person at a time.  You can browse for alumni,
@@ -84,7 +85,23 @@
 							<tr><td class="text" style="text-align:center"><a href="/profiles/rss"><img class="clean" id="feed" width="18px" src="/images/feed.png"/></a>&nbsp;&nbsp;<i>We're at <%= @authoredPathways.length %> Pathway<% if @authoredPathways.length != 1 %>s<% end %> and counting!</i></td></tr>
 						<% end %>
 					</table></td></tr>
-			
+				<% else %>
+					<tr><td class="box"><table class="clean" width="310px;">
+						<tr>
+							<td colspan="2" height="5"/>
+						</tr>
+						<tr>
+							<td width="150" class="heading" style="text-align:center;"><big>Are you<br/>a student?</big></td>
+							<td width="150" align="center"><img class="pic" src="/images/pics/student_pic.jpg"/></td>
+						</tr>
+						<tr>
+							<td colspan="2" height="5"/>
+						</tr>
+						<tr>
+							<td colspan="2" class="heading" align="center"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
+						</tr>
+					</table></td></tr>
+				<% end %>
 
 					<!--<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>-->
 					
@@ -105,6 +122,11 @@
 							<% @recent_interviews.each do |recent| %>
 								<% author = User.find(recent.author) %>
 								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id %><%= "-" %><% else %><a href="/profiles/view/<%= author.id %>"><%= author.name %> <%= @controller.getClassYears(author) %></a><% end %></td></tr>
+							<% end %>
+							
+							<% if ((@ATest == false) && (@authoredPathways.length  > 0)) %>
+								<tr><td height="10"/></tr>
+								<tr><td colspan="2" class="text" style="text-align:center"><a href="/profiles/rss"><img class="clean" id="feed" width="18px" src="/images/feed.png"/></a>&nbsp;&nbsp;<i>We're at <%= @authoredPathways.length %> Pathway<% if @authoredPathways.length != 1 %>s<% end %> and counting!</i></td></tr>
 							<% end %>
 						<table>
 					</td></tr>
