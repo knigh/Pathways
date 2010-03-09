@@ -16,13 +16,13 @@ class ProfilesController < ActionController::Base
 			if params[:commit] == "Author Pathway"
 				@user.author = session["#{$master.url}_id"]
 				@user.save
-				end
+			end
 			
 			if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1"))
 				redirect_to(:action => :view, :id => id)
-				elsif (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
+			elsif (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
 				redirect_to(:action => :view, :id => id)
-				end
+			end
 			
 			
 			@jobs = Job.find(:all, :conditions => ["user_id = ?", id])
@@ -31,13 +31,13 @@ class ProfilesController < ActionController::Base
 			
 			if @user.author != 0
 				@author = User.find(@user.author)
-				end
+			end
 			
 			if @user.is_alum == "1"
 				@interview_text = @user.alum_interview_text
-				else 
+			else 
 				@interview_text = @user.student_interview_text
-				end
+			end
 			
 			@max_title_word_count = 6
 			@max_summary_length = 250
