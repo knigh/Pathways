@@ -317,7 +317,7 @@ class ProfilesController < ActionController::Base
 		end
 		
 		$master.ab_last_assigned = ($master.ab_last_assigned + 1) % 2 #Toggles assignment between 0 and 1
-
+		$master.save
 
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
