@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
 	has_many :jobs
 	has_many :degrees
 	
+	belongs_to :interviewer, :class_name => "User", :foreign_key => "author"
+	has_many :interviewees, :class_name => "User", :foreign_key => "author"
+
+	
   after_update :save_jobs, :save_degrees
 
   def new_job_attributes=(job_attributes)

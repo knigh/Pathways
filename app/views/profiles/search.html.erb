@@ -109,7 +109,7 @@
 						<table style="clean">
 							<tr><td class="heading" width="210">Top Contributors</td><td class="title" width="100" align="center">Interviews Contributed</td><td class="title" width="50" align="center">Total Views</td></tr>
 							<% @contributors.each do |contributor| %>
-								<tr><td class="text"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %> <%= @controller.getClassYears(contributor) %></a></td><td class="text" style="text-align:center"><%= contributor.total_authored %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
+								<tr><td class="text"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %> <%= @controller.getClassYears(contributor) %></a></td><td class="text" style="text-align:center"><%= (User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", contributor.id, contributor.id])).size %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
 							<% end %>
 						</table>
 					</td></tr>
@@ -120,8 +120,8 @@
 						<table style="clean">
 							<tr><td class="heading" width="240">Recent Pathways</td><td class="title" width="120" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
-								<% author = User.find(recent.author) %>
-								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id %><%= "-" %><% else %><a href="/profiles/view/<%= author.id %>"><%= author.name %> <%= @controller.getClassYears(author) %></a><% end %></td></tr>
+								<% recent_author = User.find(recent.author) %>
+								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id %><%= "-" %><% else %><a href="/profiles/view/<%= recent_author.id %>"><%= recent_author.name %> <%= @controller.getClassYears(recent_author) %></a><% end %></td></tr>
 							<% end %>
 							
 							<% if ((@ATest == false) && (@authoredPathways.length  > 0)) %>

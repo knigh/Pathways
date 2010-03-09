@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225151954) do
+ActiveRecord::Schema.define(:version => 20100308173224) do
 
   create_table "degrees", :force => true do |t|
     t.integer  "user_id"
@@ -41,6 +41,11 @@ ActiveRecord::Schema.define(:version => 20100225151954) do
     t.integer "liked_by_id"
   end
 
+  create_table "logs", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "masters", :force => true do |t|
     t.string   "logo_file"
     t.string   "pathways_logo"
@@ -52,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20100225151954) do
     t.text     "student_default_qs"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ab_last_assigned",   :default => 1
   end
 
   create_table "users", :force => true do |t|
@@ -68,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20100225151954) do
     t.string   "image_file",             :default => "blank_profile_pic.jpg"
     t.integer  "author",                 :default => 0
     t.integer  "total_views",            :default => 0
-    t.integer  "total_authored",         :default => 0
     t.integer  "views",                  :default => 0
     t.integer  "likes",                  :default => 0
     t.string   "hashed_password"

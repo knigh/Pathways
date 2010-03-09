@@ -138,10 +138,9 @@ class ProfilesController < ActionController::Base
 			if @user.author != @user.id && session[:user_id] != @user.id && session[:user_id] != @user.author
 				@author.total_views = @author.total_views + 1
 			end
-			if @user.total_authored > 0
-				@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", id, id])
-				@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != '1'", id, id])
-			end
+			
+			@interviewees_approved = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", id, id])
+			@interviewees_pending = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved != '1'", id, id])
 			@user.save
 			@author.save
  		end
@@ -374,7 +373,19 @@ class ProfilesController < ActionController::Base
 			end
 		end
 
-		@contributors = User.find(:all, :conditions => ['total_authored > ? and approved > ?', 0, 0], :order => 'total_authored DESC, total_views DESC', :limit => 5)
+		allUsers = User.find(:all);
+		allUsers.sort! {|x,y| 
+			x_approved_interviews = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", x.id, x.id])
+			y_approved_interviews = User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", y.id, y.id])
+			if y_approved_interviews.size == x_approved_interviews.size 
+				y.total_views <=> x.total_views
+			end
+			y_approved_interviews.size <=> x_approved_interviews.size
+		}
+
+		@contributors = allUsers[0..4]
+		
+		@contributors.reject! {|contributor| (User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", contributor.id, contributor.id])).size == 0}
 		 
 		days = 7
 		days_ago = Time.now - (days * (60*60*24)) 
@@ -409,7 +420,6 @@ class ProfilesController < ActionController::Base
 			@degree.user_id = @user[:id]
 			@degree.save
 			author = User.find(session["#{$master.url}_id"])
-			author.total_authored = author.total_authored + 1
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")
 		else
@@ -462,7 +472,6 @@ class ProfilesController < ActionController::Base
 			@degree.user_id = @user[:id]
 			@degree.save
 			author = User.find(session["#{$master.url}_id"])
-			author.total_authored = author.total_authored + 1
 			author.save
 			redirect_to("/profiles/edit/#{@user[:id]}")
 		else
@@ -512,6 +521,7 @@ class ProfilesController < ActionController::Base
 	end
 	
 	def getPassword(name)
+		name = name + name + name + name + name + name + name + name + name + name
 		name = name.downcase.delete(" ")
 		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
