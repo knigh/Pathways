@@ -108,7 +108,7 @@
 							<% end %>
 						<% end %>
 	
-						<% if @interviewees_approved != nil && @interviewees_approved.length > 0 && @interviewees_pending != nil && @interviewees_pending.length > 0 %>
+						<% if (@interviewees_approved != nil && @interviewees_approved.length > 0) || (@interviewees_pending != nil && @interviewees_pending.length > 0) %>
 							<tr><td height="5"/></tr>
 							<tr><td class="box"><table class="clean">
 								<% if @interviewees_approved != nil && @interviewees_approved.length > 0 %>
