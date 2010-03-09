@@ -297,8 +297,13 @@ class ProfilesController < ActionController::Base
  
 	def search
 		
-		# for A/B testing [kelly, insert your logic here :)]
-		@ATest = false
+		# for A/B testing
+		
+		if ($master.ab_last_assigned == 1) # 0 corresponds to A, 1 corresponds to B
+			@ATest = true
+		else
+			@ATest = false
+		end
 
 		# Get a random potential interview for B-Testing
 		if (@ATest == false)
@@ -310,6 +315,9 @@ class ProfilesController < ActionController::Base
 				@ATest = true
 			end
 		end
+		
+		$master.ab_last_assigned = ($master.ab_last_assigned + 1) % 2 #Toggles assignment between 0 and 1
+
 
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
