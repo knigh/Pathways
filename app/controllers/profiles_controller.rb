@@ -45,6 +45,9 @@ class ProfilesController < ActionController::Base
 	end
 	
 	def post_edit
+		
+		createNewLogEntry(request.request_uri)
+		
 		@user = User.find(params[:id])
 		
  		prev = params[:user][:image_file]
@@ -522,6 +525,15 @@ class ProfilesController < ActionController::Base
 		@user.save
 		redirect_to(:action => :view, :id => @user.id)
 	end
+
+	def rss
+		createNewLogEntry(request.request_uri)
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+	end
+	
+	def about
+		createNewLogEntry(request.request_uri)
+	end
 	
 	def getClassYears(user)
 		years = Array.new
@@ -549,14 +561,7 @@ class ProfilesController < ActionController::Base
 		name = name.downcase.delete(" ")
 		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
-	
-	def rss
-		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
-	end
-	
-	def about
-	end
-	
+
 	def createNewLogEntry(url)
 		entry = Log.new
 		if (session["#{$master.url}_id"] != nil)
