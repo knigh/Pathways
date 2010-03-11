@@ -1,10 +1,9 @@
 class ProfilesController < ActionController::Base
 	
 	layout 'standard', :except => :rss
-	
+
 	$master = Master.find(1)
-	
-	
+
 	def edit
 		createNewLogEntry(request.request_uri)
 		begin
@@ -114,10 +113,10 @@ class ProfilesController < ActionController::Base
 	def signin_to_interview
 		flash[:alert] = "You must sign up or sign in to author another person's pathway"
 		if (params[:id])
-			print "url goes to view\n"
+			#print "url goes to view\n"
 			flash[:url] = "/profiles/view/#{params[:id]}"
 		else 
-			print "url goes to interview\n"
+			#print "url goes to interview\n"
 			flash[:url] = "/profiles/interview"
 		end
 		redirect_to(:controller => :user, :action => :signin)
@@ -302,7 +301,7 @@ class ProfilesController < ActionController::Base
 	end
 	
 	def search
-		
+
 		if session["#{$master.url}_ab_assignment"] == nil
 			if ($master.ab_last_assigned == 1) # 0 corresponds to A, 1 corresponds to B
 				session["#{$master.url}_ab_assignment"] = "a"
@@ -314,7 +313,7 @@ class ProfilesController < ActionController::Base
 			$master.save
 		end
 		
-		print "\nsession: " + session["#{$master.url}_ab_assignment"] + "\n"
+		#print "\nsession: " + session["#{$master.url}_ab_assignment"] + "\n"
 		
 		
 		@ATest = true
@@ -471,7 +470,7 @@ class ProfilesController < ActionController::Base
 		
 		
 		password = getPassword(@user.name)
-		print password + "\n"
+		#print password + "\n"
 		@user.hashed_password = Digest::SHA1.hexdigest(password)
 		
 		
@@ -549,7 +548,7 @@ class ProfilesController < ActionController::Base
 			return ""
 		end
 		
-		print "years contains " + years.length.to_s + "\n"
+		#print "years contains " + years.length.to_s + "\n"
 		
 		years.sort!
 		return "('" + years[0].to_s[2..3] + ")"
@@ -563,12 +562,22 @@ class ProfilesController < ActionController::Base
 	end
 
 	def createNewLogEntry(url)
+
+		if (session["#{$master.url}_temp_id"] == nil)
+			session["#{$master.url}_temp_id"] = getTempId(8)
+		end
+
+		#print	"\n" + session["#{$master.url}_temp_id"] + "\n"
+
 		entry = Log.new
 		if (session["#{$master.url}_id"] != nil)
 			entry.user_id = session["#{$master.url}_id"]
 		else
 			entry.user_id = 0
 		end
+
+		entry.temp_id = session["#{$master.url}_temp_id"]
+
 		if (session["#{$master.url}_ab_assignment"] != nil)
 			entry.ab_assignment = session["#{$master.url}_ab_assignment"]
 		else
@@ -578,4 +587,10 @@ class ProfilesController < ActionController::Base
 		entry.time_visited = Time.now
 		entry.save
 	end
+
+	def getTempId(size)
+		charset = Array['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9']
+		return (0..size).map {charset[rand(charset.size)]}.join
+	end
+
 end

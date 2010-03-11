@@ -149,13 +149,23 @@ class UserController < ApplicationController
 		return (term / 10**val).to_s
 	end
 	
-  	def createNewLogEntry(url)
+	def createNewLogEntry(url)
+
+		if (session["#{$master.url}_temp_id"] == nil)
+			session["#{$master.url}_temp_id"] = getTempId(8)
+		end
+
+		#print	"\n" + session["#{$master.url}_temp_id"] + "\n"
+
 		entry = Log.new
 		if (session["#{$master.url}_id"] != nil)
 			entry.user_id = session["#{$master.url}_id"]
 		else
 			entry.user_id = 0
 		end
+
+		entry.temp_id = session["#{$master.url}_temp_id"]
+
 		if (session["#{$master.url}_ab_assignment"] != nil)
 			entry.ab_assignment = session["#{$master.url}_ab_assignment"]
 		else
@@ -165,5 +175,12 @@ class UserController < ApplicationController
 		entry.time_visited = Time.now
 		entry.save
 	end
+
+	def getTempId(size)
+		charset = Array['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9']
+		return (0..size).map {charset[rand(charset.size)]}.join
+	end
+
+
 
 end
