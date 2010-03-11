@@ -118,7 +118,7 @@
 
 					<tr><td>
 						<table style="clean">
-							<tr><td class="heading" width="240">Recent Pathways</td><td class="title" width="120" align="center">Interviewed By</td></tr>
+							<tr><td class="heading" width="210">Recent Pathways</td><td class="title" width="150" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
 								<% recent_author = User.find(recent.author) %>
 								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id %><%= "-" %><% else %><a href="/profiles/view/<%= recent_author.id %>"><%= recent_author.name %> <%= @controller.getClassYears(recent_author) %></a><% end %></td></tr>
