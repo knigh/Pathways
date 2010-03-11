@@ -55,9 +55,8 @@
 						interviewing someone else, to natually follow the conversation. Also feel free to add a YouTube video or audio URL.</td></tr>
 					<tr><td class="text" style="text-align:left;">YouTube URL&nbsp;&nbsp;<%= form.text_field(:video_url, :class => "text", :style => "height:16px;width:410px;") %></td></tr>
 					<tr><td class="title" colspan="2">Interview Syntax</td></tr>
-					<tr><td class="text" colspan="2">[text] - Question</td></tr>
+					<tr><td class="text" colspan="2">[[text]] - Question</td></tr>
 					<tr><td class="text" colspan="2">&lt;text|link&gt; - Link (when text is clicked, goes to link)</td></tr>
-					<tr><td class="text" colspan="2">|| - Line break</td></tr>
 					<tr><td class="text">
 						<% if @user.is_alum == "1" %>
 						<%= form.text_area(:alum_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
