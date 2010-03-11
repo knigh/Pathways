@@ -227,8 +227,9 @@ class ProfilesController < ActionController::Base
 			end
 			
 			@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '">' + match[1..match.index('|') - 1] + '</a>'}
-			@interview_text.gsub!(/\[.*\]/) {|match| '<br/><br/><span class="question">' + match[1..(match.length - 2)] + '</span><br/>'}
-			@interview_text.gsub!(/\|\|/) {|match| '<br/>'}
+			@interview_text.gsub!(/\[\[.*\]\]/) {|match| '<span class="question">' + match[2..(match.length - 3)] + '</span>'}
+
+			@interview_text.gsub!(/\n/) {|match| '<br/>'}
 			
 			@interview_text.gsub!(/Q: .*\nA:/) {|match| '<br/><br/><span class="question">' + match[3..-3] + '</span><br/>'}
 			
@@ -280,8 +281,8 @@ class ProfilesController < ActionController::Base
 			@user.student_interview_text = text + "\n"
 		end
 		
-		@user.alum_interview_text = @user.alum_interview_text + "\n[" + new_question + asker + "]\n"
-		@user.student_interview_text = @user.student_interview_text + "\n[" + new_question + asker + "]\n"
+		@user.alum_interview_text = @user.alum_interview_text + "\n[[" + new_question + asker + "]]\n"
+		@user.student_interview_text = @user.student_interview_text + "\n[[" + new_question + asker + "]]\n"
 		
 		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
 			@user.views = @user.views - 1
