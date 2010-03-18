@@ -60,21 +60,27 @@
 					
 				<% if (session["#{$master.url}_id"] == nil) %>
 					<tr><td class="box"><table class="clean" width="310px;">
-						<tr>
-							<td colspan="2" height="5"/>
-						</tr>
-						<tr>
-							<td width="150" class="title" style="text-align:center;"><big>Are you<br/>a student?</big></td>
-							<td width="150" align="center"><img class="pic" src="/images/pics/students.gif"/></td>
-						</tr>
-						<tr>
-							<td colspan="2" height="5"/>
-						</tr>
-						<tr>
-							<td colspan="2" class="heading" align="center" style="color:black;"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
-						</tr>
-					</table></td></tr>
-				<% elsif @user.is_alum == "1" %>
+					<tr>
+						<td colspan="2" height="5"/>
+					</tr>
+					<tr>
+						<td width="150" class="title" style="text-align:center;"><big>Are you<br/>a student?</big></td>
+						<td width="150" align="center"><img class="pic" src="/images/pics/students.gif"/></td>
+					</tr>
+					<tr>
+						<td colspan="2" height="5"/>
+					</tr>
+					<tr>
+					<% if @numSeeded > 0 %>
+						<td colspan="2" class="heading" align="center" style="color:black;"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
+							</tr>
+						</table></td></tr>
+					<% else %>
+						<td colspan="2" class="heading" align="center" style="color:black;"><a href="/user/signin"><small><b>Sign up</b></a> to interview an alum of your choice!</td>
+							</tr>
+						</table></td></tr>
+					<% end %>
+				<% elsif @user.is_alum == "1" || @numSeeded == 0 %>
 						<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Why don't you check out this profile?</td></tr>
 						<tr><td height="9"/></tr>

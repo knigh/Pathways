@@ -307,11 +307,13 @@ class ProfilesController < ActionController::Base
 	end
 	
 	def search
-
+		
 		potential_interviewees = User.find(:all, :conditions => ["author = ?", 0])
 		if (potential_interviewees != nil && potential_interviewees.length > 0)
 			@random_interviewee = potential_interviewees[rand(potential_interviewees.length)]
 		end
+
+		@numSeeded = potential_interviewees.length
 		
 		createNewLogEntry(request.request_uri)
 		
@@ -401,9 +403,9 @@ class ProfilesController < ActionController::Base
 			matchingEducation.each do |degree|
 				user = User.find(degree.user_id)
 				print "\nuser: " + user.name + ", " + user.approved.to_s + ", " + user.author.to_s + "\n" 
-				if (@user.is_alum == "1" && user.approved == 1)   # show alums approved profiles for viewing
+				if ((@user.is_alum == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
 					recommended << user
-				elsif (@user.is_alum == "0" && user.author == 0)   # show students seeded profiles
+				elsif ((@user.is_alum == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
 					recommended << user
 				end
 			end
@@ -417,9 +419,9 @@ class ProfilesController < ActionController::Base
 			end
 			matchingJob.each do |job|
 				user = User.find(job.user_id)
-				if (@user.is_alum == "1" && user.approved == 1)   # show alums approved profiles for viewing
+				if ((@user.is_alum == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
 					recommended << user
-				elsif (@user.is_alum == "0" && user.author == 0)   # show students seeded profiles
+				elsif ((@user.is_alum == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
 					recommended << user
 				end
 			end
@@ -455,7 +457,7 @@ class ProfilesController < ActionController::Base
 				end
 
 			else
-				if (@user.is_alum == "1")   # show alums approved profiles
+				if (@user.is_alum == "1" || @numSeeded == 0)   # show alums approved profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
 				elsif (@user.is_alum == "0")   # show students seeded profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author = 0", @user.id, @user.id])
