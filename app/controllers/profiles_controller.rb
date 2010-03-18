@@ -314,7 +314,7 @@ class ProfilesController < ActionController::Base
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
-			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved > ?', params[:commit], 0, 0], :order => 'name')
+			searchResults = User.(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved > ?', params[:commit], 0, 0], :order => 'name')
 			if searchResults == nil
 				searchResults = Array.new
 			end
