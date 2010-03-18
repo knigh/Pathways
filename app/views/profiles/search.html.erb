@@ -4,7 +4,7 @@
 	
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="searchTable">
-					<tr><td class="heading"><table class="clean"><tr>
+					<tr><td class="title"><table class="clean"><tr>
 						<td id="searchTitle" width="100%">Featured Pathways</td>
 						<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
@@ -58,56 +58,62 @@
 
 			<td class="contentColumn"><table class="sideBar">
 					
-				<% if @ATest %>
+				<% if (session["#{$master.url}_id"] == nil) %>
 					<tr><td class="box"><table class="clean" width="310px;">
-						<tr><td class="heading" style="text-align:center">We're building the <%= $master.informal_name %> community,</td></tr>
-						<tr><td class="text" style="text-align:justify">one person at a time.  You can browse for alumni,
-							create your own Pathway, or interview a <%= $master.informal_name %> alum and share their wisdom - and
-							Pathway - with all of us.</td></tr>
+						<tr>
+							<td colspan="2" height="5"/>
+						</tr>
+						<tr>
+							<td width="150" class="title" style="text-align:center;"><big>Are you<br/>a student?</big></td>
+							<td width="150" align="center"><img class="pic" src="/images/pics/student_pic.jpg"/></td>
+						</tr>
+						<tr>
+							<td colspan="2" height="5"/>
+						</tr>
+						<tr>
+							<td colspan="2" class="title" align="center"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
+						</tr>
+					</table></td></tr>
+				<% elsif @user.is_alum == "1" %>
+						<tr><td class="box"><table class="clean" width="310px;">
+						<tr><td class="title" style="text-align:center">Why don't you check out this profile?</td></tr>
 						<tr><td height="9"/></tr>
 						<tr><td><table style="clean">
 							<tr>
 								<td width="28"/>
-								<td width="140" style="text-align:center;" class="heading">
-									<% if session["#{$master.url}_id"] %>
-										<a href="/profiles/edit/<%= session["#{$master.url}_id"] %>">Edit Your Pathway</a>
-									<% else %>
-										<a href="/user/signin">Create Your Own Pathway</a>
-									<% end %></td>
-								<td width="40" class="text" style="text-align:center">or</td>
-								<td width="140" style="text-align:center;" class="heading">
-									<a href="/profiles/interview">Interview A <%= $master.informal_name %> Alum</a></td>
+								<td width="140" style="text-align:center;" class="title">
+								<img class="pic" src="/images/pics/<%= @recommended.image_file %>"/>
+								<td width="225" style="text-align:center;" class="title">
+									<a href="/profiles/view/<%=@recommended.id %>"><%= @recommended.name %></a><br/><small><%=@recommendedText%></small></td>
 								<td width="28"/>
 							</tr>
 						</table></td></tr>
-						<tr><td height="9"/></tr>
-						<% if (@authoredPathways.length  > 0) %>
-							<tr><td class="text" style="text-align:center"><a href="/profiles/rss"><img class="clean" id="feed" width="18px" src="/images/feed.png"/></a>&nbsp;&nbsp;<i>We're at <%= @authoredPathways.length %> Pathway<% if @authoredPathways.length != 1 %>s<% end %> and counting!</i></td></tr>
-						<% end %>
 					</table></td></tr>
+
 				<% else %>
-					<tr><td class="box"><table class="clean" width="310px;">
-						<tr>
-							<td colspan="2" height="5"/>
-						</tr>
-						<tr>
-							<td width="150" class="heading" style="text-align:center;"><big>Are you<br/>a student?</big></td>
-							<td width="150" align="center"><img class="pic" src="/images/pics/students.gif"/></td>
-						</tr>
-						<tr>
-							<td colspan="2" height="5"/>
-						</tr>
-						<tr>
-							<td colspan="2" class="heading" align="center"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
-						</tr>
+						<tr><td class="box"><table class="clean" width="310px;">
+						<tr><td class="title" style="text-align:center">Contribute your own interview!<td></tr>
+						<tr><td height="9"/></tr>
+						<tr><td><table style="clean">
+							<tr>
+								<td width="28"/>
+								<td width="140" style="text-align:center;" class="title">
+								<img class="pic" src="/images/pics/<%= @recommended.image_file %>"/>
+								<td width="225" style="text-align:center;" class="title">
+									Interview<br/><a href="/profiles/view/<%=@recommended.id %>"><%= @recommended.name %></a><br/><small><%=@recommendedText%></small></td>
+								<td width="28"/></tr>
+								<tr><td colspan="4" style="text-align:center;" class="title">or one of <a href="/profiles/interview">many other <%= $master.informal_name %> alumni</a></tr>
+							</tr>
+						</table></td></tr>
 					</table></td></tr>
+
 				<% end %>
 
 					<!--<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>-->
 					
 					<tr><td>
 						<table style="clean">
-							<tr><td class="heading" width="180">Top Contributors</td><td class="title" width="115" align="center">Interviews Contributed</td><td class="title" width="65" align="center">Total Views</td></tr>
+							<tr><td class="title" width="180">Top Contributors</td><td class="title" width="100" align="center">Interviews Contributed</td><td class="title" width="50" align="center">Total Views</td></tr>
 							<% @contributors.each do |contributor| %>
 								<tr><td class="text"><a href="/profiles/view/<%= contributor.id %>"><%= contributor.name %> <%= @controller.getClassYears(contributor) %></a></td><td class="text" style="text-align:center"><%= (User.find(:all, :conditions => [ "author = ? AND id != ? AND approved = '1'", contributor.id, contributor.id])).size %></td><td class="text" style="text-align:center"><%= contributor.total_views %></td></tr>
 							<% end %>
@@ -118,13 +124,13 @@
 
 					<tr><td>
 						<table style="clean">
-							<tr><td class="heading" width="180">Recent Pathways</td><td class="title" width="180" align="center">Interviewed By</td></tr>
+							<tr><td class="title" width="180">Recent Pathways</td><td class="title" width="150" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
 								<% recent_author = User.find(recent.author) %>
 								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id %><%= "-" %><% else %><a href="/profiles/view/<%= recent_author.id %>"><%= recent_author.name %> <%= @controller.getClassYears(recent_author) %></a><% end %></td></tr>
 							<% end %>
 							
-							<% if ((@ATest == false) && (@authoredPathways.length  > 0)) %>
+							<% if (@authoredPathways.length  > 0) %>
 								<tr><td height="10"/></tr>
 								<tr><td colspan="2" class="text" style="text-align:center"><a href="/profiles/rss"><img class="clean" id="feed" width="18px" src="/images/feed.png"/></a>&nbsp;&nbsp;<i>We're at <%= @authoredPathways.length %> Pathway<% if @authoredPathways.length != 1 %>s<% end %> and counting!</i></td></tr>
 							<% end %>

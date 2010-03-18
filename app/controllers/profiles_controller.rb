@@ -53,7 +53,7 @@ class ProfilesController < ActionController::Base
 		if (prev != nil)
 			image_file = @user.id.to_s() + '_' + prev.original_filename
 			new = Dir.getwd + "/images/pics/" + image_file
-			create(prev, new)
+			#create(prev, new)
 			else
 			image_file = @user.image_file
 			end
@@ -303,32 +303,9 @@ class ProfilesController < ActionController::Base
 	
 	def search
 
-		if session["#{$master.url}_ab_assignment"] == nil
-			if ($master.ab_last_assigned == 1) # 0 corresponds to A, 1 corresponds to B
-				session["#{$master.url}_ab_assignment"] = "a"
-			else
-				session["#{$master.url}_ab_assignment"] = "b"
-			end
-			
-			$master.ab_last_assigned = ($master.ab_last_assigned + 1) % 2 #Toggles assignment between 0 and 1
-			$master.save
-		end
-		
-		#print "\nsession: " + session["#{$master.url}_ab_assignment"] + "\n"
-		
-		
-		@ATest = true
-		# Get a random potential interview for B-Testing
-		if (session["#{$master.url}_ab_assignment"] == "b")
-			@ATest = false
-			potential_interviewees = User.find(:all, :conditions => ["author = ?", 0])
-			if (potential_interviewees != nil && potential_interviewees.length > 0)
-				@random_interviewee = potential_interviewees[rand(potential_interviewees.length)]
-			else
-				# Go back to ATest if we have no unauthored pathways
-				session["#{$master.url}_ab_assignment"] = "a"
-				@ATest = true
-			end
+		potential_interviewees = User.find(:all, :conditions => ["author = ?", 0])
+		if (potential_interviewees != nil && potential_interviewees.length > 0)
+			@random_interviewee = potential_interviewees[rand(potential_interviewees.length)]
 		end
 		
 		createNewLogEntry(request.request_uri)
@@ -405,6 +382,50 @@ class ProfilesController < ActionController::Base
 			end
 			y_approved_interviews.size <=> x_approved_interviews.size
 		}
+		
+		if (session["#{$master.url}_id"] != nil)
+			@user = User.find(session["#{$master.url}_id"])
+			degrees = Degree.find(:all, :conditions => ["user_id = ?", @user.id])
+			matchingEducation = Array.new
+			degrees.each do |degree|
+				if (degree.class_year != 0 && degree.major != "")
+					matchingEducation += Degree.find(:all, :conditions => ["(class_year = ? OR major = ?) AND user_id != ?", degree.class_year, degree.major, @user.id])
+				end
+			end
+			recommended = Array.new
+			matchingEducation.each do |degree|
+				user = User.find(degree.user_id)
+				print "\nuser: " + user.name + ", " + user.approved.to_s + ", " + user.author.to_s + "\n" 
+				if (@user.is_alum == "1" && user.approved == 1)   # show alums approved profiles for viewing
+					recommended << user
+				elsif (@user.is_alum == "0" && user.author == 0)   # show students seeded profiles
+					recomended << user
+				end
+			end
+			recommended.uniq!
+
+			if (recommended.length > 0)
+				@recommended = recommended[rand(recommended.length)]
+ 				recommendedDegrees = Degree.find(:all, :conditions => ["user_id = ?", @recommended.id])
+				recommendedDegrees.each do |recDegree|
+					degrees.each do |degree|
+						if (recDegree.major == degree.major)
+							@recommendedText = "You both studied " + degree.major
+						elsif (recDegree.class_year == degree.class_year)
+							@recommendedText = "You both graduated in " + degree.class_year.to_s
+						end
+					end
+				end
+			else
+				if (@user.is_alum == "1")   # show alums approved profiles
+					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
+				elsif (@user.is_alum == "0")   # show students seeded profiles
+					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author == 0", @user.id, @user.id])
+				end
+				@recommended = allOtherUsers[rand(allOtherUsers.length)]
+				@recommendedText = ""
+			end
+		end
 		
 		@contributors = allUsers[0..4]
 		
