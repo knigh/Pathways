@@ -314,7 +314,7 @@ class ProfilesController < ActionController::Base
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author != ?', params[:commit], 0], :order => 'name')
-			searchResults = User.(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved > ?', params[:commit], 0, 0], :order => 'name')
+			searchResults = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author != ? and approved > ?', params[:commit], 0, 0], :order => 'name')
 			if searchResults == nil
 				searchResults = Array.new
 			end
@@ -420,7 +420,7 @@ class ProfilesController < ActionController::Base
 				if (@user.is_alum == "1")   # show alums approved profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
 				elsif (@user.is_alum == "0")   # show students seeded profiles
-					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author == 0", @user.id, @user.id])
+					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author = 0", @user.id, @user.id])
 				end
 				@recommended = allOtherUsers[rand(allOtherUsers.length)]
 				@recommendedText = ""
