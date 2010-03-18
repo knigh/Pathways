@@ -402,10 +402,27 @@ class ProfilesController < ActionController::Base
 					recommended << user
 				end
 			end
+
+			jobs = Job.find(:all, :conditions => ["user_id = ?", @user.id])
+			matchingJob = Array.new
+			jobs.each do |job|
+				if (job.company != "" && job.title != "")
+					matchingJob += Job.find(:all, :conditions => ["(company = ? OR title = ?) AND user_id != ?", job.company, job.title, @user.id])
+				end
+			end
+			matchingJob.each do |job|
+				user = User.find(job.user_id)
+				if (@user.is_alum == "1" && user.approved == 1)   # show alums approved profiles for viewing
+					recommended << user
+				elsif (@user.is_alum == "0" && user.author == 0)   # show students seeded profiles
+					recommended << user
+				end
+			end
 			recommended.uniq!
 
 			if (recommended.length > 0)
 				@recommended = recommended[rand(recommended.length)]
+				
  				recommendedDegrees = Degree.find(:all, :conditions => ["user_id = ?", @recommended.id])
 				recommendedDegrees.each do |recDegree|
 					degrees.each do |degree|
@@ -416,6 +433,18 @@ class ProfilesController < ActionController::Base
 						end
 					end
 				end
+
+				recommendedJobs = Job.find(:all, :conditions => ["user_id = ?", @recommended.id])
+				recommendedJobs.each do |recJob|
+					jobs.each do |job|
+						if (recJob.company == job.company)
+							@recommendedText = "You both worked at " + job.company
+						elsif (recJob.title == job.title)
+							@recommendedText = "You both had the job title of " + job.title
+						end
+					end
+				end
+
 			else
 				if (@user.is_alum == "1")   # show alums approved profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
