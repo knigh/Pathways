@@ -93,17 +93,10 @@
 				<% else %>
 						<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Contribute your own interview!<td></tr>
-						<tr><td height="9"/></tr>
 						<tr><td><table style="clean">
-							<tr>
-								<td width="28"/>
-								<td width="140" style="text-align:center;" class="title">
-								<img class="pic" src="/images/pics/<%= @recommended.image_file %>"/>
-								<td width="225" style="text-align:center;" class="title">
-									Interview<br/><a href="/profiles/view/<%=@recommended.id %>"><%= @recommended.name %></a><br/><small><%=@recommendedText%></small></td>
-								<td width="28"/></tr>
-								<tr><td colspan="4" style="text-align:center;" class="title">or one of <a href="/profiles/interview">many other <%= $master.informal_name %> alumni</a></tr>
-							</tr>
+	<tr>
+							<td colspan="2" class="title" align="center">Interview <a href="/profiles/view/<%= @recommended.id %>"><%= @recommended.name %><% if @recommendedText != "" %> (<%=@recommendedText %>)<% end %> </a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
+						</tr>														</tr>
 						</table></td></tr>
 					</table></td></tr>
 
