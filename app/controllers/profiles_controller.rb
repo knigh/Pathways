@@ -399,7 +399,7 @@ class ProfilesController < ActionController::Base
 				if (@user.is_alum == "1" && user.approved == 1)   # show alums approved profiles for viewing
 					recommended << user
 				elsif (@user.is_alum == "0" && user.author == 0)   # show students seeded profiles
-					recomended << user
+					recommended << user
 				end
 			end
 			recommended.uniq!
