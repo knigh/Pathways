@@ -424,6 +424,8 @@ class ProfilesController < ActionController::Base
 				@recommended = recommended[rand(recommended.length)]
 				
  				recommendedDegrees = Degree.find(:all, :conditions => ["user_id = ?", @recommended.id])
+				recommendedDegrees.sort! {|x,y| (rand(3) - 1)}
+				degrees.sort! {|x,y| (rand(3) - 1)}
 				recommendedDegrees.each do |recDegree|
 					degrees.each do |degree|
 						if (recDegree.major == degree.major)
@@ -435,6 +437,8 @@ class ProfilesController < ActionController::Base
 				end
 
 				recommendedJobs = Job.find(:all, :conditions => ["user_id = ?", @recommended.id])
+				recommendedJobs.sort! {|x,y| (rand(3) - 1)}
+				jobs.sort! {|x,y| (rand(3) - 1)}
 				recommendedJobs.each do |recJob|
 					jobs.each do |job|
 						if (recJob.company == job.company)
