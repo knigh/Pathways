@@ -4,7 +4,7 @@
 	
 			<!-- Column 1 -->
 			<td class="contentColumn"><table class="searchTable">
-					<tr><td class="title"><table class="clean"><tr>
+					<tr><td class="heading"><table class="clean"><tr>
 						<td id="searchTitle" width="100%">Featured Pathways</td>
 						<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
 							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
@@ -71,36 +71,32 @@
 							<td colspan="2" height="5"/>
 						</tr>
 						<tr>
-							<td colspan="2" class="title" align="center"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
+							<td colspan="2" class="heading" align="center" style="color:black;"><a href="/user/signin"><small><b>Sign up</b></a> to interview <a href="/profiles/view/<%= @random_interviewee.id %>"><b><%= @random_interviewee.name %> <%= @controller.getClassYears(@random_interviewee) %></b></a> or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td>
 						</tr>
 					</table></td></tr>
 				<% elsif @user.is_alum == "1" %>
 						<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Why don't you check out this profile?</td></tr>
 						<tr><td height="9"/></tr>
-						<tr><td><table style="clean">
+						<tr><td align="center"><table style="clean">
 							<tr>
-								<td width="28"/>
-								<td width="140" style="text-align:center;" class="title">
-								<img class="pic" src="/images/pics/<%= @recommended.image_file %>"/>
-								<td width="225" style="text-align:center;" class="title">
-									<a href="/profiles/view/<%=@recommended.id %>"><%= @recommended.name %></a><br/><small><%=@recommendedText%></small></td>
-								<td width="28"/>
+								<td width="140" style="text-align:center;" valign="middle"><img class="pic" src="/images/pics/<%= @recommended.image_file %>"/></td>
+								<td width="160" style="text-align:center;" class="title">
+									<a href="/profiles/view/<%=@recommended.id %>"><%= @recommended.name %></a><br/><br/><small><%=@recommendedText%></small></td>
 							</tr>
 						</table></td></tr>
 					</table></td></tr>
-
 				<% else %>
-						<tr><td class="box"><table class="clean" width="310px;">
+					<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Contribute your own interview!<td></tr>
 						<tr><td height="9"/></tr>
-	<tr>
-							<td class="title" align="center">Interview <a href="/profiles/view/<%= @recommended.id %>"><%= @recommended.name %></a></td></tr>
-<% if @recommendedText != "" %><tr><td class="title" align="center"><small>(<%=@recommendedText %>)</small></td></tr><% end %>
+						<tr><td class="title" align="center">Interview <a href="/profiles/view/<%= @recommended.id %>"><%= @recommended.name %></a></td></tr>
+						<% if @recommendedText != "" %>
+							<tr><td class="title" align="center"><small>(<%=@recommendedText %>)</small></td></tr>
+						<% end %>
 						<tr><td height="9"/></tr>
-<tr><td class="title" align="center">or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td></tr>
+						<tr><td class="title" align="center">or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td></tr>
 					</table></td></tr>
-
 				<% end %>
 
 					<!--<tr><td><table class="dot"><tr><td class="dot"/></tr></table></td></tr>-->

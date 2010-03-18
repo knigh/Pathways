@@ -38,6 +38,8 @@ class ProfilesController < ActionController::Base
 				@interview_text = @user.student_interview_text
 			end
 			
+			@questions = Question.find(:all, :conditions => ["user_id = ?", id])
+			
 			@max_title_word_count = 6
 			@max_summary_length = 250
 		end
@@ -226,6 +228,21 @@ class ProfilesController < ActionController::Base
 				@interview_text = @user.student_interview_text
 			end
 			
+			# add all questions to the viewable text
+			new_questions = Question.find(:all, :conditions => ["user_id =?", id])
+			if ((new_questions != nil) && (new_questions.length > 0))
+				
+				if (@interview_text[(@interview_text.length-1)..(@interview_text.length-1)] != "\n")
+					@interview_text = @interview_text + "\n"
+				end
+				
+				new_questions.each do |question|
+					# get the user who asked the question
+					asker = User.find(question.asker_id)
+					@interview_text = @interview_text + "\n" + '[[' + question.question + ' (posted by <' + asker.name + '|/profiles/view/' + question.asker_id.to_s + '>)' + ']]' + "\n"
+				end
+			end
+			
 			@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '">' + match[1..match.index('|') - 1] + '</a>'}
 			@interview_text.gsub!(/\[\[.*\]\]/) {|match| '<span class="question">' + match[2..(match.length - 3)] + '</span>'}
 
@@ -262,27 +279,9 @@ class ProfilesController < ActionController::Base
 	
 	def post_question
 		createNewLogEntry(request.request_uri)
+
 		@user = User.find(params[:id])
 		new_question = params[:new_question]
-		asker = ""
-		if session["#{$master.url}_id"]
-			user = User.find(session["#{$master.url}_id"])
-			asker = ' (posted by <' + user.name + '|/profiles/view/' + user.id.to_s + '>)'
-		end
-		
-		#Adds an extra line break if needed
-		text = @user.alum_interview_text
-		if (text[(text.length-1)..(text.length-1)] != "\n")
-			@user.alum_interview_text = text + "\n"
-		end
-		
-		text = @user.student_interview_text
-		if (text[(text.length-1)..(text.length-1)] != "\n")
-			@user.student_interview_text = text + "\n"
-		end
-		
-		@user.alum_interview_text = @user.alum_interview_text + "\n[[" + new_question + asker + "]]\n"
-		@user.student_interview_text = @user.student_interview_text + "\n[[" + new_question + asker + "]]\n"
 		
 		if (session[:user_id] != @user.id && session[:user_id] != @user.author)
 			@user.views = @user.views - 1
@@ -291,9 +290,15 @@ class ProfilesController < ActionController::Base
 			author.save
 		end
 		
-		@user.question_asked = Time.now
+		@question = Question.new
+		@question.user_id = @user.id
+		@question.asker_id = session["#{$master.url}_id"]
+		@question.question = new_question
+		@question.date_added = Time.now
 		
+		@question.save
 		@user.save
+		
 		redirect_to("/profiles/view/#{@user[:id]}")
 	end
 	
