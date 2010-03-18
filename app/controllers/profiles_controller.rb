@@ -410,9 +410,9 @@ class ProfilesController < ActionController::Base
 				recommendedDegrees.each do |recDegree|
 					degrees.each do |degree|
 						if (recDegree.major == degree.major)
-							@recommendedText = "You both studied " + degree.major
+							@recommendedText = "You've both studied " + degree.major
 						elsif (recDegree.class_year == degree.class_year)
-							@recommendedText = "You both graduated in " + degree.class_year.to_s
+							@recommendedText = "You both got degrees in " + degree.class_year.to_s
 						end
 					end
 				end
