@@ -15,12 +15,12 @@
 					
 						<tr>
 							<td class="text" width="75px">&nbsp;&nbsp;Name</td>
-							<td class="text" style="color:red;"><%= form.text_field(:name, :class => "text", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :name, "* Name " %></small></td>
+							<td class="text" style="color:red;"><%= form.text_field(:name, :class => "text_edit", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :name, "* Name " %></small></td>
 							<td class="text" valign="top"><small>&nbsp;&nbsp;I am&nbsp;&nbsp;<%= radio_button("user", "is_alum", "0", :onclick => "switchTextToStudent();") %>a student&nbsp;<%= radio_button("user", "is_alum", "1", :onclick => "switchTextToAlum();") %>an alum</small></td>						
 						</tr>
 						<tr>
 							<td class="text">&nbsp;&nbsp;Email</td>
-							<td class="text" style="color:red;"><%= form.text_field(:email, :class => "text", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :email, "* Email " %></small></td>
+							<td class="text" style="color:red;"><%= form.text_field(:email, :class => "text_edit", :style => "height:16px;width:190px;") %><small><%= error_message_on :user, :email, "* Email " %></small></td>
 							<td class="text" valign="top"><%= form.check_box :email_private, :value => "0" %>&nbsp;<small>keep this email private</small></td>
 						</tr>
 						
@@ -45,25 +45,25 @@
 
 					<tr><td/></tr>
 					<tr><td class="title"><span id="sixWordReminder"><%= @max_title_word_count %> word title</span> for this Pathway:</td></tr>
-					<tr><td><%= form.text_field(:six_words, :class => "text", :style => "height:20px;width:508px;", :onKeyUp => "checkSixWords();", :onBlur => "checkSixWords();") %></td></tr>
+					<tr><td><%= form.text_field(:six_words, :class => "text_edit", :style => "height:20px;width:508px;", :onKeyUp => "checkSixWords();", :onBlur => "checkSixWords();") %></td></tr>
 					<tr><td class="title"><span id="summaryReminder"><%= @max_summary_length %> Character Summary</span> (for search results):</td></tr>
-					<tr><td><%= form.text_area(:summary, :class => "text", :style => "height:60px;width:512px;", :onKeyUp => "checkCharLimit();", :onBlur => "checkCharLimit();") %></td></tr>
+					<tr><td><%= form.text_area(:summary, :class => "text_edit", :style => "height:60px;width:512px;", :onKeyUp => "checkCharLimit();", :onBlur => "checkCharLimit();") %></td></tr>
 					
 					<tr><td/></tr>
 					<tr><td class="title">Interview:</td></tr>
 					<tr><td class="text">The following interview questions are just suggestions; feel free to add your own and if you&apos;re
 						interviewing someone else, to natually follow the conversation. Also feel free to add a YouTube video or audio URL.</td></tr>
-					<tr><td class="text" style="text-align:left;">YouTube URL&nbsp;&nbsp;<%= form.text_field(:video_url, :class => "text", :style => "height:16px;width:410px;") %></td></tr>
+					<tr><td class="text" style="text-align:left;">YouTube URL&nbsp;&nbsp;<%= form.text_field(:video_url, :class => "text_edit", :style => "height:16px;width:410px;") %></td></tr>
 					<tr><td class="title" colspan="2">Interview Syntax</td></tr>
 					<tr><td class="text" colspan="2">[[text]] - Question</td></tr>
 					<tr><td class="text" colspan="2">&lt;text|link&gt; - Link (when text is clicked, goes to link)</td></tr>
 					<tr><td class="text">
 						<% if @user.is_alum == "1" %>
-						<%= form.text_area(:alum_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
-						<%= form.text_area(:student_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:none;", :wrap => "soft") %>
+						<%= form.text_area(:alum_interview_text, :class => "text_edit", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
+						<%= form.text_area(:student_interview_text, :class => "text_edit", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:none;", :wrap => "soft") %>
 						<% else %>
-						<%= form.text_area(:alum_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:none", :wrap => "soft") %>
-						<%= form.text_area(:student_interview_text, :class => "text", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
+						<%= form.text_area(:alum_interview_text, :class => "text_edit", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:none", :wrap => "soft") %>
+						<%= form.text_area(:student_interview_text, :class => "text_edit", :style=> "height:550px;width:512px;overflow:auto;background-color:#EAF0F5;display:inline", :wrap => "soft") %>
 						<% end %>
 					</td></tr>
 					<tr><td class="text" style="text-align:left;">This interview was conducted on&nbsp;&nbsp;  <%= datetime_select(:user, :interview_date, :discard_hour => true, :discard_minute => true, :order => [:month, :day, :year], :class => "text", :style => "height:16px;width:410px;") %></td></tr>
@@ -77,7 +77,7 @@
 		
 				<tr><td class="heading" style="text-align:right;"><%= submit_tag "Save Changes", :class =>"submit", :id => "commit" %></td></tr>
 				<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
-				<tr><td class="text" style="text-align:left;">My Pathway pic:<%= form.file_field(:image_file) %></td></tr>
+				<tr><td class="text_edit" style="text-align:left;">My Pathway pic:<%= form.file_field(:image_file) %></td></tr>
 				
 				<tr><td/></tr>
 				<tr><td class="title">Stanford Experience</td></tr>
@@ -89,7 +89,7 @@
 	
 					<tr>
 						<td class="text">College</td>
-						<td class="text"><%= degree_form.text_field(:school, :class =>"text", :style => "height:15px;width:170px") %></td>
+						<td class="text"><%= degree_form.text_field(:school, :class =>"text_edit", :style => "height:15px;width:170px") %></td>
 					</tr>
 	
 					<tr>
@@ -102,7 +102,7 @@
 					</tr>
 					<tr>
 						<td class="text">Major</td>
-						<td class="text"><%= degree_form.text_field(:major, :class =>"text", :style => "height:15px;width:170px") %></td>
+						<td class="text"><%= degree_form.text_field(:major, :class =>"text_edit", :style => "height:15px;width:170px") %></td>
 					</tr>
 					<tr><td colspan="2" height="15" /></tr>
 					<% end %>
@@ -120,11 +120,11 @@
 						
 					<tr>
 						<td class="text" width="100">Company</td>
-						<td colspan="2" class="text"><%= job_form.text_field(:company, :class =>"text", :style => "height:15px;width:170px") %></td>
+						<td colspan="2" class="text"><%= job_form.text_field(:company, :class =>"text_edit", :style => "height:15px;width:170px") %></td>
 					</tr>
 					<tr>
 						<td class="text">Title</td>
-						<td colspan="2" class="text"><%= job_form.text_field(:title, :class =>"text", :style => "height:15px;width:170px") %></td>
+						<td colspan="2" class="text"><%= job_form.text_field(:title, :class =>"text_edit", :style => "height:15px;width:170px") %></td>
 					</tr>
 						
 					<tr>
@@ -156,7 +156,7 @@
 					
 					<tr>
 						<td class="text" valign="top">Responsibilities</td>
-						<td colspan="2"><%= job_form.text_area(:responsibilities, :class => "text", :style => "height:75px;width:174px") %></td>
+						<td colspan="2"><%= job_form.text_area(:responsibilities, :class => "text_edit", :style => "height:75px;width:174px") %></td>
 					</tr>
 					<tr><td colspan="3" height="15" /></tr>
 					<% end %>

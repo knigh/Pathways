@@ -167,7 +167,7 @@ table.mainTable
 	width: 450px;
 }
 
-.heading, .title, .text, .footer
+.heading, .title, .text, .footer, .text_edit
 {
 	font-family: Helvetica Neue, Helvetica;
 }
@@ -192,6 +192,13 @@ table.mainTable
 	color: gray;
 	font-weight: lighter;
 	text-align: justify;
+}
+
+.text_edit
+{
+    font-size: 10pt;
+    color: #444444;
+    text-align: justify;
 }
 
 .footer
