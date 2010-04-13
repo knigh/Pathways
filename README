@@ -7,8 +7,47 @@
 	SymSys
 	Daily
 	Friends
-	Sandbox
+	SandBox
 
+:::::::Ruby/Rails versioning on bluehost
+	Between April 5 and April 8 (2010), Bluehost updated Ruby and Rails for stanfordpathways.com, to the following:
+		Ruby: 1.8.7-p174
+		Rails to 2.3.5
+
+	This upgrade broke all of our rails deployments.  Presumably, due to the Ruby 1.8.7 changes:
+		A new library directory named `vendor_ruby' is introduced in addition to `site_ruby'. The idea is to 
+		separate libraries installed by the package system (`vendor') from manually (`site') installed 
+		libraries preventing the former from getting overwritten by the latter, while preserving the user 
+		option to override vendor libraries with site libraries. (`site_ruby' takes precedence over `vendor_ruby')
+
+	Bluehost says:
+		We are aware that these changes may cause issues for your Rails applications and other Ruby related scripts.
+		We encourage you to contact support should you notice any problems as a result of this upgrade.
+		You can contact support at (888) 401-HOST, http://helpdesk.bluehost.com or chat with a live agent via the 
+		Live Chat link at http://bluehost.com.  Additional information is also available at 
+		http://www.ruby-lang.org and http://www.rubyonrails.org.
+
+	Instead, I ran the following for each rails app (after creating a "vendor" subdirectory):
+		rake rails:freeze:edge RELEASE=2.3.5
+		
+		This did the following (e.g. for SandBox):
+			(in /home1/stanfos3/rails/SandBox)
+			cd vendor
+			Downloading Rails from http://dev.rubyonrails.org/archives/rails_2.3.5.zip
+			Unpacking Rails
+			rm -rf rails
+			rm -f rails.zip
+			rm -f rails/Rakefile
+			rm -f rails/cleanlogs.sh
+			rm -f rails/pushgems.rb
+			rm -f rails/release.rb
+			touch rails/REVISION_219c81b9e1cdd81a3a8c4cda5718f17454e1a5ba
+			cd -
+			Updating current scripts, javascripts, and configuration settings
+		
+		This essentially pulled down 2.3.5 support, but also froze the version at 2.3.5.
+		There may be a more preferable solution . . .
+	
 :::::::Search Support:
 
 	The following must be performed manually on any table that supports search:
