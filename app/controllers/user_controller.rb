@@ -14,7 +14,7 @@ class UserController < ApplicationController
 		@email_authentication = false
 		if $master.admin_email != ""
 			@email_authentication = true
-			if (flash[:alert] == "" or flash[:alert] is nil)
+			if (flash[:alert] == "" or not flash[:alert])
 				flash[:alert] = "Sign up is only available for Stanford students and alumni.<br/>If you have a Stanford or Stanford Alumni email account, use it.<br/>Otherwise, your email will have to be verified by the " + $master.formal_name + " administrators."
 			end
 		end
@@ -28,7 +28,7 @@ class UserController < ApplicationController
 		@email_authentication = false
 		if $master.admin_email != ""
 			@email_authentication = true
-			if (flash[:alert] == "" or flash[:alert] is nil)
+			if (flash[:alert] == "" or not flash[:alert])
 				flash[:alert] = "Sign up is only available for Stanford students and alumni.<br/>If you have a Stanford or Stanford Alumni email account, use it.<br/>Otherwise, your email will have to be verified by the " + $master.formal_name + " administrators."
 			end
 		end
