@@ -427,7 +427,7 @@ class ProfilesController < ActionController::Base
 			end
 			recommended.uniq!
 
-			if (recommended.length > 0)
+			if (recommended.length > 0 and @user.user_type != "2")
 				@recommended = recommended[rand(recommended.length)]
 				
  				recommendedDegrees = Degree.find(:all, :conditions => ["user_id = ?", @recommended.id])
@@ -459,8 +459,7 @@ class ProfilesController < ActionController::Base
 			else
 				if (@user.user_type == "1" || @numSeeded == 0)   # show alums approved profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
-				#elsif (@user.user_type == "0")   # show students seeded profiles
-				else
+				elsif (@user.user_type == "0")   # show students seeded profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author = 0", @user.id, @user.id])
 				end
 				if allOtherUsers != nil
