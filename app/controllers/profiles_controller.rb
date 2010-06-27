@@ -427,7 +427,7 @@ class ProfilesController < ActionController::Base
 			end
 			recommended.uniq!
 
-			if (recommended.length > 0 and @user.user_type != "2")
+			if (recommended.length > 0)
 				@recommended = recommended[rand(recommended.length)]
 				
  				recommendedDegrees = Degree.find(:all, :conditions => ["user_id = ?", @recommended.id])
