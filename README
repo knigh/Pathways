@@ -115,6 +115,10 @@ cp database.yml.daily database.yml
 cd ../..
 cd English
 rm config/database.yml
+rm public/stylesheets/pathways.css
+rm public/images/body.gif
+rm -r public/images/buttons
+rm. app/views/layouts/standard.html.erb
 git pull
 cd config
 cp database.yml.english database.yml
