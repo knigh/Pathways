@@ -4,10 +4,22 @@
 	Coram Bryant
 
 :::::::SubDomains:
-	SymSys
 	Daily
+	English
 	Friends
+	SymSys
 	SandBox
+
+:::::::Fields Explained:
+	users.user_type:
+		0 = student
+		1 = alum
+		2 = admin
+
+	users.approved:
+		-1 = alum pathway created by student/admin.  Not submitted or approved.
+		0  = alum pathway submitted for approval
+		1  = alum pathway approved
 
 :::::::Ruby/Rails versioning on bluehost
 	Between April 5 and April 8 (2010), Bluehost updated Ruby and Rails for stanfordpathways.com, to the following:
@@ -98,6 +110,24 @@ rm config/database.yml
 git pull
 cd config
 cp database.yml.daily database.yml
+
+# Special Sauce for English
+cd ../..
+cd English
+rm config/database.yml
+git pull
+cd config
+cp database.yml.english database.yml
+cd ..
+cd public/stylesheets
+mv pathways.css.english pathways.css
+cd ../images
+mv body.gif.english body.gif
+rm -r buttons
+mv buttons.english buttons
+cd ../../app/views/layouts
+mv standard.html.erb.english standard.html.erb
+cd ../..
 
 # copy this block for each subdomain, updating appropriately
 cd ../..

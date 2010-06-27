@@ -29,8 +29,10 @@
 					<% form_for :user, :url => {:action => :post_register} do |form| %>
 						<tr><td class="text">Name</td><td><%= form.text_field(:name) %></td></tr>
 						<tr><td class="text">Email</td><td><%= form.text_field(:email) %></td></tr>
+						<% if not @email_authentication %>
 						<tr><td class="text">Password</td><td><input name="password" type="password" size="30" /></td></tr>
 						<tr><td class="text" width="100%">Confirm password</td><td><input name="password_confirmation" type="password" size="30" /></td></tr>
+						<% end %>
 						<tr><td colspan="2"><table class="clean"><tr>
 							<td class="text" style="text-align:left;color:red;" width="100%"><% if flash[:signup_notice] %><small>* <%= flash[:signup_notice] %></small><% end %></td>
 							<td style="text-align:right;"><%= submit_tag "Sign up", :class => "submit" %></td>

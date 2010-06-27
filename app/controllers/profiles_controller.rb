@@ -17,9 +17,9 @@ class ProfilesController < ActionController::Base
 				@user.save
 			end
 			
-			if !(session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1"))
+			if !(session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1"))
 				redirect_to(:action => :view, :id => id)
-			elsif (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0)
+			elsif ((session["#{$master.url}_user_type"] != "2") && (@user.author != 0 && @user.id != @user.author && session["#{$master.url}_id"] == @user.id && @user.approved == 0))
 				redirect_to(:action => :view, :id => id)
 			end
 			
@@ -32,7 +32,7 @@ class ProfilesController < ActionController::Base
 				@author = User.find(@user.author)
 			end
 			
-			if @user.is_alum == "1"
+			if @user.user_type == "1"
 				@interview_text = @user.alum_interview_text
 			else 
 				@interview_text = @user.student_interview_text
@@ -222,9 +222,9 @@ class ProfilesController < ActionController::Base
 				end
 			end
 			
-			if @user.is_alum == "1"
+			if @user.user_type == "1"
 				@interview_text = @user.alum_interview_text
-			else 
+			else
 				@interview_text = @user.student_interview_text
 			end
 			
@@ -403,9 +403,9 @@ class ProfilesController < ActionController::Base
 			matchingEducation.each do |degree|
 				user = User.find(degree.user_id)
 				print "\nuser: " + user.name + ", " + user.approved.to_s + ", " + user.author.to_s + "\n" 
-				if ((@user.is_alum == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
+				if ((@user.user_type == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
 					recommended << user
-				elsif ((@user.is_alum == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
+				elsif ((@user.user_type == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
 					recommended << user
 				end
 			end
@@ -419,9 +419,9 @@ class ProfilesController < ActionController::Base
 			end
 			matchingJob.each do |job|
 				user = User.find(job.user_id)
-				if ((@user.is_alum == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
+				if ((@user.user_type == "1" || @numSeeded == 0) && user.approved == 1)   # show alums approved profiles for viewing
 					recommended << user
-				elsif ((@user.is_alum == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
+				elsif ((@user.user_type == "0" && @numSeeded > 0) && user.author == 0)   # show students seeded profiles
 					recommended << user
 				end
 			end
@@ -457,12 +457,14 @@ class ProfilesController < ActionController::Base
 				end
 
 			else
-				if (@user.is_alum == "1" || @numSeeded == 0)   # show alums approved profiles
+				if (@user.user_type == "1" || @numSeeded == 0)   # show alums approved profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author != 0 AND approved = '1'", @user.id, @user.id])				
-				elsif (@user.is_alum == "0")   # show students seeded profiles
+				elsif (@user.user_type == "0")   # show students seeded profiles
 					allOtherUsers = User.find(:all, :conditions => ["id != ? AND author != ? AND author = 0", @user.id, @user.id])
 				end
-				@recommended = allOtherUsers[rand(allOtherUsers.length)]
+				if allOtherUsers != nil
+					@recommended = allOtherUsers[rand(allOtherUsers.length)]
+				end
 				@recommendedText = ""
 			end
 		end
@@ -487,6 +489,20 @@ class ProfilesController < ActionController::Base
 			@seeded = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and author = ?', params[:commit], 0], :order => 'name')
 		else
 			@seeded = User.find(:all, :conditions => ['author = ?', 0], :order => 'name')
+		end
+	end
+	
+	def browse
+		createNewLogEntry(request.request_uri)
+		# The search parameters are set in the commit variable
+		if (params[:commit] && (params[:commit] != ""))
+			@admins   = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and user_type = ?', params[:commit], "2"], :order => 'name')
+			@alums    = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and user_type = ?', params[:commit], "1"], :order => 'name')
+			@students = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and user_type = ?', params[:commit], "0"], :order => 'name')
+		else
+			@admins   = User.find(:all, :conditions => ['user_type = ?', "2"], :order => 'name')
+			@alums    = User.find(:all, :conditions => ['user_type = ?', "1"], :order => 'name')
+			@students = User.find(:all, :conditions => ['user_type = ?', "0"], :order => 'name')
 		end
 	end
 	
@@ -524,7 +540,7 @@ class ProfilesController < ActionController::Base
 		@user.author = session["#{$master.url}_id"]
 		@user.alum_interview_text = $master.alum_default_qs
 		@user.student_interview_text = $master.student_default_qs
-		@user.is_alum = "1"
+		@user.user_type = "1"
 		@user.date_added = Time.now
 		@user.date_modified = Time.now
 		@user.interview_date = Time.now

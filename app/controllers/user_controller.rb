@@ -10,6 +10,14 @@ class UserController < ApplicationController
 		flash[:signup_notice] = nil
 		flash[:signin_notice] = nil
 		flash.keep(:url)
+		
+		@email_authentication = false
+		if $master.admin_email != ""
+			@email_authentication = true
+			if (flash[:alert] == "")
+				flash[:alert] = "Sign up is only available for Stanford students and alumni.<br/>If you have a Stanford or Stanford Alumni email account, use it.<br/>Otherwise, your email will have to be verified by the " + $master.formal_name + " administrators."
+			end
+		end
 	end 
 	
 	def post_signin
@@ -31,6 +39,7 @@ class UserController < ApplicationController
 				render(:action => :signin)
 			else
 				session["#{$master.url}_id"] = @user[:id];
+				session["#{$master.url}_user_type"] = @user[:user_type];
 				if flash[:url]
 					redirect_to(flash[:url])	    	
 				else
@@ -59,6 +68,7 @@ class UserController < ApplicationController
 				render(:action => :signin)
 			else
                 session["#{$master.url}_id"] = @user[:id];
+				session["#{$master.url}_user_type"] = @user[:user_type];
                 if flash[:url]
 					redirect_to(flash[:url])
 				else
@@ -75,8 +85,13 @@ class UserController < ApplicationController
 		redirect_to(:controller => :profiles, :action => :search)
 	end
 	
-	
 	def post_register
+	
+		if $master.admin_email != ""
+			post_register_email
+			return
+		end
+	
 		@user = User.new
 		@user.name = params[:user][:name]
 		@user.email = params[:user][:email]
@@ -132,6 +147,7 @@ class UserController < ApplicationController
 				@degree.save
 				
 				session["#{$master.url}_id"] = @user[:id];
+				session["#{$master.url}_user_type"] = @user[:user_type];
 				if flash[:url]
 					redirect_to(flash[:url])	    	
 				else
@@ -142,6 +158,84 @@ class UserController < ApplicationController
 			end
 		end
 		
+	end
+	
+	def post_register_email
+	
+		# start creating a user
+		@user = User.new
+		@user.name = params[:user][:name]
+		@user.email = params[:user][:email]
+		
+		# create a temporary password
+		@password = getPassword(@user.name)
+		
+		@user.alum_interview_text = $master.alum_default_qs
+		@user.student_interview_text = $master.student_default_qs
+		@user.date_added = Time.now
+		@user.date_modified = Time.now
+		@user.interview_date = Time.now
+		@user.question_asked = DateTime.new(Time.now.year - 1, 1, 1)
+		@user.approved = 1;
+		
+		flash[:signup_notice] = nil
+		flash[:signin_notice] = nil
+		flash.keep(:url)
+		
+		if @user.name.length < 1
+			logger.error("Name can't be blank")
+			flash[:signup_notice] = "Name can't be blank"
+			render(:action => :signin)
+			return
+		elsif @user.email.length < 1
+			logger.error("Email can't be blank")
+			flash[:signup_notice] = "Email can't be blank"
+			render(:action => :signin)
+			return
+		end
+		match = User.find_by_email(@user.email)
+		if not match.nil?
+			logger.error("Email is already in use")
+			flash[:signup_notice] = "Email is already in use"
+			render(:action => :signin)
+		else
+			@user.hashed_password = Digest::SHA1.hexdigest(@password)
+			
+			# determine if the email address is either stanford[alumni] or other
+			regex1 = Regexp.new(/\w+@stanford\.edu/i)
+			regex2 = Regexp.new(/\w+@stanfordalumni\.org/i)
+		
+			if (regex1.match(@user.email) or regex2.match(@user.email))
+				@user.save
+				@user.author = @user.id
+				@user.save
+				@job = Job.new
+				@job.user_id = @user[:id]
+				@job.save
+				@degree = Degree.new
+				@degree.user_id = @user[:id]
+				@degree.save
+			
+				subject = "Your Pathway has been created"
+				encoded_url = $master.url + "/user/post_publish?user[email]=#{@user[:email]}&temp=#{@user[:hashed_password]}"
+				Emailer.deliver_signup_notification(@user.email, @user.name, subject, subject, $master.formal_name, $master.informal_name, encoded_url)
+				flash[:alert] = "Thank you for signing up.<br/>A confirmation email, with instructions for accessing your Pathway, has been sent to your account."
+				redirect_to(:controller => :user, :action => :signin)			
+			else
+				subject = "Your Pathway will be created, pending confirmation"
+				Emailer.deliver_signup_pending(@user.email, @user.name, subject, subject, $master.formal_name, $master.informal_name, $master.admin_email)
+				flash[:alert] = "Thank you for signing up.  A confirmation email has been sent to your account."
+				redirect_to(:controller => :user, :action => :signin)
+			end
+			
+		end
+	
+	end
+	
+	def getPassword(name)
+		name = name + name + name + name + name + name + name + name + name + name
+		name = name.downcase.delete(" ")
+		return name[0..4].gsub(/./) {|s| ((s[0] + 2).chr)} + name[5..7].gsub(/./) {|s| (s[0] % 10)}
 	end
 	
 	def round(term, val)

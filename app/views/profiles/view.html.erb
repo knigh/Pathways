@@ -2,7 +2,7 @@
 		<!-- Body Content -->
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		
-			<% if (@user.author != 0 && (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && (session["#{$master.url}_id"] != @user.author && session["#{$master.url}_id"] != @user.id))) %>
+			<% if (session["#{$master.url}_user_type"] != "2" && @user.author != 0 && (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && (session["#{$master.url}_id"] != @user.author && session["#{$master.url}_id"] != @user.id))) %>
 				<td colspan="2" class="heading">This pathway is not yet available to view</td>
 			<% else %>
 			<!-- Column 1 -->
@@ -15,7 +15,7 @@
 						<tr><td colspan="2" align="center"><object width="580" height="358"><param name="movie" value="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="<%=@url %>&hl=en_US&fs=1&rel=0&showinfo=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="580" height="358"></embed></object></td></tr>
 					<% end %>
 
-					<tr><td colspan="2" width="100%"><div style="height:444px;overflow:auto;background-color:#EAF0F5;"><table class="clean">
+					<tr><td colspan="2" width="100%"><div class="text_box" style="height:444px;overflow:auto;"><table class="clean">
 						<tr><td class="text" style="padding:10px;">
 						<% if @user.author != 0 && @user.id != @user.author %>
 							Interview conducted by <span class="title"><a href="<%= url_for(:action => "view", :id => @author.id) %>"><%= @author.name %> <%= @controller.getClassYears(@author) %></a></span> on <%= @user.interview_date.strftime("%B ") + @user.interview_date.day.to_s + @user.interview_date.strftime(", %Y") %><br/><br/>
@@ -74,9 +74,9 @@
 				<table class="infoTable">
 					
 					<tr><td class="heading" align="right">
-						<% print "session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
+						<% print "user type:" + session["#{$master.url}_user_type"].to_s + ", session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
 
-						<% if session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
+						<% if session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
 							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
 							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
 								<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit" %><% end %>

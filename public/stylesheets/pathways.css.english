@@ -7,12 +7,13 @@ html
 
 body
 {
-	background: #6699CC url(../images/body.gif) no-repeat scroll top;
+	background: #990000 url(../images/body.gif) no-repeat scroll top;
 }
 
 table.clean,
 table.main,
 table.header,
+table.headerTabs,
 table.searchResult,
 table.dot
 {
@@ -33,7 +34,8 @@ td.name
 
 table.main
 {
-	width: 860px;
+	width: 892px;
+    background-color: #990000;
 	
 	/* this centers the table */
 	margin-left: auto;
@@ -44,9 +46,17 @@ table.main
 
 table.header
 {
-	width: 100%;
+	width: 860px;
+	height: 223px; /* remove 23px tan at the bottom */
 	/*background-image: url(../images/logos/logo.gif);*/
 	background-repeat: no-repeat;
+}
+
+table.headerTabs
+{
+    width: 860px;
+    height: 23px;
+    background-color: #F6F0DC;
 }
 
 table.searchResult
@@ -95,6 +105,11 @@ img.searchImg
 {
 	vertical-align: bottom;
 	border: 0;
+}
+
+img.tab
+{
+    align: right;
 }
 
 td.content
@@ -169,26 +184,26 @@ table.mainTable
 
 .heading, .title, .text, .footer, .text_edit
 {
-	font-family: Helvetica Neue, Helvetica;
+	font-family: Lucida Grande, Helvetica Neue, Helvetica;
 }
 
 .heading
 {
-	font-size: 13pt;
+	font-size: 12pt;
 	color: #375074;
 	height: 32px;
 }
 
 .title
 {
-	font-size: 12pt;
+	font-size: 11pt;
 	color: black;
 	font-weight:lighter;
 }
 
 .text
 {
-	font-size: 11pt;
+	font-size: 10pt;
 	color: gray;
 	font-weight: lighter;
 	text-align: justify;
@@ -199,15 +214,22 @@ table.mainTable
     font-size: 10pt;
     color: #444444;
     text-align: justify;
+    font-weight:lighter;
+}
+
+.text_box
+{
+    background-color: #FAF7EB;
+    font-weight:lighter;
 }
 
 .footer
 {
-	font-size: 8pt;
-	color: #375074;
+    font-size: 8pt;
+	color: #990000;
 	font-weight:lighter;
 	text-align: right;
-	background-color: white;
+    background-color: white;
 	/*padding-right: 35px;
 	padding-top: 30px;*/
 }
@@ -244,7 +266,8 @@ table.mainTable
 	border-width: 0px;
 	border-color: #6699CC;
 	border-style: ridge;
-	background-color: #D0DAE5;
+	/*background-color: #D0DAE5;*/
+    background-color: #FAF7EB;
 
 	-moz-border-radius:12px;
    	-webkit-border-radius:12px;
@@ -266,7 +289,8 @@ table.mainTable
 
 .question
 {
-	color: #000000;
+	color: #375074;
+    font-style: italic;
 }
 
 a

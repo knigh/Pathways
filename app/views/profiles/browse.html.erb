@@ -1,0 +1,142 @@
+
+		<!-- Body Content -->
+		
+		<tr><td class="content"><table class="clean" align="center"><tr>
+			
+			<td class="contentColumn"><table class="authorAlumTable">
+				
+				<tr><td class="contentColumn" align="center"><table class="clean" width="100%">
+					<tr><td class="box"><table class="clean">
+						
+						<tr><td height="5"/></tr>
+						
+						<tr><td><table class="clean"><tr>
+							<td width="4" />
+							<td><img id="searchImg" class="searchImg" src="/images/search.jpg" onClick="searchImgClick()"
+							   onmouseover="rollOver('searchImg', '/images/search-on.jpg')"
+							   onmouseout="rollOver('searchImg', '/images/search.jpg')" /></td>
+							<td><input type="text" id="searchBox" class="search" onclick="searchBoxClick(event);" onKeyPress="searchBoxKey(event)" value=""/></td>
+						</tr></table></td></tr>
+						
+						<% if @admins.length > 0 && session["#{$master.url}_user_type"] == "2" %>
+						<tr><td height="20"/></tr>
+						<tr><td class="heading">Administrators</td></tr>
+						<tr><td><table class="clean" cellpadding="5">
+							<% @admins.each do |admin| %>
+								<tr><td style="text-align:left;"><span
+									class="text"><a href="/profiles/view/<%= admin.id %>"><%= admin.name %> <%= @controller.getClassYears(admin) %></a>
+									<% if (admin.summary != "") %><br/><%= admin.summary %><% end %></span>
+								</td></tr>
+							<% end %>
+						</table></td></tr>
+						<% end %>
+						
+						<% if @alums.length > 0 %>
+						<tr><td height="20"/></tr>
+						<tr><td class="heading">Alumni</td></tr>
+						<tr><td><table class="clean" cellpadding="5">
+							<% @alums.each do |alum| %>
+								<tr><td style="text-align:left;"><span
+									class="text"><a href="/profiles/view/<%= alum.id %>"><%= alum.name %> <%= @controller.getClassYears(alum) %></a>
+									<% if (alum.summary != "") %><br/><%= alum.summary %><% end %></span>
+								</td></tr>
+							<% end %>
+						</table></td></tr>
+						<% end %>
+						
+						<% if @students.length > 0 %>
+						<tr><td height="20"/></tr>
+						<tr><td class="heading">Students</td></tr>
+						<tr><td><table class="clean" cellpadding="5">
+							<% @students.each do |student| %>
+								<tr><td style="text-align:left;"><span
+									class="text"><a href="/profiles/view/<%= student.id %>"><%= student.name %> <%= @controller.getClassYears(student) %></a>
+									<% if (student.summary != "") %><br/><%= student.summary %><% end %></span>
+								</td></tr>
+							<% end %>
+						</table></td></tr>
+						<% end %>
+						
+					</table></td></tr>
+				</table></td></tr>
+
+				<tr style="display:none;">
+					<td><% form_for :user, :url => {:action => :browse} do |form| %><%= submit_tag "search", :class => "submit", :id => "search_input" %><% end %></td>
+				</tr>
+
+
+			</table></td>
+		
+		</tr></table></td></tr>
+
+<% content_for :javascript do %>
+<script type="text/javascript">
+	
+	function rollOver(imgName, imgSrc)
+   	{
+		document.getElementById(imgName).src = imgSrc;
+	}
+
+	var currentSeed = null;
+
+	function showSeed(id)
+	{
+		if (currentSeed != null)
+		{
+			currentSeed.style.display = 'none';
+		}
+
+		currentSeed = document.getElementById('seed' + id);
+		currentSeed.style.display = 'inline';
+	}
+
+	var searchString = "Search for pathways";
+	var box = document.getElementById('searchBox');
+	box.value = searchString;
+	box.style.color = "gray";
+	
+	function searchBoxClick(e)
+	{
+		var box = document.getElementById('searchBox');
+		
+		if (box.value == searchString)
+		{
+			box.value = "";
+			box.style.color = "black";
+		}
+	}
+
+	function searchImgClick()
+	{	
+		var box = document.getElementById('searchBox');
+
+		if (box.value == searchString)
+		{
+			box.click();
+			box.focus();
+			return false;
+		}
+
+		doSearch(box.value);
+	}
+
+	function searchBoxKey(e)
+	{
+		var code = (e && e.which) ? e.which : event.keyCode;
+		if(code == 13)
+		{
+			return doSearch(document.getElementById('searchBox').value);
+		}
+		
+		return true;
+	}
+
+	function doSearch(value)
+	{	
+		var input = document.getElementById('search_input');
+		input.value = value;
+		input.click();
+		return false;
+	}
+</script>
+<% end %>

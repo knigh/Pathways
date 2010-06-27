@@ -80,7 +80,7 @@
 							</tr>
 						</table></td></tr>
 					<% end %>
-				<% elsif @user.is_alum == "1" || @numSeeded == 0 %>
+				<% elsif @user.user_type == "1" || @numSeeded == 0 %>
 						<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Why don't you check out this profile?</td></tr>
 						<tr><td height="9"/></tr>
@@ -92,7 +92,7 @@
 							</tr>
 						</table></td></tr>
 					</table></td></tr>
-				<% else %>
+				<% elsif @user.user_type == "0" %>
 					<tr><td class="box"><table class="clean" width="310px;">
 						<tr><td class="title" style="text-align:center">Contribute your own interview!<td></tr>
 						<tr><td height="9"/></tr>

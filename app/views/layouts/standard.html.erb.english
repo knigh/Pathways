@@ -20,7 +20,7 @@
   feedback_widget_options.display = "overlay";  
   feedback_widget_options.company = "pathways";
   feedback_widget_options.placement = "right";
-  feedback_widget_options.color = "#1B417A";
+  feedback_widget_options.color = "#990000";
   feedback_widget_options.style = "idea";
   
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
@@ -29,17 +29,16 @@
 
 <body>
 	<table class="main">
-	<!-- Header -->
-		<tr><td class="clean"><table class="header"><tr>
-			<td class="name"><a href='/profiles/search'><table class="header" style="background-image:url(/images/logos/<%= $master.logo_file %>);"/>
-				<tr><td class="name"><img class="name" src="/images/logos/<%= $master.pathways_logo %>"/></td></tr></table></a><td/>
-			<!--
-     			<td class="name"><a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.logo_file %>"/></a>
-      			<a href='/profiles/search'><img style="width:150px;" class="name" src="/images/logos/<%= $master.pathways_logo %>"/></a></td>
-			-->
-			
-			<td/>
-
+		
+		<!-- Header -->
+		<tr><td class="clean" align="center"><a href='/profiles/search'><table class="header"><tr>
+			<td class="name">
+					<table class="header" style="background-image:url(/images/logos/<%= $master.logo_file %>);"><tr><td/></tr></table>
+			</td>
+		</tr></table></a></td></tr>
+		
+		<tr><td class="clean" align="center"><table class="headerTabs"><tr>
+			<td width="800"/>
 			<td class="tab"><img id="about" class="tab" src="/images/buttons/about.gif"
 				onmouseover="rollOver('about', '/images/buttons/about-on.gif')"
 				onmouseout="rollOver('about', '/images/buttons/about.gif')"
@@ -56,7 +55,7 @@
 				<td class="tab"><img id="signout" class="tab" src="/images/buttons/signout.gif"
 					onmouseover="rollOver('signout', '/images/buttons/signout-on.gif')"
 					onmouseout="rollOver('signout', '/images/buttons/signout.gif')"
-					onclick="window.location='/user/logout'; return false;"/></td>
+					onclick="window.location='/user/logout'; return false"/></td>
 			<% else %>
 				<td class="tab"><img id="signin" class="tab" src="/images/buttons/signin.gif"
 					onmouseover="rollOver('signin', '/images/buttons/signin-on.gif')"
@@ -64,13 +63,25 @@
 					onclick="window.location='/user/signin'; return false;"/></td>
 			<% end %>
 		</tr></table></td></tr>
-	
+		<!-- End: Header -->
+
+		<!-- Body -->
+		<tr><td class="clean" align="center"><table class="header">
 		<%= yield -%>
+		</table></td></tr>
 
 		<!-- Footer -->
-		<tr ><td width="100%" class="footer" colspan="3">&#169; 2010  Stanford Pathways. All rights reserved.</td></tr>
+		<tr><td class="clean" align="center"><table class="headerTabs">
+			<tr><td class="footer" colspan="3">&#169; 2010  Stanford Pathways. All rights reserved.</td></tr>
+		</table></td></tr>
 		
-	</table>	
+	</table>
+
+	<!-- Red Border at the bottom -->
+	<table class="main">
+		<tr><td height="16"/></tr>
+	</table>
+	
 </body>
 </html>
 
