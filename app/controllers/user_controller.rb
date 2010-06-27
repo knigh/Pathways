@@ -14,16 +14,24 @@ class UserController < ApplicationController
 		@email_authentication = false
 		if $master.admin_email != ""
 			@email_authentication = true
-			if (flash[:alert] == "")
+			if (flash[:alert] == "" or flash[:alert] is nil)
 				flash[:alert] = "Sign up is only available for Stanford students and alumni.<br/>If you have a Stanford or Stanford Alumni email account, use it.<br/>Otherwise, your email will have to be verified by the " + $master.formal_name + " administrators."
 			end
 		end
-	end 
+	end
 	
 	def post_signin
 		flash[:signup_notice] = nil
 		flash[:signin_notice] = nil
 		flash.keep(:url)
+		
+		@email_authentication = false
+		if $master.admin_email != ""
+			@email_authentication = true
+			if (flash[:alert] == "" or flash[:alert] is nil)
+				flash[:alert] = "Sign up is only available for Stanford students and alumni.<br/>If you have a Stanford or Stanford Alumni email account, use it.<br/>Otherwise, your email will have to be verified by the " + $master.formal_name + " administrators."
+			end
+		end
 		
 		@user = User.find_by_email(params[:user][:email])
 		if (@user.nil?)

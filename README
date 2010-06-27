@@ -118,7 +118,7 @@ rm config/database.yml
 rm public/stylesheets/pathways.css
 rm public/images/body.gif
 rm -r public/images/buttons
-rm. app/views/layouts/standard.html.erb
+rm app/views/layouts/standard.html.erb
 git pull
 cd config
 cp database.yml.english database.yml
@@ -127,7 +127,6 @@ cd public/stylesheets
 mv pathways.css.english pathways.css
 cd ../images
 mv body.gif.english body.gif
-rm -r buttons
 mv buttons.english buttons
 cd ../../app/views/layouts
 mv standard.html.erb.english standard.html.erb
