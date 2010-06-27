@@ -475,7 +475,7 @@ class ProfilesController < ActionController::Base
 		
 		days = 7
 		days_ago = Time.now - (days * (60*60*24)) 
-		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ? and user_type <> "2"', 0, 0], :order => 'date_modified DESC', :limit => 5)
 		
 		@authoredPathways = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0])
 		
@@ -605,7 +605,7 @@ class ProfilesController < ActionController::Base
 
 	def rss
 		createNewLogEntry(request.request_uri)
-		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ?', 0, 0], :order => 'date_modified DESC', :limit => 5)
+		@recent_interviews = User.find(:all, :conditions => ['author != ? and approved > ? and user_type <> "2"', 0, 0], :order => 'date_modified DESC', :limit => 5)
 	end
 	
 	def about
