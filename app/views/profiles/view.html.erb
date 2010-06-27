@@ -23,8 +23,8 @@
 						<tr><td height="10"/>
 						<tr>
 						<td class="heading" width="10"/>
-						<td class="heading" width="400px"><%= @user.name %> <%= @controller.getClassYears(@user) %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td>
-						<td class="heading" width="442px" align="right">
+						<td class="heading" width="420px"><%= @user.name %> <%= @controller.getClassYears(@user) %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td>
+						<td class="heading" width="422px" align="right">
 						<% print "user type:" + session["#{$master.url}_user_type"].to_s + ", session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
 
 						<% if session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
