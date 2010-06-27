@@ -3,12 +3,54 @@
 		<tr><td class="content"><table class="clean" align="center"><tr>
 		
 			<% if (session["#{$master.url}_user_type"] != "2" && @user.author != 0 && (@user.approved == 0 && session["#{$master.url}_id"] != @user.author) || (@user.approved == -1 && (session["#{$master.url}_id"] != @user.author && session["#{$master.url}_id"] != @user.id))) %>
+				<td colspan="2" class="heading" />
 				<td colspan="2" class="heading">This pathway is not yet available to view</td>
 			<% else %>
+			
+			<!-- Hidden form buttons.  Ruby displays these on separate lines, and we would like to display them on one line.
+				 So, we fake it by using false buttons that redirect to these :) -->
+			<td style="display:none;">
+				<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit", :id => "edit_pathway" %><% end %>
+				<% form_for :user, :url => {:action => :post_delete, :id => @user.id} do |form| %><%= submit_tag "Delete", :class => "submit", :id => "delete_pathway", :confirm => "Are you sure you want to delete this Pathway?  This action cannot be reversed." %><% end %>
+				<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit", :id => "submit_for_approval" %><% end %>
+				<% form_for :user, :url => {:action => :post_approve, :id => @user.id} do |form| %><%= submit_tag "Approve", :class => "submit", :id => "approve" %><% end %>
+				<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit", :id => "author_pathway_1", :confirm => "This will make you the official author of #{@user.name}'s Pathway. Are you sure you want to continue?" %><% end %>
+				<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit", :id => "author_pathway_2" %><% end %>
+			</td>
+			
+			<td colspan="2">
+				<table style="clean">
+						<tr><td height="10"/>
+						<tr>
+						<td class="heading" width="10"/>
+						<td class="heading" width="320px"><%= @user.name %> <%= @controller.getClassYears(@user) %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td>
+						<td class="heading" width="522px" align="right">
+						<% print "user type:" + session["#{$master.url}_user_type"].to_s + ", session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
+
+						<% if session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
+								<input type="button" value="Edit Pathway" onclick="document.getElementById('edit_pathway').click(); return false;" />
+								<input type="button" value="Delete Pathway" onclick="document.getElementById('delete_pathway').click(); return false;" />
+							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
+								<input type="button" value="Submit for Approval" onclick="document.getElementById('submit_for_approval').click(); return false;" />
+							<% elsif @user.approved < 1 && session["#{$master.url}_id"] == @user.id %>
+								<input type="button" value="Approve" onclick="document.getElementById('approve').click(); return false;" />
+							<% end %>
+						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
+							<input type="button" value="Author Pathway" onclick="document.getElementById('author_pathway_1').click(); return false;" />
+						<% elsif @user.author == 0 %>
+							<input type="button" value="Author Pathway" onclick="document.getElementById('author_pathway_2').click(); return false;" />
+						<% end %>
+						</td>
+						<td width="8"/>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			
 			<!-- Column 1 -->
 			<td class="contentColumn">
 				<table class="interviewTable">
-					<tr><td colspan="2" class="heading"><%= @user.name %> <%= @controller.getClassYears(@user) %><% if @user.six_words != nil && @user.six_words.length > 0 %>: <%=@user.six_words %><% end %></td></tr>
 					<% if @user.video_url != "" %>
 						<% @url = @user.video_url.sub(/watch\?v=/, "v/") %>
 						<% print @url + "\n" %>
@@ -73,23 +115,6 @@
 			<td class="contentColumn">
 				<table class="infoTable">
 					
-					<tr><td class="heading" align="right">
-						<% print "user type:" + session["#{$master.url}_user_type"].to_s + ", session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
-
-						<% if session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Edit Pathway", :class => "submit" %><% end %>
-							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
-								<% form_for :user, :url => {:action => :post_submit, :id => @user.id} do |form| %><%= submit_tag "Submit for #{@user.name}'s Approval", :class => "submit" %><% end %>
-							<% elsif @user.approved < 1 && session["#{$master.url}_id"] == @user.id %>
-								<% form_for :user, :url => {:action => :post_approve, :id => @user.id} do |form| %><%= submit_tag "Approve", :class => "submit" %><% end %>
-							<% end %>
-						<% elsif session["#{$master.url}_id"] != nil && @user.author == 0 %>
-							<% form_for :user, :url => {:action => :edit, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit", :confirm => "This will make you the official author of #{@user.name}'s Pathway. Are you sure you want to continue?" %><% end %>
-						<% elsif @user.author == 0 %>
-							<% form_for :user, :url => {:action => :signin_to_interview, :id => @user.id} do |form| %><%= submit_tag "Author Pathway", :class => "submit" %><% end %>
-						<% end %>
-					</td></tr>
-
 					<tr><td><table class="clean">
 						<tr><td><img class="pic" src="/images/pics/<%= @user.image_file %>"/></td></tr>
 						<tr><td class="title"><%= @user.name %></td></tr>

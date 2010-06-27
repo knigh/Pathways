@@ -45,6 +45,18 @@ class ProfilesController < ActionController::Base
 		end
 	end
 	
+	def post_delete
+	
+		createNewLogEntry(request.request_uri)
+		
+		@user = User.find(params[:id])
+		@user.delete
+		
+		reset_session
+		
+		redirect_to("/profiles/search")	
+	end
+	
 	def post_edit
 		
 		createNewLogEntry(request.request_uri)
@@ -243,7 +255,7 @@ class ProfilesController < ActionController::Base
 				end
 			end
 			
-			@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '">' + match[1..match.index('|') - 1] + '</a>'}
+			@interview_text.gsub!(/<.*\|.*>/) {|match| '<a href="' + match[(match.index('|') + 1)..(match.length - 2)] + '" target="_blank">' + match[1..match.index('|') - 1] + '</a>'}
 			@interview_text.gsub!(/\[\[.*\]\]/) {|match| '<span class="question">' + match[2..(match.length - 3)] + '</span>'}
 
 			@interview_text.gsub!(/\n/) {|match| '<br/>'}

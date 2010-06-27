@@ -201,6 +201,12 @@ table.mainTable
     text-align: justify;
 }
 
+.text_box
+{
+    background-color: #EAECF8;
+    font-weight:lighter;
+}
+
 .footer
 {
 	font-size: 8pt;
