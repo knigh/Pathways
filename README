@@ -124,12 +124,12 @@ cd config
 cp database.yml.english database.yml
 cd ..
 cd public/stylesheets
-mv pathways.css.english pathways.css
+cp pathways.css.english pathways.css
 cd ../images
-mv body.gif.english body.gif
-mv buttons.english buttons
+cp. body.gif.english body.gif
+cp -r buttons.english buttons
 cd ../../app/views/layouts
-mv standard.html.erb.english standard.html.erb
+cp standard.html.erb.english standard.html.erb
 cd ../..
 
 # copy this block for each subdomain, updating appropriately
