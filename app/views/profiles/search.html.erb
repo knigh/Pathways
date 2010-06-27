@@ -106,20 +106,9 @@
 					</table></td></tr>
 				<% elsif @user.user_type == "0" %>
 					<tr><td class="box"><table class="clean" width="310px;">
-					<% if @recommended %>
-						<tr><td class="title" style="text-align:center">Contribute your own interview!<td></tr>
-						<tr><td height="9"/></tr>
-						<tr><td class="title" align="center">Interview <a href="/profiles/view/<%= @recommended.id %>"><%= @recommended.name %></a></td></tr>
-						<% if @recommendedText != "" %>
-							<tr><td class="title" align="center"><small>(<%=@recommendedText %>)</small></td></tr>
-						<% end %>
-						<tr><td height="9"/></tr>
-						<tr><td class="title" align="center">or one of <a href="/profiles/interview"><b>many other <%= $master.informal_name %> alumni</b></a></small></td></tr>
-					<% else %>
 						<tr><td class="title" style="text-align:center">Contribute your own interview!</td></tr>
 						<tr><td height="9"/></tr>
 						<tr><td class="title" align="center">Choose from one of <a href="/profiles/interview"><b>many <%= $master.informal_name %> alumni</b></a></small></td></tr>
-					<% end %>
 					</table></td></tr>
 				<% end %>
 
