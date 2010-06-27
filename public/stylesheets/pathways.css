@@ -204,7 +204,7 @@ table.mainTable
 .text_box
 {
     background-color: #EAECF8;
-    font-weight:lighter;
+   /* font-weight:lighter; */
 }
 
 .footer
