@@ -17,8 +17,8 @@
 		2 = admin
 
 	users.approved:
-		-1 = alum pathway created by student/admin.  Not submitted or approved.
-		0  = alum pathway submitted for approval
+		0 = alum pathway created by student/admin.  Not submitted or approved.
+		-1  = alum pathway submitted for approval
 		1  = alum pathway approved
 
 :::::::Ruby/Rails versioning on bluehost
