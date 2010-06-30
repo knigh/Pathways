@@ -86,6 +86,35 @@ class UserController < ApplicationController
 		end
 	end
 	
+	def post_signup
+        flash[:signup_notice] = nil
+        flash[:signin_notice] = nil
+        flash.keep(:url)
+		
+		@user = User.find_by_email(params[:user][:email])
+		if (@user.nil?)
+			reset_session
+			logger.error("Invalid email")
+			flash[:signin_notice] = "Invalid email"
+			render :action => 'signin'
+		else
+			@hashed_password = params[:temp]
+			if (@hashed_password != @user.hashed_password)
+                logger.error("Invalid password")
+                flash[:signin_notice] = "Invalid password"
+				render(:action => :signin)
+			else
+                session["#{$master.url}_id"] = @user[:id];
+				session["#{$master.url}_user_type"] = @user[:user_type];
+                if flash[:url]
+					redirect_to(flash[:url])
+				else
+					redirect_to("/profiles/edit/#{@user[:id]}")
+				end
+			end
+		end
+	end
+	
 	
 	def logout
 		createNewLogEntry(request.request_uri)
@@ -225,7 +254,7 @@ class UserController < ApplicationController
 				@degree.save
 			
 				subject = "Your Pathway has been created"
-				encoded_url = $master.url + "/user/post_publish?user[email]=#{@user[:email]}&temp=#{@user[:hashed_password]}"
+				encoded_url = $master.url + "/user/post_signup?user[email]=#{@user[:email]}&temp=#{@user[:hashed_password]}"
 				Emailer.deliver_signup_notification(@user.email, @user.name, subject, subject, $master.formal_name, $master.informal_name, $master.admin_email, encoded_url)
 				flash[:alert] = "Thank you for signing up.<br/>A confirmation email, with instructions for accessing your Pathway, has been sent to your account."
 				redirect_to(:controller => :user, :action => :signin)			
