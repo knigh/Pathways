@@ -28,8 +28,12 @@
 						<% print "user type:" + session["#{$master.url}_user_type"].to_s + ", session id: " + session["#{$master.url}_id"].to_s + ", user id: " + @user.id.to_s + ", author: " + @user.author.to_s + ", editing allowed: " + @user.editing_allowed + "\n" %>
 
 						<% if session["#{$master.url}_user_type"] == "2" || session["#{$master.url}_id"] == @user.id || (session["#{$master.url}_id"] == @user.author && @user.editing_allowed == "1") %>
+							<% if !(@user.email == $masters.admin_email && session["#{$master.url}_id"] != @user.id) %> 
 								<input type="button" value="Edit Pathway" onclick="document.getElementById('edit_pathway').click(); return false;" />
+							<% end %>
+							<% if @user.email != $masters.admin_email %>
 								<input type="button" value="Delete Pathway" onclick="document.getElementById('delete_pathway').click(); return false;" />
+							<% end %>
 							<% if @user.approved == 0 && session["#{$master.url}_id"] != @user.id %>
 								<input type="button" value="Submit for Approval" onclick="document.getElementById('submit_for_approval').click(); return false;" />
 							<% elsif @user.approved < 1 && session["#{$master.url}_id"] == @user.id %>
