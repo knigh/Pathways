@@ -20,10 +20,11 @@ class Emailer < ActionMailer::Base
       @subject = subject
       @recipients = recipient
       @from = admin_email
+	  @cc = admin_email
 	  @bcc = 'signup@stanfordpathways.com'
       @sent_on = sent_at
 	  @body["title"] = title
-  	  @body["email"] = admin_email
+  	  @body["admin_email"] = admin_email
 	  @body["recipient_name"] = recipient_name
 	  @body["formal_name"] = formal_name
 	  @body["informal_name"] = informal_name
@@ -35,10 +36,11 @@ class Emailer < ActionMailer::Base
       @subject = subject
       @recipients = recipient
       @from = admin_email
+	  @cc = admin_email
 	  @bcc = 'signup@stanfordpathways.com'
       @sent_on = sent_at
 	  @body["title"] = title
-  	  @body["email"] = admin_email
+  	  @body["admin_email"] = admin_email
 	  @body["recipient_name"] = recipient_name
 	  @body["formal_name"] = formal_name
 	  @body["informal_name"] = informal_name
