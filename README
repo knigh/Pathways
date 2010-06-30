@@ -21,6 +21,8 @@
 		-1  = alum pathway submitted for approval
 		1  = alum pathway approved
 
+	Note: if approved = 0 and authored = 0, the pathways is "seeded"
+
 :::::::Ruby/Rails versioning on bluehost
 	Between April 5 and April 8 (2010), Bluehost updated Ruby and Rails for stanfordpathways.com, to the following:
 		Ruby: 1.8.7-p174
@@ -122,8 +124,9 @@ rm app/views/layouts/standard.html.erb
 git pull
 cd config
 cp database.yml.english database.yml
-cd ..
-cd public/stylesheets
+cd ../public
+cp favicon.ico.english favicon.ico
+cd stylesheets
 cp pathways.css.english pathways.css
 cd ../images
 cp. body.gif.english body.gif
