@@ -144,6 +144,9 @@ class ProfilesController < ActionController::Base
 		rescue
 			redirect_to "/404.html"
 		else
+		
+			@admin_email = $master.admin_email
+		
 			@jobs = Job.find(:all, :conditions => ["user_id = ? AND (title != ? OR company != ?)", id, "", ""])
 			@degrees = Degree.find(:all, :conditions => ["user_id = ? AND (degree != ? OR major != ?)", id, "", ""])
 			
