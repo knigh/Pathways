@@ -226,7 +226,7 @@ class UserController < ApplicationController
 			
 				subject = "Your Pathway has been created"
 				encoded_url = $master.url + "/user/post_publish?user[email]=#{@user[:email]}&temp=#{@user[:hashed_password]}"
-				Emailer.deliver_signup_notification(@user.email, @user.name, subject, subject, $master.formal_name, $master.informal_name, encoded_url)
+				Emailer.deliver_signup_notification(@user.email, @user.name, subject, subject, $master.formal_name, $master.informal_name, $master.admin_email, encoded_url)
 				flash[:alert] = "Thank you for signing up.<br/>A confirmation email, with instructions for accessing your Pathway, has been sent to your account."
 				redirect_to(:controller => :user, :action => :signin)			
 			else
