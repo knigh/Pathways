@@ -98,6 +98,7 @@ rm config/database.yml
 git pull
 cd config
 cp database.yml.sandbox database.yml
+rake db:migrate
 
 cd ../..
 cd Friends
@@ -105,6 +106,7 @@ rm config/database.yml
 git pull
 cd config
 cp database.yml.friends database.yml
+rake db:migrate
 
 cd ../..
 cd Daily
@@ -112,6 +114,7 @@ rm config/database.yml
 git pull
 cd config
 cp database.yml.daily database.yml
+rake db:migrate
 
 # Special Sauce for English
 cd ../..
@@ -134,6 +137,7 @@ cp -r buttons.english buttons
 cd ../../app/views/layouts
 cp standard.html.erb.english standard.html.erb
 cd ../..
+rake db:migrate
 
 # copy this block for each subdomain, updating appropriately
 cd ../..
@@ -142,6 +146,7 @@ rm config/database.yml
 git pull
 cd config
 cp database.yml.symsys database.yml
+rake db:migrate
 
 # do this last (it can be done from any subdomain)
 cd ../public
