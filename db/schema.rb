@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100626164740) do
+ActiveRecord::Schema.define(:version => 20100807055618) do
 
   create_table "degrees", :force => true do |t|
     t.integer  "user_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100626164740) do
     t.datetime "updated_at"
     t.integer  "ab_last_assigned",   :default => 1
     t.string   "admin_email",        :default => ""
+    t.boolean  "sign_in_to_view",    :default => false
   end
 
   create_table "questions", :force => true do |t|

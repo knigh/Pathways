@@ -11,7 +11,17 @@ class ProfilesController < ActionController::Base
 			@user = User.find(id)
 		rescue
 			redirect_to "/404.html"
-			else
+		else
+		
+			if ($master.sign_in_to_view and session["#{$master.url}_id"] == nil)
+				if (params[:id])
+					signin_to_view "/profiles/edit/#{params[:id]}"
+				else 
+					signin_to_view "/profiles/about"
+				end
+				return
+			end
+		
 			if params[:commit] == "Author Pathway"
 				@user.author = session["#{$master.url}_id"]
 				@user.save
@@ -139,6 +149,12 @@ class ProfilesController < ActionController::Base
 		redirect_to(:controller => :user, :action => :signin)
 	end	
 	
+	def signin_to_view(page)
+		flash[:alert] = "You must sign in to view this page"
+		flash[:url] = page
+		redirect_to(:controller => :user, :action => :signin)
+	end
+	
 	def view
 		createNewLogEntry(request.request_uri)
 		begin
@@ -147,6 +163,15 @@ class ProfilesController < ActionController::Base
 		rescue
 			redirect_to "/404.html"
 		else
+					
+			if ($master.sign_in_to_view and session["#{$master.url}_id"] == nil)
+				if (params[:id])
+					signin_to_view "/profiles/view/#{params[:id]}"
+				else 
+					signin_to_view "/profiles/about"
+				end
+				return
+			end
 		
 			@admin_email = $master.admin_email
 		
@@ -546,6 +571,12 @@ class ProfilesController < ActionController::Base
 	
 	def interview
 		createNewLogEntry(request.request_uri)
+		
+		if ($master.sign_in_to_view and session["#{$master.url}_id"] == nil)
+			signin_to_view "/profiles/interview"
+			return
+		end
+		
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			# @seeded = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (? with query expansion) and author = ?', params[:commit], 0], :order => 'name')
@@ -557,6 +588,12 @@ class ProfilesController < ActionController::Base
 	
 	def browse
 		createNewLogEntry(request.request_uri)
+		
+		if ($master.sign_in_to_view and session["#{$master.url}_id"] == nil)
+			signin_to_view "/profiles/browse"
+			return
+		end
+		
 		# The search parameters are set in the commit variable
 		if (params[:commit] && (params[:commit] != ""))
 			@admins   = User.find(:all, :conditions => ['match(name,summary,alum_interview_text,student_interview_text,six_words) against (?) and user_type = ?', params[:commit], "2"], :order => 'name')
