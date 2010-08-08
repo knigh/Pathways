@@ -150,7 +150,7 @@ class ProfilesController < ActionController::Base
 	end	
 	
 	def signin_to_view(page)
-		flash[:alert] = "You must sign in to view this page"
+		flash[:alert] = "#{$master.informal_name} Pathways is only available for Stanford students and alumni.<br/><br/>Please sign in to access this site."
 		flash[:url] = page
 		redirect_to(:controller => :user, :action => :signin)
 	end
