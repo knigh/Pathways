@@ -136,7 +136,7 @@
 							<tr><td class="title" width="180">Recent Pathways</td><td class="title" width="150" align="center">Interviewed By</td></tr>
 							<% @recent_interviews.each do |recent| %>
 								<% recent_author = User.find(recent.author) %>
-								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id || recent.author == "admin" %><%= "-" %><% else %><a href="/profiles/view/<%= recent_author.id %>"><%= recent_author.name %> <%= @controller.getClassYears(recent_author) %></a><% end %></td></tr>
+								<tr><td class="text"><a href="/profiles/view/<%= recent.id %>"><%= recent.name %> <%= @controller.getClassYears(recent) %></a></td><td class="text" style="text-align:center"><% if recent.author == recent.id || recent_author.name == "admin" %><%= "-" %><% else %><a href="/profiles/view/<%= recent_author.id %>"><%= recent_author.name %> <%= @controller.getClassYears(recent_author) %></a><% end %></td></tr>
 							<% end %>
 							
 							<% if (@authoredPathways.length  > 0) %>
