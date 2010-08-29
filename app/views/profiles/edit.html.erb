@@ -83,7 +83,7 @@
 				<tr><td class="text_edit" style="text-align:left;">My Pathway pic:<%= form.file_field(:image_file) %></td></tr>
 				
 				<tr><td/></tr>
-				<tr><td class="title">Stanford Experience</td></tr>
+				<tr><td class="title">Academic Experience</td></tr>
 				<tr><td><table class="clean" cellpadding="2">
 				<% @degrees.each do |degree| %>
 
@@ -101,7 +101,7 @@
 					</tr>
 					<tr>
 						<td class="text">Degree</td>
-						<td><%= select("[user][existing_degree_attributes][#{degree.id}]", "degree", options_for_select([["B.S.", "B.S."], ["B.A.", "B.A."], ["M.S.", "M.S."], ["M.A.", "M.A."], ["Ph.D.", "Ph.D."], ["M.B.A.", "M.B.A."], ["M.D.", "M.D."], ["J.D.", "J.D."]], degree.degree), { :include_blank => true}) %></td>
+						<td><%= select("[user][existing_degree_attributes][#{degree.id}]", "degree", options_for_select(@degree_options, degree.degree), { :include_blank => true}) %></td>
 					</tr>
 					<tr>
 						<td class="text">Major</td>

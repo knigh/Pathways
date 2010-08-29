@@ -38,6 +38,12 @@ class ProfilesController < ActionController::Base
 			
 			@degrees = Degree.find(:all, :conditions => ["user_id = ?", id])
 			
+			if ($master.formal_name == "English")
+				@degree_options = [["B.S.", "B.S."], ["B.A.", "B.A."], ["B.A.H.", "B.A.H."], ["B.A.S.", "B.A.S."], ["B.A.S.H.", "B.A.S.H."], ["M.Phil.", "M.Phil."], ["M.S.", "M.S."], ["M.A.", "M.A."], ["Ph.D.", "Ph.D."], ["M.B.A.", "M.B.A."], ["M.D.", "M.D."], ["J.D.", "J.D."]]
+			else
+				@degree_options = [["B.S.", "B.S."], ["B.A.", "B.A."], ["M.S.", "M.S."], ["M.A.", "M.A."], ["Ph.D.", "Ph.D."], ["M.B.A.", "M.B.A."], ["M.D.", "M.D."], ["J.D.", "J.D."]]
+			end
+			
 			if @user.author != 0
 				@author = User.find(@user.author)
 			end
