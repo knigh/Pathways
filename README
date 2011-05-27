@@ -24,6 +24,49 @@
 	Note: if approved = 0 and authored = 0, the pathways is "seeded"
 
 :::::::Ruby/Rails versioning on bluehost
+(3)	By May 20, 2011, Bluehost updated Ruby on Rails for stanfordpathwys.com to Rails 2.3.11
+
+	As before, this upgrade broke all of our rails deployments.  I tried a variety of fixes, including the
+	approach from before, but nothing worked.  So, I contacted bluehost tech support, who were able to
+	fix the problem!  Here is their email response:
+
+Hello,
+Thanks for contacting support.
+
+Due to mandatory upgrades for our environment, Rails and Gems versions were recently updated. Rails is now 2.3.11, and Gems is now another major revision higher, 1.4.2, versus 1.3.9. The issue you're seeing is likely due to an outdated Gem being used. Due to the new Gems version, initialization order has changed, essentially causing bootstrap to initialize before the gems thread starts. This causes the app to start without Gems--assuming you're using Gems older than 1.4.x. The most expedient solution to this is to update your software to compatible revisions. If that is not an option, you can use this workaround to fix the problem. Please note this requires changing both your boot.rb and environment.rb file.
+
+I was able to fix the sandbox.stanfordpathways.com app by performing these changes:
+
+At the top of your config/boot.rb file, added:
+require 'thread'
+
+In config/environment.rb
+Commented out RAILS_GEM_VERSION. This is not required, and additionally is causing permanent boot issues for reasons still unknown to us.
+
+Added this thread before the initializer:
+if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.3.7')
+ module Rails
+   class GemDependency
+     def requirement
+       r = super
+       (r == Gem::Requirement.default) ? nil : r
+     end
+   end
+ end
+end
+
+For more information, please see:
+http://stackoverflow.com/questions/5176782/uninitialized-constant-activesupportdependenciesmutex-nameerror
+
+Let us know if we can help with anything else, or if you have any additional questions.
+
+
+Thank you,
+Eric
+Level II Site/Script Compatibility
+BlueHost.com
+888.401.4678
+
 (2)
 	Between August 29 and August 31 (2010), Bluehost updated Ruby and Rails for stanfordpathways.com to the following:
 		ImageMagick 6.5.9-9 => 6.6.3-2
@@ -40,7 +83,7 @@
         	tzinfo 0.3.18 => 0.3.22
        	 	rubygems 1.3.5 => 1.3.7
 
-	As before, this upgrade broke all of our rails deployment.
+	As before, this upgrade broke all of our rails deployments.
 
 	Similar to before, I ran the following for each rails app (note the new version):
 		rake rails:freeze:edge RELEASE=2.3.8
@@ -60,6 +103,7 @@
 		cd -
 		Updating current scripts, javascripts, and configuration settings
 
+>>>>>>> fix for the latest bluehost ruby/rails upgrade
 	This essentially pulled down 2.3.8 support, but also froze the version at 2.3.8.
 	There may be a more preferable solution . . .
 
